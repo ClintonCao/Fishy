@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.OptionsController">
+   <children>
+      <ImageView fitHeight="715.0" fitWidth="1166.0">
+         <image>
+            <Image url="@Fishy_bg.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="OnButton" layoutX="312.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#MusicOnEvent" opacity="0.75" prefHeight="66.0" prefWidth="231.0" text="On">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="OffButton" layoutX="596.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#MusicOffEvent" opacity="0.75" prefHeight="66.0" prefWidth="231.0" text="Off">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="447.0" layoutY="217.0" prefHeight="96.0" prefWidth="243.0" text="Music" textAlignment="CENTER">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="BackButton" layoutX="453.0" layoutY="537.0" mnemonicParsing="false" onMouseClicked="#BackButtonEvent" opacity="0.75" prefHeight="66.0" prefWidth="231.0" text="Back">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
