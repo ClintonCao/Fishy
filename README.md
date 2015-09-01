@@ -3,17 +3,18 @@
 This repository contains our implementation of the game Fishy. This game is a project for the course of Software Engineering Mehtods (TI2206).
 
 Group #6 members:
-Name                   NetID          student number
 
-Michiel Doesburg      mdoesburg       4343875 
+Name   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NetID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          Student number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-Matthijs Halvemaan    mhalvemaan      4353803
+Michiel Doesburg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      mdoesburg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       4343875 
 
-Dmitry Malarev        dmalarev        4345257
+Matthijs Halvemaan &nbsp;&nbsp;&nbsp;mhalvemaan   &nbsp;&nbsp;&nbsp;&nbsp;4353803
 
-Sunwei Wang           sunweiwang      4345967
+Dmitry Malarev &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       dmalarev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        4345257
 
-Clinton Cao           cscao           4349024
+Sunwei Wang &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         sunweiwang &nbsp;&nbsp;     4345967
+
+Clinton Cao &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         cscao&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           4349024
 
 
 TA: Valentine Mairiet       V.A.P.Mairet@student.tudelft.nl
