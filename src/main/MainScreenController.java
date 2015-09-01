@@ -3,6 +3,7 @@ package main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -70,7 +71,7 @@ public class MainScreenController {
 			@Override
 			public void handle(MouseEvent event) {
 
-				System.out.println("Options Clicked");
+				Game.switchScreen("FXML/OptionsScreen.fxml");
 
 			}
 		});
@@ -80,7 +81,7 @@ public class MainScreenController {
 			@Override
 			public void handle(MouseEvent event) {
 
-				System.out.println("Quit Clicked");
+				Platform.exit();
 
 			}
 		});
