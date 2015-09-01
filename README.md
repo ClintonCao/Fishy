@@ -4,6 +4,7 @@ This repository contains our implementation of the game Fishy. This game is a pr
 
 Group #6 members:
 Name                   NetID          student number
+
 Michiel Doesburg      mdoesburg       4343875 
 
 Matthijs Halvemaan    mhalvemaan      4353803
