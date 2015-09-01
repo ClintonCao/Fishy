@@ -3,13 +3,13 @@
 This repository contains our implementation of the game Fishy. This game is a project for the course of Software Engineering Mehtods (TI2206).
 
 Group #6 members:
+Name                   NetID          student number
+Michiel Doesburg      mdoesburg       4343875 
 
-Michiel Doesburg
+Matthijs Halvemaan    mhalvemaan      4353803
 
-Matthijs Halvemaan
+Dmitry Malarev        dmalarev        4345257
 
-Dmitry Malarev
+Sunwei Wang           sunweiwang      4345967
 
-Sunwei Wang
-
-Clinton Cao
+Clinton Cao           cscao           4349024
