@@ -12,17 +12,15 @@ public class Sprite {
 	private double posY;
 	private double velX;
 	private double velY;
-	private double width;
-	private double height;
+	private AABB aabb;
 	
-	public Sprite(Image img, double posX, double posY, double velX, double velY, double width, double height) {
+	public Sprite(Image img, double posX, double posY, double velX, double velY, AABB aabb) {
 		this.img = img;
 		this.setPosX(posX);
 		this.setPosY(posY);
 		this.setVelX(velX);
 		this.setVelY(velY);
-		this.setWidth(width);
-		this.setHeight(height);
+		this.setAabb(aabb);
 	}
 	
 	
@@ -67,19 +65,13 @@ public class Sprite {
 		this.velX = velX;
 	}
 
-	public double getWidth() {
-		return width;
+
+	public AABB getAabb() {
+		return aabb;
 	}
 
-	public void setWidth(double width) {
-		this.width = width;
+	public void setAabb(AABB aabb) {
+		this.aabb = aabb;
 	}
 
-	public double getHeight() {
-		return height;
-	}
-
-	public void setHeight(double height) {
-		this.height = height;
-	}
 }
