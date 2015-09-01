@@ -14,3 +14,6 @@ Dmitry Malarev        dmalarev        4345257
 Sunwei Wang           sunweiwang      4345967
 
 Clinton Cao           cscao           4349024
+
+
+TA: Valentine Mairiet       V.A.P.Mairet@student.tudelft.nl
