@@ -10,23 +10,13 @@ public class Game extends Application {
 
 	static Stage stage;
 	static Pane pane;
-//	final URL resource = getClass().getResource("FXML/track.mp3");
-//    final Media media = new Media(resource.toString());
-//    static MediaPlayer mediaPlayer = null;
-    
-    
-    
     
 	public static void main(String[] args) {
-		Application.launch(Game.class, (java.lang.String[]) null);
+		launch(args);
 	}
 
 	/**
-	 * Deze methode wordt gebruikt om de begin scene van Football Manager op te
-	 * laden
-	 * 
-	 * @param firstStage
-	 *            is de stage waar het start.
+	 * @param firstStage is de stage waar het start.
 	 */
 	@Override
 	public void start(Stage firstStage) {
@@ -41,9 +31,6 @@ public class Game extends Application {
 			pane = (Pane) loader.load();
 
 			Scene scene = new Scene(pane);
-//			mediaPlayer = new MediaPlayer(media);
-//		    mediaPlayer.play();
-//		    mediaPlayer.setCycleCount(Integer.MAX_VALUE);
 			firstStage.setHeight(715);
 	        firstStage.setWidth(1160);
 			firstStage.setScene(scene);
@@ -57,8 +44,7 @@ public class Game extends Application {
 	/**
 	 * Deze methode wordt gebruikt voor het veranderen tussen scenes
 	 * 
-	 * @param bestand
-	 *            is de naam van de FXML bestand van de scene die je wilt laden.
+	 * @param bestand is de naam van de FXML bestand van de scene die je wilt laden.
 	 */
 	public static void switchScreen(String bestand) {
 		try {
