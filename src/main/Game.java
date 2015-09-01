@@ -1,4 +1,5 @@
 package main;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,13 +11,18 @@ public class Game extends Application {
 
 	static Stage stage;
 	static Pane pane;
-    
+
+	// final URL resource = getClass().getResource("FXML/track.mp3");
+	// final Media media = new Media(resource.toString());
+	// static MediaPlayer mediaPlayer = null;
+
 	public static void main(String[] args) {
-		launch(args);
+		Application.launch(Game.class, (java.lang.String[]) null);
 	}
 
 	/**
-	 * @param firstStage is de stage waar het start.
+	 * @param firstStage
+	 *            is de stage waar het start.
 	 */
 	@Override
 	public void start(Stage firstStage) {
@@ -32,7 +38,7 @@ public class Game extends Application {
 
 			Scene scene = new Scene(pane);
 			firstStage.setHeight(715);
-	        firstStage.setWidth(1160);
+			firstStage.setWidth(1160);
 			firstStage.setScene(scene);
 			firstStage.show();
 
@@ -44,7 +50,8 @@ public class Game extends Application {
 	/**
 	 * Deze methode wordt gebruikt voor het veranderen tussen scenes
 	 * 
-	 * @param bestand is de naam van de FXML bestand van de scene die je wilt laden.
+	 * @param bestand
+	 *            is de naam van de FXML bestand van de scene die je wilt laden.
 	 */
 	public static void switchScreen(String bestand) {
 		try {
@@ -57,4 +64,3 @@ public class Game extends Application {
 	}
 
 }
-
