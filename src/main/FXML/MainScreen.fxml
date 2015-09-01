@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainScreenController">
+   <children>
+      <ImageView fitHeight="715.0" fitWidth="1160.0">
+         <image>
+            <Image url="@Fishy_bg.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="PlayButton" layoutX="414.0" layoutY="252.0" mnemonicParsing="false" onMouseClicked="#PlayEvent" opacity="0.75" prefHeight="55.0" prefWidth="333.0" text="Play" textAlignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font></Button>
+      <Button fx:id="OptionsButton" layoutX="414.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#OptionsEvent" opacity="0.75" prefHeight="55.0" prefWidth="333.0" text="Options" textAlignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font></Button>
+      <Button fx:id="QuitButton" layoutX="414.0" layoutY="409.0" mnemonicParsing="false" onMouseClicked="#QuitEvent" opacity="0.75" prefHeight="55.0" prefWidth="333.0" text="Quit" textAlignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font></Button>
+   </children>
+</Pane>
