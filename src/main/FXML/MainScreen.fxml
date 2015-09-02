@@ -17,7 +17,7 @@
          <font>
             <Font size="30.0" />
          </font></Button>
-      <Button fx:id="OptionsButton" layoutX="414.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#OptionsEvent" opacity="0.75" prefHeight="55.0" prefWidth="333.0" text="Options" textAlignment="CENTER">
+      <Button fx:id="MenuButton" layoutX="414.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#MenuEvent" opacity="0.75" prefHeight="55.0" prefWidth="333.0" text="Menu" textAlignment="CENTER">
          <font>
             <Font size="30.0" />
          </font></Button>

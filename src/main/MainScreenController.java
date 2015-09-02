@@ -24,7 +24,7 @@ public class MainScreenController {
     private URL location;
 
     @FXML
-    private Button OptionsButton;
+    private Button MenuButton;
 
     @FXML
     private Button QuitButton;
@@ -38,7 +38,7 @@ public class MainScreenController {
     }
 
     @FXML
-    void OptionsEvent(MouseEvent event) {
+    void MenuEvent(MouseEvent event) {
 
     }
 
@@ -51,7 +51,7 @@ public class MainScreenController {
     void initialize() {
     	
     	assert PlayButton != null : "fx:id=\"PlayButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
-        assert OptionsButton != null : "fx:id=\"OptionsButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
+        assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
         assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
 
         
@@ -61,17 +61,17 @@ public class MainScreenController {
 			@Override
 			public void handle(MouseEvent event) {
 
-				System.out.println("Play Clicked");
+				Game.switchScreen("FXML/PLayScreen.fxml");
 
 			}
 		});
 		
-		OptionsButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		MenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
 
-				Game.switchScreen("FXML/OptionsScreen.fxml");
+				Game.switchScreen("FXML/MenuScreen.fxml");
 
 			}
 		});
