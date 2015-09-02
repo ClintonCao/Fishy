@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="715.0" fitWidth="1160.0">
+         <image>
+            <Image url="@Fishy_bg.jpg" />
+         </image>
+      </ImageView>
+      <Ellipse fill="#1ff7ff" layoutX="580.0" layoutY="57.0" radiusX="93.0" radiusY="43.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text layoutX="543.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Label layoutX="573.0" layoutY="52.0" text="0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
