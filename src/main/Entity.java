@@ -7,11 +7,11 @@ package main;
  *
  */
 public class Entity {
-	private double movespeed;
+	private int movespeed;
 	private boolean isAlive;
 	private Sprite sprite;
 	
-	public Entity(double movespeed, boolean isAlive, Sprite sprite) {
+	public Entity(int movespeed, boolean isAlive, Sprite sprite) {
 		this.setMovespeed(movespeed);
 		this.setAlive(isAlive);
 		this.sprite = sprite;
@@ -33,11 +33,11 @@ public class Entity {
 		this.isAlive = isAlive;
 	}
 
-	public double getMovespeed() {
+	public int getMovespeed() {
 		return movespeed;
 	}
 
-	public void setMovespeed(double movespeed) {
+	public void setMovespeed(int movespeed) {
 		this.movespeed = movespeed;
 	}
 }

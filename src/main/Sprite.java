@@ -1,4 +1,5 @@
 package main;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
@@ -23,6 +24,23 @@ public class Sprite {
 		this.setAabb(aabb);
 	}
 	
+	public void updateX(int x) {
+		posX += x;
+		aabb.updateX(x);
+	}
+	
+	public void updateY(int y) {
+		posY += y;
+		aabb.updateY(y);
+	}
+	
+	public void render(GraphicsContext gc) {
+		gc.drawImage(img, posX, posY);
+	}
+	
+	public boolean intersects(Sprite s) {
+		return s.getAabb().intersects(this.getAabb());
+	}
 	
 //------------Getters and setters-------------------------------------------
 	public Image getImg() {

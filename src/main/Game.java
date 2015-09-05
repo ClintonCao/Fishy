@@ -1,9 +1,13 @@
 package main;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -29,7 +33,7 @@ public class Game extends Application {
 	public void start(Stage firstStage) {
 		try {
 
-			stage = firstStage;
+			stage = firstStage;	
 
 			firstStage.setTitle("Fishy");
 			stage.getIcons().add(
@@ -42,7 +46,10 @@ public class Game extends Application {
 			Scene scene = new Scene(pane);
 			firstStage.setHeight(715);
 			firstStage.setWidth(1160);
+			firstStage.setResizable(false);
 			firstStage.setScene(scene);
+			
+			
 			firstStage.show();
 
 		} catch (Exception e) {

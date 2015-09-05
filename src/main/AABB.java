@@ -7,51 +7,63 @@ package main;
  *
  */
 public class AABB {
-	private double x;
-	private double y;
-	private double width;
-	private double height;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
 	
-	public AABB(double x, double y, double width, double height) {
+	public AABB(int x, int y, int width, int height) {
 		this.setX(x);
 		this.setY(y);
 		this.setWidth(width);
 		this.setHeight(height);
 	}
 	
-	//public boolean isColliding(AABB other) {
-	//}
+	public boolean intersects(AABB other) {
+		return !((this.getX() + this.getWidth()) < other.getX() || 
+				this.getX() > (other.getX() + other.getWidth()) ||
+					(this.getY() + this.getHeight()) < other.getY() ||
+						this.getY() > (other.getY() + other.getHeight()));
+	}
 	
 //-----------Getters and setters-------------------
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
-	public void setX(double x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
 	}
 
-	public void setY(double y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 
-	public double getWidth() {
+	public int getWidth() {
 		return width;
 	}
 
-	public void setWidth(double width) {
+	public void setWidth(int width) {
 		this.width = width;
 	}
 
-	public double getHeight() {
+	public int getHeight() {
 		return height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public void updateX(int x) {
+		this.x += x;
+	}
+	
+	public void updateY(int y) {
+		this.y += y;
 	}
 }
