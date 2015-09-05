@@ -9,33 +9,27 @@ import javafx.scene.image.Image;
  */
 public class Sprite {
 	private Image img;
-	private double posX;
-	private double posY;
 	private double velX;
 	private double velY;
 	private AABB aabb;
 	
-	public Sprite(Image img, double posX, double posY, double velX, double velY, AABB aabb) {
+	public Sprite(Image img, double velX, double velY, AABB aabb) {
 		this.img = img;
-		this.setPosX(posX);
-		this.setPosY(posY);
 		this.setVelX(velX);
 		this.setVelY(velY);
 		this.setAabb(aabb);
 	}
 	
 	public void updateX(int x) {
-		posX += x;
 		aabb.updateX(x);
 	}
 	
 	public void updateY(int y) {
-		posY += y;
 		aabb.updateY(y);
 	}
 	
 	public void render(GraphicsContext gc) {
-		gc.drawImage(img, posX, posY);
+		gc.drawImage(img, aabb.getX(), aabb.getY());
 	}
 	
 	public boolean intersects(Sprite s) {
@@ -49,22 +43,6 @@ public class Sprite {
 	
 	public void setImg(Image img) {
 		this.img = img;
-	}
-
-	public double getPosX() {
-		return posX;
-	}
-
-	public void setPosX(double posX) {
-		this.posX = posX;
-	}
-
-	public double getPosY() {
-		return posY;
-	}
-
-	public void setPosY(double posY) {
-		this.posY = posY;
 	}
 
 	public double getVelY() {

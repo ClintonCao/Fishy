@@ -17,6 +17,26 @@ public class Entity {
 		this.sprite = sprite;
 	}
 	
+	public boolean intersects(Entity other) {
+		return this.sprite.getAabb().intersects(other.getSprite().getAabb());
+	}
+
+	public boolean intersectsLeftScreenEdge() {
+		return this.sprite.getAabb().getX() <= 0;
+	}
+	
+	public boolean intersectsRightScreenEdge() {
+		return (this.sprite.getAabb().getX() + this.sprite.getAabb().getWidth()) >= Game2.getScreenbox().getWidth();
+	}
+	
+	public boolean intersectsUpperScreenEdge() {
+		return this.sprite.getAabb().getY() <= 0;
+	}
+	
+	public boolean intersectsUnderScreenEdge() {
+		return (this.sprite.getAabb().getY() + this.sprite.getAabb().getHeight()) >= Game2.getScreenbox().getHeight();
+	}
+	
 	public Sprite getSprite() {
 		return this.sprite;
 	}
