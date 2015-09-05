@@ -1,13 +1,9 @@
 package main;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -16,6 +12,7 @@ public class Game extends Application {
 
 	static Stage stage;
 	static Pane pane;
+	static AABB screenbox;
 
 	// final URL resource = getClass().getResource("FXML/track.mp3");
 	// final Media media = new Media(resource.toString());
@@ -44,8 +41,8 @@ public class Game extends Application {
 			pane = (Pane) loader.load();
 
 			Scene scene = new Scene(pane);
-			firstStage.setHeight(715);
-			firstStage.setWidth(1160);
+			firstStage.setHeight(1030);
+			firstStage.setWidth(1870);
 			firstStage.setResizable(false);
 			firstStage.setScene(scene);
 			
@@ -71,6 +68,10 @@ public class Game extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static AABB getScreenbox() {
+		return screenbox;
 	}
 
 }
