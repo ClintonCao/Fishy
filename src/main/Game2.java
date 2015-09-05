@@ -103,14 +103,14 @@ public class Game2 extends Application {
 				
 				// Control the playerfish using WASD.
 				if(input.contains("A") && !playerfish.intersectsLeftScreenEdge()) {
-					playerfish.getSprite().updateX(-playerfish.getMovespeed());
+					playerfish.getSprite().updateX(-playerfish.getMoveSpeed());
 				} else if(input.contains("D") && !playerfish.intersectsRightScreenEdge()) {
-					playerfish.getSprite().updateX(playerfish.getMovespeed());
+					playerfish.getSprite().updateX(playerfish.getMoveSpeed());
 				} 
 				if(input.contains("W") && !playerfish.intersectsUpperScreenEdge()) {
-					playerfish.getSprite().updateY(-playerfish.getMovespeed());
+					playerfish.getSprite().updateY(-playerfish.getMoveSpeed());
 				} else if(input.contains("S") && !playerfish.intersectsUnderScreenEdge()) {
-					playerfish.getSprite().updateY(playerfish.getMovespeed());
+					playerfish.getSprite().updateY(playerfish.getMoveSpeed());
 				}
 				
 				// If the playerfish intersects another fish, remove it.

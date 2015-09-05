@@ -30,6 +30,7 @@ public class MainScreenController {
 	private static EnemyFish otherfish;
 	private static int resX;
 	private static int resY;
+	private int frames;
 
     @FXML
     private ResourceBundle resources;
@@ -70,7 +71,7 @@ public class MainScreenController {
 		sprites = new ArrayList<Entity>();
 		setScreenbox(new AABB(0, 0, resX, resY));
 		createPlayerFish();
-		createEnemyFish();
+		//createEnemyFish();
 	}
 	
 	/**
@@ -139,6 +140,7 @@ public class MainScreenController {
 				
 				GraphicsContext gc = canvas.getGraphicsContext2D();
 				Image background = new Image("Fishy_bg.jpg");	
+				frames = 0;
 				
 				new AnimationTimer() {
 					public void handle(long currentNTime) {
@@ -149,14 +151,14 @@ public class MainScreenController {
 						
 						// Control the playerfish using WASD.
 						if(input.contains("A") && !playerfish.intersectsLeftScreenEdge()) {
-							playerfish.getSprite().updateX(-playerfish.getMovespeed());
+							playerfish.getSprite().updateX(-playerfish.getMoveSpeed());
 						} else if(input.contains("D") && !playerfish.intersectsRightScreenEdge()) {
-							playerfish.getSprite().updateX(playerfish.getMovespeed());
+							playerfish.getSprite().updateX(playerfish.getMoveSpeed());
 						} 
 						if(input.contains("W") && !playerfish.intersectsUpperScreenEdge()) {
-							playerfish.getSprite().updateY(-playerfish.getMovespeed());
+							playerfish.getSprite().updateY(-playerfish.getMoveSpeed());
 						} else if(input.contains("S") && !playerfish.intersectsUnderScreenEdge()) {
-							playerfish.getSprite().updateY(playerfish.getMovespeed());
+							playerfish.getSprite().updateY(playerfish.getMoveSpeed());
 						}
 						
 						// If the playerfish intersects another fish, remove it.
@@ -173,6 +175,7 @@ public class MainScreenController {
 						for(int i = 0; i < sprites.size(); i++) {
 							sprites.get(i).getSprite().render(gc);
 						}
+						frames++;
 					}
 				}.start();
 
