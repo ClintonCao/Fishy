@@ -9,15 +9,11 @@ import javafx.scene.image.Image;
  */
 public class Sprite {
 	private Image img;
-	private double velX;
-	private double velY;
 	private AABB aabb;
 	
-	public Sprite(Image img, double velX, double velY, AABB aabb) {
+	public Sprite(Image img, AABB aabb) {
 		this.img = img;
-		this.setVelX(velX);
-		this.setVelY(velY);
-		this.setAabb(aabb);
+		setAabb(aabb);
 	}
 	
 	public void updateX(int x) {
@@ -44,23 +40,6 @@ public class Sprite {
 	public void setImg(Image img) {
 		this.img = img;
 	}
-
-	public double getVelY() {
-		return velY;
-	}
-
-	public void setVelY(double velY) {
-		this.velY = velY;
-	}
-
-	public double getVelX() {
-		return velX;
-	}
-
-	public void setVelX(double velX) {
-		this.velX = velX;
-	}
-
 
 	public AABB getAabb() {
 		return aabb;

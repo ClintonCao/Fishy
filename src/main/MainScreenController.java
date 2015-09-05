@@ -26,7 +26,7 @@ import javafx.scene.input.MouseEvent;
 public class MainScreenController {
 	
 	private static PlayerFish playerfish;
-	private static ArrayList<Entity> sprites;
+	private static ArrayList<EnemyFish> sprites;
 	private static EnemyFish otherfish;
 	private static int resX;
 	private static int resY;
@@ -68,7 +68,7 @@ public class MainScreenController {
 	public static void init() {
 		resX = 1870;
 		resY = 1030;
-		sprites = new ArrayList<Entity>();
+		sprites = new ArrayList<EnemyFish>();
 		setScreenbox(new AABB(0, 0, resX, resY));
 		createPlayerFish();
 		//createEnemyFish();
@@ -79,7 +79,7 @@ public class MainScreenController {
 	 */
 	public static void createPlayerFish() {
 		AABB aabb = new AABB(resX/2, resY/2, 128, 128);
-		Sprite sprite = new Sprite(new Image("Fish.png"), 0, 0, aabb);
+		Sprite sprite = new Sprite(new Image("Fish.png"), aabb);
 		playerfish = new PlayerFish(10, true, sprite);
 	}
 	
@@ -88,7 +88,7 @@ public class MainScreenController {
 	 */
 	public static void createEnemyFish() {
 		AABB aabb = new AABB(800, 800, 128, 128);
-		Sprite sprite = new Sprite(new Image("Fish.png"), 0, 0, aabb);
+		Sprite sprite = new Sprite(new Image("Fish.png"), aabb);
 		otherfish = new EnemyFish(10, true, sprite);
 		sprites.add(otherfish);
 	}
@@ -161,6 +161,10 @@ public class MainScreenController {
 							playerfish.getSprite().updateY(playerfish.getMoveSpeed());
 						}
 						
+						if(frames%180==0) {
+							sprites.add(EnemyFish.generateFish());
+						}
+						
 						// If the playerfish intersects another fish, remove it.
 						for(int i = 0; i < sprites.size(); i++) {
 							if(playerfish.intersects(sprites.get(i))) {
@@ -173,6 +177,12 @@ public class MainScreenController {
 						
 						// Render all the remaining fish.
 						for(int i = 0; i < sprites.size(); i++) {
+							EnemyFish curr = sprites.get(i);
+							if(curr.isLefty()){
+								curr.getSprite().updateX(curr.getMoveSpeed());
+							} else {
+								curr.getSprite().updateX(-curr.getMoveSpeed());
+							}
 							sprites.get(i).getSprite().render(gc);
 						}
 						frames++;
