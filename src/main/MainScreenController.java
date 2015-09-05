@@ -26,7 +26,7 @@ import javafx.scene.input.MouseEvent;
 public class MainScreenController {
 	
 	private static PlayerFish playerfish;
-	private static ArrayList<EnemyFish> sprites;
+	private static ArrayList<EnemyFish> entities;
 	private static EnemyFish otherfish;
 	private static int resX;
 	private static int resY;
@@ -68,7 +68,7 @@ public class MainScreenController {
 	public static void init() {
 		resX = 1870;
 		resY = 1030;
-		sprites = new ArrayList<EnemyFish>();
+		entities = new ArrayList<EnemyFish>();
 		setScreenbox(new AABB(0, 0, resX, resY));
 		createPlayerFish();
 		//createEnemyFish();
@@ -90,7 +90,7 @@ public class MainScreenController {
 		AABB aabb = new AABB(800, 800, 128, 128);
 		Sprite sprite = new Sprite(new Image("Fish.png"), aabb);
 		otherfish = new EnemyFish(10, true, sprite);
-		sprites.add(otherfish);
+		entities.add(otherfish);
 	}
 	
 	public static void setScreenbox(AABB screenbox) {
@@ -162,13 +162,18 @@ public class MainScreenController {
 						}
 						
 						if(frames%180==0) {
-							sprites.add(EnemyFish.generateFish());
+							entities.add(EnemyFish.generateFish());
 						}
 						
 						// If the playerfish intersects another fish, remove it.
-						for(int i = 0; i < sprites.size(); i++) {
-							if(playerfish.intersects(sprites.get(i))) {
-								sprites.remove(i);
+						for(int i = 0; i < entities.size(); i++) {
+							// First check if a fish is outside the screen, if it is, remove it.
+							if(!entities.get(i).getSprite().getAabb().intersects(Game.screenbox)) {
+								entities.remove(i);
+							}
+							// Secondly check if a fish is intersecting with the playerfish, if it is, remove it.
+							if(playerfish.intersects(entities.get(i))) {
+								entities.remove(i);
 							}
 						}
 						
@@ -176,14 +181,14 @@ public class MainScreenController {
 						playerfish.getSprite().render(gc);
 						
 						// Render all the remaining fish.
-						for(int i = 0; i < sprites.size(); i++) {
-							EnemyFish curr = sprites.get(i);
+						for(int i = 0; i < entities.size(); i++) {
+							EnemyFish curr = entities.get(i);
 							if(curr.isLefty()){
 								curr.getSprite().updateX(curr.getMoveSpeed());
 							} else {
 								curr.getSprite().updateX(-curr.getMoveSpeed());
 							}
-							sprites.get(i).getSprite().render(gc);
+							entities.get(i).getSprite().render(gc);
 						}
 						frames++;
 					}
