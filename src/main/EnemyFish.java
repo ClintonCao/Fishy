@@ -12,6 +12,9 @@ import javafx.scene.image.Image;
  * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel Doesburg.
  */
 public class EnemyFish extends Entity {
+	private static String leftImageFileName = "EnemyFish_Left.png";
+	private static String rightImageFileName = "EnemyFish_Right.png";
+	
 	private boolean isLefty;
 	
 	public EnemyFish(int movespeed, boolean isLefty, Sprite sprite) {
@@ -33,15 +36,19 @@ public class EnemyFish extends Entity {
 		int randomSpeed = rng.nextInt(9) + 1;
 		boolean isLefty = rng.nextBoolean();
 		
-		// Get the image for the fish and its respective height and width.
-		Image fishImage = new Image("FishOriginal_transparent.png");
-		int fishImageWidth = (int) fishImage.getWidth();
-		int fishImageHeight = (int) fishImage.getHeight();
-		
 		// Generate the fish, depending on which side of the screen it spawns.
 		if(isLefty) {
+			// Get the image for the fish and its respective height and width.
+			Image fishImage = new Image(rightImageFileName);
+			int fishImageWidth = (int) fishImage.getWidth();
+			int fishImageHeight = (int) fishImage.getHeight();
+			
 			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage, new AABB(0, randomHeight, fishImageWidth, fishImageHeight)));
 		} else {
+			Image fishImage = new Image(leftImageFileName);
+			int fishImageWidth = (int) fishImage.getWidth();
+			int fishImageHeight = (int) fishImage.getHeight();
+						
 			// If the fish spawns at the right side of the screen, it needs to be placed at the X coordinate equal to the width of the AABB screenbox;
 			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage, new AABB(MainScreenController.getScreenbox().getWidth(), randomHeight, fishImageWidth, fishImageHeight)));
 		}

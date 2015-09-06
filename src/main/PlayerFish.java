@@ -3,11 +3,11 @@ package main;
 import javafx.scene.image.Image;
 
 public class PlayerFish extends Entity {
-	private static String playerFishLeftImageName = "FishOriginal_transparent.png";
-	private static String playerFishRightImageName = "Fish_Right_Transparent.png";
+	private static String leftImageName = "FishOriginal_transparent.png";
+	private static String rightImageName = "Fish_Right_Transparent.png";
 	
-	private Image playerFishLeftImage;
-	private Image playerFishRightImage;
+	private Image leftImage;
+	private Image rightImage;
 	private boolean isAlive;
 	
 	public PlayerFish(int movespeed, boolean isAlive, String leftImgFileName, String rightImgFileName, Sprite sprite) {
@@ -21,7 +21,7 @@ public class PlayerFish extends Entity {
 	 * This method creates the fish the player controls.
 	 */
 	public static PlayerFish createPlayerFish() {
-		Image playerFishImage = new Image(playerFishLeftImageName);
+		Image playerFishImage = new Image(leftImageName);
 		
 		// Create a hitbox for the playerfish. The playerfish will start at the middle of the screen. 
 		// So the starting position is the respective screen diameters/2. The size of the hitbox is
@@ -31,7 +31,7 @@ public class PlayerFish extends Entity {
 		// Create a new 'sprite' using the image and its corresponding hitbox.
 		Sprite sprite = new Sprite(playerFishImage, aabb);
 		
-		return new PlayerFish(10, true, playerFishLeftImageName, playerFishRightImageName, sprite);
+		return new PlayerFish(10, true, leftImageName, rightImageName, sprite);
 	}
 
 	public boolean playerDies(EnemyFish enemyfish) {
@@ -49,34 +49,34 @@ public class PlayerFish extends Entity {
 	}
 
 	public Image getPlayerFishLeftImage() {
-		return playerFishLeftImage;
+		return leftImage;
 	}
 
 	public void setPlayerFishLeftImage(Image playerFishLeftImage) {
-		this.playerFishLeftImage = playerFishLeftImage;
+		this.leftImage = playerFishLeftImage;
 	}
 
 	public Image getPlayerFishRightImage() {
-		return playerFishRightImage;
+		return rightImage;
 	}
 
 	public void setPlayerFishRightImage(Image playerFishRightImage) {
-		this.playerFishRightImage = playerFishRightImage;
+		this.rightImage = playerFishRightImage;
 	}
 
 	public static String getPlayerFishLeftImageName() {
-		return playerFishLeftImageName;
+		return leftImageName;
 	}
 
 	public static void setPlayerFishLeftImageName(String playerFishLeftImageName) {
-		PlayerFish.playerFishLeftImageName = playerFishLeftImageName;
+		PlayerFish.leftImageName = playerFishLeftImageName;
 	}
 
 	public static String getPlayerFishRightImageName() {
-		return playerFishRightImageName;
+		return rightImageName;
 	}
 
 	public static void setPlayerFishRightImageName(String playerFishRightImageName) {
-		PlayerFish.playerFishRightImageName = playerFishRightImageName;
+		PlayerFish.rightImageName = playerFishRightImageName;
 	}
 }
