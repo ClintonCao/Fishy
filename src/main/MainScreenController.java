@@ -25,12 +25,12 @@ import javafx.scene.input.MouseEvent;
  */
 public class MainScreenController {
 	
-	private static PlayerFish playerfish;
+	private static PlayerFish playerFish;
 	private static ArrayList<EnemyFish> entities;
-	private static EnemyFish otherfish;
 	private static AABB screenbox;
 	private static int resX;
 	private static int resY;
+	private static String fishFile;
 	private int frames;
 
     @FXML
@@ -67,22 +67,14 @@ public class MainScreenController {
 	 * Set up things we need. Initialize the sprite list, and create the playerfish.
 	 */
 	public static void init() {
+		fishFile = "FishOriginal_transparent.png";
 		resX = 1870;
 		resY = 1030;
 		entities = new ArrayList<EnemyFish>();
 		setScreenbox(new AABB(0, 0, resX, resY));
-		createPlayerFish();
-		//createEnemyFish();
+		playerFish = PlayerFish.createPlayerFish();
 	}
 
-	/**
-	 * This method creates the fish the player controls.
-	 */
-	public static void createPlayerFish() {
-		AABB aabb = new AABB(resX/2, resY/2, 128, 128);
-		Sprite sprite = new Sprite(new Image("Fish.png"), aabb);
-		playerfish = new PlayerFish(10, true, sprite);
-	}
 
     @FXML
     void initialize() {
@@ -137,17 +129,18 @@ public class MainScreenController {
 						
 						
 						// Control the playerfish using WASD.
-						if(input.contains("A") && !playerfish.intersectsLeftScreenEdge()) {
-							playerfish.getSprite().updateX(-playerfish.getMoveSpeed());
-						} else if(input.contains("D") && !playerfish.intersectsRightScreenEdge()) {
-							playerfish.getSprite().updateX(playerfish.getMoveSpeed());
+						if(input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
+							playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
+						} else if(input.contains("D") && !playerFish.intersectsRightScreenEdge()) {
+							playerFish.getSprite().updateX(playerFish.getMoveSpeed());
 						} 
-						if(input.contains("W") && !playerfish.intersectsUpperScreenEdge()) {
-							playerfish.getSprite().updateY(-playerfish.getMoveSpeed());
-						} else if(input.contains("S") && !playerfish.intersectsUnderScreenEdge()) {
-							playerfish.getSprite().updateY(playerfish.getMoveSpeed());
+						if(input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
+							playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
+						} else if(input.contains("S") && !playerFish.intersectsUnderScreenEdge()) {
+							playerFish.getSprite().updateY(playerFish.getMoveSpeed());
 						}
 						
+						// Generate an enemy fish every so many frames.
 						if(frames%180==0) {
 							entities.add(EnemyFish.generateFish());
 						}
@@ -158,13 +151,13 @@ public class MainScreenController {
 							if(!entities.get(i).getSprite().getAabb().intersects(screenbox)) {
 								entities.remove(i);
 							// Secondly check if a fish is intersecting with the playerfish, if it is, remove it.
-							} else if(playerfish.intersects(entities.get(i))) {
+							} else if(playerFish.intersects(entities.get(i))) {
 								entities.remove(i);
 							}
 						}
 						
 						// Render the playerfish.
-						playerfish.getSprite().render(gc);
+						playerFish.getSprite().render(gc);
 						
 						// Render all the remaining fish.
 						for(int i = 0; i < entities.size(); i++) {
@@ -209,5 +202,9 @@ public class MainScreenController {
     
 	public static AABB getScreenbox() {
 		return screenbox;
+	}
+	
+	public static String getFishFile() {
+		return fishFile;
 	}
 }

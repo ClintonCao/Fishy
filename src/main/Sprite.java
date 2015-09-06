@@ -13,7 +13,11 @@ public class Sprite {
 	
 	public Sprite(Image img, AABB aabb) {
 		this.img = img;
-		setAabb(aabb);
+		setAabb(aabb);	
+	}
+	
+	public void grow() {
+		
 	}
 	
 	public void updateX(int x) {
