@@ -12,7 +12,7 @@ public class Game extends Application {
 
 	static Stage stage;
 	static Pane pane;
-	static AABB screenbox;
+	
 
 	// final URL resource = getClass().getResource("FXML/track.mp3");
 	// final Media media = new Media(resource.toString());
@@ -69,9 +69,4 @@ public class Game extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	public static AABB getScreenbox() {
-		return screenbox;
-	}
-
 }

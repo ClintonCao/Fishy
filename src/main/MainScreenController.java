@@ -28,6 +28,7 @@ public class MainScreenController {
 	private static PlayerFish playerfish;
 	private static ArrayList<EnemyFish> entities;
 	private static EnemyFish otherfish;
+	private static AABB screenbox;
 	private static int resX;
 	private static int resY;
 	private int frames;
@@ -73,7 +74,7 @@ public class MainScreenController {
 		createPlayerFish();
 		//createEnemyFish();
 	}
-	
+
 	/**
 	 * This method creates the fish the player controls.
 	 */
@@ -81,20 +82,6 @@ public class MainScreenController {
 		AABB aabb = new AABB(resX/2, resY/2, 128, 128);
 		Sprite sprite = new Sprite(new Image("Fish.png"), aabb);
 		playerfish = new PlayerFish(10, true, sprite);
-	}
-	
-	/**
-	 * Temp method.
-	 */
-	public static void createEnemyFish() {
-		AABB aabb = new AABB(800, 800, 128, 128);
-		Sprite sprite = new Sprite(new Image("Fish.png"), aabb);
-		otherfish = new EnemyFish(10, true, sprite);
-		entities.add(otherfish);
-	}
-	
-	public static void setScreenbox(AABB screenbox) {
-		Game.screenbox = screenbox;
 	}
 
     @FXML
@@ -168,11 +155,10 @@ public class MainScreenController {
 						// If the playerfish intersects another fish, remove it.
 						for(int i = 0; i < entities.size(); i++) {
 							// First check if a fish is outside the screen, if it is, remove it.
-							if(!entities.get(i).getSprite().getAabb().intersects(Game.screenbox)) {
+							if(!entities.get(i).getSprite().getAabb().intersects(screenbox)) {
 								entities.remove(i);
-							}
 							// Secondly check if a fish is intersecting with the playerfish, if it is, remove it.
-							if(playerfish.intersects(entities.get(i))) {
+							} else if(playerfish.intersects(entities.get(i))) {
 								entities.remove(i);
 							}
 						}
@@ -217,4 +203,11 @@ public class MainScreenController {
 			}
 		});
     }
+	private static void setScreenbox(AABB aabb) {
+		screenbox = aabb;
+	}
+    
+	public static AABB getScreenbox() {
+		return screenbox;
+	}
 }

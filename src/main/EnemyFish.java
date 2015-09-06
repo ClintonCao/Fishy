@@ -14,8 +14,14 @@ public class EnemyFish extends Entity {
 	
 	public static EnemyFish generateFish() {
 		Random rng = new Random();
-		int rnd = rng.nextInt(800);
-		return new EnemyFish(5, true, new Sprite(new Image("Fish.png"), new AABB(0, rnd, 128, 128)));
+		int randomHeight = rng.nextInt(800);
+		int randomSpeed = rng.nextInt(9) + 1;
+		boolean isLefty = rng.nextBoolean();
+		if(isLefty) {
+			return new EnemyFish(randomSpeed, isLefty, new Sprite(new Image("Fish.png"), new AABB(0, randomHeight, 128, 128)));
+		} else {
+			return new EnemyFish(randomSpeed, isLefty, new Sprite(new Image("Fish.png"), new AABB(MainScreenController.getScreenbox().getWidth(), randomHeight, 128, 128)));
+		}
 	}
 
 	public boolean isLefty() {
