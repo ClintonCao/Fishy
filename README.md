@@ -1,6 +1,6 @@
 # Fishy
 
-This repository contains our implementation of the game Fishy. This game is a project for the course of Software Engineering Mehtods (TI2206).
+This repository contains our implementation of the game Fishy. This game is a project for the course of Software Engineering Methods (TI2206).
 
 Group #6 members:
 
@@ -8,7 +8,7 @@ Name   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&
 
 Michiel Doesburg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      mdoesburg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       4343875 
 
-Matthijs Halvemaan &nbsp;&nbsp;&nbsp;mhalvemaan   &nbsp;&nbsp;&nbsp;&nbsp;4353803
+Matthijs Halvemaan &nbsp;&nbsp;&nbsp;&nbsp;mhalvemaan   &nbsp;&nbsp;&nbsp;4353803
 
 Dmitry Malarev &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       dmalarev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        4345257
 
