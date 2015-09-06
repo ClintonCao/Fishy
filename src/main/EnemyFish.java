@@ -34,7 +34,7 @@ public class EnemyFish extends Entity {
 		boolean isLefty = rng.nextBoolean();
 		
 		// Get the image for the fish and its respective height and width.
-		Image fishImage = new Image(MainScreenController.getFishFile());
+		Image fishImage = new Image("FishOriginal_transparent.png");
 		int fishImageWidth = (int) fishImage.getWidth();
 		int fishImageHeight = (int) fishImage.getHeight();
 		

@@ -30,7 +30,6 @@ public class MainScreenController {
 	private static AABB screenbox;
 	private static int resX;
 	private static int resY;
-	private static String fishFile;
 	private int frames;
 
     @FXML
@@ -67,7 +66,6 @@ public class MainScreenController {
 	 * Set up things we need. Initialize the sprite list, and create the playerfish.
 	 */
 	public static void init() {
-		fishFile = "FishOriginal_transparent.png";
 		resX = 1870;
 		resY = 1030;
 		entities = new ArrayList<EnemyFish>();
@@ -82,8 +80,6 @@ public class MainScreenController {
     	assert PlayButton != null : "fx:id=\"PlayButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
         assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
         assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
-
-        
         
 		PlayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -130,13 +126,23 @@ public class MainScreenController {
 						
 						// Control the playerfish using WASD.
 						if(input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
+							
+							// Set the image of the playerfish to the 'looking to the left version'.
+							playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
 							playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
+							
 						} else if(input.contains("D") && !playerFish.intersectsRightScreenEdge()) {
+							
+							// Set the image of the playerfish to the 'looking to the right version'.
+							playerFish.getSprite().setImg(playerFish.getPlayerFishRightImage());
 							playerFish.getSprite().updateX(playerFish.getMoveSpeed());
 						} 
 						if(input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
+							
 							playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
+							
 						} else if(input.contains("S") && !playerFish.intersectsUnderScreenEdge()) {
+							
 							playerFish.getSprite().updateY(playerFish.getMoveSpeed());
 						}
 						
@@ -202,9 +208,5 @@ public class MainScreenController {
     
 	public static AABB getScreenbox() {
 		return screenbox;
-	}
-	
-	public static String getFishFile() {
-		return fishFile;
 	}
 }

@@ -44,7 +44,7 @@ public class Game2 extends Application {
 	public static void createPlayerFish() {
 		AABB aabb = new AABB(resX/2, resY/2, 128, 128);
 		Sprite sprite = new Sprite(new Image("Fish.png"), aabb);
-		playerfish = new PlayerFish(10, true, sprite);
+	//	playerfish = new PlayerFish(10, true, sprite);
 	}
 	
 	/**
