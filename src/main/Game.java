@@ -33,13 +33,17 @@ public class Game extends Application {
 			stage = firstStage;	
 
 			firstStage.setTitle("Fishy");
+			System.out.println("Loading game's icon..");
 			stage.getIcons().add(
 					new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
+			System.out.println("Successfully loaded..");
+			System.out.println("Loading main screen of game..");
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
 					"FXML/MainScreen.fxml"));
 
 			pane = (Pane) loader.load();
-
+			System.out.println("Successfully loaded..");
+			
 			Scene scene = new Scene(pane);
 			firstStage.setHeight(1030);
 			firstStage.setWidth(1870);
@@ -62,9 +66,11 @@ public class Game extends Application {
 	 */
 	public static void switchScreen(String bestand) {
 		try {
+			System.out.println("Loading "+ bestand.toString()+ "..");
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Game.class.getResource(bestand));
 			stage.getScene().setRoot((Parent) loader.load());
+			System.out.println("Successfully loaded..");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
