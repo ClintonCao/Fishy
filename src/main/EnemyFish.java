@@ -43,7 +43,7 @@ public class EnemyFish extends Entity {
 			int fishImageWidth = (int) fishImage.getWidth();
 			int fishImageHeight = (int) fishImage.getHeight();
 			
-			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage, new AABB(0, randomHeight, fishImageWidth, fishImageHeight)));
+			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage, new AABB(-fishImageWidth, randomHeight, fishImageWidth, fishImageHeight)));
 		} else {
 			Image fishImage = new Image(leftImageFileName);
 			int fishImageWidth = (int) fishImage.getWidth();

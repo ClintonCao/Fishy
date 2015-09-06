@@ -147,7 +147,7 @@ public class MainScreenController {
 						}
 						
 						// Generate an enemy fish every so many frames.
-						if(frames%180==0) {
+						if(frames%45==0) {
 							entities.add(EnemyFish.generateFish());
 						}
 						
