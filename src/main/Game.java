@@ -12,6 +12,8 @@ public class Game extends Application {
 
 	static Stage stage;
 	static Pane pane;
+	static int resX = 1280;
+	static int resY = 720;
 	
 
 	// final URL resource = getClass().getResource("FXML/track.mp3");
@@ -45,8 +47,8 @@ public class Game extends Application {
 			System.out.println("Successfully loaded..");
 			
 			Scene scene = new Scene(pane);
-			firstStage.setHeight(1030);
-			firstStage.setWidth(1870);
+			firstStage.setHeight(resY);
+			firstStage.setWidth(resX);
 			firstStage.setResizable(false);
 			firstStage.setScene(scene);
 			

@@ -28,8 +28,6 @@ public class MainScreenController {
 	private static PlayerFish playerFish;
 	private static ArrayList<EnemyFish> entities;
 	private static AABB screenbox;
-	private static int resX;
-	private static int resY;
 	private int frames;
 	private final double multiplier = 1.01;
 
@@ -68,10 +66,8 @@ public class MainScreenController {
 	 * playerfish.
 	 */
 	public static void init() {
-		resX = 1870;
-		resY = 1030;
 		entities = new ArrayList<EnemyFish>();
-		setScreenbox(new AABB(0, 0, resX, resY));
+		setScreenbox(new AABB(0, 0, Game.resX, Game.resY));
 		playerFish = PlayerFish.createPlayerFish();
 	}
 
@@ -95,7 +91,7 @@ public class MainScreenController {
 				Scene scene = new Scene(root);
 				Game.stage.setScene(scene);
 
-				Canvas canvas = new Canvas(resX, resY);
+				Canvas canvas = new Canvas(Game.resX, Game.resY);
 
 				root.getChildren().add(canvas);
 

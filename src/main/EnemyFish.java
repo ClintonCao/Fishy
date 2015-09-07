@@ -32,7 +32,7 @@ public class EnemyFish extends Entity {
 		Random rng = new Random();
 		
 		// Generate the height at which the fish spawns, its movement speed, and at which side of the screen it spawns.
-		int randomHeight = rng.nextInt(800);
+		int randomHeight = rng.nextInt(600);
 		int randomSpeed = rng.nextInt(9) + 1;
 		boolean isLefty = rng.nextBoolean();
 		
