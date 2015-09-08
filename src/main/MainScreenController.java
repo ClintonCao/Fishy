@@ -8,6 +8,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,6 +17,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 /**
  * This class contains all the event handlers of the buttons on the main screen.
@@ -30,6 +35,7 @@ public class MainScreenController {
 	private static AABB screenbox;
 	private int frames;
 	private final double multiplier = 1.01;
+	private static Text scoreText = new Text();
 
 	@FXML
 	private ResourceBundle resources;
@@ -69,6 +75,7 @@ public class MainScreenController {
 		entities = new ArrayList<EnemyFish>();
 		setScreenbox(new AABB(0, 0, Game.resX, Game.resY));
 		playerFish = PlayerFish.createPlayerFish();
+		scoreText.setText("Score");
 	}
 
 	@FXML
@@ -122,7 +129,17 @@ public class MainScreenController {
 
 						// Draw the background every frame.
 						gc.drawImage(background, 0, 0);
-
+						gc.setFill(Color.AQUA);
+						gc.fillOval(525, 1, 200, 75);
+						
+						// Draw the scoreboard with the player's score.
+						gc.setFill(Color.BLACK);
+						gc.setFont(Font.font("Comic Sans", 30));
+						gc.fillText(scoreText.getText().toString(), 625, 20);
+				        gc.setTextAlign(TextAlignment.CENTER);
+				        gc.setTextBaseline(VPos.CENTER);
+						gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
+						
 						// Control the playerfish using WASD.
 						if (input.contains("A")
 								&& !playerFish.intersectsLeftScreenEdge()) {

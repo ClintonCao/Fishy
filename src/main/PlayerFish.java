@@ -9,12 +9,14 @@ public class PlayerFish extends Entity {
 	private Image leftImage;
 	private Image rightImage;
 	private boolean isAlive;
+	private int score;
 	
-	public PlayerFish(int movespeed, boolean isAlive, String leftImgFileName, String rightImgFileName, Sprite sprite) {
+	public PlayerFish(int movespeed, boolean isAlive, String leftImgFileName, String rightImgFileName, Sprite sprite, int score) {
 		super(movespeed, sprite);
 		setAlive(isAlive);
 		setPlayerFishLeftImage(new Image(leftImgFileName));
 		setPlayerFishRightImage(new Image(rightImgFileName));
+		this.score=score;
 	}
 	
 	/**
@@ -31,7 +33,7 @@ public class PlayerFish extends Entity {
 		// Create a new 'sprite' using the image and its corresponding hitbox.
 		Sprite sprite = new Sprite(playerFishImage, aabb);
 		
-		return new PlayerFish(10, true, leftImageName, rightImageName, sprite);
+		return new PlayerFish(10, true, leftImageName, rightImageName, sprite,0);
 	}
 
 	public boolean playerDies(EnemyFish enemyfish) {
@@ -78,5 +80,13 @@ public class PlayerFish extends Entity {
 
 	public static void setPlayerFishRightImageName(String playerFishRightImageName) {
 		PlayerFish.rightImageName = playerFishRightImageName;
+	}
+	
+	public void setScore(int number) {
+		score = number;
+	}
+	
+	public int getScore() {
+		return score;
 	}
 }
