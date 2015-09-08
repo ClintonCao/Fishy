@@ -78,7 +78,10 @@ public class SpriteTest {
 		assertEquals(156,aabb.getY());
 	}
 	
-	@Test
+	/**
+	 * The method was originaly in the sprite, but it is now moved, so the test method is gone.
+	 */
+/*	@Test
 	public void grow() {
 		AABB aabb = new AABB(10, 10,10,10);
 		Image image1 = mock(Image.class);
@@ -90,7 +93,7 @@ public class SpriteTest {
 		sprite1.grow(multi);
 		assertEquals(100, aabb.getHeight());
 		assertEquals(100, aabb.getWidth());
-	}
+	}*/
 	
 /*	@Test
 	public void render() {
