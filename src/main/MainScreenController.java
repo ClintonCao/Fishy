@@ -30,6 +30,7 @@ public class MainScreenController {
 	private static AABB screenbox;
 	private int frames;
 	private final double multiplier = 1.01;
+	private int score = 0;
 
 	@FXML
 	private ResourceBundle resources;
@@ -122,6 +123,9 @@ public class MainScreenController {
 
 						// Draw the background every frame.
 						gc.drawImage(background, 0, 0);
+						
+						// Draw a score label on the top left corner of the screen
+						gc.strokeText("Score: " + score,10, 15);
 
 						// Control the playerfish using WASD.
 						if (input.contains("A")
@@ -174,6 +178,7 @@ public class MainScreenController {
 							} else if (playerFish.intersects(entities.get(i))
 									&& playerFish.isAlive()) {
 								entities.remove(i);
+								score = score+5;
 								playerFish.getSprite().grow(multiplier);
 								int newHeight = playerFish.getSprite().getAabb()
 										.getHeight();
