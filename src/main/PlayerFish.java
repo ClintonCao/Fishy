@@ -1,6 +1,7 @@
 package main;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class PlayerFish extends Entity {
 	private static String leftImageName = "FishOriginal_transparent.png";
@@ -34,6 +35,22 @@ public class PlayerFish extends Entity {
 		Sprite sprite = new Sprite(playerFishImage, aabb);
 		
 		return new PlayerFish(10, true, leftImageName, rightImageName, sprite,0);
+	}
+	
+	/** This method grows the fish when it 'eats' another fish.
+	 * 
+	 * @param multiplier, the multiplier for the X and Y values.
+	 */
+	public void grow(double multiplier) {
+		AABB playerFishAABB = this.getSprite().getAabb();
+		double newWidth = multiplier * this.getSprite().getImg().getWidth();
+		double newHeight = multiplier * this.getSprite().getImg().getHeight();
+		
+		this.setPlayerFishLeftImage(new Image("FishOriginal_transparent.png", newWidth, newHeight, true, true));
+		this.setPlayerFishRightImage(new Image("Fish_Right_Transparent.png", newWidth, newHeight, true, true));
+		
+		playerFishAABB.setWidth((int) this.getPlayerFishLeftImage().getWidth());
+		playerFishAABB.setHeight((int) this.getPlayerFishLeftImage().getHeight());
 	}
 
 	public boolean playerDies(EnemyFish enemyfish) {

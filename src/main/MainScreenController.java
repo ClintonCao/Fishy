@@ -191,17 +191,7 @@ public class MainScreenController {
 							} else if (playerFish.intersects(entities.get(i))
 									&& playerFish.isAlive()) {
 								entities.remove(i);
-								playerFish.getSprite().grow(multiplier);
-								int newHeight = playerFish.getSprite().getAabb()
-										.getHeight();
-								int newWidth = playerFish.getSprite().getAabb()
-										.getWidth();
-								playerFish.setPlayerFishLeftImage(new Image(
-										"FishOriginal_transparent.png", newHeight,
-										newWidth, false, false));
-								playerFish.setPlayerFishRightImage(new Image(
-										"Fish_Right_Transparent.png", newHeight,
-										newWidth, false, false));
+								playerFish.grow(multiplier);
 							}
 						}
 

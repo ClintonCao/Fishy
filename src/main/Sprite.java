@@ -16,19 +16,6 @@ public class Sprite {
 		setAabb(aabb);	
 	}
 	
-	
-	//updates the aabb of the player when the player eats a smaller fish.
-	public void grow(double multiplier) {
-		int height = this.aabb.getHeight();
-		int width = this.aabb.getWidth();
-		
-		int newHeight = (int) (height * multiplier);
-		int newWidth = (int) (width * multiplier);
-		
-		this.aabb.setHeight(newHeight);
-		this.aabb.setWidth(newWidth);
-	}
-	
 	public void updateX(int x) {
 		aabb.updateX(x);
 	}
