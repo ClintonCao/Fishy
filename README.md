@@ -1,4 +1,7 @@
-# Fishy
+# Fishy 
+
+[![BuildStatus](https://travis-ci.org/ClintonCao/Fishy.svg?branch=master)](https://travis-ci.org/ClintonCao/Fishy)
+
 
 This repository contains our implementation of the game Fishy. This game is a project for the course of Software Engineering Methods (TI2206).
 
