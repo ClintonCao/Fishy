@@ -164,5 +164,6 @@
   	<checkstyle.plugin.version>2.15</checkstyle.plugin.version>
   	<pmd.plugin.version>3.4</pmd.plugin.version>
   	<findbugs.version>3.0.1</findbugs.version>
+  	<targetJdk>1.7</targetJdk>
   </properties>
 </project>
