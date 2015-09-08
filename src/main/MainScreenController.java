@@ -231,7 +231,7 @@ public class MainScreenController {
 
 				Platform.exit();
 				System.out.println("Quiting application..");
-				System.out.println("Successfully quitted..");
+				System.out.println("Exited successfully..");
 
 			}
 		});
