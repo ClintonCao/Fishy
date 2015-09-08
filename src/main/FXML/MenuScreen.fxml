@@ -28,7 +28,7 @@
             <Font size="45.0" />
          </font>
       </Label>
-      <Button fx:id="BackButton" layoutX="109.0" layoutY="569.0" mnemonicParsing="false" onMouseClicked="#BackButtonEvent" opacity="0.75" prefHeight="66.0" prefWidth="288.0" text="Back">
+      <Button fx:id="BackButton" layoutX="109.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#BackButtonEvent" opacity="0.75" prefHeight="66.0" prefWidth="285.0" text="Back">
          <font>
             <Font size="30.0" />
          </font>
