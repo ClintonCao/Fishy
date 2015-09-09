@@ -24,7 +24,7 @@ public class Entity {
 	}
 	
 	public boolean intersectsRightScreenEdge() {
-		return (this.sprite.getAabb().getX() + this.sprite.getAabb().getWidth()) >= MainScreenController.getScreenbox().getWidth();
+		return (this.sprite.getAabb().getX() + this.sprite.getAabb().getWidth()) >= Game.resX;
 	}
 	
 	public boolean intersectsUpperScreenEdge() {
@@ -32,7 +32,7 @@ public class Entity {
 	}
 	
 	public boolean intersectsUnderScreenEdge() {
-		return (this.sprite.getAabb().getY() + this.sprite.getAabb().getHeight()) >= MainScreenController.getScreenbox().getHeight();
+		return (this.sprite.getAabb().getY() + this.sprite.getAabb().getHeight()) >= Game.resY;
 	}
 	
 	public Sprite getSprite() {
