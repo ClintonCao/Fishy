@@ -194,8 +194,12 @@ public class MainScreenController {
 								entities.remove(i);
 								playerFish.grow(multiplier);
 								
-								// first get the height of enemy fish as the score
-								int score = entities.get(i).getSprite().getAabb().getHeight();
+								// first get the height of enemy fish
+								int height = entities.get(i).getSprite().getAabb().getHeight();
+								// second get the width of enemy fish
+								int width = entities.get(i).getSprite().getAabb().getWidth();
+								// get the area as the score
+								int score =  height*width;
 								// then adds the score to the current score
 								currScore = currScore + score;
 								// finally sets the total score to the player fish
