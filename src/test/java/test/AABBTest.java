@@ -1,4 +1,4 @@
-package test;
+package test.java.test;
 
 import static org.junit.Assert.*;
 import main.AABB;
