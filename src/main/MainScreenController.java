@@ -36,6 +36,7 @@ public class MainScreenController {
 	private int frames;
 	private final double multiplier = 1.01;
 	private static Text scoreText = new Text();
+	private static int currScore = 0;
 
 	@FXML
 	private ResourceBundle resources;
@@ -190,8 +191,21 @@ public class MainScreenController {
 								// the playerfish, if it is, remove it.
 							} else if (playerFish.intersects(entities.get(i))
 									&& playerFish.isAlive()) {
+								
+								// first get the height of enemy fish
+								int height = entities.get(i).getSprite().getAabb().getHeight();
+								// second get the width of enemy fish
+								int width = entities.get(i).getSprite().getAabb().getWidth();
+								//remove the fish from the screen
 								entities.remove(i);
+								// let the fish of the player grow.
 								playerFish.grow(multiplier);
+								// get the area as the score
+								int score =  height*width;
+								// then adds the score to the current score
+								currScore = currScore + score;
+								// finally sets the total score to the player fish
+								playerFish.setScore(currScore);
 							}
 						}
 
