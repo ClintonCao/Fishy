@@ -36,6 +36,7 @@ public class MainScreenController {
 	private int frames;
 	private final double multiplier = 1.01;
 	private static Text scoreText = new Text();
+	private static int currScore = 0;
 
 	@FXML
 	private ResourceBundle resources;
@@ -192,6 +193,13 @@ public class MainScreenController {
 									&& playerFish.isAlive()) {
 								entities.remove(i);
 								playerFish.grow(multiplier);
+								
+								// first get the height of enemy fish as the score
+								int score = entities.get(i).getSprite().getAabb().getHeight();
+								// then adds the score to the current score
+								currScore = currScore + score;
+								// finally sets the total score to the player fish
+								playerFish.setScore(currScore);
 							}
 						}
 
