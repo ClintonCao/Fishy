@@ -191,13 +191,15 @@ public class MainScreenController {
 								// the playerfish, if it is, remove it.
 							} else if (playerFish.intersects(entities.get(i))
 									&& playerFish.isAlive()) {
-								entities.remove(i);
-								playerFish.grow(multiplier);
 								
 								// first get the height of enemy fish
 								int height = entities.get(i).getSprite().getAabb().getHeight();
 								// second get the width of enemy fish
 								int width = entities.get(i).getSprite().getAabb().getWidth();
+								//remove the fish from the screen
+								entities.remove(i);
+								// let the fish of the player grow.
+								playerFish.grow(multiplier);
 								// get the area as the score
 								int score =  height*width;
 								// then adds the score to the current score
