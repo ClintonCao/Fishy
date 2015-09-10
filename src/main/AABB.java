@@ -66,4 +66,28 @@ public class AABB {
 	public void updateY(int y) {
 		this.y += y;
 	}
+	
+	public boolean equals(Object other) {
+		if(!(other instanceof AABB)) {
+			return false;
+		}
+		
+		if(this.x != ((AABB) other).getX()) {
+			return false;
+		}
+		
+		if(this.y != ((AABB) other).getY()) {
+			return false;
+		}
+		
+		if(this.width != ((AABB) other).getWidth()) {
+			return false;
+		}
+		
+		if(this.height != ((AABB) other).getHeight()) {
+			return false;
+		}
+		
+		return true;
+	}
 }

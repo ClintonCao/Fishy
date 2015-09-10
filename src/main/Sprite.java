@@ -48,5 +48,21 @@ public class Sprite {
 	public void setAabb(AABB aabb) {
 		this.aabb = aabb;
 	}
+	
+	public boolean equals(Object other) {
+		if(!(other instanceof Sprite)) {
+			return false;
+		}
+		
+		if(!this.img.equals(((Sprite) other).getImg())) {
+			return false;
+		}
+		
+		if(!this.aabb.equals(((Sprite) other).getAabb())) {
+			return false;
+		}
+		
+		return true;
+	}
 
 }
