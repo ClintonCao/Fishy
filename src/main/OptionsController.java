@@ -47,8 +47,7 @@ public class OptionsController {
 	}
 
     /**
-     * setting up the screen with a button which returns to the main screen
-     * and on and off buttons which controls the background music
+     * Initialize the buttons and set up the event handlers for each button.
      */
 	@FXML
 	void initialize() {

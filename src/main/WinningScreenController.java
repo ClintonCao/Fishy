@@ -31,7 +31,7 @@ public class WinningScreenController {
     }
 
     /**
-     * setting up the screen with a button which returns to the main screen
+     * Initialize the button and set up the event handlers for the button.
      */
     @FXML
     void initialize() {

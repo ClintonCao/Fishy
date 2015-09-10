@@ -79,19 +79,23 @@ public class MainScreenController {
 		scoreText.setText("Score");
 	}
 
+	/**
+	 * Initialize the buttons and also set the event handlers for the buttons.
+	 */
 	@FXML
 	void initialize() {
 
+		
 		assert PlayButton != null : "fx:id=\"PlayButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
 		assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
 		assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
+
 
 		PlayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
-				
-				
+
 				System.out.println("Initializing game objects..");
 				init();
 				System.out.println("Successfully initialized..");
@@ -132,15 +136,16 @@ public class MainScreenController {
 						gc.drawImage(background, 0, 0);
 						gc.setFill(Color.AQUA);
 						gc.fillOval(525, 1, 200, 75);
-						
+
 						// Draw the scoreboard with the player's score.
 						gc.setFill(Color.BLACK);
 						gc.setFont(Font.font("Comic Sans", 30));
 						gc.fillText(scoreText.getText().toString(), 625, 20);
-				        gc.setTextAlign(TextAlignment.CENTER);
-				        gc.setTextBaseline(VPos.CENTER);
-						gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
-						
+						gc.setTextAlign(TextAlignment.CENTER);
+						gc.setTextBaseline(VPos.CENTER);
+						gc.fillText(Integer.toString(playerFish.getScore()),
+								625, 55);
+
 						// Control the playerfish using WASD.
 						if (input.contains("A")
 								&& !playerFish.intersectsLeftScreenEdge()) {
@@ -191,20 +196,23 @@ public class MainScreenController {
 								// the playerfish, if it is, remove it.
 							} else if (playerFish.intersects(entities.get(i))
 									&& playerFish.isAlive()) {
-								
+
 								// first get the height of enemy fish
-								int height = entities.get(i).getSprite().getAabb().getHeight();
+								int height = entities.get(i).getSprite()
+										.getAabb().getHeight();
 								// second get the width of enemy fish
-								int width = entities.get(i).getSprite().getAabb().getWidth();
-								//remove the fish from the screen
+								int width = entities.get(i).getSprite()
+										.getAabb().getWidth();
+								// remove the fish from the screen
 								entities.remove(i);
 								// let the fish of the player grow.
 								playerFish.grow(multiplier);
 								// get the area as the score
-								int score =  height*width;
+								int score = height * width;
 								// then adds the score to the current score
 								currScore = currScore + score;
-								// finally sets the total score to the player fish
+								// finally sets the total score to the player
+								// fish
 								playerFish.setScore(currScore);
 							}
 						}
@@ -229,6 +237,7 @@ public class MainScreenController {
 			}
 		});
 
+
 		MenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -237,6 +246,7 @@ public class MainScreenController {
 
 			}
 		});
+
 
 		QuitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -251,10 +261,22 @@ public class MainScreenController {
 		});
 	}
 
+	/**
+	 * Set the bounding box of the screen.
+	 * 
+	 * @param boundingBox
+	 *            is an object of BoundingBox. This is the bounding box that you
+	 *            want to set to the screen.
+	 */
 	private static void setScreenbox(BoundingBox boundingBox) {
 		screenbox = boundingBox;
 	}
 
+	/**
+	 * Get the bounding box of the screen.
+	 * 
+	 * @return return the bounding box of the screen.
+	 */
 	public static BoundingBox getScreenbox() {
 		return screenbox;
 	}
