@@ -9,7 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 /**
- * This class contains all the event handlers of the buttons on the options screen.
+ * This class contains all the event handlers of the buttons on the options
+ * screen.
  * 
  * @author Group 6
  *
@@ -31,29 +32,50 @@ public class OptionsController {
 	@FXML
 	private Button BackButton;
 
+	/**
+	 * Automatically generated via Scenebuilder.
+	 * 
+	 * @param event
+	 *            kind of event.
+	 */
 	@FXML
 	void MusicOnEvent(MouseEvent event) {
 
 	}
 
+	/**
+	 * Automatically generated via Scenebuilder.
+	 * 
+	 * @param event
+	 *            kind of event.
+	 */
 	@FXML
 	void MusicOffEvent(MouseEvent event) {
 
 	}
 
+	/**
+	 * Automatically generated via Scenebuilder.
+	 * 
+	 * @param event
+	 *            kind of event.
+	 */
 	@FXML
 	void BackButtonEvent(MouseEvent event) {
 
 	}
 
-    /**
-     * Initialize the buttons and set up the event handlers for each button.
-     */
+	/**
+	 * Initialize the buttons and set up the event handlers for each button.
+	 */
 	@FXML
 	void initialize() {
-		assert OnButton != null : "fx:id=\"OnButton\" was not injected: check your FXML file 'OptionsScreen.fxml'.";
-		assert OffButton != null : "fx:id=\"OffButton\" was not injected: check your FXML file 'OptionsScreen.fxml'.";
-		assert BackButton != null : "fx:id=\"BackButton\" was not injected: check your FXML file 'OptionsScreen.fxml'.";
+		assert OnButton != null : "fx:id=\"OnButton\" was not injected: "
+				+ "check your FXML file 'OptionsScreen.fxml'.";
+		assert OffButton != null : "fx:id=\"OffButton\" was not injected: "
+				+ "check your FXML file 'OptionsScreen.fxml'.";
+		assert BackButton != null : "fx:id=\"BackButton\" was not injected: "
+				+ "check your FXML file 'OptionsScreen.fxml'.";
 
 		OnButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -74,7 +96,7 @@ public class OptionsController {
 
 			}
 		});
-		
+
 		BackButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override

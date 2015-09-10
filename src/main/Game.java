@@ -1,7 +1,6 @@
 package main;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,9 +8,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-/** This Class represents the game itself. 
+/**
+ * This Class represents the game itself.
  * 
- * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel Doesburg.
+ * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel
+ *         Doesburg.
  *
  */
 public class Game extends Application {
@@ -25,6 +26,12 @@ public class Game extends Application {
 	// final Media media = new Media(resource.toString());
 	// static MediaPlayer mediaPlayer = null;
 
+	/**
+	 * Main method that launches the application.
+	 * 
+	 * @param args
+	 *            arguments for the main method (nothing is used).
+	 */
 	public static void main(String[] args) {
 		Application.launch(Game.class, (java.lang.String[]) null);
 	}
@@ -68,7 +75,7 @@ public class Game extends Application {
 	 * This method is used to switch the screens of the game.
 	 * 
 	 * @param bestand
-	 *            The name of the "destination" FXML file 
+	 *            The name of the "destination" FXML file
 	 */
 	public static void switchScreen(String bestand) {
 		try {
@@ -82,7 +89,8 @@ public class Game extends Application {
 		}
 	}
 
-	/** This Method retrieve the Y value of the game's resolution
+	/**
+	 * This method retrieve the Y value of the game's resolution.
 	 * 
 	 * @return The Y of the Resolution
 	 */
@@ -90,15 +98,18 @@ public class Game extends Application {
 		return resY;
 	}
 
-	/** This method sets a new Y value for the resolution.
+	/**
+	 * This method sets a new Y value for the resolution.
 	 * 
-	 * @param resY The new Y value
+	 * @param resY
+	 *            The new Y value
 	 */
 	public static void setResY(int resY) {
 		Game.resY = resY;
 	}
 
-	/** This Method retrieve the X value of the game's resolution
+	/**
+	 * This method retrieve the X value of the game's resolution.
 	 * 
 	 * @return The X of the Resolution
 	 */
@@ -106,9 +117,11 @@ public class Game extends Application {
 		return resX;
 	}
 
-	/** This method sets a new Y value for the resolution.
+	/**
+	 * This method sets a new Y value for the resolution.
 	 * 
-	 * @param resX The new X value
+	 * @param resX
+	 *            The new X value
 	 */
 	public static void setResX(int resX) {
 		Game.resX = resX;
