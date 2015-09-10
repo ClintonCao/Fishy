@@ -189,7 +189,7 @@ public class MainScreenController {
 						for (int i = 0; i < entities.size(); i++) {
 							// First check if a fish is outside the screen, if
 							// it is, remove it.
-							if (!entities.get(i).getSprite().getAabb()
+							if (!entities.get(i).getSprite().getBoundingBox()
 									.intersects(screenbox)) {
 								entities.remove(i);
 								// Secondly check if a fish is intersecting with
@@ -199,10 +199,10 @@ public class MainScreenController {
 
 								// first get the height of enemy fish
 								int height = entities.get(i).getSprite()
-										.getAabb().getHeight();
+										.getBoundingBox().getHeight();
 								// second get the width of enemy fish
 								int width = entities.get(i).getSprite()
-										.getAabb().getWidth();
+										.getBoundingBox().getWidth();
 								// remove the fish from the screen
 								entities.remove(i);
 								// let the fish of the player grow.

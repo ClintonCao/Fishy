@@ -26,7 +26,7 @@ public class Entity {
 	 * @return a boolean whether if this entity intersects with the other entity
 	 */
 	public boolean intersects(Entity other) {
-		return this.sprite.getAabb().intersects(other.getSprite().getAabb());
+		return this.sprite.getBoundingBox().intersects(other.getSprite().getBoundingBox());
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class Entity {
 	 * @return a boolean whether if this entity intersects with the left screen edge
 	 */
 	public boolean intersectsLeftScreenEdge() {
-		return this.sprite.getAabb().getX() <= 0;
+		return this.sprite.getBoundingBox().getX() <= 0;
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class Entity {
 	 * @return a boolean whether if this entity intersects with the right screen edge
 	 */
 	public boolean intersectsRightScreenEdge() {
-		return (this.sprite.getAabb().getX() + this.sprite.getAabb().getWidth()) >= Game.getResX();
+		return (this.sprite.getBoundingBox().getX() + this.sprite.getBoundingBox().getWidth()) >= Game.getResX();
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class Entity {
 	 * @return a boolean whether if this entity intersects with the upper screen edge
 	 */
 	public boolean intersectsUpperScreenEdge() {
-		return this.sprite.getAabb().getY() <= 0;
+		return this.sprite.getBoundingBox().getY() <= 0;
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class Entity {
 	 * @return a boolean whether if this entity intersects with the under screen edge
 	 */
 	public boolean intersectsUnderScreenEdge() {
-		return (this.sprite.getAabb().getY() + this.sprite.getAabb().getHeight()) >= Game.getResY();
+		return (this.sprite.getBoundingBox().getY() + this.sprite.getBoundingBox().getHeight()) >= Game.getResY();
 	}
 	
 	/**

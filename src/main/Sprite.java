@@ -13,7 +13,7 @@ public class Sprite {
 	
 	public Sprite(Image img, BoundingBox boundingBox) {
 		this.img = img;
-		setAabb(boundingBox);	
+		setBoundingBox(boundingBox);	
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class Sprite {
 	 * @return a boolean whether this sprite intersects with other sprite
 	 */
 	public boolean intersects(Sprite s) {
-		return s.getAabb().intersects(this.getAabb());
+		return s.getBoundingBox().intersects(this.getBoundingBox());
 	}
 	
 //------------Getters and setters-------------------------------------------
@@ -58,11 +58,11 @@ public class Sprite {
 		this.img = img;
 	}
 
-	public BoundingBox getAabb() {
+	public BoundingBox getBoundingBox() {
 		return boundingBox;
 	}
 
-	public void setAabb(BoundingBox boundingBox) {
+	public void setBoundingBox(BoundingBox boundingBox) {
 		this.boundingBox = boundingBox;
 	}
 	
@@ -75,7 +75,7 @@ public class Sprite {
 			return false;
 		}
 		
-		if(!this.aabb.equals(((Sprite) other).getAabb())) {
+		if(!this.boundingBox.equals(((Sprite) other).getBoundingBox())) {
 			return false;
 		}
 		

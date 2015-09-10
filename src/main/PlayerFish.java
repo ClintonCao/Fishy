@@ -57,15 +57,15 @@ public class PlayerFish extends Entity {
 	 * @param multiplier, the multiplier for the X and Y values.
 	 */
 	public void grow(double multiplier) {
-		BoundingBox playerFishAABB = this.getSprite().getAabb();
+		BoundingBox playerFishBoundingBox = this.getSprite().getBoundingBox();
 		double newWidth = multiplier * this.getSprite().getImg().getWidth();
 		double newHeight = multiplier * this.getSprite().getImg().getHeight();
 		
 		this.setPlayerFishLeftImage(new Image("FishOriginal_transparent.png", newWidth, newHeight, true, true));
 		this.setPlayerFishRightImage(new Image("Fish_Right_Transparent.png", newWidth, newHeight, true, true));
 		
-		playerFishAABB.setWidth((int) this.getPlayerFishLeftImage().getWidth());
-		playerFishAABB.setHeight((int) this.getPlayerFishLeftImage().getHeight());
+		playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage().getWidth());
+		playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage().getHeight());
 	}
 	
 	/** This method looks if the Player fish is smaller than the enemy fish.
@@ -74,9 +74,9 @@ public class PlayerFish extends Entity {
 	 * @return Boolean that determines whether the player fish dies.
 	 */
 	public boolean playerDies(EnemyFish enemyfish) {
-		BoundingBox playerAABB = this.getSprite().getAabb();
-		BoundingBox enemyAABB = enemyfish.getSprite().getAabb();
-		return((playerAABB.getX() * playerAABB.getY()) <= (enemyAABB.getX() * enemyAABB.getY()));
+		BoundingBox playerBoundingBox = this.getSprite().getBoundingBox();
+		BoundingBox enemyBoundingBox = enemyfish.getSprite().getBoundingBox();
+		return((playerBoundingBox.getX() * playerBoundingBox.getY()) <= (enemyBoundingBox.getX() * enemyBoundingBox.getY()));
 	}
 	
 	/** This method retrieves the info about the PlayerFish's life
