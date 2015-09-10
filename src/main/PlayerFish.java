@@ -3,6 +3,11 @@ package main;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * A PlayerFish represents the Entity controlled by the player.
+ * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel Doesburg.
+ *
+ */
 public class PlayerFish extends Entity {
 	private static String leftImageName = "FishOriginal_transparent.png";
 	private static String rightImageName = "Fish_Right_Transparent.png";
@@ -12,6 +17,16 @@ public class PlayerFish extends Entity {
 	private boolean isAlive;
 	private int score;
 	
+	/**
+	 * The PlayerFish's constructor
+	 * 
+	 * @param movespeed Integer that represents the speed of the fish.
+	 * @param isAlive Boolean that determines whether the fish is alive or dead.
+	 * @param leftImgFileName How the fish looks like when swimming left.
+	 * @param rightImgFileName How the image looks like swimming right.
+	 * @param sprite The fish's Sprite
+	 * @param score The Fish's score
+	 */
 	public PlayerFish(int movespeed, boolean isAlive, String leftImgFileName, String rightImgFileName, Sprite sprite, int score) {
 		super(movespeed, sprite);
 		setAlive(isAlive);
@@ -52,57 +67,110 @@ public class PlayerFish extends Entity {
 		playerFishAABB.setWidth((int) this.getPlayerFishLeftImage().getWidth());
 		playerFishAABB.setHeight((int) this.getPlayerFishLeftImage().getHeight());
 	}
-
+	
+	/** This method looks if the Player fish is smaller than the enemy fish.
+	 * 
+	 * @param enemyfish The fish it compares itself with
+	 * @return Boolean that determines whether the player fish dies.
+	 */
 	public boolean playerDies(EnemyFish enemyfish) {
 		AABB playerAABB = this.getSprite().getAabb();
 		AABB enemyAABB = enemyfish.getSprite().getAabb();
 		return((playerAABB.getX() * playerAABB.getY()) <= (enemyAABB.getX() * enemyAABB.getY()));
 	}
 	
+	/** This method retrieves the info about the PlayerFish's life
+	 * 
+	 * @return Whether the PlayerFish is alive
+	 */
 	public boolean isAlive() {
 		return isAlive;
 	}
-
+	
+	/** This method edits the PlayerFish's info about its life.
+	 * 
+	 * @param isAlive The boolean that replaces the old value.
+	 */
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-
+	
+	/** This Method retrieves the Left-side Image of the PlayerFish.
+	 * 
+	 * @return The image
+	 */
 	public Image getPlayerFishLeftImage() {
 		return leftImage;
 	}
-
+	
+	/** This Method replaces the Left-side Image of the PlayerFish.
+	 * 
+	 * @param playerFishLeftImage The image that replaces the old one.
+	 */
 	public void setPlayerFishLeftImage(Image playerFishLeftImage) {
 		this.leftImage = playerFishLeftImage;
 	}
-
+	
+	/** This Method retrieves the Right-side Image of the PlayerFish.
+	 * 
+	 * @return The image
+	 */
 	public Image getPlayerFishRightImage() {
 		return rightImage;
 	}
-
+	
+	/** This Method replaces the Right-side Image of the PlayerFish.
+	 * 
+	 * @param playerFishRightImage The image that replaces the old one.
+	 */
 	public void setPlayerFishRightImage(Image playerFishRightImage) {
 		this.rightImage = playerFishRightImage;
 	}
-
+	
+	/** This method retrieves the string of the Left-side image.
+	 * 
+	 * @return The string of the image.
+	 */
 	public static String getPlayerFishLeftImageName() {
 		return leftImageName;
 	}
 
+	/** This method changes the string of the left-side image.
+	 * 
+	 * @param playerFishLeftImageName The replacement string.
+	 */
 	public static void setPlayerFishLeftImageName(String playerFishLeftImageName) {
 		PlayerFish.leftImageName = playerFishLeftImageName;
 	}
 
+	/** This method retrieves the string of the Right-side image.
+	 * 
+	 * @return The string of the image.
+	 */
 	public static String getPlayerFishRightImageName() {
 		return rightImageName;
 	}
 
+	/** This method changes the string of the right-side image.
+	 * 
+	 * @param playerFishRightImageName The replacement string.
+	 */
 	public static void setPlayerFishRightImageName(String playerFishRightImageName) {
 		PlayerFish.rightImageName = playerFishRightImageName;
 	}
 	
+	/** This method replaces the PlayerFish's score
+	 * 
+	 * @param number The score that will replace the old value.
+	 */
 	public void setScore(int number) {
 		score = number;
 	}
 	
+	/** This method Retrieves the score of the PlayerFish.
+	 * 
+	 * @return The score
+	 */
 	public int getScore() {
 		return score;
 	}
