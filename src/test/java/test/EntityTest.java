@@ -1,6 +1,10 @@
-package main;
+package test.java.test;
 
 import static org.junit.Assert.*;
+import main.AABB;
+import main.Entity;
+import main.Game;
+import main.Sprite;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,7 +64,7 @@ public class EntityTest {
 	
 	@Test
 	public void intersectsRightScreenEdgeSuccesTest() {
-		AABB box2 = new AABB(Game.resX + 10, 100, 50, 50);
+		AABB box2 = new AABB(Game.getResX() + 10, 100, 50, 50);
 		Sprite sprite2 = new Sprite(null, box2);
 		Entity entity = new Entity(0, sprite2);
 		
@@ -92,7 +96,7 @@ public class EntityTest {
 	
 	@Test
 	public void intersectsUnderScreenEdgeSuccesTest() {
-		AABB box2 = new AABB(10, Game.resY + 10, 50, 50);
+		AABB box2 = new AABB(10, Game.getResY() + 10, 50, 50);
 		Sprite sprite2 = new Sprite(null, box2);
 		Entity entity = new Entity(0, sprite2);
 		
