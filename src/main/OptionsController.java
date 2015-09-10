@@ -8,6 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * This class contains all the event handlers of the buttons on the options screen.
+ * 
+ * @author Group 6
+ *
+ */
 public class OptionsController {
 
 	@FXML
@@ -40,6 +46,10 @@ public class OptionsController {
 
 	}
 
+    /**
+     * setting up the screen with a button which returns to the main screen
+     * and on and off buttons which controls the background music
+     */
 	@FXML
 	void initialize() {
 		assert OnButton != null : "fx:id=\"OnButton\" was not injected: check your FXML file 'OptionsScreen.fxml'.";

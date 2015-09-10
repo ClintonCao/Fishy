@@ -32,7 +32,7 @@ public class MainScreenController {
 
 	private static PlayerFish playerFish;
 	private static ArrayList<EnemyFish> entities;
-	private static AABB screenbox;
+	private static BoundingBox screenbox;
 	private int frames;
 	private final double multiplier = 1.01;
 	private static Text scoreText = new Text();
@@ -74,7 +74,7 @@ public class MainScreenController {
 	 */
 	public static void init() {
 		entities = new ArrayList<EnemyFish>();
-		setScreenbox(new AABB(0, 0, Game.getResX(), Game.getResY()));
+		setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
 		playerFish = PlayerFish.createPlayerFish();
 		scoreText.setText("Score");
 	}
@@ -251,11 +251,11 @@ public class MainScreenController {
 		});
 	}
 
-	private static void setScreenbox(AABB aabb) {
-		screenbox = aabb;
+	private static void setScreenbox(BoundingBox boundingBox) {
+		screenbox = boundingBox;
 	}
 
-	public static AABB getScreenbox() {
+	public static BoundingBox getScreenbox() {
 		return screenbox;
 	}
 }

@@ -8,6 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * This class contains all the event handlers of the buttons on the winning screen
+ * 
+ * @author Group 6
+ *
+ */
 public class WinningScreenController {
 
     @FXML
@@ -24,6 +30,9 @@ public class WinningScreenController {
 
     }
 
+    /**
+     * setting up the screen with a button which returns to the main screen
+     */
     @FXML
     void initialize() {
         assert MainScreenButton != null : "fx:id=\"MainScreenButton\" was not injected: check your FXML file 'Untitled'.";

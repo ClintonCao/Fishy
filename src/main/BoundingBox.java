@@ -6,20 +6,20 @@ package main;
  * @author Michiel
  *
  */
-public class AABB {
+public class BoundingBox {
 	private int x;
 	private int y;
 	private int width;
 	private int height;
 	
-	public AABB(int x, int y, int width, int height) {
+	public BoundingBox(int x, int y, int width, int height) {
 		this.setX(x);
 		this.setY(y);
 		this.setWidth(width);
 		this.setHeight(height);
 	}
 	
-	public boolean intersects(AABB other) {
+	public boolean intersects(BoundingBox other) {
 		return !((this.getX() + this.getWidth()) < other.getX() || 
 				this.getX() > (other.getX() + other.getWidth()) ||
 					(this.getY() + this.getHeight()) < other.getY() ||

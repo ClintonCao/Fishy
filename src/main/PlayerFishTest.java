@@ -19,14 +19,16 @@ public class PlayerFishTest {
 	Sprite sprite;
 	String leftimage = "FishOriginal_transparent.png"; 
 	String rightimage = "Fish_Right_Transparent.png";
-	AABB box;
+	BoundingBox box;
 	
 	
 	
-	
+	/**
+	 * set up a the bounding box and the sprite for the player fish
+	 */
 	@Before
 	public void setUp() {
-		box = new AABB(100, 100, 50, 50);
+		box = new BoundingBox(100, 100, 50, 50);
 		sprite = new Sprite(null, box);
 		
 	}
@@ -37,7 +39,7 @@ public class PlayerFishTest {
 	}
 
 	/**
-	 * This Test checks the capability of changing whether the PlayerFish is alive or not.
+	 * This Test checks the capability of changing whether the PlayerFish is alive or not
 	 * 
 	 */
 	@Test
@@ -49,7 +51,7 @@ public class PlayerFishTest {
 		assertFalse(player.isAlive());
 	}
 	/**
-	 * This Test checks the capability of changing the PlayerFish's score.
+	 * This Test checks the capability of changing the PlayerFish's score
 	 * 
 	 */
 	@Test
@@ -61,7 +63,7 @@ public class PlayerFishTest {
 		assertEquals(60,player.getScore());
 	}
 	/**
-	 * This Test checks the class's constructor.
+	 * This Test checks the class's constructor
 	 * 
 	 */
 	@Test
@@ -82,7 +84,7 @@ public class PlayerFishTest {
 		assertEquals(rightimage,player.getPlayerFishRightImageName());
 	}
 	/**
-	 * This Test checks the capability to edit the size by a specific multiplier.
+	 * This Test checks the capability to edit the size by a specific multiplier
 	 * 
 	 */
 	@Test
@@ -96,7 +98,7 @@ public class PlayerFishTest {
 		assertEquals(203,player.getSprite().getAabb().getWidth());
 	}
 	/**
-	 * This Test checks the ability to set and retrieve the images of a PlayerFish.
+	 * This Test checks the ability to set and retrieve the images of a PlayerFish
 	 * 
 	 */
 	@Test
@@ -110,7 +112,7 @@ public class PlayerFishTest {
 		assertEquals(img2,player.getPlayerFishRightImage());
 	}
 	/**
-	 * This Test checks the ability to set an image via a string.
+	 * This Test checks the ability to set an image via a string
 	 * 
 	 */
 	@Test
