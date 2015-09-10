@@ -8,6 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * This class contains all the event handlers of the buttons on the losing screen
+ * 
+ * @author Group 6
+ *
+ */
 public class LosingScreenController {
 
     @FXML
@@ -24,6 +30,10 @@ public class LosingScreenController {
 
     }
 
+    /**
+     * Initialize the button and set up the event handlers for the button.
+     * 
+     */
     @FXML
     void initialize() {
         assert MainScreenButton != null : "fx:id=\"MainScreenButton\" was not injected: check your FXML file 'LosingScreen.fxml'.";

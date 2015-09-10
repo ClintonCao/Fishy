@@ -9,6 +9,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/** This Class represents the game itself. 
+ * 
+ * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel Doesburg.
+ *
+ */
 public class Game extends Application {
 
 	static Stage stage;
@@ -26,7 +31,7 @@ public class Game extends Application {
 
 	/**
 	 * @param firstStage
-	 *            is de stage waar het start.
+	 *            The stage where the game starts from
 	 */
 	@Override
 	public void start(Stage firstStage) {
@@ -60,10 +65,10 @@ public class Game extends Application {
 	}
 
 	/**
-	 * Deze methode wordt gebruikt voor het veranderen tussen scenes
+	 * This method is used to switch the screens of the game.
 	 * 
 	 * @param bestand
-	 *            is de naam van de FXML bestand van de scene die je wilt laden.
+	 *            The name of the "destination" FXML file 
 	 */
 	public static void switchScreen(String bestand) {
 		try {
@@ -77,18 +82,34 @@ public class Game extends Application {
 		}
 	}
 
+	/** This Method retrieve the Y value of the game's resolution
+	 * 
+	 * @return The Y of the Resolution
+	 */
 	public static int getResY() {
 		return resY;
 	}
 
+	/** This method sets a new Y value for the resolution.
+	 * 
+	 * @param resY The new Y value
+	 */
 	public static void setResY(int resY) {
 		Game.resY = resY;
 	}
 
+	/** This Method retrieve the X value of the game's resolution
+	 * 
+	 * @return The X of the Resolution
+	 */
 	public static int getResX() {
 		return resX;
 	}
 
+	/** This method sets a new Y value for the resolution.
+	 * 
+	 * @param resX The new X value
+	 */
 	public static void setResX(int resX) {
 		Game.resX = resX;
 	}

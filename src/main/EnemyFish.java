@@ -14,9 +14,14 @@ import javafx.scene.image.Image;
 public class EnemyFish extends Entity {
 	private static String leftImageFileName = "EnemyFish_Left.png";
 	private static String rightImageFileName = "EnemyFish_Right.png";
-	
 	private boolean isLefty;
 	
+	/**
+	 * constructor which creates an enemy fish
+	 * @param movespeed integer that determines the movement speed
+	 * @param isLefty  boolean that whether fish comes from the left side of the screen
+	 * @param sprite A sprite represents the model of an entity on the screen
+	 */
 	public EnemyFish(int movespeed, boolean isLefty, Sprite sprite) {
 		super(movespeed, sprite);
 		this.isLefty = isLefty;
@@ -43,21 +48,29 @@ public class EnemyFish extends Entity {
 			int fishImageWidth = (int) fishImage.getWidth();
 			int fishImageHeight = (int) fishImage.getHeight();
 			
-			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage, new AABB(-fishImageWidth, randomHeight, fishImageWidth, fishImageHeight)));
+			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage, new BoundingBox(-fishImageWidth, randomHeight, fishImageWidth, fishImageHeight)));
 		} else {
 			Image fishImage = new Image(leftImageFileName);
 			int fishImageWidth = (int) fishImage.getWidth();
 			int fishImageHeight = (int) fishImage.getHeight();
 						
 			// If the fish spawns at the right side of the screen, it needs to be placed at the X coordinate equal to the width of the AABB screenbox;
-			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage, new AABB(MainScreenController.getScreenbox().getWidth(), randomHeight, fishImageWidth, fishImageHeight)));
+			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage, new BoundingBox(MainScreenController.getScreenbox().getWidth(), randomHeight, fishImageWidth, fishImageHeight)));
 		}
 	}
 
+	/**
+	 * the method isLefty determine which side does the fish comes from
+	 * @return an boolean whether the fish comes from left
+	 */
 	public boolean isLefty() {
 		return isLefty;
 	}
-
+	
+	/**
+	 * the method setLefty can decide which side does the fish comes from
+	 * @param isLefty boolean that whether fish comes from the left side of the screen
+	 */
 	public void setLefty(boolean isLefty) {
 		this.isLefty = isLefty;
 	}

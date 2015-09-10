@@ -9,19 +9,26 @@ import static org.mockito.Mockito.mock;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 
+/**
+ * This Test case will test the functionalities of the PlayerFish class.
+ * @author Dmitry
+ *
+ */
 public class PlayerFishTest {
 	
 	Sprite sprite;
 	String leftimage = "FishOriginal_transparent.png"; 
 	String rightimage = "Fish_Right_Transparent.png";
-	AABB box;
+	BoundingBox box;
 	
 	
 	
-	
+	/**
+	 * set up a the bounding box and the sprite for the player fish
+	 */
 	@Before
 	public void setUp() {
-		box = new AABB(100, 100, 50, 50);
+		box = new BoundingBox(100, 100, 50, 50);
 		sprite = new Sprite(null, box);
 		
 	}
@@ -31,6 +38,10 @@ public class PlayerFishTest {
 		Platform.exit();
 	}
 
+	/**
+	 * This Test checks the capability of changing whether the PlayerFish is alive or not
+	 * 
+	 */
 	@Test
 	public void testAlive() {
 		
@@ -39,6 +50,10 @@ public class PlayerFishTest {
 		player.setAlive(false);
 		assertFalse(player.isAlive());
 	}
+	/**
+	 * This Test checks the capability of changing the PlayerFish's score
+	 * 
+	 */
 	@Test
 	public void testScore() {
 		
@@ -47,12 +62,20 @@ public class PlayerFishTest {
 		player.setScore(60);
 		assertEquals(60,player.getScore());
 	}
+	/**
+	 * This Test checks the class's constructor
+	 * 
+	 */
 	@Test
 	public void testConstructor() {
 		
 		PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite, 0);
 		assertEquals(50,player.getMoveSpeed());
 	}
+	/**
+	 * This Test checks the ability to retrieve the PlayerFish's Image-string
+	 * 
+	 */
 	@Test
 	public void testImageString() {
 		
@@ -60,6 +83,10 @@ public class PlayerFishTest {
 		assertEquals(leftimage,player.getPlayerFishLeftImageName());
 		assertEquals(rightimage,player.getPlayerFishRightImageName());
 	}
+	/**
+	 * This Test checks the capability to edit the size by a specific multiplier
+	 * 
+	 */
 	@Test
 	public void testgrow() {
 		
@@ -70,6 +97,10 @@ public class PlayerFishTest {
 		
 		assertEquals(203,player.getSprite().getAabb().getWidth());
 	}
+	/**
+	 * This Test checks the ability to set and retrieve the images of a PlayerFish
+	 * 
+	 */
 	@Test
 	public void testImage() {
 		PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite, 0);
@@ -80,6 +111,10 @@ public class PlayerFishTest {
 		assertEquals(img,player.getPlayerFishLeftImage());
 		assertEquals(img2,player.getPlayerFishRightImage());
 	}
+	/**
+	 * This Test checks the ability to set an image via a string
+	 * 
+	 */
 	@Test
 	public void testImageStringSet() {
 		Game.main(null);
