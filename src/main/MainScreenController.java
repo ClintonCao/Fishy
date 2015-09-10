@@ -74,7 +74,7 @@ public class MainScreenController {
 	 */
 	public static void init() {
 		entities = new ArrayList<EnemyFish>();
-		setScreenbox(new AABB(0, 0, Game.resX, Game.resY));
+		setScreenbox(new AABB(0, 0, Game.getResX(), Game.getResY()));
 		playerFish = PlayerFish.createPlayerFish();
 		scoreText.setText("Score");
 	}
@@ -99,7 +99,7 @@ public class MainScreenController {
 				Scene scene = new Scene(root);
 				Game.stage.setScene(scene);
 
-				Canvas canvas = new Canvas(Game.resX, Game.resY);
+				Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
 
 				root.getChildren().add(canvas);
 
