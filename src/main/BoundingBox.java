@@ -2,7 +2,7 @@ package main;
 
 /**
  * An Axis-Aligned Bounding Box is a rectangle aligned with the X and Y axis, i.e. no rotation.
- * The AABB is used as a hitbox for collision detection between fish.
+ * The BoundingBox is used as a hitbox for collision detection between fish.
  * @author Michiel
  *
  */
@@ -65,5 +65,29 @@ public class BoundingBox {
 	
 	public void updateY(int y) {
 		this.y += y;
+	}
+	
+	public boolean equals(Object other) {
+		if(!(other instanceof BoundingBox)) {
+			return false;
+		}
+		
+		if(this.x != ((BoundingBox) other).getX()) {
+			return false;
+		}
+		
+		if(this.y != ((BoundingBox) other).getY()) {
+			return false;
+		}
+		
+		if(this.width != ((BoundingBox) other).getWidth()) {
+			return false;
+		}
+		
+		if(this.height != ((BoundingBox) other).getHeight()) {
+			return false;
+		}
+		
+		return true;
 	}
 }

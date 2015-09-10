@@ -95,7 +95,7 @@ public class PlayerFishTest {
 		player.getSprite().setImg(img);
 		player.grow(2);
 		
-		assertEquals(203,player.getSprite().getAabb().getWidth());
+		assertEquals(203,player.getSprite().getBoundingBox().getWidth());
 	}
 	/**
 	 * This Test checks the ability to set and retrieve the images of a PlayerFish
