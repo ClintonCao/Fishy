@@ -1,82 +1,114 @@
 package test.java.test;
 
 import static org.junit.Assert.*;
-import main.AABB;
+import main.BoundingBox;
 
 import org.junit.Test;
 
+/**
+ * This Test Case is used to check the functionalities of the Axis-Aligned Bounding Box (AABB).
+ * @author Dmitry
+ *
+ */
 public class AABBTest {
-
+	/**
+	 *This test controls the ability to set a X value to the AABB
+	 * 
+	 */
 	@Test
 	public void testSetX() {
-		AABB aabb = new AABB(53, 129,67,2);
-		assertEquals(53,aabb.getX());
-		aabb.setX(1);
-		assertEquals(1,aabb.getX());
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);
+		assertEquals(53,boundingBox.getX());
+		boundingBox.setX(1);
+		assertEquals(1,boundingBox.getX());
 	}
+	/**
+	 *This test controls the ability to set a Y value to the AABB
+	 * 
+	 */
 	@Test
 	public void testSetY() {
-		AABB aabb = new AABB(53, 129,67,2);
-		assertEquals(129,aabb.getY());
-		aabb.setY(58);
-		assertEquals(58,aabb.getY());
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);
+		assertEquals(129,boundingBox.getY());
+		boundingBox.setY(58);
+		assertEquals(58,boundingBox.getY());
 	}
+	/**
+	 *This test controls the ability to set a width value to the AABB
+	 * 
+	 */
 	@Test
 	public void testSetWidth() {
-		AABB aabb = new AABB(53, 129,67,2);
-		assertEquals(67,aabb.getWidth());
-		aabb.setWidth(9);
-		assertEquals(9,aabb.getWidth());
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);
+		assertEquals(67,boundingBox.getWidth());
+		boundingBox.setWidth(9);
+		assertEquals(9,boundingBox.getWidth());
 	}
+	/**
+	 *This test controls the ability to set a height value to the AABB
+	 * 
+	 */
 	@Test
 	public void testSetHeight() {
-		AABB aabb = new AABB(53, 129,67,2);
-		assertEquals(2,aabb.getHeight());
-		aabb.setHeight(75);
-		assertEquals(75,aabb.getHeight());
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);
+		assertEquals(2,boundingBox.getHeight());
+		boundingBox.setHeight(75);
+		assertEquals(75,boundingBox.getHeight());
 	}
+	/**
+	 *This test controls the ability to update the X value by adding the desired number to the old value.
+	 * 
+	 */
 	@Test
 	public void testUpdateX() {
-		AABB aabb = new AABB(53, 129,67,2);
-		assertEquals(53,aabb.getX());
-		aabb.updateX(27);
-		assertEquals(80,aabb.getX());
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);
+		assertEquals(53,boundingBox.getX());
+		boundingBox.updateX(27);
+		assertEquals(80,boundingBox.getX());
 	}
+	/**
+	 *This test controls the ability to update the Y value by adding the desired number to the old value.
+	 * 
+	 */
 	@Test
 	public void testUpdateY() {
-		AABB aabb = new AABB(53, 129,67,2);
-		assertEquals(129,aabb.getY());
-		aabb.updateY(51);
-		assertEquals(180,aabb.getY());
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);
+		assertEquals(129,boundingBox.getY());
+		boundingBox.updateY(51);
+		assertEquals(180,boundingBox.getY());
 	}
+	/**
+	 *The Following series of tests check the different conditions regarding the intersection of two AABBs.
+	 * 
+	 */
 	@Test
 	public void testIntersectFalse1() {
-		AABB aabb = new AABB(53, 129,-2,2);
-		AABB aabb2 = new AABB(100, 10,34,5);
-		assertFalse(aabb.intersects(aabb2));
+		BoundingBox boundingBox = new BoundingBox(53, 129,-2,2);
+		BoundingBox aabb2 = new BoundingBox(100, 10,34,5);
+		assertFalse(boundingBox.intersects(aabb2));
 	}
 	@Test
 	public void testIntersectFalse2() {
-		AABB aabb = new AABB(100, 129,62,2);
-		AABB aabb2 = new AABB(3, 10,34,5);
-		assertFalse(aabb.intersects(aabb2));
+		BoundingBox boundingBox = new BoundingBox(100, 129,62,2);
+		BoundingBox aabb2 = new BoundingBox(3, 10,34,5);
+		assertFalse(boundingBox.intersects(aabb2));
 	}
 	@Test
 	public void testIntersectFalse3() {
-		AABB aabb = new AABB(2, 129,62,2);
-		AABB aabb2 = new AABB(2, 1000000,62,2);
-		assertFalse(aabb.intersects(aabb2));
+		BoundingBox boundingBox = new BoundingBox(2, 129,62,2);
+		BoundingBox aabb2 = new BoundingBox(2, 1000000,62,2);
+		assertFalse(boundingBox.intersects(aabb2));
 	}
 	@Test
 	public void testIntersectFalse4() {
-		AABB aabb = new AABB(53, 129,67,-3);
-		AABB aabb2 = new AABB(40, 10,34,5);
-		assertFalse(aabb.intersects(aabb2));
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,-3);
+		BoundingBox aabb2 = new BoundingBox(40, 10,34,5);
+		assertFalse(boundingBox.intersects(aabb2));
 	}
 	@Test
 	public void testIntersectTrue() {
-		AABB aabb = new AABB(67, 129,1,2);
-		AABB aabb2 = aabb;
-		assertTrue(aabb.intersects(aabb2));
+		BoundingBox boundingBox = new BoundingBox(67, 129,1,2);
+		BoundingBox aabb2 = boundingBox;
+		assertTrue(boundingBox.intersects(aabb2));
 	}
 }

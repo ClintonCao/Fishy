@@ -9,25 +9,42 @@ import javafx.scene.image.Image;
  */
 public class Sprite {
 	private Image img;
-	private AABB aabb;
+	private BoundingBox boundingBox;
 	
-	public Sprite(Image img, AABB aabb) {
+	public Sprite(Image img, BoundingBox boundingBox) {
 		this.img = img;
-		setAabb(aabb);	
+		setAabb(boundingBox);	
 	}
 	
+	/**
+	 * Update the x coordinate of the sprite
+	 * @param x integer, x coordinate
+	 */
 	public void updateX(int x) {
-		aabb.updateX(x);
+		boundingBox.updateX(x);
 	}
 	
+	/**
+	 * Update the y coordinate of the sprite
+	 * @param y integer, y coordinate
+	 */
 	public void updateY(int y) {
-		aabb.updateY(y);
+		boundingBox.updateY(y);
 	}
 	
+	/**
+	 * renders the image
+	 * @param gc GraphicsContext
+	 */
 	public void render(GraphicsContext gc) {
-		gc.drawImage(img, aabb.getX(), aabb.getY());
+		gc.drawImage(img, boundingBox.getX(), boundingBox.getY());
 	}
 	
+	/**
+	 * test whether this sprite intersects with the other sprite
+	 * @param s the other Sprite
+	 * @return a boolean whether this sprite intersects with other sprite
+	 */
 	public boolean intersects(Sprite s) {
 		return s.getAabb().intersects(this.getAabb());
 	}
@@ -41,12 +58,12 @@ public class Sprite {
 		this.img = img;
 	}
 
-	public AABB getAabb() {
-		return aabb;
+	public BoundingBox getAabb() {
+		return boundingBox;
 	}
 
-	public void setAabb(AABB aabb) {
-		this.aabb = aabb;
+	public void setAabb(BoundingBox boundingBox) {
+		this.boundingBox = boundingBox;
 	}
 
 }

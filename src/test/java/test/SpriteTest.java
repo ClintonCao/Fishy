@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import javafx.scene.image.Image;
-import main.AABB;
+import main.BoundingBox;
 import main.Sprite;
 import static org.mockito.Mockito.mock;
 
@@ -21,9 +21,9 @@ public class SpriteTest {
 
 	@Test
 	public void testSetImg() {
-		AABB aabb = new AABB(53, 129,67,2);		
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);		
 		Image image1 = mock(Image.class);
-		Sprite sprite = new Sprite(null, aabb);
+		Sprite sprite = new Sprite(null, boundingBox);
 		assertEquals(null, sprite.getImg());
 		sprite.setImg(image1);
 		assertEquals(image1, sprite.getImg());
@@ -31,8 +31,8 @@ public class SpriteTest {
 	@Test
 	public void testGetImg() {
 		Image image1 = mock(Image.class);
-		AABB aabb = new AABB(53, 129,67,2);	
-		Sprite sprite = new Sprite(image1, aabb);
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);	
+		Sprite sprite = new Sprite(image1, boundingBox);
 		Image rightImg = sprite.getImg();
 		assertEquals(image1, rightImg);
 	}
@@ -40,42 +40,42 @@ public class SpriteTest {
 	
 	@Test
 	public void testIntersectFalse() {
-		AABB aabb = new AABB(53, 129,-2,2);
+		BoundingBox boundingBox = new BoundingBox(53, 129,-2,2);
 		Image image1 = mock(Image.class);
-		Sprite sprite1 = new Sprite(image1, aabb);
-		AABB aabb2 = new AABB(100, 10,34,5);
+		Sprite sprite1 = new Sprite(image1, boundingBox);
+		BoundingBox aabb2 = new BoundingBox(100, 10,34,5);
 		Sprite sprite2 = new Sprite(image1, aabb2);
 		assertFalse(sprite1.intersects(sprite2));
 	}
 
 	@Test
 	public void testIntersectTrue() {
-		AABB aabb = new AABB(67, 129,1,2);
-		AABB aabb2 = aabb;
+		BoundingBox boundingBox = new BoundingBox(67, 129,1,2);
+		BoundingBox aabb2 = boundingBox;
 		Image image1 = mock(Image.class);
-		Sprite sprite1 = new Sprite(image1, aabb);
+		Sprite sprite1 = new Sprite(image1, boundingBox);
 		Sprite sprite2 = new Sprite(image1, aabb2);
 		assertTrue(sprite1.intersects(sprite2));
 	}
 	
 	@Test
 	public void updateX() {
-		AABB aabb = new AABB(53, 129,67,2);
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);
 		Image image1 = mock(Image.class);
-		Sprite sprite1 = new Sprite(image1, aabb);
-		assertEquals(53,aabb.getX());
+		Sprite sprite1 = new Sprite(image1, boundingBox);
+		assertEquals(53,boundingBox.getX());
 		sprite1.updateX(27);
-		assertEquals(80,aabb.getX());
+		assertEquals(80,boundingBox.getX());
 	}
 	
 	@Test
 	public void updateY() {
-		AABB aabb = new AABB(53, 129,67,2);
+		BoundingBox boundingBox = new BoundingBox(53, 129,67,2);
 		Image image1 = mock(Image.class);
-		Sprite sprite1 = new Sprite(image1, aabb);
-		assertEquals(129,aabb.getY());
+		Sprite sprite1 = new Sprite(image1, boundingBox);
+		assertEquals(129,boundingBox.getY());
 		sprite1.updateY(27);
-		assertEquals(156,aabb.getY());
+		assertEquals(156,boundingBox.getY());
 	}
 	
 	/**
