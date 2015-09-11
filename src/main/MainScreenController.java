@@ -196,9 +196,11 @@ public class MainScreenController {
             if (frames % 45 == 0) {
               entities.add(EnemyFish.generateFish());
             }
-
+            
+            
             // If the playerfish intersects another fish, remove it.
             for (int i = 0; i < entities.size(); i++) {
+            
               // First check if a fish is outside the screen, if
               // it is, remove it.
               if (!entities.get(i).getSprite().getBoundingBox()
@@ -250,6 +252,10 @@ public class MainScreenController {
             frames++;
           }
         }.start();
+        
+        if (playerFish.getSprite().getBoundingBox().getHeight() > 500) {
+        Game.switchScreen("FXML/WinningScreen.fxml");
+        }
 
       }
     });
