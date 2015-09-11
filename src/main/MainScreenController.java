@@ -34,7 +34,7 @@ public class MainScreenController {
   private static ArrayList<EnemyFish> entities;
   private static BoundingBox screenbox;
   private int frames;
-  private final double multiplier = 1.02;
+  private final double multiplier = 1.05;
   private static Text scoreText = new Text();
   private static int currScore = 0;
 

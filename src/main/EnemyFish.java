@@ -50,11 +50,16 @@ public class EnemyFish extends Entity {
     int randomHeight = rng.nextInt(600);
     int randomSpeed = rng.nextInt(9) + 1;
     boolean isLefty = rng.nextBoolean();
+    
+    double imgSizeMultiplier = rng.nextInt(150) + 5;
+    imgSizeMultiplier /= 100;
 
     // Generate the fish, depending on which side of the screen it spawns.
     if (isLefty) {
       // Get the image for the fish and its respective height and width.
-      Image fishImage = new Image(rightImageFileName);
+      Image fishImage = new Image(leftImageFileName);
+      fishImage = new Image(rightImageFileName, fishImage.getWidth() * imgSizeMultiplier, fishImage.getHeight() * imgSizeMultiplier, true, true);
+      
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
 
@@ -63,6 +68,8 @@ public class EnemyFish extends Entity {
               fishImageHeight)));
     } else {
       Image fishImage = new Image(leftImageFileName);
+      fishImage = new Image(leftImageFileName, fishImage.getWidth() * imgSizeMultiplier, fishImage.getHeight() * imgSizeMultiplier, true, true);
+
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
 
