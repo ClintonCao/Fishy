@@ -152,7 +152,7 @@ public class AABBTest {
 		BoundingBox boundingBox1 = new BoundingBox(67, 129, 1, 2);
 		BoundingBox boundingBox2 = new BoundingBox(67, 129, 1, 2);
 		
-		assertTrue(boundingBox1.equals(boundingBox2));
+		assertEquals(boundingBox1, boundingBox2);
 		
 	}
 	

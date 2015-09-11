@@ -5,11 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
-import javafx.scene.image.Image;
 import main.BoundingBox;
 import main.Sprite;
 
 import org.junit.Test;
+
+import javafx.scene.image.Image;
 
 /**
  * This the the JUnit test case for Sprite class, all the branches and methods
@@ -96,6 +97,33 @@ public class SpriteTest {
 		assertEquals(129, boundingBox.getY());
 		sprite1.updateY(27);
 		assertEquals(156, boundingBox.getY());
+	}
+	
+	/**
+	 * Tests if two identical Sprites are considered equal.
+	 */
+	@Test
+	public void testEqualsTrue() {
+		BoundingBox boundingBox = new BoundingBox(53, 129, 67, 2);
+		Image image1 = mock(Image.class);
+		Sprite sprite1 = new Sprite(image1, boundingBox);
+		Sprite sprite2 = new Sprite(image1, boundingBox);
+		
+		assertEquals(sprite1, sprite2);
+	}
+	
+	/**
+	 * Tests if two different sprites are not considered equal.
+	 */
+	@Test
+	public void testEqualsFalse() {
+		BoundingBox boundingBox1 = new BoundingBox(53, 129, 67, 2);
+		BoundingBox boundingBox2 = new BoundingBox(10, 10, 10, 10);
+		Image image1 = mock(Image.class);
+		Sprite sprite1 = new Sprite(image1, boundingBox1);
+		Sprite sprite2 = new Sprite(image1, boundingBox2);
+		
+		assertFalse(sprite1.equals(sprite2));
 	}
 
 	/**
