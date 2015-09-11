@@ -36,7 +36,7 @@ public class MainScreenController {
   private int frames;
   private final double multiplier = 1.05;
   private static Text scoreText = new Text();
-  private static int currScore = 0;
+  private static int currScore;
 
   @FXML
   private ResourceBundle resources;
@@ -147,11 +147,13 @@ public class MainScreenController {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Image background = new Image("Fishy_bg.jpg");
         frames = 0;
+        currScore = 0;
 
         new AnimationTimer() {
           public void handle(long currentNTime) {
               
         	if (playerFish.getSprite().getBoundingBox().getHeight() > 400) {
+        		currScore = 0;
         		this.stop();
         		Game.switchScreen("FXML/WinningScreen.fxml");
         	}
@@ -197,7 +199,7 @@ public class MainScreenController {
             }
 
             // Generate an enemy fish every so many frames.
-            if (frames % 45 == 0) {
+            if (frames % 90 == 0) {
               entities.add(EnemyFish.generateFish());
             }
 
@@ -219,6 +221,7 @@ public class MainScreenController {
               }
            
             	if(playerFish.playerDies(entities.get(i))) {
+            		currScore = 0;
             		this.stop();
             		currScore = 0;
             		playerFish.setScore(currScore);
@@ -239,7 +242,7 @@ public class MainScreenController {
                 // get the area as the score
                 int score = height * width;
                 // then adds the score to the current score
-                currScore = currScore + score / 500;
+                currScore = currScore + score / 100;
                 // finally sets the total score to the player
                 // fish
                 playerFish.setScore(currScore);
