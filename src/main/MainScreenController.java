@@ -208,6 +208,11 @@ public class MainScreenController {
                 // the playerfish, if it is, remove it.
               } else if (playerFish.intersects(entities.get(i))
                   && playerFish.isAlive()) {
+            	  
+            	if(playerFish.playerDies(entities.get(i))) {
+            		
+            		Game.switchScreen("FXML/LosingScreen.fxml");
+            	}
 
                 // first get the height of enemy fish
                 int height = entities.get(i).getSprite().getBoundingBox()
