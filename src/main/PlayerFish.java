@@ -38,9 +38,11 @@ public class PlayerFish extends Entity {
       String rightImgFileName, Sprite sprite, int score) {
     super(movespeed, sprite);
     setAlive(isAlive);
-    if(sprite.getImg()!=null) {
-    	setPlayerFishLeftImage(new Image(leftImageName, sprite.getImg().getWidth(), sprite.getImg().getHeight(), true, true));
-    	setPlayerFishRightImage(new Image(rightImageName, sprite.getImg().getWidth(), sprite.getImg().getHeight(), true, true));
+    if (sprite.getImg() != null) {
+    	setPlayerFishLeftImage(new Image(leftImageName, sprite.getImg().getWidth(),
+    				sprite.getImg().getHeight(), true, true));
+    	setPlayerFishRightImage(new Image(rightImageName, sprite.getImg().getWidth(), 
+    				sprite.getImg().getHeight(), true, true));
     } else {
     	setPlayerFishLeftImage(new Image(leftImageName, 128, 128, true, true));
     	setPlayerFishRightImage(new Image(rightImageName, 128, 128, true, true));
@@ -55,8 +57,10 @@ public class PlayerFish extends Entity {
    */
   public static PlayerFish createPlayerFish() {
     Image temp = new Image(leftImageName);
-    Image playerFishImage = new Image(leftImageName, temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
-    //Image playerFishImageRight = new Image(rightImageName, temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
+    Image playerFishImage = new Image(leftImageName, temp.getWidth() * 0.30,
+    		temp.getHeight() * 0.30, true, true);
+    //Image playerFishImageRight = new Image(rightImageName, 
+    //temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
 
     // Create a hitbox for the playerfish. The playerfish will start at the
     // middle of the screen.
@@ -81,6 +85,7 @@ public class PlayerFish extends Entity {
    *          the multiplier for the X and Y values.
    */
   public void grow(double multiplier) {
+
     BoundingBox playerFishBoundingBox = this.getSprite().getBoundingBox();
     double newWidth = multiplier * this.getSprite().getImg().getWidth();
     double newHeight = multiplier * this.getSprite().getImg().getHeight();

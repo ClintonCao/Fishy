@@ -8,12 +8,8 @@ import static org.mockito.Mockito.mock;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
-import javafx.stage.Stage;
 
 /**
  * This Test case will test the functionalities of the PlayerFish class.
@@ -35,7 +31,7 @@ public class PlayerFishTest {
   public void setUp() {
 	box = new BoundingBox(100, 100, 50, 50);
     sprite = mock(Sprite.class);
-    		//new Sprite(null, box);
+    //new Sprite(null, box);
     leftimage = "FishOriginal_transparent.png";
     rightimage = "Fish_Right_Transparent.png";
   }
@@ -127,7 +123,7 @@ public class PlayerFishTest {
   public void testImageStringSet() {
     Game.main(null);
     PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-       0);
+        0);
     Image img = mock(Image.class);
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);
