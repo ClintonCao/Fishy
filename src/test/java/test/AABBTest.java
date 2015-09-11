@@ -143,4 +143,28 @@ public class AABBTest {
 		BoundingBox aabb2 = boundingBox;
 		assertTrue(boundingBox.intersects(aabb2));
 	}
+	
+	/**
+	 * Checks if two identical Bounding Boxes are considered equal.
+	 */
+	@Test
+	public void testEqualsTrue() {
+		BoundingBox boundingBox1 = new BoundingBox(67, 129, 1, 2);
+		BoundingBox boundingBox2 = new BoundingBox(67, 129, 1, 2);
+		
+		assertTrue(boundingBox1.equals(boundingBox2));
+		
+	}
+	
+	/**
+	 * Checks if two different Bounding Boxes are considered different.
+	 */
+	@Test
+	public void testEqualsFalse() {
+		BoundingBox boundingBox1 = new BoundingBox(67, 129, 1, 2);
+		BoundingBox boundingBox2 = new BoundingBox(10, 10, 10, 10);
+		
+		assertFalse(boundingBox1.equals(boundingBox2));
+		
+	}
 }
