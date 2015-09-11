@@ -53,16 +53,34 @@ public class MainScreenController {
 	@FXML
 	private Button PlayButton;
 
+	/**
+	 * Automatically generated via Scenebuilder.
+	 * 
+	 * @param event
+	 *            kind of event.
+	 */
 	@FXML
 	void PlayEvent(MouseEvent event) {
 
 	}
 
+	/**
+	 * Automatically generated via Scenebuilder.
+	 * 
+	 * @param event
+	 *            kind of event.
+	 */
 	@FXML
 	void MenuEvent(MouseEvent event) {
 
 	}
 
+	/**
+	 * Automatically generated via Scenebuilder.
+	 * 
+	 * @param event
+	 *            kind of event.
+	 */
 	@FXML
 	void QuitEvent(MouseEvent event) {
 
@@ -85,11 +103,12 @@ public class MainScreenController {
 	@FXML
 	void initialize() {
 
-		
-		assert PlayButton != null : "fx:id=\"PlayButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
-		assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
-		assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: check your FXML file 'Main Screen.fxml'.";
-
+		assert PlayButton != null : "fx:id=\"PlayButton\" was not injected:"
+				+ " check your FXML file 'Main Screen.fxml'.";
+		assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: "
+				+ "check your FXML file 'Main Screen.fxml'.";
+		assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: "
+				+ "check your FXML file 'Main Screen.fxml'.";
 
 		PlayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -237,7 +256,6 @@ public class MainScreenController {
 			}
 		});
 
-
 		MenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -246,7 +264,6 @@ public class MainScreenController {
 
 			}
 		});
-
 
 		QuitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
