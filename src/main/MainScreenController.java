@@ -227,7 +227,7 @@ public class MainScreenController {
                 // get the area as the score
                 int score = height * width;
                 // then adds the score to the current score
-                currScore = currScore + score / 10000;
+                currScore = currScore + score / 500;
                 // finally sets the total score to the player
                 // fish
                 playerFish.setScore(currScore);
