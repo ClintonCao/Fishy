@@ -8,6 +8,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 

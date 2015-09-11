@@ -37,8 +37,10 @@ public class Game extends Application {
   }
 
   /**
+   * The stage where the game starts from.
+   * 
    * @param firstStage
-   *          The stage where the game starts from
+   *          
    */
   @Override
   public void start(Stage firstStage) {
