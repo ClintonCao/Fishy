@@ -58,7 +58,8 @@ public class EnemyFish extends Entity {
     if (isLefty) {
       // Get the image for the fish and its respective height and width.
       Image fishImage = new Image(leftImageFileName);
-      fishImage = new Image(rightImageFileName, fishImage.getWidth() * imgSizeMultiplier, fishImage.getHeight() * imgSizeMultiplier, true, true);
+      fishImage = new Image(rightImageFileName, fishImage.getWidth() * imgSizeMultiplier,
+    fishImage.getHeight() * imgSizeMultiplier, true, true);
       
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
@@ -68,7 +69,8 @@ public class EnemyFish extends Entity {
               fishImageHeight)));
     } else {
       Image fishImage = new Image(leftImageFileName);
-      fishImage = new Image(leftImageFileName, fishImage.getWidth() * imgSizeMultiplier, fishImage.getHeight() * imgSizeMultiplier, true, true);
+      fishImage = new Image(leftImageFileName, fishImage.getWidth() * imgSizeMultiplier,
+    fishImage.getHeight() * imgSizeMultiplier, true, true);
 
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();

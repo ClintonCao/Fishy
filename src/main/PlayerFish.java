@@ -34,12 +34,19 @@ public class PlayerFish extends Entity {
    * @param score
    *          The Fish's score
    */
-  public PlayerFish(int movespeed, boolean isAlive, Image leftImgFileName,
-      Image rightImgFileName, Sprite sprite, int score) {
+  public PlayerFish(int movespeed, boolean isAlive, String leftImgFileName,
+      String rightImgFileName, Sprite sprite, int score) {
     super(movespeed, sprite);
     setAlive(isAlive);
-    setPlayerFishLeftImage(leftImgFileName);
-    setPlayerFishRightImage(rightImgFileName);
+    if (sprite.getImg() != null) {
+    	setPlayerFishLeftImage(new Image(leftImageName, sprite.getImg().getWidth(),
+    				sprite.getImg().getHeight(), true, true));
+    	setPlayerFishRightImage(new Image(rightImageName, sprite.getImg().getWidth(), 
+    				sprite.getImg().getHeight(), true, true));
+    } else {
+    	setPlayerFishLeftImage(new Image(leftImageName, 128, 128, true, true));
+    	setPlayerFishRightImage(new Image(rightImageName, 128, 128, true, true));
+    }
     this.score = score;
   }
 
@@ -50,8 +57,10 @@ public class PlayerFish extends Entity {
    */
   public static PlayerFish createPlayerFish() {
     Image temp = new Image(leftImageName);
-    Image playerFishImage = new Image(leftImageName, temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
-    Image playerFishImageRight = new Image(rightImageName, temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
+    Image playerFishImage = new Image(leftImageName, temp.getWidth() * 0.30,
+    		temp.getHeight() * 0.30, true, true);
+    //Image playerFishImageRight = new Image(rightImageName, 
+    //temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
 
     // Create a hitbox for the playerfish. The playerfish will start at the
     // middle of the screen.
@@ -66,7 +75,7 @@ public class PlayerFish extends Entity {
     // Create a new 'sprite' using the image and its corresponding hitbox.
     Sprite sprite = new Sprite(playerFishImage, boundingBox);
 
-    return new PlayerFish(10, true, playerFishImage, playerFishImageRight, sprite, 0);
+    return new PlayerFish(10, true, leftImageName, rightImageName, sprite, 0);
   }
 
   /**
@@ -76,6 +85,7 @@ public class PlayerFish extends Entity {
    *          the multiplier for the X and Y values.
    */
   public void grow(double multiplier) {
+
     BoundingBox playerFishBoundingBox = this.getSprite().getBoundingBox();
     double newWidth = multiplier * this.getSprite().getImg().getWidth();
     double newHeight = multiplier * this.getSprite().getImg().getHeight();

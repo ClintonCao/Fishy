@@ -151,6 +151,7 @@ public class MainScreenController {
 
         new AnimationTimer() {
           public void handle(long currentNTime) {
+              
         	if (playerFish.getSprite().getBoundingBox().getHeight() > 400) {
         		currScore = 0;
         		this.stop();
@@ -213,11 +214,19 @@ public class MainScreenController {
                 // the playerfish, if it is, remove it.
               } else if (playerFish.intersects(entities.get(i))
                   && playerFish.isAlive()) {
-            	  
+         
+              if (playerFish.playerDies(entities.get(i))) {
+            	this.stop();
+            	Game.switchScreen("FXML/LosingScreen.fxml");
+              }
+           
             	if(playerFish.playerDies(entities.get(i))) {
             		currScore = 0;
             		this.stop();
+            		currScore = 0;
+            		playerFish.setScore(currScore);
             		Game.switchScreen("FXML/LosingScreen.fxml");
+            		
             	}
 
                 // first get the height of enemy fish

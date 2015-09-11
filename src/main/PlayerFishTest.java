@@ -20,8 +20,8 @@ import javafx.scene.image.Image;
 public class PlayerFishTest {
 
   Sprite sprite;
-  Image leftimage = new Image("FishOriginal_transparent.png");
-  Image rightimage = new Image("Fish_Right_Transparent.png");
+  String leftimage;
+  String rightimage;
   BoundingBox box;
 
   /**
@@ -29,9 +29,11 @@ public class PlayerFishTest {
    */
   @Before
   public void setUp() {
-    box = new BoundingBox(100, 100, 50, 50);
-    sprite = new Sprite(null, box);
-
+	box = new BoundingBox(100, 100, 50, 50);
+    sprite = mock(Sprite.class);
+    //new Sprite(null, box);
+    leftimage = "FishOriginal_transparent.png";
+    rightimage = "Fish_Right_Transparent.png";
   }
 
   /**
@@ -97,22 +99,6 @@ public class PlayerFishTest {
   }
 
   /**
-   * This Test checks the capability to edit the size by a specific multiplier.
-   * 
-   */
-  @Test
-  public void testgrow() {
-
-    PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-        0);
-    Image img = mock(Image.class);
-    player.getSprite().setImg(img);
-    player.grow(2);
-
-    assertEquals(203, player.getSprite().getBoundingBox().getWidth());
-  }
-
-  /**
    * This Test checks the ability to set and retrieve the images of a
    * PlayerFish.
    * 
@@ -133,19 +119,19 @@ public class PlayerFishTest {
    * This Test checks the ability to set an image via a string.
    * 
    */
-  //@Test
-  //public void testImageStringSet() {
-    //Game.main(null);
-    //PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-    //   0);
-    //Image img = mock(Image.class);
-    //Image img2 = mock(Image.class);
-    //player.setPlayerFishLeftImage(img);
-    //player.setPlayerFishRightImage(img2);
-    //player.setPlayerFishLeftImageName(leftimage);
-    //player.setPlayerFishRightImageName(rightimage);
-    //assertEquals(leftimage, player.getPlayerFishLeftImageName());
-  //  assertEquals(rightimage, player.getPlayerFishRightImageName());
-  //}
+  @Test
+  public void testImageStringSet() {
+    Game.main(null);
+    PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
+        0);
+    Image img = mock(Image.class);
+    Image img2 = mock(Image.class);
+    player.setPlayerFishLeftImage(img);
+    player.setPlayerFishRightImage(img2);
+    player.setPlayerFishLeftImageName("FishOriginal_transparent.png");
+    player.setPlayerFishRightImageName("Fish_Right_Transparent.png");
+    assertEquals(leftimage, player.getPlayerFishLeftImageName());
+    assertEquals(rightimage, player.getPlayerFishRightImageName());
+  }
 
 }
