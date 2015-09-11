@@ -101,10 +101,7 @@ public class PlayerFish extends Entity {
    * @return Boolean that determines whether the player fish dies.
    */
   public boolean playerDies(EnemyFish enemyfish) {
-    BoundingBox playerBoundingBox = this.getSprite().getBoundingBox();
-    BoundingBox enemyBoundingBox = enemyfish.getSprite().getBoundingBox();
-    return ((playerBoundingBox.getX() * playerBoundingBox.getY()) <= (enemyBoundingBox
-        .getX() * enemyBoundingBox.getY()));
+	return this.getSprite().getImg().getWidth() <= enemyfish.getSprite().getImg().getWidth();
   }
 
   /**
