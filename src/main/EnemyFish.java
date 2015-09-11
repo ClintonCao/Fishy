@@ -15,85 +15,82 @@ import javafx.scene.image.Image;
  *         Doesburg.
  */
 public class EnemyFish extends Entity {
-	private static String leftImageFileName = "EnemyFish_Left.png";
-	private static String rightImageFileName = "EnemyFish_Right.png";
-	private boolean isLefty;
+  private static String leftImageFileName = "EnemyFish_Left.png";
+  private static String rightImageFileName = "EnemyFish_Right.png";
+  private boolean isLefty;
 
-	/**
-	 * Constructor which creates an enemy fish.
-	 * 
-	 * @param movespeed
-	 *            integer that determines the movement speed
-	 * @param isLefty
-	 *            boolean that whether fish comes from the left side of the
-	 *            screen
-	 * @param sprite
-	 *            A sprite represents the model of an entity on the screen
-	 */
-	public EnemyFish(int movespeed, boolean isLefty, Sprite sprite) {
-		super(movespeed, sprite);
-		this.isLefty = isLefty;
-	}
+  /**
+   * Constructor which creates an enemy fish.
+   * 
+   * @param movespeed
+   *          integer that determines the movement speed
+   * @param isLefty
+   *          boolean that whether fish comes from the left side of the screen
+   * @param sprite
+   *          A sprite represents the model of an entity on the screen
+   */
+  public EnemyFish(int movespeed, boolean isLefty, Sprite sprite) {
+    super(movespeed, sprite);
+    this.isLefty = isLefty;
+  }
 
-	/**
-	 * Generate an enemy fish to be placed on the screen. Make a new fish with a
-	 * random movement speed, random height at which it spawns, and random side
-	 * of the screen at which it spawns.
-	 * 
-	 * @return an enemy fish.
-	 */
-	public static EnemyFish generateFish() {
+  /**
+   * Generate an enemy fish to be placed on the screen. Make a new fish with a
+   * random movement speed, random height at which it spawns, and random side of
+   * the screen at which it spawns.
+   * 
+   * @return an enemy fish.
+   */
+  public static EnemyFish generateFish() {
 
-		Random rng = new Random();
+    Random rng = new Random();
 
-		// Generate the height at which the fish spawns, its movement speed, and
-		// at which side of the screen it spawns.
-		int randomHeight = rng.nextInt(600);
-		int randomSpeed = rng.nextInt(9) + 1;
-		boolean isLefty = rng.nextBoolean();
+    // Generate the height at which the fish spawns, its movement speed, and
+    // at which side of the screen it spawns.
+    int randomHeight = rng.nextInt(600);
+    int randomSpeed = rng.nextInt(9) + 1;
+    boolean isLefty = rng.nextBoolean();
 
-		// Generate the fish, depending on which side of the screen it spawns.
-		if (isLefty) {
-			// Get the image for the fish and its respective height and width.
-			Image fishImage = new Image(rightImageFileName);
-			int fishImageWidth = (int) fishImage.getWidth();
-			int fishImageHeight = (int) fishImage.getHeight();
+    // Generate the fish, depending on which side of the screen it spawns.
+    if (isLefty) {
+      // Get the image for the fish and its respective height and width.
+      Image fishImage = new Image(rightImageFileName);
+      int fishImageWidth = (int) fishImage.getWidth();
+      int fishImageHeight = (int) fishImage.getHeight();
 
-			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage,
-					new BoundingBox(-fishImageWidth, randomHeight,
-							fishImageWidth, fishImageHeight)));
-		} else {
-			Image fishImage = new Image(leftImageFileName);
-			int fishImageWidth = (int) fishImage.getWidth();
-			int fishImageHeight = (int) fishImage.getHeight();
+      return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage,
+          new BoundingBox(-fishImageWidth, randomHeight, fishImageWidth,
+              fishImageHeight)));
+    } else {
+      Image fishImage = new Image(leftImageFileName);
+      int fishImageWidth = (int) fishImage.getWidth();
+      int fishImageHeight = (int) fishImage.getHeight();
 
-			// If the fish spawns at the right side of the screen, it needs to
-			// be placed at the X coordinate equal to the width of the AABB
-			// screenbox;
-			return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage,
-					new BoundingBox(MainScreenController.getScreenbox()
-							.getWidth(), randomHeight, fishImageWidth,
-							fishImageHeight)));
-		}
-	}
+      // If the fish spawns at the right side of the screen, it needs to
+      // be placed at the X coordinate equal to the width of the AABB
+      // screenbox;
+      return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage,
+          new BoundingBox(MainScreenController.getScreenbox().getWidth(),
+              randomHeight, fishImageWidth, fishImageHeight)));
+    }
+  }
 
-	/**
-	 * The method isLefty determine which side does the fish comes from.
-	 * 
-	 * @return an boolean whether the fish comes from left
-	 */
-	public boolean isLefty() {
-		return isLefty;
-	}
+  /**
+   * The method isLefty determine which side does the fish comes from.
+   * 
+   * @return an boolean whether the fish comes from left
+   */
+  public boolean isLefty() {
+    return isLefty;
+  }
 
-	/**
-	 * The method setLefty can decide which side does the fish comes from.
-	 * 
-	 * @param isLefty
-	 *            boolean that whether fish comes from the left side of the
-	 *            screen
-	 */
-	public void setLefty(boolean isLefty) {
-		this.isLefty = isLefty;
-	}
+  /**
+   * The method setLefty can decide which side does the fish comes from.
+   * 
+   * @param isLefty
+   *          boolean that whether fish comes from the left side of the screen
+   */
+  public void setLefty(boolean isLefty) {
+    this.isLefty = isLefty;
+  }
 }

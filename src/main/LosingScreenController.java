@@ -17,42 +17,42 @@ import javafx.scene.input.MouseEvent;
  */
 public class LosingScreenController {
 
-	@FXML
-	private ResourceBundle resources;
+  @FXML
+  private ResourceBundle resources;
 
-	@FXML
-	private URL location;
+  @FXML
+  private URL location;
 
-	@FXML
-	private Button MainScreenButton;
+  @FXML
+  private Button MainScreenButton;
 
-	/**
-	 * Automatically generated via Scenebuilder.
-	 * 
-	 * @param event
-	 *            kind of event.
-	 */
-	@FXML
-	void MainScreenEvent(MouseEvent event) {
+  /**
+   * Automatically generated via Scenebuilder.
+   * 
+   * @param event
+   *          kind of event.
+   */
+  @FXML
+  void MainScreenEvent(MouseEvent event) {
 
-	}
+  }
 
-	/**
-	 * Initialize the button and set up the event handlers for the button.
-	 * 
-	 */
-	@FXML
-	void initialize() {
-		assert MainScreenButton != null : "fx:id=\"MainScreenButton\" "
-				+ "was not injected: check your FXML file 'LosingScreen.fxml'.";
+  /**
+   * Initialize the button and set up the event handlers for the button.
+   * 
+   */
+  @FXML
+  void initialize() {
+    assert MainScreenButton != null : "fx:id=\"MainScreenButton\" "
+        + "was not injected: check your FXML file 'LosingScreen.fxml'.";
 
-		MainScreenButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    MainScreenButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-			@Override
-			public void handle(MouseEvent event) {
-				Game.switchScreen("FXML/MainScreen.fxml");
+      @Override
+      public void handle(MouseEvent event) {
+        Game.switchScreen("FXML/MainScreen.fxml");
 
-			}
-		});
-	}
+      }
+    });
+  }
 }
