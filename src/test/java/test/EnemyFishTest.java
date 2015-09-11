@@ -25,8 +25,8 @@ public class EnemyFishTest {
     boolean isLefty = true;
     Sprite sprite = mock(Sprite.class);
 
-    EnemyFish EF = new EnemyFish(movespeed, isLefty, sprite);
-    assertEquals(sprite, EF.getSprite());
+    EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
+    assertEquals(sprite, enemyFish.getSprite());
   }
 
   /**
@@ -38,10 +38,10 @@ public class EnemyFishTest {
     boolean isLefty = true;
     Sprite sprite = mock(Sprite.class);
 
-    EnemyFish EF = new EnemyFish(movespeed, isLefty, sprite);
-    assertEquals(true, EF.isLefty());
-    EF.setLefty(false);
-    assertEquals(false, EF.isLefty());
+    EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
+    assertEquals(true, enemyFish.isLefty());
+    enemyFish.setLefty(false);
+    assertEquals(false, enemyFish.isLefty());
   }
 
   /**
@@ -52,8 +52,8 @@ public class EnemyFishTest {
     int movespeed = 2;
     boolean isLefty = true;
     Sprite sprite = mock(Sprite.class);
-    EnemyFish EF = new EnemyFish(movespeed, isLefty, sprite);
-    assertEquals(true, EF.isLefty());
+    EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
+    assertEquals(true, enemyFish.isLefty());
   }
 
   // This method is originally used to test generateFish method,
