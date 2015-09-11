@@ -82,6 +82,8 @@ public class PlayerFish extends Entity {
         newWidth, newHeight, true, true));
     this.setPlayerFishRightImage(new Image("Fish_Right_Transparent.png",
         newWidth, newHeight, true, true));
+    
+    this.getSprite().setImg(leftImage);
 
     playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage()
         .getWidth());
