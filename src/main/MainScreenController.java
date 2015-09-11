@@ -150,7 +150,10 @@ public class MainScreenController {
 
         new AnimationTimer() {
           public void handle(long currentNTime) {
-
+        	if (playerFish.getSprite().getBoundingBox().getHeight() > 400) {
+        		this.stop();
+        		Game.switchScreen("FXML/WinningScreen.fxml");
+        	}
             // Draw the background every frame.
             gc.drawImage(background, 0, 0);
             gc.setFill(Color.AQUA);
@@ -210,7 +213,7 @@ public class MainScreenController {
                   && playerFish.isAlive()) {
             	  
             	if(playerFish.playerDies(entities.get(i))) {
-            		
+            		this.stop();
             		Game.switchScreen("FXML/LosingScreen.fxml");
             	}
 
@@ -249,6 +252,7 @@ public class MainScreenController {
             }
             frames++;
           }
+  
         }.start();
 
       }
