@@ -1,8 +1,10 @@
 package test.java.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import main.BoundingBox;
 import main.Entity;
@@ -11,6 +13,8 @@ import main.Sprite;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import javafx.scene.image.Image;
 
 /**
  * This test case shall check the functionalities of the Entity class.
@@ -22,6 +26,7 @@ public class EntityTest {
 
 	Sprite sprite;
 	BoundingBox box;
+	Image image = mock(Image.class);
 
 	/**
 	 * Set up an object of the class.
@@ -29,7 +34,7 @@ public class EntityTest {
 	@Before
 	public void setUp() {
 		box = new BoundingBox(100, 100, 50, 50);
-		sprite = new Sprite(null, box);
+		sprite = new Sprite(image, box);
 	}
 
 	/**
@@ -172,6 +177,59 @@ public class EntityTest {
 		Entity entity = new Entity(0, sprite);
 
 		assertFalse(entity.intersectsUnderScreenEdge());
+	}
+	
+	/**
+	 * Test the getSprite function.
+	 */
+	@Test
+	public void getSpriteTest() {
+		Entity entity = new Entity(0, sprite);
+		Sprite sprite2 = entity.getSprite();
+		
+		assertEquals(sprite, sprite2);
+	}
+	
+	/**
+	 * Tests the setSprite function.
+	 */
+	@Test
+	public void setSpriteTest() {
+		BoundingBox box2 = new BoundingBox(100, -10, 50, 50);
+		Sprite sprite1 = new Sprite(null, box2);
+		Entity entity = new Entity(0, sprite1);
+		
+		entity.setSprite(sprite);
+		Sprite sprite2= entity.getSprite();
+		
+		assertEquals(sprite, sprite2);
+	}
+	
+	/**
+	 * Tests the getMoveSpeed function.
+	 */
+	@Test
+	public void getMoveSpeedTest() {
+		int speed1 = 10;
+		Entity entity = new Entity(speed1, sprite);
+		
+		int speed2 = entity.getMoveSpeed();
+		
+		assertEquals(speed1, speed2);
+	}
+	
+	/**
+	 * Tests the setMoveSpeed function.
+	 */
+	@Test
+	public void setMoveSpeedTest() {
+		int speed1 = 10;
+		Entity entity = new Entity(0, sprite);
+		
+		entity.setMoveSpeed(speed1);
+		int speed2 = entity.getMoveSpeed();
+		
+		assertEquals(speed1, speed2);
 	}
 
 }
