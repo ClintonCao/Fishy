@@ -217,6 +217,14 @@ public class MainScreenController {
             	this.stop();
             	Game.switchScreen("FXML/LosingScreen.fxml");
               }
+           
+            	if(playerFish.playerDies(entities.get(i))) {
+            		this.stop();
+            		currScore = 0;
+            		playerFish.setScore(currScore);
+            		Game.switchScreen("FXML/LosingScreen.fxml");
+            		
+            	}
 
                 // first get the height of enemy fish
                 int height = entities.get(i).getSprite().getBoundingBox()
