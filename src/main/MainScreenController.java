@@ -215,20 +215,13 @@ public class MainScreenController {
               } else if (playerFish.intersects(entities.get(i))
                   && playerFish.isAlive()) {
          
-              if (playerFish.playerDies(entities.get(i))) {
-            	this.stop();
-            	Game.switchScreen("FXML/LosingScreen.fxml");
-              }
-           
-            	if(playerFish.playerDies(entities.get(i))) {
-            		currScore = 0;
-            		this.stop();
-            		currScore = 0;
-            		playerFish.setScore(currScore);
-            		Game.switchScreen("FXML/LosingScreen.fxml");
-            		
-            	}
-
+                if (playerFish.playerDies(entities.get(i))) {
+                  this.stop();
+                  currScore = 0;
+                  playerFish.setScore(currScore);
+                  System.out.println("Your fish has been eaten by larger fish..");
+                  Game.switchScreen("FXML/LosingScreen.fxml");
+                }
                 // first get the height of enemy fish
                 int height = entities.get(i).getSprite().getBoundingBox()
                     .getHeight();
