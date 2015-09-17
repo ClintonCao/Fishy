@@ -1,9 +1,5 @@
 package main;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -22,6 +18,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 /**
  * This class contains all the event handlers of the buttons on the main screen.
  * 
@@ -34,7 +34,7 @@ public class MainScreenController {
   private static ArrayList<EnemyFish> entities;
   private static BoundingBox screenbox;
   private static int frames;
-  private static final double multiplier = 1.05;
+  private static final double MULTIPLIER = 1.05;
   private static Text scoreText = new Text();
   private static int currScore;
   private static ArrayList<String> input;
@@ -154,35 +154,34 @@ public class MainScreenController {
 
         new AnimationTimer() {
           public void handle(long currentNTime) {
-        	  
-        	if (playerHasWon()) {
-        		currScore = 0;
-        		this.stop();
-        		Game.switchScreen("FXML/WinningScreen.fxml");
-        	}
-        	
-        	renderStatics(gc);
+              
+            if (playerHasWon()) {
+                currScore = 0;
+                this.stop();
+                Game.switchScreen("FXML/WinningScreen.fxml");
+            }
+            renderStatics(gc);
 
             handlePlayerMovement();
             
             generateEnemyFish();
 
             for (int i = 0; i < entities.size(); i++) {
-            	
-            	if (!entities.get(i).getSprite().getBoundingBox().intersects(screenbox)) {
-            		entities.remove(i);
-            	} else if (playerFish.intersects(entities.get(i)) && playerFish.isAlive()) {
-            		if (playerFish.playerDies(entities.get(i))) {
-            			this.stop();
-            			currScore = 0;
-            			playerFish.setScore(currScore);
-            			Game.switchScreen("FXML/LosingScreen.fxml");
-            		}            		
-            		handleCollision(i);
-            	}
+
+                if (!entities.get(i).getSprite().getBoundingBox().intersects(screenbox)) {
+                entities.remove(i);
+              } else if (playerFish.intersects(entities.get(i)) && playerFish.isAlive()) {
+                if (playerFish.playerDies(entities.get(i))) {
+                    this.stop();
+                    currScore = 0;
+                    playerFish.setScore(currScore);
+                    Game.switchScreen("FXML/LosingScreen.fxml");
+                }            
+                handleCollision(i);
+              }
             }
-           renderNonStatics(gc);
-           frames++;
+            renderNonStatics(gc);
+            frames++;
           }
         }.start();
       }
@@ -235,7 +234,7 @@ public class MainScreenController {
    * @return true if the player is bigger than a certain size.
    */
   private static boolean playerHasWon() {
-  	return (playerFish.getSprite().getBoundingBox().getHeight() > 400);
+    return (playerFish.getSprite().getBoundingBox().getHeight() > 400);
   }
   
   /**
@@ -243,15 +242,15 @@ public class MainScreenController {
    * @param gc - the graphicsContext which needs to do the rendering.
    */
   private static void renderStatics(GraphicsContext gc) {
-      gc.drawImage(background, 0, 0);
-      gc.setFill(Color.AQUA);
-      gc.fillOval(525, 1, 200, 75);
-      gc.setFill(Color.BLACK);
-      gc.setFont(Font.font("Comic Sans", 30));
-      gc.fillText(scoreText.getText().toString(), 625, 20);
-      gc.setTextAlign(TextAlignment.CENTER);
-      gc.setTextBaseline(VPos.CENTER);
-      gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
+    gc.drawImage(background, 0, 0);
+    gc.setFill(Color.AQUA);
+    gc.fillOval(525, 1, 200, 75);
+    gc.setFill(Color.BLACK);
+    gc.setFont(Font.font("Comic Sans", 30));
+    gc.fillText(scoreText.getText().toString(), 625, 20);
+    gc.setTextAlign(TextAlignment.CENTER);
+    gc.setTextBaseline(VPos.CENTER);
+    gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
   }
   
   /**
@@ -259,45 +258,45 @@ public class MainScreenController {
    * @param gc - the graphicsContext which needs to do the rendering.
    */
   private static void renderNonStatics(GraphicsContext gc) {
-      playerFish.getSprite().render(gc);
+    playerFish.getSprite().render(gc);
 
-      for (int i = 0; i < entities.size(); i++) {
-        EnemyFish curr = entities.get(i);
-        if (curr.isLefty()) {
-          curr.getSprite().updateX(curr.getMoveSpeed());
-        } else {
-          curr.getSprite().updateX(-curr.getMoveSpeed());
-        }
-        entities.get(i).getSprite().render(gc);
+    for (int i = 0; i < entities.size(); i++) {
+      EnemyFish curr = entities.get(i);
+      if (curr.isLefty()) {
+        curr.getSprite().updateX(curr.getMoveSpeed());
+      } else {
+        curr.getSprite().updateX(-curr.getMoveSpeed());
       }
+      entities.get(i).getSprite().render(gc);
+    }
   }
   
   /**
    * This method handles the WASD input of the player.
    */
   private static void handlePlayerMovement() {
-	  if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
+    if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
 
-		  playerFish.getSprite()
-		  .setImg(playerFish.getPlayerFishLeftImage());
-		  playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
+      playerFish.getSprite()
+        .setImg(playerFish.getPlayerFishLeftImage());
+      playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
 
-	  } else if (input.contains("D")
-			  && !playerFish.intersectsRightScreenEdge()) {
+    } else if (input.contains("D")
+            && !playerFish.intersectsRightScreenEdge()) {
 
-		  playerFish.getSprite().setImg(
-				  playerFish.getPlayerFishRightImage());
-		  playerFish.getSprite().updateX(playerFish.getMoveSpeed());
-	  }
-	  if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
+      playerFish.getSprite().setImg(
+              playerFish.getPlayerFishRightImage());
+      playerFish.getSprite().updateX(playerFish.getMoveSpeed());
+    }
+    if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
 
-		  playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
+      playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
 
-	  } else if (input.contains("S")
-			  && !playerFish.intersectsUnderScreenEdge()) {
+    } else if (input.contains("S")
+            && !playerFish.intersectsUnderScreenEdge()) {
 
-		  playerFish.getSprite().updateY(playerFish.getMoveSpeed());
-	  }
+      playerFish.getSprite().updateY(playerFish.getMoveSpeed());
+    }
   }
   
   /**
@@ -305,23 +304,23 @@ public class MainScreenController {
    * @param i - the i'th enemy fish in the entities arrayList.
    */
   private static void handleCollision(int i) {
-	  int height = entities.get(i).getSprite().getBoundingBox()
-			  .getHeight();
-	  int width = entities.get(i).getSprite().getBoundingBox()
-			  .getWidth();
-	  entities.remove(i);
-	  playerFish.grow(multiplier);
-	  int score = height * width;
-	  currScore = currScore + score / 100;
-	  playerFish.setScore(currScore);	  
+    int height = entities.get(i).getSprite().getBoundingBox()
+            .getHeight();
+    int width = entities.get(i).getSprite().getBoundingBox()
+            .getWidth();
+    entities.remove(i);
+    playerFish.grow(MULTIPLIER);
+    int score = height * width;
+    currScore = currScore + score / 100;
+    playerFish.setScore(currScore);
   }
   
   /**
    * Generates a new enemy fish every 90 frames.
    */
   private static void generateEnemyFish() {
-	  if (frames % 90 == 0) {
-          entities.add(EnemyFish.generateFish());
-      }
+    if (frames % 90 == 0) {
+      entities.add(EnemyFish.generateFish());
+    }
   }  
 }
