@@ -34,7 +34,7 @@ public class MainScreenController {
   private static ArrayList<EnemyFish> entities;
   private static BoundingBox screenbox;
   private static int frames;
-  private final static double multiplier = 1.05;
+  private static final double multiplier = 1.05;
   private static Text scoreText = new Text();
   private static int currScore;
   private static ArrayList<String> input;
@@ -224,16 +224,24 @@ public class MainScreenController {
   /**
    * Get the bounding box of the screen.
    * 
-   * @return return the bounding box of the screen.
+   * @return the bounding box of the screen.
    */
   public static BoundingBox getScreenbox() {
     return screenbox;
   }
   
+  /**
+   * Check if the player has won the game.
+   * @return true if the player is bigger than a certain size.
+   */
   private static boolean playerHasWon() {
   	return (playerFish.getSprite().getBoundingBox().getHeight() > 400);
   }
   
+  /**
+   * Renders all the static elements like background and score.
+   * @param gc - the graphicsContext which needs to do the rendering.
+   */
   private static void renderStatics(GraphicsContext gc) {
       gc.drawImage(background, 0, 0);
       gc.setFill(Color.AQUA);
@@ -246,6 +254,10 @@ public class MainScreenController {
       gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
   }
   
+  /**
+   * Render all the non static elements, i.e. the enemy fish and the player fish.
+   * @param gc - the graphicsContext which needs to do the rendering.
+   */
   private static void renderNonStatics(GraphicsContext gc) {
       playerFish.getSprite().render(gc);
 
@@ -260,6 +272,9 @@ public class MainScreenController {
       }
   }
   
+  /**
+   * This method handles the WASD input of the player.
+   */
   private static void handlePlayerMovement() {
 	  if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
 
@@ -285,6 +300,10 @@ public class MainScreenController {
 	  }
   }
   
+  /**
+   * Handles collisions between player fish and enemy fish.
+   * @param i - the i'th enemy fish in the entities arrayList.
+   */
   private static void handleCollision(int i) {
 	  int height = entities.get(i).getSprite().getBoundingBox()
 			  .getHeight();
@@ -297,6 +316,9 @@ public class MainScreenController {
 	  playerFish.setScore(currScore);	  
   }
   
+  /**
+   * Generates a new enemy fish every 90 frames.
+   */
   private static void generateEnemyFish() {
 	  if (frames % 90 == 0) {
           entities.add(EnemyFish.generateFish());
