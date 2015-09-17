@@ -149,6 +149,7 @@ public class MainScreenController {
         frames = 0;
         currScore = 0;
 
+
         new AnimationTimer() {
           public void handle(long currentNTime) {
               
@@ -169,7 +170,7 @@ public class MainScreenController {
             gc.setTextAlign(TextAlignment.CENTER);
             gc.setTextBaseline(VPos.CENTER);
             gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
-
+            
             // Control the playerfish using WASD.
             if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
 
