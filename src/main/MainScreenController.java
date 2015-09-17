@@ -33,10 +33,14 @@ public class MainScreenController {
   private static PlayerFish playerFish;
   private static ArrayList<EnemyFish> entities;
   private static BoundingBox screenbox;
-  private int frames;
-  private final double multiplier = 1.05;
+  private static int frames;
+  private static final double multiplier = 1.05;
   private static Text scoreText = new Text();
   private static int currScore;
+  private static ArrayList<String> input;
+  private static Image background = new Image("Fishy_bg.jpg");
+
+
 
   @FXML
   private ResourceBundle resources;
@@ -95,6 +99,9 @@ public class MainScreenController {
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = PlayerFish.createPlayerFish();
     scoreText.setText("Score");
+    input = new ArrayList<String>();
+    frames = 0;
+    currScore = 0;
   }
 
   /**
@@ -125,9 +132,7 @@ public class MainScreenController {
         Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
 
         root.getChildren().add(canvas);
-
-        ArrayList<String> input = new ArrayList<String>();
-
+        
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
           public void handle(KeyEvent e) {
             String code = e.getCode().toString();
@@ -145,128 +150,41 @@ public class MainScreenController {
         });
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Image background = new Image("Fishy_bg.jpg");
-        frames = 0;
-        currScore = 0;
+        
 
         new AnimationTimer() {
           public void handle(long currentNTime) {
-              
-        	if (playerFish.getSprite().getBoundingBox().getHeight() > 400) {
+        	  
+        	if (playerHasWon()) {
         		currScore = 0;
         		this.stop();
         		Game.switchScreen("FXML/WinningScreen.fxml");
         	}
-            // Draw the background every frame.
-            gc.drawImage(background, 0, 0);
-            gc.setFill(Color.AQUA);
-            gc.fillOval(525, 1, 200, 75);
+        	
+        	renderStatics(gc);
 
-            // Draw the scoreboard with the player's score.
-            gc.setFill(Color.BLACK);
-            gc.setFont(Font.font("Comic Sans", 30));
-            gc.fillText(scoreText.getText().toString(), 625, 20);
-            gc.setTextAlign(TextAlignment.CENTER);
-            gc.setTextBaseline(VPos.CENTER);
-            gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
+            handlePlayerMovement();
+            
+            generateEnemyFish();
 
-            // Control the playerfish using WASD.
-            if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
-
-              // Set the image of the playerfish to the 'looking
-              // to the left version'.
-              playerFish.getSprite()
-                  .setImg(playerFish.getPlayerFishLeftImage());
-              playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
-
-            } else if (input.contains("D")
-                && !playerFish.intersectsRightScreenEdge()) {
-
-              // Set the image of the playerfish to the 'looking
-              // to the right version'.
-              playerFish.getSprite().setImg(
-                  playerFish.getPlayerFishRightImage());
-              playerFish.getSprite().updateX(playerFish.getMoveSpeed());
-            }
-            if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
-
-              playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
-
-            } else if (input.contains("S")
-                && !playerFish.intersectsUnderScreenEdge()) {
-
-              playerFish.getSprite().updateY(playerFish.getMoveSpeed());
-            }
-
-            // Generate an enemy fish every so many frames.
-            if (frames % 90 == 0) {
-              entities.add(EnemyFish.generateFish());
-            }
-
-            // If the playerfish intersects another fish, remove it.
             for (int i = 0; i < entities.size(); i++) {
-              // First check if a fish is outside the screen, if
-              // it is, remove it.
-              if (!entities.get(i).getSprite().getBoundingBox()
-                  .intersects(screenbox)) {
-                entities.remove(i);
-                // Secondly check if a fish is intersecting with
-                // the playerfish, if it is, remove it.
-              } else if (playerFish.intersects(entities.get(i))
-                  && playerFish.isAlive()) {
-         
-              if (playerFish.playerDies(entities.get(i))) {
-            	this.stop();
-            	Game.switchScreen("FXML/LosingScreen.fxml");
-              }
-           
-            	if(playerFish.playerDies(entities.get(i))) {
-            		currScore = 0;
-            		this.stop();
-            		currScore = 0;
-            		playerFish.setScore(currScore);
-            		Game.switchScreen("FXML/LosingScreen.fxml");
-            		
+            	
+            	if (!entities.get(i).getSprite().getBoundingBox().intersects(screenbox)) {
+            		entities.remove(i);
+            	} else if (playerFish.intersects(entities.get(i)) && playerFish.isAlive()) {
+            		if (playerFish.playerDies(entities.get(i))) {
+            			this.stop();
+            			currScore = 0;
+            			playerFish.setScore(currScore);
+            			Game.switchScreen("FXML/LosingScreen.fxml");
+            		}            		
+            		handleCollision(i);
             	}
-
-                // first get the height of enemy fish
-                int height = entities.get(i).getSprite().getBoundingBox()
-                    .getHeight();
-                // second get the width of enemy fish
-                int width = entities.get(i).getSprite().getBoundingBox()
-                    .getWidth();
-                // remove the fish from the screen
-                entities.remove(i);
-                // let the fish of the player grow.
-                playerFish.grow(multiplier);
-                // get the area as the score
-                int score = height * width;
-                // then adds the score to the current score
-                currScore = currScore + score / 100;
-                // finally sets the total score to the player
-                // fish
-                playerFish.setScore(currScore);
-              }
             }
-
-            // Render the playerfish.
-            playerFish.getSprite().render(gc);
-
-            // Render all the remaining fish.
-            for (int i = 0; i < entities.size(); i++) {
-              EnemyFish curr = entities.get(i);
-              if (curr.isLefty()) {
-                curr.getSprite().updateX(curr.getMoveSpeed());
-              } else {
-                curr.getSprite().updateX(-curr.getMoveSpeed());
-              }
-              entities.get(i).getSprite().render(gc);
-            }
-            frames++;
+           renderNonStatics(gc);
+           frames++;
           }
-  
         }.start();
-
       }
     });
 
@@ -306,9 +224,104 @@ public class MainScreenController {
   /**
    * Get the bounding box of the screen.
    * 
-   * @return return the bounding box of the screen.
+   * @return the bounding box of the screen.
    */
   public static BoundingBox getScreenbox() {
     return screenbox;
   }
+  
+  /**
+   * Check if the player has won the game.
+   * @return true if the player is bigger than a certain size.
+   */
+  private static boolean playerHasWon() {
+  	return (playerFish.getSprite().getBoundingBox().getHeight() > 400);
+  }
+  
+  /**
+   * Renders all the static elements like background and score.
+   * @param gc - the graphicsContext which needs to do the rendering.
+   */
+  private static void renderStatics(GraphicsContext gc) {
+      gc.drawImage(background, 0, 0);
+      gc.setFill(Color.AQUA);
+      gc.fillOval(525, 1, 200, 75);
+      gc.setFill(Color.BLACK);
+      gc.setFont(Font.font("Comic Sans", 30));
+      gc.fillText(scoreText.getText().toString(), 625, 20);
+      gc.setTextAlign(TextAlignment.CENTER);
+      gc.setTextBaseline(VPos.CENTER);
+      gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
+  }
+  
+  /**
+   * Render all the non static elements, i.e. the enemy fish and the player fish.
+   * @param gc - the graphicsContext which needs to do the rendering.
+   */
+  private static void renderNonStatics(GraphicsContext gc) {
+      playerFish.getSprite().render(gc);
+
+      for (int i = 0; i < entities.size(); i++) {
+        EnemyFish curr = entities.get(i);
+        if (curr.isLefty()) {
+          curr.getSprite().updateX(curr.getMoveSpeed());
+        } else {
+          curr.getSprite().updateX(-curr.getMoveSpeed());
+        }
+        entities.get(i).getSprite().render(gc);
+      }
+  }
+  
+  /**
+   * This method handles the WASD input of the player.
+   */
+  private static void handlePlayerMovement() {
+	  if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
+
+		  playerFish.getSprite()
+		  .setImg(playerFish.getPlayerFishLeftImage());
+		  playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
+
+	  } else if (input.contains("D")
+			  && !playerFish.intersectsRightScreenEdge()) {
+
+		  playerFish.getSprite().setImg(
+				  playerFish.getPlayerFishRightImage());
+		  playerFish.getSprite().updateX(playerFish.getMoveSpeed());
+	  }
+	  if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
+
+		  playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
+
+	  } else if (input.contains("S")
+			  && !playerFish.intersectsUnderScreenEdge()) {
+
+		  playerFish.getSprite().updateY(playerFish.getMoveSpeed());
+	  }
+  }
+  
+  /**
+   * Handles collisions between player fish and enemy fish.
+   * @param i - the i'th enemy fish in the entities arrayList.
+   */
+  private static void handleCollision(int i) {
+	  int height = entities.get(i).getSprite().getBoundingBox()
+			  .getHeight();
+	  int width = entities.get(i).getSprite().getBoundingBox()
+			  .getWidth();
+	  entities.remove(i);
+	  playerFish.grow(multiplier);
+	  int score = height * width;
+	  currScore = currScore + score / 100;
+	  playerFish.setScore(currScore);	  
+  }
+  
+  /**
+   * Generates a new enemy fish every 90 frames.
+   */
+  private static void generateEnemyFish() {
+	  if (frames % 90 == 0) {
+          entities.add(EnemyFish.generateFish());
+      }
+  }  
 }
