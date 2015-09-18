@@ -1,8 +1,5 @@
 package main;
 
-import javafx.scene.Group;
-import javafx.scene.Scene;
-
 /**
  * This class contains the logger, which will write specific events to console.
  * 
@@ -82,7 +79,7 @@ public class Logger {
   /**
    * This method logs when game is successfully initialized.
    */
-  public void logInitSucced() {
+  public void logInitSucceeded() {
     System.out.println("Successfully initialized..");
   }
   
@@ -92,13 +89,13 @@ public class Logger {
    * @param screen the screen the game is loading
    */
   public void logLoadingScreen(String screen) {
-    System.out.println("Loading " + screen.toString() + "..");
+    System.out.println("Loading " + screen + "..");
   }
   
   /**
    * This method shows the message of successfully loaded.
    */
-  public void logLoadSucced() {
+  public void logLoadSucceeded() {
     System.out.println("Successfully loaded..");
   }
 

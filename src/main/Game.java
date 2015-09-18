@@ -55,13 +55,13 @@ public class Game extends Application {
       logger.logIcon();
       stage.getIcons().add(
           new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
-      logger.logLoadSucced();
+      logger.logLoadSucceeded();
       logger.logSwitchScreen("MainScreen");
       FXMLLoader loader = new FXMLLoader(getClass().getResource(
           "FXML/MainScreen.fxml"));
 
       pane = (Pane) loader.load();
-      logger.logLoadSucced();
+      logger.logLoadSucceeded();
 
       Scene scene = new Scene(pane);
       firstStage.setHeight(getResY());
@@ -88,7 +88,7 @@ public class Game extends Application {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(Game.class.getResource(bestand));
       stage.getScene().setRoot((Parent) loader.load());
-      logger.logLoadSucced();
+      logger.logLoadSucceeded();
     } catch (Exception e) {
       e.printStackTrace();
     }

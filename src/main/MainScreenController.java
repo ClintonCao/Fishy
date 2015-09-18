@@ -120,7 +120,7 @@ public class MainScreenController {
 
         logger1.logInit();
         init();
-        logger1.logInitSucced();
+        logger1.logInitSucceeded();
         Group root = new Group();
         Scene scene = new Scene(root);
         Game.stage.setScene(scene);
