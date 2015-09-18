@@ -72,4 +72,14 @@ public class Logger {
   public void logKeyPress(String key) {
     System.out.println("Key " + key + " has been pressed.");
   }
+  
+  /**
+   * This method logs the player's score to the console.
+   * 
+   * @param score
+   *          The new score.
+   */
+  public void logNewScore(int score) {
+    System.out.println("Player's score increased to:" + score);
+  }
 }
