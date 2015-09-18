@@ -175,23 +175,15 @@ public class MainScreenController {
                 if (!entities.get(i).getSprite().getBoundingBox().intersects(screenbox)) {
                 entities.remove(i);
               } else if (playerFish.intersects(entities.get(i)) && playerFish.isAlive()) {
-                if (playerFish.playerDies(entities.get(i))) {
-                  // the game stops.
+                  // if the player fish is bigger than the enemy fish,
+                  // then the player fish grows.
+                  if (!playerFish.playerDies(entities.get(i))) {
+                  handleCollision(i);
+                } else {           
+                  // else the game stops.
                   this.stop();
-                  // the logger prints the fact that player fish dies
-                  logger.logPlayerFishDies();
-                  // the logger also prints the status of the game
-                  logger.logGameResult("lost", currScore);
-                  // reset the current game score.
-                  currScore = 0;
-                  playerFish.setScore(currScore);
-                  // switch to losing screen.
-                  Game.switchScreen("FXML/LosingScreen.fxml");
-                  // log the process of switching to losing screen.
-                  logger.logSwitchScreen("LosingScreen");
-
-                }            
-                handleCollision(i);
+                  playerLost();
+                }
               }
             }
             renderNonStatics(gc);
@@ -326,20 +318,47 @@ public class MainScreenController {
    * @param i - the i'th enemy fish in the entities arrayList.
    */
   private static void handleCollision(int i) {
+    // first get the height of enemy fish.
     int height = entities.get(i).getSprite().getBoundingBox()
             .getHeight();
+    // second get the width of enemy fish.
     int width = entities.get(i).getSprite().getBoundingBox()
             .getWidth();
+    // remove the fish from the screen.
     entities.remove(i);
+    // let the fish of the player grow.
     playerFish.grow(MULTIPLIER);
-    int score = height * width;
+    // get the area as the score.
+    int score = (height * width) / 100;
     // print in the console that player fish has eaten a smaller fish.
     logger.logPlayerFishGrows(score);
-    currScore = currScore + score / 100;
+    // then adds the score to the current score.
+    currScore = currScore + score;
+    // print in the console of the current score of the player.
     logger.logNewScore(currScore);
+    // finally sets the total score to the player
+    // fish.
     playerFish.setScore(currScore);
   }
   
+  /**
+   * This method is being called when the player fish collide with a large enemy fish,
+   * and then the game is proceed to losing screen.
+   *
+   */
+  private static void playerLost() {
+    // the logger prints the fact that player fish dies.
+    logger.logPlayerFishDies();
+    // the logger also prints the status of the game.
+    logger.logGameResult("lost", currScore);
+    // reset the current game score.
+    currScore = 0;
+    playerFish.setScore(currScore);
+    // switch to losing screen.
+    Game.switchScreen("FXML/LosingScreen.fxml");
+    // log the process of switching to losing screen.
+    logger.logSwitchScreen("LosingScreen");
+  }
   /**
    * Generates a new enemy fish every 90 frames.
    */
