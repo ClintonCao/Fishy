@@ -84,7 +84,7 @@ public class OptionsController {
       @Override
       public void handle(MouseEvent event) {
 
-        System.out.println("Music is on");
+        logger.logMusicOnOff(true);
 
       }
     });
@@ -94,7 +94,7 @@ public class OptionsController {
       @Override
       public void handle(MouseEvent event) {
 
-        System.out.println("Music is off");
+        logger.logMusicOnOff(false);
 
       }
     });

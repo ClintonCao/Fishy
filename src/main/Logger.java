@@ -137,8 +137,26 @@ public class Logger {
     System.out.println("You got eaten by a bigger fish..");
   }
   
+  /**
+   * This method informs the player when the player fish ate a smaller fish.
+   * 
+   * @param score indicates the score the player fish gained. 
+   */
   public void logPlayerFishGrows(int score) {
     System.out.println("You just ate a smaller fish.");
     System.out.println("And you have just gained " + score + " points");
+  }
+  
+  /**
+   * This method indicates whether the music is on or off.
+   * 
+   * @param on boolean, if music is on, it will be true, vice versa.
+   */
+  public void logMusicOnOff(boolean on) {
+    String text = "off";
+    if (on) {
+      text = "on";
+    }
+    System.out.println("The music is " + text);
   }
 }
