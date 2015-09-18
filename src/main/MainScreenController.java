@@ -89,7 +89,7 @@ public class MainScreenController {
 
   /**
    * Set up things we need. Initialize the sprite list, and create the
-   * playerfish.
+   * player fish.
    */
   public static void init() {
     entities = new ArrayList<EnemyFish>();
@@ -216,7 +216,7 @@ public class MainScreenController {
               logger.logEdgeBump();
             }
 
-            // If the playerfish intersects another fish, remove it.
+            // If the player fish intersects another fish, remove it.
             for (int i = 0; i < entities.size(); i++) {
               // First check if a fish is outside the screen, if
               // it is, remove it.
@@ -224,47 +224,55 @@ public class MainScreenController {
                   .intersects(screenbox)) {
                 entities.remove(i);
                 // Secondly check if a fish is intersecting with
-                // the playerfish, if it is, remove it.
+                // the player fish, if it is, remove it.
               } else if (playerFish.intersects(entities.get(i))
                   && playerFish.isAlive()) {
-            	
-            	if(!playerFish.playerDies(entities.get(i))) {
+                // if the playerFish is bigger than the enemy fish,
+                // then the playerFish grows.
+                if (!playerFish.playerDies(entities.get(i))) {
          
-                // first get the height of enemy fish
-                int height = entities.get(i).getSprite().getBoundingBox()
-                    .getHeight();
-                // second get the width of enemy fish
-                int width = entities.get(i).getSprite().getBoundingBox()
-                    .getWidth();
-                // remove the fish from the screen
-                entities.remove(i);
-                // let the fish of the player grow.
-                playerFish.grow(multiplier);
-                // get the area as the score
-                int score = height * width;
-                // print in the console that player fish has eaten a smaller fish
-                logger.logPlayerFishGrows(score/100);
-                // then adds the score to the current score
-                currScore = currScore + score / 100;
-                logger.logNewScore(currScore);
-                // finally sets the total score to the player
-                // fish
-                playerFish.setScore(currScore);
-            	}
-            	else {
+                  // first get the height of enemy fish.
+                  int height = entities.get(i).getSprite().getBoundingBox()
+                      .getHeight();
+                  // second get the width of enemy fish.
+                  int width = entities.get(i).getSprite().getBoundingBox()
+                      .getWidth();
+                  // remove the fish from the screen.
+                  entities.remove(i);
+                  // let the fish of the player grow.
+                  playerFish.grow(multiplier);
+                  // get the area as the score.
+                  int score = (height * width) / 100;
+                  // print in the console that player fish has eaten a smaller fish.
+                  logger.logPlayerFishGrows(score);
+                  // then adds the score to the current score.
+                  currScore = currScore + score;
+                  logger.logNewScore(currScore);
+                  // finally sets the total score to the player
+                  // fish.
+                  playerFish.setScore(currScore);
+                  // if the player fish is smaller than the enemy fish,
+                  // player fish dies.
+                } else {
+                    // the game stops.
                     this.stop();
+                    // the logger prints the fact that player fish dies
                     logger.logPlayerFishDies();
+                    // the logger also prints the status of the game
                     logger.logGameResult("lost", currScore);
+                    // reset the current game score.
                     currScore = 0;
                     playerFish.setScore(currScore);
+                    // switch to losing screen.
                     Game.switchScreen("FXML/LosingScreen.fxml");
+                    // log the process of switching to losing screen.
                     logger.logSwitchScreen("LosingScreen");
-            	}
+                  }
               }
               
             }
 
-            // Render the playerfish.
+            // Render the player fish.
             playerFish.getSprite().render(gc);
 
             // Render all the remaining fish.
