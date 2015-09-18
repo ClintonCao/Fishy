@@ -39,13 +39,13 @@ public class PlayerFish extends Entity {
     super(movespeed, sprite);
     setAlive(isAlive);
     if (sprite.getImg() != null) {
-    	setPlayerFishLeftImage(new Image(leftImageName, sprite.getImg().getWidth(),
-    				sprite.getImg().getHeight(), true, true));
-    	setPlayerFishRightImage(new Image(rightImageName, sprite.getImg().getWidth(), 
-    				sprite.getImg().getHeight(), true, true));
+      setPlayerFishLeftImage(new Image(leftImageName, sprite.getImg().getWidth(),
+          sprite.getImg().getHeight(), true, true));
+      setPlayerFishRightImage(new Image(rightImageName, sprite.getImg().getWidth(), 
+          sprite.getImg().getHeight(), true, true));
     } else {
-    	setPlayerFishLeftImage(new Image(leftImageName, 128, 128, true, true));
-    	setPlayerFishRightImage(new Image(rightImageName, 128, 128, true, true));
+      setPlayerFishLeftImage(new Image(leftImageName, 128, 128, true, true));
+      setPlayerFishRightImage(new Image(rightImageName, 128, 128, true, true));
     }
     this.score = score;
   }
@@ -58,7 +58,7 @@ public class PlayerFish extends Entity {
   public static PlayerFish createPlayerFish() {
     Image temp = new Image(leftImageName);
     Image playerFishImage = new Image(leftImageName, temp.getWidth() * 0.30,
-    		temp.getHeight() * 0.30, true, true);
+        temp.getHeight() * 0.30, true, true);
     //Image playerFishImageRight = new Image(rightImageName, 
     //temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
 
@@ -86,7 +86,6 @@ public class PlayerFish extends Entity {
    */
   public void grow(double multiplier) {
 
-    BoundingBox playerFishBoundingBox = this.getSprite().getBoundingBox();
     double newWidth = multiplier * this.getSprite().getImg().getWidth();
     double newHeight = multiplier * this.getSprite().getImg().getHeight();
 
@@ -96,6 +95,7 @@ public class PlayerFish extends Entity {
         newWidth, newHeight, true, true));
     
     this.getSprite().setImg(leftImage);
+    BoundingBox playerFishBoundingBox = this.getSprite().getBoundingBox();
 
     playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage()
         .getWidth());
@@ -111,7 +111,7 @@ public class PlayerFish extends Entity {
    * @return Boolean that determines whether the player fish dies.
    */
   public boolean playerDies(EnemyFish enemyfish) {
-	return this.getSprite().getImg().getWidth() <= enemyfish.getSprite().getImg().getWidth();
+    return this.getSprite().getImg().getWidth() <= enemyfish.getSprite().getImg().getWidth();
   }
 
   /**
