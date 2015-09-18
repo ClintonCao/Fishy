@@ -126,6 +126,6 @@ public class Logger {
    *            The direction in which the player is moving.
    */
   public void logDirectionChange(String direction) {
-    System.out.println("The player has started moving" + direction + ".");
+    System.out.println("The player has started moving " + direction + ".");
   }
 }

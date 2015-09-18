@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
  *
  */
 public class OptionsController {
+  
+  private static Logger logger = new Logger(null, null);
 
   @FXML
   private ResourceBundle resources;
@@ -103,6 +105,7 @@ public class OptionsController {
       public void handle(MouseEvent event) {
 
         Game.switchScreen("FXML/MainScreen.fxml");
+        logger.logSwitchScreen("MainScreen");
 
       }
     });

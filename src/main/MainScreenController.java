@@ -210,8 +210,10 @@ public class MainScreenController {
             }
 
             // Generate an enemy fish every so many frames.
+            // And check if collisions with the edges need to be logged.
             if (frames % 90 == 0) {
               entities.add(EnemyFish.generateFish());
+              logger.logEdgeBump();
             }
 
             // If the playerfish intersects another fish, remove it.
