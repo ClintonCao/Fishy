@@ -227,16 +227,9 @@ public class MainScreenController {
                 // the playerfish, if it is, remove it.
               } else if (playerFish.intersects(entities.get(i))
                   && playerFish.isAlive()) {
+            	
+            	if(!playerFish.playerDies(entities.get(i))) {
          
-                if (playerFish.playerDies(entities.get(i))) {
-                  this.stop();
-                  logger.logPlayerFishDies();
-                  logger.logGameResult("lost", currScore);
-                  currScore = 0;
-                  playerFish.setScore(currScore);
-                  Game.switchScreen("FXML/LosingScreen.fxml");
-                  logger.logSwitchScreen("LosingScreen");
-                }
                 // first get the height of enemy fish
                 int height = entities.get(i).getSprite().getBoundingBox()
                     .getHeight();
@@ -257,7 +250,18 @@ public class MainScreenController {
                 // finally sets the total score to the player
                 // fish
                 playerFish.setScore(currScore);
+            	}
+            	else {
+                    this.stop();
+                    logger.logPlayerFishDies();
+                    logger.logGameResult("lost", currScore);
+                    currScore = 0;
+                    playerFish.setScore(currScore);
+                    Game.switchScreen("FXML/LosingScreen.fxml");
+                    logger.logSwitchScreen("LosingScreen");
+            	}
               }
+              
             }
 
             // Render the playerfish.
