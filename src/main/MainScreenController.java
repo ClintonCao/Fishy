@@ -230,10 +230,10 @@ public class MainScreenController {
          
                 if (playerFish.playerDies(entities.get(i))) {
                   this.stop();
+                  logger.logPlayerFishDies();
                   logger.logGameResult("lost", currScore);
                   currScore = 0;
                   playerFish.setScore(currScore);
-                  System.out.println("Your fish has been eaten by larger fish..");
                   Game.switchScreen("FXML/LosingScreen.fxml");
                   logger.logSwitchScreen("LosingScreen");
                 }
@@ -249,6 +249,8 @@ public class MainScreenController {
                 playerFish.grow(multiplier);
                 // get the area as the score
                 int score = height * width;
+                // print in the console that player fish has eaten a smaller fish
+                logger.logPlayerFishGrows(score/100);
                 // then adds the score to the current score
                 currScore = currScore + score / 100;
                 logger.logNewScore(currScore);

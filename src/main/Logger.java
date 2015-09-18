@@ -128,4 +128,17 @@ public class Logger {
   public void logDirectionChange(String direction) {
     System.out.println("The player has started moving " + direction + ".");
   }
+  
+  /**
+   * This method informs the player that the player fish has been eaten.
+   * 
+   */
+  public void logPlayerFishDies() {
+    System.out.println("You got eaten by a bigger fish..");
+  }
+  
+  public void logPlayerFishGrows(int score) {
+    System.out.println("You just ate a smaller fish.");
+    System.out.println("And you have just gained " + score + " points");
+  }
 }
