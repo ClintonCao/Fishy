@@ -38,7 +38,7 @@
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
     <module name="LineLength">
-      <property name="max" value="100"/>
+      <property name="max" value="200"/>
     </module>
     <module name="MethodLength">
       <property name="max" value="30"/>
