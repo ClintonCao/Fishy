@@ -1,5 +1,9 @@
 package main;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -18,10 +22,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 /**
  * This class contains all the event handlers of the buttons on the main screen.
  * 
@@ -37,10 +37,9 @@ public class MainScreenController {
   private static final double MULTIPLIER = 1.05;
   private static Text scoreText = new Text();
   private static int currScore;
+  private static Logger logger;
   private static ArrayList<String> input;
   private static Image background = new Image("Fishy_bg.jpg");
-
-
 
   @FXML
   private ResourceBundle resources;
@@ -92,13 +91,14 @@ public class MainScreenController {
 
   /**
    * Set up things we need. Initialize the sprite list, and create the
-   * playerfish.
+   * player fish.
    */
   public static void init() {
     entities = new ArrayList<EnemyFish>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = PlayerFish.createPlayerFish();
     scoreText.setText("Score");
+    logger = new Logger(playerFish, playerFish.getSprite().getBoundingBox());
     input = new ArrayList<String>();
     frames = 0;
     currScore = 0;
@@ -121,10 +121,11 @@ public class MainScreenController {
 
       @Override
       public void handle(MouseEvent event) {
+        Logger logger1 = new Logger(null, null);
 
-        System.out.println("Initializing game objects..");
+        logger1.logInit();
         init();
-        System.out.println("Successfully initialized..");
+        logger1.logInitSucceeded();
         Group root = new Group();
         Scene scene = new Scene(root);
         Game.stage.setScene(scene);
@@ -152,6 +153,7 @@ public class MainScreenController {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         
 
+
         new AnimationTimer() {
           public void handle(long currentNTime) {
               
@@ -159,9 +161,11 @@ public class MainScreenController {
                 currScore = 0;
                 this.stop();
                 Game.switchScreen("FXML/WinningScreen.fxml");
+                logger.logSwitchScreen("WinningScreen");
             }
+            
             renderStatics(gc);
-
+            
             handlePlayerMovement();
             
             generateEnemyFish();
@@ -171,13 +175,15 @@ public class MainScreenController {
                 if (!entities.get(i).getSprite().getBoundingBox().intersects(screenbox)) {
                 entities.remove(i);
               } else if (playerFish.intersects(entities.get(i)) && playerFish.isAlive()) {
-                if (playerFish.playerDies(entities.get(i))) {
-                    this.stop();
-                    currScore = 0;
-                    playerFish.setScore(currScore);
-                    Game.switchScreen("FXML/LosingScreen.fxml");
-                }            
-                handleCollision(i);
+                  // if the player fish is bigger than the enemy fish,
+                  // then the player fish grows.
+                  if (!playerFish.playerDies(entities.get(i))) {
+                  handleCollision(i);
+                } else {           
+                  // else the game stops.
+                  this.stop();
+                  playerLost();
+                }
               }
             }
             renderNonStatics(gc);
@@ -192,6 +198,7 @@ public class MainScreenController {
       @Override
       public void handle(MouseEvent event) {
         Game.switchScreen("FXML/MenuScreen.fxml");
+        logger.logSwitchScreen("MenuScreen");
 
       }
     });
@@ -202,8 +209,7 @@ public class MainScreenController {
       public void handle(MouseEvent event) {
 
         Platform.exit();
-        System.out.println("Quiting application..");
-        System.out.println("Exited successfully..");
+        logger.logEndGame();
 
       }
     });
@@ -280,6 +286,8 @@ public class MainScreenController {
       playerFish.getSprite()
         .setImg(playerFish.getPlayerFishLeftImage());
       playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
+      logger.logKeyPress("A");
+      logger.logDirectionChange("left");
 
     } else if (input.contains("D")
             && !playerFish.intersectsRightScreenEdge()) {
@@ -287,15 +295,21 @@ public class MainScreenController {
       playerFish.getSprite().setImg(
               playerFish.getPlayerFishRightImage());
       playerFish.getSprite().updateX(playerFish.getMoveSpeed());
+      logger.logKeyPress("D");
+      logger.logDirectionChange("right");
     }
     if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
 
       playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
+      logger.logKeyPress("W");
+      logger.logDirectionChange("upwards");
 
     } else if (input.contains("S")
             && !playerFish.intersectsUnderScreenEdge()) {
 
       playerFish.getSprite().updateY(playerFish.getMoveSpeed());
+      logger.logKeyPress("S");
+      logger.logDirectionChange("downwards");
     }
   }
   
@@ -304,23 +318,54 @@ public class MainScreenController {
    * @param i - the i'th enemy fish in the entities arrayList.
    */
   private static void handleCollision(int i) {
+    // first get the height of enemy fish.
     int height = entities.get(i).getSprite().getBoundingBox()
             .getHeight();
+    // second get the width of enemy fish.
     int width = entities.get(i).getSprite().getBoundingBox()
             .getWidth();
+    // remove the fish from the screen.
     entities.remove(i);
+    // let the fish of the player grow.
     playerFish.grow(MULTIPLIER);
-    int score = height * width;
-    currScore = currScore + score / 100;
+    // get the area as the score.
+    int score = (height * width) / 100;
+    // print in the console that player fish has eaten a smaller fish.
+    logger.logPlayerFishGrows(score);
+    // then adds the score to the current score.
+    currScore = currScore + score;
+    // print in the console of the current score of the player.
+    logger.logNewScore(currScore);
+    // finally sets the total score to the player
+    // fish.
     playerFish.setScore(currScore);
   }
   
+  /**
+   * This method is being called when the player fish collide with a large enemy fish,
+   * and then the game is proceed to losing screen.
+   *
+   */
+  private static void playerLost() {
+    // the logger prints the fact that player fish dies.
+    logger.logPlayerFishDies();
+    // the logger also prints the status of the game.
+    logger.logGameResult("lost", currScore);
+    // reset the current game score.
+    currScore = 0;
+    playerFish.setScore(currScore);
+    // switch to losing screen.
+    Game.switchScreen("FXML/LosingScreen.fxml");
+    // log the process of switching to losing screen.
+    logger.logSwitchScreen("LosingScreen");
+  }
   /**
    * Generates a new enemy fish every 90 frames.
    */
   private static void generateEnemyFish() {
     if (frames % 90 == 0) {
       entities.add(EnemyFish.generateFish());
+      logger.logEdgeBump();
     }
-  }  
+  } 
 }

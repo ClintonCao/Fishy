@@ -21,6 +21,7 @@ public class Game extends Application {
   static Pane pane;
   private static int resX = 1280;
   private static int resY = 720;
+  private static Logger logger;
 
   // final URL resource = getClass().getResource("FXML/track.mp3");
   // final Media media = new Media(resource.toString());
@@ -47,23 +48,25 @@ public class Game extends Application {
     try {
 
       stage = firstStage;
-
+      logger = new Logger(null, null);
+      
       firstStage.setTitle("Fishy");
-      System.out.println("Loading game's icon..");
+      logger.logStartGame();
+      logger.logIcon();
       stage.getIcons().add(
           new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
-      System.out.println("Successfully loaded..");
-      System.out.println("Loading main screen of game..");
+      logger.logLoadSucceeded();
+      logger.logSwitchScreen("MainScreen");
       FXMLLoader loader = new FXMLLoader(getClass().getResource(
           "FXML/MainScreen.fxml"));
 
       pane = (Pane) loader.load();
-      System.out.println("Successfully loaded..");
+      logger.logLoadSucceeded();
 
       Scene scene = new Scene(pane);
       firstStage.setHeight(getResY());
       firstStage.setWidth(getResX());
-      firstStage.setResizable(false);
+      firstStage.setResizable(false);	
       firstStage.setScene(scene);
 
       firstStage.show();
@@ -81,11 +84,11 @@ public class Game extends Application {
    */
   public static void switchScreen(String bestand) {
     try {
-      System.out.println("Loading " + bestand.toString() + "..");
+      logger.logLoadingScreen(bestand);
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(Game.class.getResource(bestand));
       stage.getScene().setRoot((Parent) loader.load());
-      System.out.println("Successfully loaded..");
+      logger.logLoadSucceeded();
     } catch (Exception e) {
       e.printStackTrace();
     }

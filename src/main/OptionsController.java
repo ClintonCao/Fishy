@@ -1,12 +1,12 @@
 package main;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * This class contains all the event handlers of the buttons on the options
@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
  *
  */
 public class OptionsController {
+  
+  private static Logger logger = new Logger(null, null);
 
   @FXML
   private ResourceBundle resources;
@@ -82,7 +84,7 @@ public class OptionsController {
       @Override
       public void handle(MouseEvent event) {
 
-        System.out.println("Music is on");
+        logger.logMusicOnOff(true);
 
       }
     });
@@ -92,7 +94,7 @@ public class OptionsController {
       @Override
       public void handle(MouseEvent event) {
 
-        System.out.println("Music is off");
+        logger.logMusicOnOff(false);
 
       }
     });
@@ -103,6 +105,7 @@ public class OptionsController {
       public void handle(MouseEvent event) {
 
         Game.switchScreen("FXML/MainScreen.fxml");
+        logger.logSwitchScreen("MainScreen");
 
       }
     });
