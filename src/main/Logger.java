@@ -80,6 +80,42 @@ public class Logger {
    *          The new score.
    */
   public void logNewScore(int score) {
-    System.out.println("Player's score increased to:" + score);
+    System.out.println("Player's score increased to: " + score);
+  }
+  
+ /**
+  * This method logs the game starting up.
+  */
+  public void logStartGame() {
+    System.out.println("The game has started running.");
+  }
+  
+  /**
+   * This method logs the game shutting down.
+   */
+  public void logEndGame() {
+    System.out.println("The game is shutting down.");
+  }
+  
+  /**
+   * This method logs the screen that the game has changed to.
+   * 
+   * @param screenName
+   *            The name of the screen the game has changed to.
+   */
+  public void logSwitchScreen(String screenName) {
+    System.out.println("The game has switched to the " + screenName + " screen.");
+  }
+  
+  /**
+   * This method logs the endresult of the game.
+   * 
+   * @param result
+   *            The result of the game. 
+   * @param score
+   *            The final score.
+   */
+  public void logGameResult(String result, int score) {
+    System.out.println("The player has " + result + " the game, with an end score of: " + score);
   }
 }
