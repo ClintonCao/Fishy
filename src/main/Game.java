@@ -21,6 +21,7 @@ public class Game extends Application {
   static Pane pane;
   private static int resX = 1280;
   private static int resY = 720;
+  private static Logger logger;
 
   // final URL resource = getClass().getResource("FXML/track.mp3");
   // final Media media = new Media(resource.toString());
@@ -47,13 +48,15 @@ public class Game extends Application {
     try {
 
       stage = firstStage;
-
+      logger = new Logger(null, null);
+      
       firstStage.setTitle("Fishy");
+      logger.logStartGame();
       System.out.println("Loading game's icon..");
       stage.getIcons().add(
           new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
       System.out.println("Successfully loaded..");
-      System.out.println("Loading main screen of game..");
+      logger.logSwitchScreen("MainScreen");
       FXMLLoader loader = new FXMLLoader(getClass().getResource(
           "FXML/MainScreen.fxml"));
 

@@ -37,6 +37,7 @@ public class MainScreenController {
   private final double multiplier = 1.05;
   private static Text scoreText = new Text();
   private static int currScore;
+  private static Logger logger;
 
   @FXML
   private ResourceBundle resources;
@@ -95,6 +96,7 @@ public class MainScreenController {
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = PlayerFish.createPlayerFish();
     scoreText.setText("Score");
+    logger = new Logger(playerFish, playerFish.getSprite().getBoundingBox());
   }
 
   /**
@@ -153,11 +155,11 @@ public class MainScreenController {
         new AnimationTimer() {
           public void handle(long currentNTime) {
               
-        	if (playerFish.getSprite().getBoundingBox().getHeight() > 400) {
-        		currScore = 0;
-        		this.stop();
-        		Game.switchScreen("FXML/WinningScreen.fxml");
-        	}
+            if (playerFish.getSprite().getBoundingBox().getHeight() > 400) {
+              currScore = 0;
+              this.stop();
+              Game.switchScreen("FXML/WinningScreen.fxml");
+            }
             // Draw the background every frame.
             gc.drawImage(background, 0, 0);
             gc.setFill(Color.AQUA);
@@ -179,6 +181,8 @@ public class MainScreenController {
               playerFish.getSprite()
                   .setImg(playerFish.getPlayerFishLeftImage());
               playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
+              logger.logKeyPress("A");
+              logger.logDirectionChange("left");
 
             } else if (input.contains("D")
                 && !playerFish.intersectsRightScreenEdge()) {
@@ -188,15 +192,21 @@ public class MainScreenController {
               playerFish.getSprite().setImg(
                   playerFish.getPlayerFishRightImage());
               playerFish.getSprite().updateX(playerFish.getMoveSpeed());
+              logger.logKeyPress("D");
+              logger.logDirectionChange("right");
             }
             if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
 
               playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
+              logger.logKeyPress("W");
+              logger.logDirectionChange("upwards");
 
             } else if (input.contains("S")
                 && !playerFish.intersectsUnderScreenEdge()) {
 
               playerFish.getSprite().updateY(playerFish.getMoveSpeed());
+              logger.logKeyPress("S");
+              logger.logDirectionChange("downwards");
             }
 
             // Generate an enemy fish every so many frames.
@@ -218,10 +228,12 @@ public class MainScreenController {
          
                 if (playerFish.playerDies(entities.get(i))) {
                   this.stop();
+                  logger.logGameResult("lost", currScore);
                   currScore = 0;
                   playerFish.setScore(currScore);
                   System.out.println("Your fish has been eaten by larger fish..");
                   Game.switchScreen("FXML/LosingScreen.fxml");
+                  logger.logSwitchScreen("LosingScreen");
                 }
                 // first get the height of enemy fish
                 int height = entities.get(i).getSprite().getBoundingBox()
@@ -237,6 +249,7 @@ public class MainScreenController {
                 int score = height * width;
                 // then adds the score to the current score
                 currScore = currScore + score / 100;
+                logger.logNewScore(currScore);
                 // finally sets the total score to the player
                 // fish
                 playerFish.setScore(currScore);
@@ -269,6 +282,7 @@ public class MainScreenController {
       @Override
       public void handle(MouseEvent event) {
         Game.switchScreen("FXML/MenuScreen.fxml");
+        logger.logSwitchScreen("MenuScreen");
 
       }
     });
@@ -279,8 +293,7 @@ public class MainScreenController {
       public void handle(MouseEvent event) {
 
         Platform.exit();
-        System.out.println("Quiting application..");
-        System.out.println("Exited successfully..");
+        logger.logEndGame();
 
       }
     });
