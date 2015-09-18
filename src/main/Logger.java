@@ -108,7 +108,7 @@ public class Logger {
   }
   
   /**
-   * This method logs the endresult of the game.
+   * This method logs the end result of the game.
    * 
    * @param result
    *            The result of the game. 
@@ -117,5 +117,15 @@ public class Logger {
    */
   public void logGameResult(String result, int score) {
     System.out.println("The player has " + result + " the game, with an end score of: " + score);
+  }
+  
+  /**
+   * This method logs the movement of the player.
+   * 
+   * @param direction
+   *            The direction in which the player is moving.
+   */
+  public void logDirectionChange(String direction) {
+    System.out.println("The player has started moving" + direction + ".");
   }
 }
