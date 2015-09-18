@@ -52,21 +52,21 @@ public class Game extends Application {
       
       firstStage.setTitle("Fishy");
       logger.logStartGame();
-      System.out.println("Loading game's icon..");
+      logger.logIcon();
       stage.getIcons().add(
           new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
-      System.out.println("Successfully loaded..");
+      logger.logLoadSucced();
       logger.logSwitchScreen("MainScreen");
       FXMLLoader loader = new FXMLLoader(getClass().getResource(
           "FXML/MainScreen.fxml"));
 
       pane = (Pane) loader.load();
-      System.out.println("Successfully loaded..");
+      logger.logLoadSucced();
 
       Scene scene = new Scene(pane);
       firstStage.setHeight(getResY());
       firstStage.setWidth(getResX());
-      firstStage.setResizable(false);
+      firstStage.setResizable(false);	
       firstStage.setScene(scene);
 
       firstStage.show();
@@ -84,11 +84,11 @@ public class Game extends Application {
    */
   public static void switchScreen(String bestand) {
     try {
-      System.out.println("Loading " + bestand.toString() + "..");
+      logger.logLoadingScreen(bestand);
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(Game.class.getResource(bestand));
       stage.getScene().setRoot((Parent) loader.load());
-      System.out.println("Successfully loaded..");
+      logger.logLoadSucced();
     } catch (Exception e) {
       e.printStackTrace();
     }

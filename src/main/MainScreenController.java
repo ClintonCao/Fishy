@@ -116,10 +116,11 @@ public class MainScreenController {
 
       @Override
       public void handle(MouseEvent event) {
+        Logger logger1 = new Logger(null, null);
 
-        System.out.println("Initializing game objects..");
+        logger1.logInit();
         init();
-        System.out.println("Successfully initialized..");
+        logger1.logInitSucced();
         Group root = new Group();
         Scene scene = new Scene(root);
         Game.stage.setScene(scene);

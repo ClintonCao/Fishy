@@ -1,5 +1,8 @@
 package main;
 
+import javafx.scene.Group;
+import javafx.scene.Scene;
+
 /**
  * This class contains the logger, which will write specific events to console.
  * 
@@ -61,6 +64,42 @@ public class Logger {
     if (player.intersectsUnderScreenEdge()) {
       System.out.println("Player bumped with the lower border of the screen.");
     }
+  }
+  /**
+   * This method logs when the game's icon is being loaded.
+   */
+  public void logIcon() {
+    System.out.println("Loading game's icon..");
+  }
+  
+  /**
+   * This method logs when game is being initialized.
+   */
+  public void logInit() {
+    System.out.println("Initializing game objects..");
+  }
+  
+  /**
+   * This method logs when game is successfully initialized.
+   */
+  public void logInitSucced() {
+    System.out.println("Successfully initialized..");
+  }
+  
+  /**
+   * This method logs the screen which the game is loading.
+   * 
+   * @param screen the screen the game is loading
+   */
+  public void logLoadingScreen(String screen) {
+    System.out.println("Loading " + screen.toString() + "..");
+  }
+  
+  /**
+   * This method shows the message of successfully loaded.
+   */
+  public void logLoadSucced() {
+    System.out.println("Successfully loaded..");
   }
 
   /**
