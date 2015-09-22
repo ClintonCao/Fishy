@@ -1,11 +1,15 @@
 package main;
 
+import java.net.URL;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
@@ -22,10 +26,9 @@ public class Game extends Application {
   private static int resX = 1280;
   private static int resY = 720;
   private static Logger logger;
-
-  // final URL resource = getClass().getResource("FXML/track.mp3");
-  // final Media media = new Media(resource.toString());
-  // static MediaPlayer mediaPlayer = null;
+  final URL resource = getClass().getResource("FXML/theme.mp3");
+  final Media media = new Media(resource.toString());
+  static MediaPlayer mediaPlayer;
 
   /**
    * Main method that launches the application.
@@ -62,11 +65,15 @@ public class Game extends Application {
 
       pane = (Pane) loader.load();
       logger.logLoadSucceeded();
+      
+      mediaPlayer = new MediaPlayer(media);
+      mediaPlayer.play();
+      mediaPlayer.setCycleCount(100);
 
       Scene scene = new Scene(pane);
       firstStage.setHeight(getResY());
       firstStage.setWidth(getResX());
-      firstStage.setResizable(false);	
+      firstStage.setResizable(false);
       firstStage.setScene(scene);
 
       firstStage.show();
