@@ -7,7 +7,6 @@ package main;
  *
  */
 public final class Logger {
- 
 
   /**
    * This method will write to console if the player hits the border of the
