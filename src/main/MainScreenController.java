@@ -161,6 +161,7 @@ public class MainScreenController {
                 currScore = 0;
                 this.stop();
                 Game.switchScreen("FXML/WinningScreen.fxml");
+                Game.mediaPlayer.stop();
                 logger.logSwitchScreen("WinningScreen");
             }
             
@@ -354,6 +355,7 @@ public class MainScreenController {
     // reset the current game score.
     currScore = 0;
     playerFish.setScore(currScore);
+    Game.mediaPlayer.stop();
     // switch to losing screen.
     Game.switchScreen("FXML/LosingScreen.fxml");
     // log the process of switching to losing screen.
