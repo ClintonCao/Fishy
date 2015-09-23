@@ -97,6 +97,7 @@ public class MainScreenController {
     entities = new ArrayList<EnemyFish>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = PlayerFish.createPlayerFish();
+    playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
     scoreText.setText("Score");
     logger = new Logger(playerFish, playerFish.getSprite().getBoundingBox());
     input = new ArrayList<String>();
@@ -167,7 +168,7 @@ public class MainScreenController {
             
             renderStatics(gc);
             
-            handlePlayerMovement();
+            handlePlayerInput(gc);
             
             generateEnemyFish();
 
@@ -258,6 +259,10 @@ public class MainScreenController {
     gc.setTextAlign(TextAlignment.CENTER);
     gc.setTextBaseline(VPos.CENTER);
     gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
+    
+    for (int i = 0; i < playerFish.getItems().size(); i++) {
+    	playerFish.getItems().get(i).getSprite().render(gc);
+    }
   }
   
   /**
@@ -280,38 +285,58 @@ public class MainScreenController {
   
   /**
    * This method handles the WASD input of the player.
+   * And any other input, like X for using item.
    */
-  private static void handlePlayerMovement() {
+  private static void handlePlayerInput(GraphicsContext gc) {
+	ArrayList<FishBomb> playerBombs = playerFish.getItems();  
     if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
-
-      playerFish.getSprite()
-        .setImg(playerFish.getPlayerFishLeftImage());
+      playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
       playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
+      for(int i = 0; i < playerBombs.size(); i++) {
+    	  playerBombs.get(i).updateX(-playerFish.getMoveSpeed());
+      }
       logger.logKeyPress("A");
       logger.logDirectionChange("left");
 
-    } else if (input.contains("D")
-            && !playerFish.intersectsRightScreenEdge()) {
-
-      playerFish.getSprite().setImg(
-              playerFish.getPlayerFishRightImage());
+    } else if (input.contains("D") && !playerFish.intersectsRightScreenEdge()) {
+      playerFish.getSprite().setImg(playerFish.getPlayerFishRightImage());
       playerFish.getSprite().updateX(playerFish.getMoveSpeed());
+      for(int i = 0; i < playerBombs.size(); i++) {
+    	  playerBombs.get(i).updateX(playerFish.getMoveSpeed());
+      }
       logger.logKeyPress("D");
       logger.logDirectionChange("right");
     }
+    
     if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
-
       playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
+      for(int i = 0; i < playerBombs.size(); i++) {
+    	  playerBombs.get(i).updateY(-playerFish.getMoveSpeed());
+      }
       logger.logKeyPress("W");
       logger.logDirectionChange("upwards");
 
-    } else if (input.contains("S")
-            && !playerFish.intersectsUnderScreenEdge()) {
-
+    } else if (input.contains("S") && !playerFish.intersectsUnderScreenEdge()) {
       playerFish.getSprite().updateY(playerFish.getMoveSpeed());
+      for(int i = 0; i < playerBombs.size(); i++) {
+    	  playerBombs.get(i).updateY(playerFish.getMoveSpeed());
+      }
       logger.logKeyPress("S");
       logger.logDirectionChange("downwards");
     }
+    
+    if(input.contains("X") && playerFish.getItems().size() > 0) {
+    	int index = playerFish.getItems().size() - 1;
+    	FishBomb fishBomb = (FishBomb) playerFish.getItems().get(index);
+    	gc.drawImage(new Image("redcircle.png"), playerFish.getSprite().getBoundingBox().getX(), playerFish.getSprite().getBoundingBox().getY());
+    	for(int i = 0; i < entities.size(); i++) {
+    		if(fishBomb.intersectsRectangle(entities.get(i).getSprite().getBoundingBox())) {
+    			handleCollision(i);
+    		}
+    	}
+    	playerFish.getItems().remove(index);
+    }
+    
   }
   
   /**

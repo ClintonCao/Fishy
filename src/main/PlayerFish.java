@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 
 /**
@@ -12,7 +14,7 @@ import javafx.scene.image.Image;
 public class PlayerFish extends Entity {
   private static String leftImageName = "FishOriginal_transparent.png";
   private static String rightImageName = "Fish_Right_Transparent.png";
-
+  private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
   private Image leftImage;
   private Image rightImage;
   private boolean isAlive;
@@ -228,4 +230,12 @@ public class PlayerFish extends Entity {
   public int getScore() {
     return score;
   }
+
+public ArrayList<FishBomb> getItems() {
+	return bombs;
+}
+
+public void setItems(ArrayList<FishBomb> items) {
+	this.bombs = items;
+}
 }
