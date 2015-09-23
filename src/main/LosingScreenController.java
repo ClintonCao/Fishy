@@ -52,7 +52,9 @@ public class LosingScreenController {
       @Override
       public void handle(MouseEvent event) {
         Game.switchScreen("FXML/MainScreen.fxml");
-        Game.mediaPlayer.play();
+        if(Game.getMusicOn()) {
+        	Game.mediaPlayer.play();
+        }
         logger.logSwitchScreen("MainScreen");
       }
     });

@@ -84,8 +84,8 @@ public class OptionsController {
       @Override
       public void handle(MouseEvent event) {
         Game.mediaPlayer.play();
+        Game.setMusicOn(true);
         logger.logMusicOnOff(true);
-
       }
     });
 
@@ -94,8 +94,8 @@ public class OptionsController {
       @Override
       public void handle(MouseEvent event) {
         Game.mediaPlayer.stop();
+        Game.setMusicOn(false);
         logger.logMusicOnOff(false);
-
       }
     });
 
@@ -103,10 +103,8 @@ public class OptionsController {
 
       @Override
       public void handle(MouseEvent event) {
-
         Game.switchScreen("FXML/MainScreen.fxml");
         logger.logSwitchScreen("MainScreen");
-
       }
     });
   }

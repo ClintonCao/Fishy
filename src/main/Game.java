@@ -29,6 +29,7 @@ public class Game extends Application {
   final URL resource = getClass().getResource("FXML/theme.mp3");
   final Media media = new Media(resource.toString());
   static MediaPlayer mediaPlayer;
+  private static boolean musicOn;
 
   /**
    * Main method that launches the application.
@@ -37,6 +38,7 @@ public class Game extends Application {
    *          arguments for the main method (nothing is used).
    */
   public static void main(String[] args) {
+	musicOn = true;
     Application.launch(Game.class, (java.lang.String[]) null);
   }
 
@@ -67,7 +69,9 @@ public class Game extends Application {
       logger.logLoadSucceeded();
       
       mediaPlayer = new MediaPlayer(media);
-      mediaPlayer.play();
+      if(musicOn) {
+    	  mediaPlayer.play();
+      }
       mediaPlayer.setCycleCount(100);
 
       Scene scene = new Scene(pane);
@@ -137,5 +141,13 @@ public class Game extends Application {
    */
   public static void setResX(int resX) {
     Game.resX = resX;
+  }
+
+  public static boolean getMusicOn() {
+	  return musicOn;
+  }
+
+  public static void setMusicOn(boolean bool) {
+	  musicOn = bool;
   }
 }
