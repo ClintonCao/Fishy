@@ -6,42 +6,8 @@ package main;
  * @author Group 6
  *
  */
-public class Logger {
-  //private PlayerFish player;
-  //private BoundingBox box;
-
-  /**
-   * The class' constructor.
-   * 
-   * @param pf
-   *          the Player Fish.
-   * @param bb
-   *          the Bounding box.
-   */
-  public Logger() {
-    //player = pf;
-    //box = bb;
-  }
-
-  /**
-   * Changes the player fish in the logger.
-   * 
-   * @param pf
-   *          The player fish that will replace the old value.
-   */
-//  public void setPlayer(PlayerFish pf) {
-//    player = pf;
-//  }
-
-  /**
-   * Changes the bounding box in the logger.
-   * 
-   * @param bb
-   *          The bounding box that will replace the old value.
-   */
-//  public void setBoundingBox(BoundingBox bb) {
-//    box = bb;
-//  }
+public final class Logger {
+ 
 
   /**
    * This method will write to console if the player hits the border of the
