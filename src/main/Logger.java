@@ -7,8 +7,8 @@ package main;
  *
  */
 public class Logger {
-  private PlayerFish player;
-  private BoundingBox box;
+  //private PlayerFish player;
+  //private BoundingBox box;
 
   /**
    * The class' constructor.
@@ -18,9 +18,9 @@ public class Logger {
    * @param bb
    *          the Bounding box.
    */
-  public Logger(PlayerFish pf, BoundingBox bb) {
-    player = pf;
-    box = bb;
+  public Logger() {
+    //player = pf;
+    //box = bb;
   }
 
   /**
@@ -29,9 +29,9 @@ public class Logger {
    * @param pf
    *          The player fish that will replace the old value.
    */
-  public void setPlayer(PlayerFish pf) {
-    player = pf;
-  }
+//  public void setPlayer(PlayerFish pf) {
+//    player = pf;
+//  }
 
   /**
    * Changes the bounding box in the logger.
@@ -39,16 +39,16 @@ public class Logger {
    * @param bb
    *          The bounding box that will replace the old value.
    */
-  public void setBoundingBox(BoundingBox bb) {
-    box = bb;
-  }
+//  public void setBoundingBox(BoundingBox bb) {
+//    box = bb;
+//  }
 
   /**
    * This method will write to console if the player hits the border of the
    * playing field.
    * 
    */
-  public void logEdgeBump() {
+  public void logEdgeBump(PlayerFish player) {
     if (player.intersectsLeftScreenEdge()) {
       System.out.println("Player bumped with the left border of the screen.");
     }

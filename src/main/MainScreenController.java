@@ -98,7 +98,7 @@ public class MainScreenController {
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = PlayerFish.createPlayerFish();
     scoreText.setText("Score");
-    logger = new Logger(playerFish, playerFish.getSprite().getBoundingBox());
+    logger = new Logger();
     input = new ArrayList<String>();
     frames = 0;
     currScore = 0;
@@ -121,7 +121,7 @@ public class MainScreenController {
 
       @Override
       public void handle(MouseEvent event) {
-        Logger logger1 = new Logger(null, null);
+        Logger logger1 = new Logger();
 
         logger1.logInit();
         init();
@@ -365,7 +365,7 @@ public class MainScreenController {
   private static void generateEnemyFish() {
     if (frames % 90 == 0) {
       entities.add(EnemyFish.generateFish());
-      logger.logEdgeBump();
+      logger.logEdgeBump(playerFish);
     }
   } 
 }
