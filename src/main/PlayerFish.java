@@ -85,22 +85,22 @@ public class PlayerFish extends Entity {
    *          the multiplier for the X and Y values.
    */
   public void grow(double multiplier) {
-
     double newWidth = multiplier * this.getSprite().getImg().getWidth();
     double newHeight = multiplier * this.getSprite().getImg().getHeight();
 
-    this.setPlayerFishLeftImage(new Image("FishOriginal_transparent.png",
-        newWidth, newHeight, true, true));
-    this.setPlayerFishRightImage(new Image("Fish_Right_Transparent.png",
-        newWidth, newHeight, true, true));
-    
-    this.getSprite().setImg(leftImage);
+    if(this.getSprite().getImg().equals(this.leftImage)) {
+    	this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight, true, true));
+    	this.setPlayerFishRightImage(new Image(rightImageName, newWidth, newHeight, true, true));
+    	this.getSprite().setImg(leftImage);
+    } else {  
+    	this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight, true, true));
+    	this.setPlayerFishRightImage(new Image(rightImageName, newWidth, newHeight, true, true));
+        this.getSprite().setImg(rightImage);
+    }
     BoundingBox playerFishBoundingBox = this.getSprite().getBoundingBox();
 
-    playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage()
-        .getWidth());
-    playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage()
-        .getHeight());
+    playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage().getWidth());
+    playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage().getHeight());
   }
 
   /**

@@ -8,7 +8,7 @@ package main;
  *         Doesburg.
  *
  */
-public class Entity {
+public abstract class Entity {
   private int moveSpeed;
   private Sprite sprite;
 
