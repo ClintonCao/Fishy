@@ -74,4 +74,64 @@ public class LoggerTest {
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   } 
+  
+  /**
+   * This method is for testing logKeyPress method.
+   */
+  @Test
+  public void testlogKeyPress() {
+    String key = "W";
+    String expected = "Key " + key + " has been pressed.";
+    logger.logKeyPress(key);
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);
+  }
+  
+  /**
+   * This method is for testing logNewScore method.
+   */
+  @Test
+  public void testlogNewScore() {
+    int score = 1;
+    String expected = "Player's score increased to: " + score;
+    logger.logNewScore(score);
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);
+  }
+  
+  /**
+   * This method is for testing logStartGame method.
+   */
+  @Test
+  public void testlogStartGame() {
+    String expected = "The game has started running.";
+    logger.logStartGame();
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);
+  } 
+  
+  /**
+   * This method is for testing logEndGame() method.
+   */
+  @Test
+  public void testlogEndGame() {
+    String expected = "The game is shutting down.";
+    logger.logEndGame();
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);
+  } 
+  
+  /**
+   * This method is for testing logSwitchScreen() method.
+   */
+  @Test
+  public void testlogSwitchScreen() {
+    String screen = "MainScreen";
+    String expected = "The game has switched to the " + screen + " screen.";
+    logger.logSwitchScreen(screen);
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);
+  }
+  
+  
 }

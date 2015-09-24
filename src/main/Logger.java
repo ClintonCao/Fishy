@@ -101,7 +101,10 @@ public final class Logger {
    *          The button pressed.
    */
   public void logKeyPress(String key) {
-    System.out.println("Key " + key + " has been pressed.");
+    String mes1 = "Key " + key + " has been pressed.";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
@@ -111,21 +114,30 @@ public final class Logger {
    *          The new score.
    */
   public void logNewScore(int score) {
-    System.out.println("Player's score increased to: " + score);
+    String mes1 = "Player's score increased to: " + score;
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
  /**
   * This method logs the game starting up.
   */
   public void logStartGame() {
-    System.out.println("The game has started running.");
+    String mes1 = "The game has started running.";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
    * This method logs the game shutting down.
    */
   public void logEndGame() {
-    System.out.println("The game is shutting down.");
+    String mes1 = "The game is shutting down.";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
@@ -135,7 +147,10 @@ public final class Logger {
    *            The name of the screen the game has changed to.
    */
   public void logSwitchScreen(String screenName) {
-    System.out.println("The game has switched to the " + screenName + " screen.");
+    String mes1 = "The game has switched to the " + screenName + " screen.";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
