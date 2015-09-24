@@ -1,5 +1,8 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class contains the logger, which will write specific events to console.
  * 
@@ -7,6 +10,18 @@ package main;
  *
  */
 public final class Logger {
+
+  private String[] messages;
+  List<String> message = new ArrayList<String>();
+  private int iterator = 0;
+  
+  /**
+   * This method gets the current message that has been logged.
+   * @return the current String message that has been logged.
+   */
+  public String getCurrentLog() {
+    return message.get(iterator - 1);
+  }
 
   /**
    * This method will write to console if the player hits the border of the
@@ -31,21 +46,30 @@ public final class Logger {
    * This method logs when the game's icon is being loaded.
    */
   public void logIcon() {
-    System.out.println("Loading game's icon..");
+    String mes = "Loading game's icon..";
+    message.add(iterator, mes);
+    iterator++;
+    System.out.println(mes);
   }
   
   /**
    * This method logs when game is being initialized.
    */
   public void logInit() {
-    System.out.println("Initializing game objects..");
+    String mes1 = "Initializing game objects..";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
    * This method logs when game is successfully initialized.
    */
   public void logInitSucceeded() {
-    System.out.println("Successfully initialized..");
+    String mes1 = "Successfully initialized..";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
@@ -54,14 +78,20 @@ public final class Logger {
    * @param screen the screen the game is loading
    */
   public void logLoadingScreen(String screen) {
-    System.out.println("Loading " + screen + "..");
+    String mes1 = "Loading " + screen + "..";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
    * This method shows the message of successfully loaded.
    */
   public void logLoadSucceeded() {
-    System.out.println("Successfully loaded..");
+    String mes1 = "Successfully loaded..";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
 
   /**
