@@ -13,45 +13,55 @@
             <Image url="@Fishy_bg.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="OnButton" layoutX="58.0" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#MusicOnEvent" opacity="0.75" prefHeight="73.0" prefWidth="218.0" text="On">
+      <Button fx:id="OnButton" layoutX="109.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#MusicOnEvent" opacity="0.75" prefHeight="73.0" prefWidth="218.0" text="On">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
-      <Button fx:id="OffButton" layoutX="302.0" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#MusicOffEvent" opacity="0.75" prefHeight="73.0" prefWidth="218.0" text="Off">
+      <Button fx:id="OffButton" layoutX="109.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#MusicOffEvent" opacity="0.75" prefHeight="73.0" prefWidth="218.0" text="Off">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="214.0" layoutY="76.0" prefHeight="102.0" prefWidth="155.0" text="Music" textAlignment="CENTER" textFill="#ff6dc7">
+      <Label alignment="CENTER" layoutX="138.0" layoutY="101.0" prefHeight="102.0" prefWidth="155.0" text="Music" textAlignment="CENTER" textFill="#ff6dc7">
          <font>
             <Font size="45.0" />
          </font>
       </Label>
-      <Button fx:id="BackButton" layoutX="109.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#BackButtonEvent" opacity="0.75" prefHeight="66.0" prefWidth="285.0" text="Back">
+      <Button fx:id="BackButton" layoutX="443.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#BackButtonEvent" opacity="0.75" prefHeight="66.0" prefWidth="316.0" text="Back">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="839.0" layoutY="49.0" prefHeight="58.0" prefWidth="262.0" text="Instructions" textAlignment="CENTER" textFill="#49e10c">
+      <Label alignment="CENTER" layoutX="648.0" layoutY="55.0" prefHeight="73.0" prefWidth="285.0" text="Instructions:" textAlignment="CENTER" textFill="#49e10c">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <ImageView fitHeight="174.0" fitWidth="268.0" layoutX="961.0" layoutY="157.0">
+      <ImageView fitHeight="132.0" fitWidth="211.0" layoutX="940.0" layoutY="80.0">
          <image>
             <Image url="@wasd.png" />
          </image>
       </ImageView>
-      <Text fill="#ecff52" layoutX="557.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use the WASD keys to move the fish in the direction you wish the fish to move." wrappingWidth="487.6708984375">
+      <Text fill="#ecff52" layoutX="465.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use the WASD keys to move the fish in the direction you wish the fish to move." wrappingWidth="487.6708984375">
          <font>
-            <Font size="30.0" />
+            <Font size="26.0" />
          </font>
       </Text>
-      <Text fill="#ecff52" layoutX="557.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The goal of the game is very simple, eat as many fish as possible. But be aware, you can only eat fish that are smaller than you are! If you try to eat a bigger fish, you will end being eaten and the game will end :(. The more fish you eat, the higher your score." wrappingWidth="651.6708984375">
+      <Text fill="#ecff52" layoutX="466.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The goal of the game is very simple, eat as many fish as possible. But be aware, you can only eat fish that are smaller than you are! If you try to eat a bigger fish, you will end being eaten and the game will end :( . The more fish you eat, the higher your score." wrappingWidth="651.6708984375">
          <font>
-            <Font size="30.0" />
+            <Font size="26.0" />
          </font>
       </Text>
+      <Text fill="#e4ff00" layoutX="466.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You also have three bombs when you start the game. Use the &quot;x&quot; key to activate the bomb. " wrappingWidth="528.55517578125">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="958.0" layoutY="506.0">
+         <image>
+            <Image url="@x.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
