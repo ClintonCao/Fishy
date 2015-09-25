@@ -199,7 +199,8 @@ public class MainScreenController {
       @Override
       public void handle(MouseEvent event) {
         Game.switchScreen("FXML/MenuScreen.fxml");
-        logger.logSwitchScreen("MenuScreen");
+
+        Game.getLogger().logSwitchScreen("MenuScreen");
 
       }
     });
@@ -210,7 +211,7 @@ public class MainScreenController {
       public void handle(MouseEvent event) {
 
         Platform.exit();
-        logger.logEndGame();
+        Game.getLogger().logEndGame();
 
       }
     });

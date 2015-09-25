@@ -143,6 +143,9 @@ public class Game extends Application {
     Game.resX = resX;
   }
 
+  public static Logger getLogger(){
+	  return logger;
+  }
   public static boolean getMusicOn() {
 	  return musicOn;
   }
