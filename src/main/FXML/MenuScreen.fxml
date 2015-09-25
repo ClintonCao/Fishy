@@ -63,5 +63,10 @@
             <Image url="@x.png" />
          </image>
       </ImageView>
+      <ImageView layoutX="1004.0" layoutY="406.0">
+         <image>
+            <Image url="@../../fishbombbig.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
