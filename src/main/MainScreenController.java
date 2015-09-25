@@ -40,6 +40,9 @@ public class MainScreenController {
   private static Logger logger;
   private static ArrayList<String> input;
   private static Image background = new Image("Fishy_bg.jpg");
+  private boolean bomb1;
+  private boolean bomb2;
+  private boolean bomb3;
 
   @FXML
   private ResourceBundle resources;
@@ -164,7 +167,18 @@ public class MainScreenController {
               logger.logSwitchScreen("WinningScreen");
             }
             
-            playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+            if(currScore > 500 && !bomb1) {
+            	playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+            	bomb1 = true;
+            }
+            if(currScore > 2000 && !bomb2) {
+            	playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+            	bomb2 = true;
+            }
+            if(currScore > 5000 && !bomb3) {
+            	playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+            	bomb3 = true;
+            }
 
             renderStatics(gc);
 
