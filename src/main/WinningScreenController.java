@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class WinningScreenController {
 
-  private static Logger logger = new Logger(null, null);
+  private static Logger logger = new Logger();
 
   @FXML
   private ResourceBundle resources;

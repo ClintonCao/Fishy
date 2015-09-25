@@ -1,46 +1,26 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class contains the logger, which will write specific events to console.
  * 
  * @author Group 6
  *
  */
-public class Logger {
-  private PlayerFish player;
-  private BoundingBox box;
+public final class Logger {
 
+  private String[] messages;
+  List<String> message = new ArrayList<String>();
+  private int iterator = 0;
+  
   /**
-   * The class' constructor.
-   * 
-   * @param pf
-   *          the Player Fish.
-   * @param bb
-   *          the Bounding box.
+   * This method gets the current message that has been logged.
+   * @return the current String message that has been logged.
    */
-  public Logger(PlayerFish pf, BoundingBox bb) {
-    player = pf;
-    box = bb;
-  }
-
-  /**
-   * Changes the player fish in the logger.
-   * 
-   * @param pf
-   *          The player fish that will replace the old value.
-   */
-  public void setPlayer(PlayerFish pf) {
-    player = pf;
-  }
-
-  /**
-   * Changes the bounding box in the logger.
-   * 
-   * @param bb
-   *          The bounding box that will replace the old value.
-   */
-  public void setBoundingBox(BoundingBox bb) {
-    box = bb;
+  public String getCurrentLog() {
+    return message.get(iterator - 1);
   }
 
   /**
@@ -48,7 +28,7 @@ public class Logger {
    * playing field.
    * 
    */
-  public void logEdgeBump() {
+  public void logEdgeBump(PlayerFish player) {
     if (player.intersectsLeftScreenEdge()) {
       System.out.println("Player bumped with the left border of the screen.");
     }
@@ -66,21 +46,30 @@ public class Logger {
    * This method logs when the game's icon is being loaded.
    */
   public void logIcon() {
-    System.out.println("Loading game's icon..");
+    String mes = "Loading game's icon..";
+    message.add(iterator, mes);
+    iterator++;
+    System.out.println(mes);
   }
   
   /**
    * This method logs when game is being initialized.
    */
   public void logInit() {
-    System.out.println("Initializing game objects..");
+    String mes1 = "Initializing game objects..";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
    * This method logs when game is successfully initialized.
    */
   public void logInitSucceeded() {
-    System.out.println("Successfully initialized..");
+    String mes1 = "Successfully initialized..";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
@@ -89,14 +78,20 @@ public class Logger {
    * @param screen the screen the game is loading
    */
   public void logLoadingScreen(String screen) {
-    System.out.println("Loading " + screen + "..");
+    String mes1 = "Loading " + screen + "..";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
    * This method shows the message of successfully loaded.
    */
   public void logLoadSucceeded() {
-    System.out.println("Successfully loaded..");
+    String mes1 = "Successfully loaded..";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
 
   /**
@@ -106,7 +101,10 @@ public class Logger {
    *          The button pressed.
    */
   public void logKeyPress(String key) {
-    System.out.println("Key " + key + " has been pressed.");
+    String mes1 = "Key " + key + " has been pressed.";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
@@ -116,21 +114,30 @@ public class Logger {
    *          The new score.
    */
   public void logNewScore(int score) {
-    System.out.println("Player's score increased to: " + score);
+    String mes1 = "Player's score increased to: " + score;
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
  /**
   * This method logs the game starting up.
   */
   public void logStartGame() {
-    System.out.println("The game has started running.");
+    String mes1 = "The game has started running.";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
    * This method logs the game shutting down.
    */
   public void logEndGame() {
-    System.out.println("The game is shutting down.");
+    String mes1 = "The game is shutting down.";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
@@ -140,7 +147,10 @@ public class Logger {
    *            The name of the screen the game has changed to.
    */
   public void logSwitchScreen(String screenName) {
-    System.out.println("The game has switched to the " + screenName + " screen.");
+    String mes1 = "The game has switched to the " + screenName + " screen.";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**

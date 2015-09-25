@@ -53,7 +53,7 @@ public class Game extends Application {
     try {
 
       stage = firstStage;
-      logger = new Logger(null, null);
+      logger = new Logger();
       
       firstStage.setTitle("Fishy");
       logger.logStartGame();

@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
  *
  */
 public class LosingScreenController {
-  private static Logger logger = new Logger(null, null);
+  private static Logger logger = new Logger();
 
   @FXML
   private ResourceBundle resources;
