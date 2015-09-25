@@ -133,5 +133,30 @@ public class LoggerTest {
     assertEquals(expected, actual);
   }
   
+  /**
+   * This method is for testing logGameResult method.
+   */
+  @Test
+  public void testlogGameResult() {
+    int score = 1;
+    String result = "lost";
+    String expected = "The player has " + result + " the game, with an end score of: " + score;
+    logger.logGameResult(result, score);
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);
+  }
+  
+  /**
+   * This method is for testing logDirectionChange() method.
+   */
+  @Test
+  public void testlogDirectionChange() {
+    String direction = "up";
+    String expected = "The player has started moving " + direction + ".";
+    logger.logDirectionChange(direction);
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);
+  }
+  
   
 }
