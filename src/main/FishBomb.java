@@ -13,8 +13,7 @@ public class FishBomb extends Item {
 
   /**
    * The constructor for the FishBomb class.
-   * @param uses
-   *    The amount of times the bomb can be used.
+   *
    * @param sprite
    *    The sprite used to represent the bomb.
    * @param radius
@@ -57,11 +56,12 @@ public class FishBomb extends Item {
    */
   public static FishBomb createFishBomb(PlayerFish pf) {
     BoundingBox pfbb = pf.getSprite().getBoundingBox();
-    int explImgDim = pfbb.getHeight()*4;
+    int explImgDim = pfbb.getHeight() * 4;
     return new FishBomb(new Sprite(new Image("fishbombbig.png"),
-        new BoundingBox(10, 10, 0, 0)), explImgDim/2, new Image("redcircle.png", explImgDim, explImgDim, true, true), 
-    		(int) (pfbb.getX() - 0.5*pf.getSprite().getImg().getWidth()), 
-    		(int) (pfbb.getY() - 0.5*pf.getSprite().getImg().getHeight()));
+        new BoundingBox(10, 10, 0, 0)), explImgDim / 2, 
+        new Image("redcircle.png", explImgDim, explImgDim, true, true), 
+    (int) (pfbb.getX() - 0.5 * pf.getSprite().getImg().getWidth()), 
+    (int) (pfbb.getY() - 0.5 * pf.getSprite().getImg().getHeight()));
   }
 
   public void render(GraphicsContext gc) {
@@ -119,11 +119,11 @@ public class FishBomb extends Item {
     this.posY = posY;
   }
 
-public Image getExplosionImg() {
-	return explosionImg;
-}
+  public Image getExplosionImg() {
+    return explosionImg;
+  }
 
-public void setExplosionImg(Image explosionImg) {
-	this.explosionImg = explosionImg;
-}
+  public void setExplosionImg(Image explosionImg) {
+    this.explosionImg = explosionImg;
+  }
 }

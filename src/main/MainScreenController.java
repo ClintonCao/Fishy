@@ -167,17 +167,17 @@ public class MainScreenController {
               logger.logSwitchScreen("WinningScreen");
             }
             
-            if(currScore > 500 && !bomb1) {
-            	playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
-            	bomb1 = true;
+            if (currScore > 500 && !bomb1) {
+              playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+              bomb1 = true;
             }
-            if(currScore > 2000 && !bomb2) {
-            	playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
-            	bomb2 = true;
+            if (currScore > 2000 && !bomb2) {
+              playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+              bomb2 = true;
             }
-            if(currScore > 5000 && !bomb3) {
-            	playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
-            	bomb3 = true;
+            if (currScore > 5000 && !bomb3) {
+              playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+              bomb3 = true;
             }
 
             renderStatics(gc);
@@ -351,8 +351,8 @@ public class MainScreenController {
       int index = playerFish.getItems().size() - 1;
       FishBomb fishBomb = (FishBomb) playerFish.getItems().get(index);
       Image explosionImg = playerFish.getItems().get(index).getExplosionImg();
-      int imgPosX = (int) (fishBomb.getPosX()-0.25*explosionImg.getWidth());
-      int imgPosY = (int) (fishBomb.getPosY()-0.25*explosionImg.getHeight());
+      int imgPosX = (int) (fishBomb.getPosX() - 0.25 * explosionImg.getWidth());
+      int imgPosY = (int) (fishBomb.getPosY() - 0.25 * explosionImg.getHeight());
       gc.drawImage(explosionImg, imgPosX, imgPosY);
       for (int i = 0; i < entities.size(); i++) {
         if (fishBomb.intersectsRectangle(entities.get(i).getSprite()
