@@ -16,8 +16,6 @@ import javafx.scene.input.MouseEvent;
  *
  */
 public class OptionsController {
-  
-  private static Logger logger = new Logger();
 
   @FXML
   private ResourceBundle resources;
@@ -85,7 +83,7 @@ public class OptionsController {
       public void handle(MouseEvent event) {
         Game.mediaPlayer.play();
         Game.setMusicOn(true);
-        logger.logMusicOnOff(true);
+        Game.getLogger().logMusicOnOff(true);
       }
     });
 
@@ -95,7 +93,7 @@ public class OptionsController {
       public void handle(MouseEvent event) {
         Game.mediaPlayer.stop();
         Game.setMusicOn(false);
-        logger.logMusicOnOff(false);
+        Game.getLogger().logMusicOnOff(false);
       }
     });
 
@@ -104,7 +102,7 @@ public class OptionsController {
       @Override
       public void handle(MouseEvent event) {
         Game.switchScreen("FXML/MainScreen.fxml");
-        logger.logSwitchScreen("MainScreen");
+        Game.getLogger().logSwitchScreen("MainScreen");
       }
     });
   }

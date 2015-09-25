@@ -16,7 +16,6 @@ import javafx.scene.input.MouseEvent;
  *
  */
 public class LosingScreenController {
-  private static Logger logger = new Logger();
 
   @FXML
   private ResourceBundle resources;
@@ -55,7 +54,7 @@ public class LosingScreenController {
         if(Game.getMusicOn()) {
         	Game.mediaPlayer.play();
         }
-        logger.logSwitchScreen("MainScreen");
+        Game.getLogger().logSwitchScreen("MainScreen");
       }
     });
   }
