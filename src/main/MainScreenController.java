@@ -345,19 +345,7 @@ public class MainScreenController {
       }
       Game.getLogger().logKeyPress("D");
       Game.getLogger().logDirectionChange("right");
-
-      playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
-      playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
-      Game.getLogger().logKeyPress("A");
-      Game.getLogger().logDirectionChange("left");
-
-    } else if (input.contains("D") && !playerFish.intersectsRightScreenEdge()) {
-
-      playerFish.getSprite().setImg(playerFish.getPlayerFishRightImage());
-      playerFish.getSprite().updateX(playerFish.getMoveSpeed());
-      Game.getLogger().logKeyPress("D");
-      Game.getLogger().logDirectionChange("right");
-    }
+    } 
 
     if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
       playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
@@ -372,14 +360,6 @@ public class MainScreenController {
       for (int i = 0; i < playerBombs.size(); i++) {
         playerBombs.get(i).updateY(playerFish.getMoveSpeed());
       }
-      Game.getLogger().logKeyPress("S");
-      Game.getLogger().logDirectionChange("downwards");
-      Game.getLogger().logKeyPress("W");
-      Game.getLogger().logDirectionChange("upwards");
-
-    } else if (input.contains("S") && !playerFish.intersectsUnderScreenEdge()) {
-
-      playerFish.getSprite().updateY(playerFish.getMoveSpeed());
       Game.getLogger().logKeyPress("S");
       Game.getLogger().logDirectionChange("downwards");
     }
