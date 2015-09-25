@@ -37,7 +37,6 @@ public class MainScreenController {
   private static final double MULTIPLIER = 1.05;
   private static Text scoreText = new Text();
   private static int currScore;
-  private static Logger logger;
   private static ArrayList<String> input;
   private static Image background = new Image("Fishy_bg.jpg");
 
@@ -101,7 +100,6 @@ public class MainScreenController {
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = PlayerFish.createPlayerFish();
     scoreText.setText("Score");
-    logger = new Logger(playerFish, playerFish.getSprite().getBoundingBox());
     input = new ArrayList<String>();
     frames = 0;
     if (!Game.isPlayingNewGamePlus()) {
@@ -123,11 +121,10 @@ public class MainScreenController {
         + "check your FXML file 'Main Screen.fxml'.";
     assert NGPText != null : "fx:id=\"NGPText\" was not injected: "
         + "check your FXML file 'MainScreen.fxml'.";
-    Logger logger1 = new Logger(null, null);
 
-    logger1.logInit();
+    Game.getLogger().logInit();
     init();
-    logger1.logInitSucceeded();
+    Game.getLogger().logInitSucceeded();
 
     if (Game.isPlayingNewGamePlus()) {
       QuitButton.setVisible(false);
@@ -140,7 +137,7 @@ public class MainScreenController {
 
       @Override
       public void handle(MouseEvent event) {
-
+        
         Group root = new Group();
         Scene scene = new Scene(root);
         Game.stage.setScene(scene);
@@ -174,7 +171,7 @@ public class MainScreenController {
               this.stop();
               Game.switchScreen("FXML/WinningScreen.fxml");
               Game.mediaPlayer.stop();
-              logger.logSwitchScreen("WinningScreen");
+              Game.getLogger().logSwitchScreen("WinningScreen");
             }
 
             renderStatics(gc);
@@ -213,7 +210,7 @@ public class MainScreenController {
       @Override
       public void handle(MouseEvent event) {
         Game.switchScreen("FXML/MenuScreen.fxml");
-        logger.logSwitchScreen("MenuScreen");
+        Game.getLogger().logSwitchScreen("MenuScreen");
 
       }
     });
@@ -224,7 +221,7 @@ public class MainScreenController {
       public void handle(MouseEvent event) {
 
         Platform.exit();
-        logger.logEndGame();
+        Game.getLogger().logEndGame();
 
       }
     });
@@ -306,27 +303,27 @@ public class MainScreenController {
 
       playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
       playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
-      logger.logKeyPress("A");
-      logger.logDirectionChange("left");
+      Game.getLogger().logKeyPress("A");
+      Game.getLogger().logDirectionChange("left");
 
     } else if (input.contains("D") && !playerFish.intersectsRightScreenEdge()) {
 
       playerFish.getSprite().setImg(playerFish.getPlayerFishRightImage());
       playerFish.getSprite().updateX(playerFish.getMoveSpeed());
-      logger.logKeyPress("D");
-      logger.logDirectionChange("right");
+      Game.getLogger().logKeyPress("D");
+      Game.getLogger().logDirectionChange("right");
     }
     if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
 
       playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
-      logger.logKeyPress("W");
-      logger.logDirectionChange("upwards");
+      Game.getLogger().logKeyPress("W");
+      Game.getLogger().logDirectionChange("upwards");
 
     } else if (input.contains("S") && !playerFish.intersectsUnderScreenEdge()) {
 
       playerFish.getSprite().updateY(playerFish.getMoveSpeed());
-      logger.logKeyPress("S");
-      logger.logDirectionChange("downwards");
+      Game.getLogger().logKeyPress("S");
+      Game.getLogger().logDirectionChange("downwards");
     }
   }
 
@@ -348,11 +345,11 @@ public class MainScreenController {
     // get the area as the score.
     int score = (height * width) / 100;
     // print in the console that player fish has eaten a smaller fish.
-    logger.logPlayerFishGrows(score);
+    Game.getLogger().logPlayerFishGrows(score);
     // then adds the score to the current score.
     setCurrScore(currScore + score);
     // print in the console of the current score of the player.
-    logger.logNewScore(currScore);
+    Game.getLogger().logNewScore(currScore);
     // finally sets the total score to the player
     // fish.
     playerFish.setScore(currScore);
@@ -365,9 +362,9 @@ public class MainScreenController {
    */
   private static void playerLost() {
     // the logger prints the fact that player fish dies.
-    logger.logPlayerFishDies();
+    Game.getLogger().logPlayerFishDies();
     // the logger also prints the status of the game.
-    logger.logGameResult("lost", currScore);
+    Game.getLogger().logGameResult("lost", currScore);
     // reset the current game score.
     setCurrScore(0);
     playerFish.setScore(currScore);
@@ -376,7 +373,7 @@ public class MainScreenController {
     // switch to losing screen.
     Game.switchScreen("FXML/LosingScreen.fxml");
     // log the process of switching to losing screen.
-    logger.logSwitchScreen("LosingScreen");
+    Game.getLogger().logSwitchScreen("LosingScreen");
   }
 
   /**
@@ -385,7 +382,7 @@ public class MainScreenController {
   private static void generateEnemyFish() {
     if (frames % 90 == 0) {
       entities.add(EnemyFish.generateFish());
-      logger.logEdgeBump();
+      Game.getLogger().logEdgeBump(playerFish);
     }
   }
 

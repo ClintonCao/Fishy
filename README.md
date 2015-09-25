@@ -7,9 +7,9 @@ This repository contains our implementation of the game Fishy. This game is a pr
 
 Group #6 members:
 
-Name   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NetID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          Student number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Name   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NetID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          Student number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-Michiel Doesburg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      mdoesburg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       4343875 
+Michiel Doesburg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      mdoesburg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       4343875 
 
 Matthijs Halvemaan &nbsp;&nbsp;&nbsp;&nbsp;mhalvemaan   &nbsp;&nbsp;&nbsp;4353803
 
@@ -20,4 +20,4 @@ Sunwei Wang &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 Clinton Cao &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         cscao&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           4349024
 
 
-TA: Valentine Mairiet       V.A.P.Mairet@student.tudelft.nl
+TA: Valentine Mairet       V.A.P.Mairet@student.tudelft.nl
