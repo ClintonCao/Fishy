@@ -158,5 +158,52 @@ public class LoggerTest {
     assertEquals(expected, actual);
   }
   
+  /**
+   * This method is for testing logPlayerFishDies method.
+   */
+  @Test
+  public void testlogPlayerFishDies() {
+    String expected = "You got eaten by a bigger fish..";
+    logger.logPlayerFishDies();
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);
+  }
+    
+  /**
+   * This method is for testing logPlayerFishGrows method.
+   */
+  @Test
+  public void testlogPlayerFishGrows() {
+    int score = 1;
+    String expected1 = "You just ate a smaller fish. \r\n And you have just gained " 
+         + score + " points";
+    logger.logPlayerFishGrows(score);
+    String actual1 = logger.getCurrentLog();
+    assertEquals(expected1, actual1);
+  }
+  
+  /**
+   * This method is for testing music is on.
+   */
+  @Test
+  public void testlogMusicOn() {
+    boolean music = true;
+    String expected = "The music is on";
+    logger.logMusicOnOff(music);
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);    
+  }
+
+  /**
+   * This method is for testing music is off.
+   */
+  @Test
+  public void testlogMusicOff() {
+    boolean music = false;
+    String expected = "The music is off";
+    logger.logMusicOnOff(music);
+    String actual = logger.getCurrentLog();
+    assertEquals(expected, actual);    
+  }    
   
 }

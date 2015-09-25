@@ -187,7 +187,10 @@ public final class Logger {
    * 
    */
   public void logPlayerFishDies() {
-    System.out.println("You got eaten by a bigger fish..");
+    String mes = "You got eaten by a bigger fish..";
+    message.add(iterator, mes);
+    iterator++;
+    System.out.println(mes);
   }
   
   /**
@@ -196,8 +199,10 @@ public final class Logger {
    * @param score indicates the score the player fish gained. 
    */
   public void logPlayerFishGrows(int score) {
-    System.out.println("You just ate a smaller fish.");
-    System.out.println("And you have just gained " + score + " points");
+    String mes1 = "You just ate a smaller fish. \r\n And you have just gained " + score + " points";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
@@ -210,6 +215,9 @@ public final class Logger {
     if (on) {
       text = "on";
     }
-    System.out.println("The music is " + text);
+    String mes1 = "The music is " + text;
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
 }
