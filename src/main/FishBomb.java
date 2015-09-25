@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 
 public class FishBomb extends Item {
   private int radius;
+  private Image explosionImg;
   private int posX;
   private int posY;
 
@@ -23,9 +24,10 @@ public class FishBomb extends Item {
    * @param posY
    *    The y coordinate of the bomb.
    */
-  public FishBomb(int uses, Sprite sprite, int radius, int posX, int posY) {
-    super(uses, sprite);
+  public FishBomb(Sprite sprite, int radius, Image explosionImg, int posX, int posY) {
+    super(sprite);
     this.setRadius(radius);
+    this.setExplosionImg(explosionImg);
     this.setPosX(posX);
     this.setPosY(posY);
   }
@@ -55,8 +57,11 @@ public class FishBomb extends Item {
    */
   public static FishBomb createFishBomb(PlayerFish pf) {
     BoundingBox pfbb = pf.getSprite().getBoundingBox();
-    return new FishBomb(1, new Sprite(new Image("fishbombbig.png"),
-        new BoundingBox(10, 10, 0, 0)), 100, pfbb.getX(), pfbb.getY());
+    int explImgDim = pfbb.getHeight()*4;
+    return new FishBomb(new Sprite(new Image("fishbombbig.png"),
+        new BoundingBox(10, 10, 0, 0)), explImgDim/2, new Image("redcircle.png", explImgDim, explImgDim, true, true), 
+    		(int) (pfbb.getX() - 0.5*pf.getSprite().getImg().getWidth()), 
+    		(int) (pfbb.getY() - 0.5*pf.getSprite().getImg().getHeight()));
   }
 
   public void render(GraphicsContext gc) {
@@ -113,4 +118,12 @@ public class FishBomb extends Item {
   public void setPosY(int posY) {
     this.posY = posY;
   }
+
+public Image getExplosionImg() {
+	return explosionImg;
+}
+
+public void setExplosionImg(Image explosionImg) {
+	this.explosionImg = explosionImg;
+}
 }

@@ -163,6 +163,8 @@ public class MainScreenController {
               Game.mediaPlayer.stop();
               logger.logSwitchScreen("WinningScreen");
             }
+            
+            playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
 
             renderStatics(gc);
 
@@ -334,9 +336,10 @@ public class MainScreenController {
     if (input.contains("X") && playerFish.getItems().size() > 0) {
       int index = playerFish.getItems().size() - 1;
       FishBomb fishBomb = (FishBomb) playerFish.getItems().get(index);
-      gc.drawImage(new Image("redcircle.png"), playerFish.getSprite()
-          .getBoundingBox().getX(), playerFish.getSprite().getBoundingBox()
-          .getY());
+      Image explosionImg = playerFish.getItems().get(index).getExplosionImg();
+      int imgPosX = (int) (fishBomb.getPosX()-0.25*explosionImg.getWidth());
+      int imgPosY = (int) (fishBomb.getPosY()-0.25*explosionImg.getHeight());
+      gc.drawImage(explosionImg, imgPosX, imgPosY);
       for (int i = 0; i < entities.size(); i++) {
         if (fishBomb.intersectsRectangle(entities.get(i).getSprite()
             .getBoundingBox())) {
