@@ -11,6 +11,7 @@ import java.util.List;
  */
 public final class Logger {
 
+  @SuppressWarnings("unused")
   private String[] messages;
   List<String> message = new ArrayList<String>();
   private int iterator = 0;
@@ -162,7 +163,10 @@ public final class Logger {
    *            The final score.
    */
   public void logGameResult(String result, int score) {
-    System.out.println("The player has " + result + " the game, with an end score of: " + score);
+    String mes1 = "The player has " + result + " the game, with an end score of: " + score;
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1); 
   }
   
   /**
@@ -172,7 +176,10 @@ public final class Logger {
    *            The direction in which the player is moving.
    */
   public void logDirectionChange(String direction) {
-    System.out.println("The player has started moving " + direction + ".");
+    String mes1 = "The player has started moving " + direction + ".";
+    message.add(iterator, mes1);
+    iterator++;
+    System.out.println(mes1);
   }
   
   /**
