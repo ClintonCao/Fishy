@@ -151,6 +151,7 @@ public class Game extends Application {
 
   public static void setMusicOn(boolean bool) {
     musicOn = bool;
+
   }
   
   public static void setNewGamePlusMode(boolean bool) {

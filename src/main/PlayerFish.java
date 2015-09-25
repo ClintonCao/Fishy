@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 
 /**
@@ -12,11 +14,12 @@ import javafx.scene.image.Image;
 public class PlayerFish extends Entity {
   private static String leftImageName = "FishOriginal_transparent.png";
   private static String rightImageName = "Fish_Right_Transparent.png";
-
+  private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
   private Image leftImage;
   private Image rightImage;
   private boolean isAlive;
   private int score;
+  private int counter;
 
   /**
    * The PlayerFish's constructor.
@@ -212,11 +215,20 @@ public class PlayerFish extends Entity {
 
   /**
    * This method replaces the PlayerFish's score.
+   * It will also give a FishBomb to the player for each 100 points scored.
    * 
    * @param number
    *          The score that will replace the old value
    */
   public void setScore(int number) {
+    counter += (number - score);
+    if (counter >= 100) {
+      counter = 0;
+      FishBomb bomb = FishBomb.createFishBomb(this);
+      if (bombs.size() == 0 ) {
+        bombs.add(bomb); 
+      }
+    }
     score = number;
   }
 
@@ -227,5 +239,13 @@ public class PlayerFish extends Entity {
    */
   public int getScore() {
     return score;
+  }
+
+  public ArrayList<FishBomb> getItems() {
+    return bombs;
+  }
+
+  public void setItems(ArrayList<FishBomb> items) {
+    this.bombs = items;
   }
 }
