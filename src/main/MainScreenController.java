@@ -45,6 +45,9 @@ public class MainScreenController {
 
   @FXML
   private URL location;
+  
+  @FXML
+  private Text HighScoreText;
 
   @FXML
   private Button MenuButton;
@@ -121,9 +124,12 @@ public class MainScreenController {
         + "check your FXML file 'Main Screen.fxml'.";
     assert NGPText != null : "fx:id=\"NGPText\" was not injected: "
         + "check your FXML file 'MainScreen.fxml'.";
+    assert HighScoreText != null : "fx:id=\"HighScoreText\" was not injected:"
+        + " check your FXML file 'MainScreen.fxml'.";
 
     Game.getLogger().logInit();
     init();
+    HighScoreText.setText(""+Game.getHighScore());
     Game.getLogger().logInitSucceeded();
 
     if (Game.isPlayingNewGamePlus()) {
@@ -253,7 +259,7 @@ public class MainScreenController {
    * @return true if the player is bigger than a certain size.
    */
   private static boolean playerHasWon() {
-    return (playerFish.getSprite().getBoundingBox().getHeight() > 400);
+    return (playerFish.getSprite().getBoundingBox().getHeight() > 46);
   }
 
   /**
@@ -353,6 +359,10 @@ public class MainScreenController {
     // finally sets the total score to the player
     // fish.
     playerFish.setScore(currScore);
+    
+    if (currScore > Game.getHighScore()) {
+      Game.setHighScore(currScore);
+    }
   }
 
   /**

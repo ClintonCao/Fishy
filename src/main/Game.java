@@ -31,6 +31,7 @@ public class Game extends Application {
   static MediaPlayer mediaPlayer;
   private static boolean musicOn;
   private static boolean newgameplus = false;
+  private static int highscore = 0;
 
   /**
    * Main method that launches the application.
@@ -162,5 +163,13 @@ public class Game extends Application {
   
   public static Logger getLogger() {
     return logger;
+  }
+  
+  public static void setHighScore(int score) {
+    highscore = score; 
+  }
+  
+  public static int getHighScore() {
+    return highscore;
   }
 }
