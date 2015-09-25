@@ -18,7 +18,7 @@
             <Font name="Arial" size="80.0" />
          </font>
       </Text>
-      <Button fx:id="MainScreenButton" layoutX="524.0" layoutY="573.0" mnemonicParsing="false" onMouseClicked="#MainScreenEvent" opacity="0.75" prefHeight="76.0" prefWidth="233.0" text="Main Screen">
+      <Button fx:id="MainScreenButton" layoutX="375.0" layoutY="583.0" mnemonicParsing="false" onMouseClicked="#MainScreenEvent" opacity="0.75" prefHeight="76.0" prefWidth="233.0" text="Main Screen">
          <font>
             <Font size="26.0" />
          </font>
@@ -28,5 +28,10 @@
             <Image url="@thumbs.png" />
          </image>
       </ImageView>
+      <Button fx:id="NGPButton" layoutX="663.0" layoutY="583.0" mnemonicParsing="false" onMouseClicked="#NGPEvent" opacity="0.75" prefHeight="76.0" prefWidth="233.0" text="New Game+">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

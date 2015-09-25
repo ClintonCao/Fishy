@@ -30,6 +30,8 @@ public class Game extends Application {
   final Media media = new Media(resource.toString());
   static MediaPlayer mediaPlayer;
   private static boolean musicOn;
+  private static boolean newgameplus = false;
+  private static int highscore = 0;
 
   /**
    * Main method that launches the application.
@@ -53,7 +55,7 @@ public class Game extends Application {
     try {
 
       stage = firstStage;
-      logger = new Logger(null, null);
+      logger = new Logger();
       
       firstStage.setTitle("Fishy");
       logger.logStartGame();
@@ -149,5 +151,26 @@ public class Game extends Application {
 
   public static void setMusicOn(boolean bool) {
     musicOn = bool;
+
+  }
+  
+  public static void setNewGamePlusMode(boolean bool) {
+    newgameplus = bool;
+  }
+  
+  public static boolean isPlayingNewGamePlus() {
+    return newgameplus;
+  }
+  
+  public static Logger getLogger() {
+    return logger;
+  }
+  
+  public static void setHighScore(int score) {
+    highscore = score; 
+  }
+  
+  public static int getHighScore() {
+    return highscore;
   }
 }
