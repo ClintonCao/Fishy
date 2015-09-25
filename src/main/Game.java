@@ -38,7 +38,7 @@ public class Game extends Application {
    *          arguments for the main method (nothing is used).
    */
   public static void main(String[] args) {
-	musicOn = true;
+    musicOn = true;
     Application.launch(Game.class, (java.lang.String[]) null);
   }
 
@@ -69,8 +69,8 @@ public class Game extends Application {
       logger.logLoadSucceeded();
       
       mediaPlayer = new MediaPlayer(media);
-      if(musicOn) {
-    	  mediaPlayer.play();
+      if (musicOn) {
+        mediaPlayer.play();
       }
       mediaPlayer.setCycleCount(100);
 
@@ -144,10 +144,10 @@ public class Game extends Application {
   }
 
   public static boolean getMusicOn() {
-	  return musicOn;
+    return musicOn;
   }
 
   public static void setMusicOn(boolean bool) {
-	  musicOn = bool;
+    musicOn = bool;
   }
 }

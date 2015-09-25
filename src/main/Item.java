@@ -1,27 +1,27 @@
 package main;
 
 public abstract class Item {
-	private int uses;
-	private Sprite sprite;
-	
-	public Item(int uses, Sprite sprite) {
-		this.setUses(uses);
-		this.setSprite(sprite);
-	}
+  private int uses;
+  private Sprite sprite;
 
-	public int getUses() {
-		return uses;
-	}
+  public Item(int uses, Sprite sprite) {
+    this.setUses(uses);
+    this.setSprite(sprite);
+  }
 
-	public void setUses(int uses) {
-		this.uses = uses;
-	}
+  public int getUses() {
+    return uses;
+  }
 
-	public Sprite getSprite() {
-		return sprite;
-	}
+  public void setUses(int uses) {
+    this.uses = uses;
+  }
 
-	public void setSprite(Sprite sprite) {
-		this.sprite = sprite;
-	}
+  public Sprite getSprite() {
+    return sprite;
+  }
+
+  public void setSprite(Sprite sprite) {
+    this.sprite = sprite;
+  }
 }

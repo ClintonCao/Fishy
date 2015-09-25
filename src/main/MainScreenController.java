@@ -90,8 +90,8 @@ public class MainScreenController {
   }
 
   /**
-   * Set up things we need. Initialize the sprite list, and create the
-   * player fish.
+   * Set up things we need. Initialize the sprite list, and create the player
+   * fish.
    */
   public static void init() {
     entities = new ArrayList<EnemyFish>();
@@ -134,7 +134,7 @@ public class MainScreenController {
         Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
 
         root.getChildren().add(canvas);
-        
+
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
           public void handle(KeyEvent e) {
             String code = e.getCode().toString();
@@ -152,36 +152,36 @@ public class MainScreenController {
         });
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        
-
 
         new AnimationTimer() {
           public void handle(long currentNTime) {
-              
+
             if (playerHasWon()) {
-                currScore = 0;
-                this.stop();
-                Game.switchScreen("FXML/WinningScreen.fxml");
-                Game.mediaPlayer.stop();
-                logger.logSwitchScreen("WinningScreen");
+              currScore = 0;
+              this.stop();
+              Game.switchScreen("FXML/WinningScreen.fxml");
+              Game.mediaPlayer.stop();
+              logger.logSwitchScreen("WinningScreen");
             }
-            
+
             renderStatics(gc);
-            
+
             handlePlayerInput(gc);
-            
+
             generateEnemyFish();
 
             for (int i = 0; i < entities.size(); i++) {
 
-                if (!entities.get(i).getSprite().getBoundingBox().intersects(screenbox)) {
+              if (!entities.get(i).getSprite().getBoundingBox()
+                  .intersects(screenbox)) {
                 entities.remove(i);
-              } else if (playerFish.intersects(entities.get(i)) && playerFish.isAlive()) {
-                  // if the player fish is bigger than the enemy fish,
-                  // then the player fish grows.
-                  if (!playerFish.playerDies(entities.get(i))) {
+              } else if (playerFish.intersects(entities.get(i))
+                  && playerFish.isAlive()) {
+                // if the player fish is bigger than the enemy fish,
+                // then the player fish grows.
+                if (!playerFish.playerDies(entities.get(i))) {
                   handleCollision(i);
-                } else {           
+                } else {
                   // else the game stops.
                   this.stop();
                   playerLost();
@@ -236,18 +236,21 @@ public class MainScreenController {
   public static BoundingBox getScreenbox() {
     return screenbox;
   }
-  
+
   /**
    * Check if the player has won the game.
+   * 
    * @return true if the player is bigger than a certain size.
    */
   private static boolean playerHasWon() {
     return (playerFish.getSprite().getBoundingBox().getHeight() > 400);
   }
-  
+
   /**
    * Renders all the static elements like background and score.
-   * @param gc - the graphicsContext which needs to do the rendering.
+   * 
+   * @param gc
+   *          - the graphicsContext which needs to do the rendering.
    */
   private static void renderStatics(GraphicsContext gc) {
     gc.drawImage(background, 0, 0);
@@ -259,15 +262,18 @@ public class MainScreenController {
     gc.setTextAlign(TextAlignment.CENTER);
     gc.setTextBaseline(VPos.CENTER);
     gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
-    
+
     for (int i = 0; i < playerFish.getItems().size(); i++) {
-    	playerFish.getItems().get(i).getSprite().render(gc);
+      playerFish.getItems().get(i).getSprite().render(gc);
     }
   }
-  
+
   /**
-   * Render all the non static elements, i.e. the enemy fish and the player fish.
-   * @param gc - the graphicsContext which needs to do the rendering.
+   * Render all the non static elements, i.e. the enemy fish and the player
+   * fish.
+   * 
+   * @param gc
+   *          - the graphicsContext which needs to do the rendering.
    */
   private static void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
@@ -282,74 +288,77 @@ public class MainScreenController {
       entities.get(i).getSprite().render(gc);
     }
   }
-  
+
   /**
-   * This method handles the WASD input of the player.
-   * And any other input, like X for using item.
+   * This method handles the WASD input of the player. And any other input, like
+   * X for using item.
    */
   private static void handlePlayerInput(GraphicsContext gc) {
-	ArrayList<FishBomb> playerBombs = playerFish.getItems();  
+    ArrayList<FishBomb> playerBombs = playerFish.getItems();
     if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
       playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
       playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
-      for(int i = 0; i < playerBombs.size(); i++) {
-    	  playerBombs.get(i).updateX(-playerFish.getMoveSpeed());
+      for (int i = 0; i < playerBombs.size(); i++) {
+        playerBombs.get(i).updateX(-playerFish.getMoveSpeed());
       }
       logger.logKeyPress("A");
       logger.logDirectionChange("left");
-
+ 
     } else if (input.contains("D") && !playerFish.intersectsRightScreenEdge()) {
       playerFish.getSprite().setImg(playerFish.getPlayerFishRightImage());
       playerFish.getSprite().updateX(playerFish.getMoveSpeed());
-      for(int i = 0; i < playerBombs.size(); i++) {
-    	  playerBombs.get(i).updateX(playerFish.getMoveSpeed());
+      for (int i = 0; i < playerBombs.size(); i++) {
+        playerBombs.get(i).updateX(playerFish.getMoveSpeed());
       }
       logger.logKeyPress("D");
       logger.logDirectionChange("right");
     }
-    
+
     if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
       playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
-      for(int i = 0; i < playerBombs.size(); i++) {
-    	  playerBombs.get(i).updateY(-playerFish.getMoveSpeed());
+      for (int i = 0; i < playerBombs.size(); i++) {
+        playerBombs.get(i).updateY(-playerFish.getMoveSpeed());
       }
       logger.logKeyPress("W");
       logger.logDirectionChange("upwards");
 
     } else if (input.contains("S") && !playerFish.intersectsUnderScreenEdge()) {
       playerFish.getSprite().updateY(playerFish.getMoveSpeed());
-      for(int i = 0; i < playerBombs.size(); i++) {
-    	  playerBombs.get(i).updateY(playerFish.getMoveSpeed());
+      for (int i = 0; i < playerBombs.size(); i++) {
+        playerBombs.get(i).updateY(playerFish.getMoveSpeed());
       }
       logger.logKeyPress("S");
       logger.logDirectionChange("downwards");
     }
-    
-    if(input.contains("X") && playerFish.getItems().size() > 0) {
-    	int index = playerFish.getItems().size() - 1;
-    	FishBomb fishBomb = (FishBomb) playerFish.getItems().get(index);
-    	gc.drawImage(new Image("redcircle.png"), playerFish.getSprite().getBoundingBox().getX(), playerFish.getSprite().getBoundingBox().getY());
-    	for(int i = 0; i < entities.size(); i++) {
-    		if(fishBomb.intersectsRectangle(entities.get(i).getSprite().getBoundingBox())) {
-    			handleCollision(i);
-    		}
-    	}
-    	playerFish.getItems().remove(index);
+
+    if (input.contains("X") && playerFish.getItems().size() > 0) {
+      int index = playerFish.getItems().size() - 1;
+      FishBomb fishBomb = (FishBomb) playerFish.getItems().get(index);
+      gc.drawImage(new Image("redcircle.png"), playerFish.getSprite()
+          .getBoundingBox().getX(), playerFish.getSprite().getBoundingBox()
+          .getY());
+      for (int i = 0; i < entities.size(); i++) {
+        if (fishBomb.intersectsRectangle(entities.get(i).getSprite()
+            .getBoundingBox())) {
+          handleCollision(i);
+        }
+      }
+      playerFish.getItems().remove(index);
     }
-    
+
   }
-  
+
   /**
    * Handles collisions between player fish and enemy fish.
-   * @param i - the i'th enemy fish in the entities arrayList.
+   * 
+   * @param i
+   *          - the i'th enemy fish in the entities arrayList.
    */
   private static void handleCollision(int i) {
     // first get the height of enemy fish.
-    int height = entities.get(i).getSprite().getBoundingBox()
-            .getHeight();
+    int height = entities.get(i).getSprite().getBoundingBox().getHeight();
     // second get the width of enemy fish.
-    int width = entities.get(i).getSprite().getBoundingBox()
-            .getWidth();
+    int width = entities.get(i).getSprite().getBoundingBox().getWidth();
     // remove the fish from the screen.
     entities.remove(i);
     // let the fish of the player grow.
@@ -366,10 +375,10 @@ public class MainScreenController {
     // fish.
     playerFish.setScore(currScore);
   }
-  
+
   /**
-   * This method is being called when the player fish collide with a large enemy fish,
-   * and then the game is proceed to losing screen.
+   * This method is being called when the player fish collide with a large enemy
+   * fish, and then the game is proceed to losing screen.
    *
    */
   private static void playerLost() {
@@ -386,6 +395,7 @@ public class MainScreenController {
     // log the process of switching to losing screen.
     logger.logSwitchScreen("LosingScreen");
   }
+
   /**
    * Generates a new enemy fish every 90 frames.
    */
@@ -394,5 +404,5 @@ public class MainScreenController {
       entities.add(EnemyFish.generateFish());
       logger.logEdgeBump();
     }
-  } 
+  }
 }
