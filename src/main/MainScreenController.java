@@ -25,7 +25,8 @@ import javafx.scene.text.TextAlignment;
 /**
  * This class contains all the event handlers of the buttons on the main screen.
  * 
- * @author Group 6
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public class MainScreenController {
@@ -48,7 +49,7 @@ public class MainScreenController {
 
   @FXML
   private URL location;
-  
+
   @FXML
   private Text HighScoreText;
 
@@ -60,7 +61,7 @@ public class MainScreenController {
 
   @FXML
   private Button PlayButton;
-  
+
   @FXML
   private Text NGPText;
 
@@ -133,7 +134,7 @@ public class MainScreenController {
 
     Game.getLogger().logInit();
     init();
-    HighScoreText.setText(""+Game.getHighScore());
+    HighScoreText.setText("" + Game.getHighScore());
     Game.getLogger().logInitSucceeded();
 
     if (Game.isPlayingNewGamePlus()) {
@@ -147,7 +148,7 @@ public class MainScreenController {
 
       @Override
       public void handle(MouseEvent event) {
-        
+
         Group root = new Group();
         Scene scene = new Scene(root);
         Game.stage.setScene(scene);
@@ -183,7 +184,7 @@ public class MainScreenController {
               Game.mediaPlayer.stop();
               Game.getLogger().logSwitchScreen("WinningScreen");
             }
-            
+
             if (currScore > 500 && !bomb1) {
               playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
               bomb1 = true;
@@ -336,7 +337,7 @@ public class MainScreenController {
       }
       Game.getLogger().logKeyPress("A");
       Game.getLogger().logDirectionChange("left");
- 
+
     } else if (input.contains("D") && !playerFish.intersectsRightScreenEdge()) {
       playerFish.getSprite().setImg(playerFish.getPlayerFishRightImage());
       playerFish.getSprite().updateX(playerFish.getMoveSpeed());
@@ -345,7 +346,7 @@ public class MainScreenController {
       }
       Game.getLogger().logKeyPress("D");
       Game.getLogger().logDirectionChange("right");
-    } 
+    }
 
     if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
       playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
@@ -408,7 +409,7 @@ public class MainScreenController {
     // finally sets the total score to the player
     // fish.
     playerFish.setScore(currScore);
-    
+
     if (currScore > Game.getHighScore()) {
       Game.setHighScore(currScore);
     }
@@ -445,14 +446,30 @@ public class MainScreenController {
     }
   }
 
+  /**
+   * Set the current score of the game.
+   * 
+   * @param score
+   *          the desired score.
+   */
   public static void setCurrScore(int score) {
     currScore = score;
   }
 
+  /**
+   * Get the current score of the game.
+   * 
+   * @return the current score of the game.
+   */
   public static int getCurrScore() {
     return currScore;
   }
 
+  /**
+   * Get the player (playerFish).
+   * 
+   * @return the player (PlayerFish).
+   */
   public static PlayerFish getPlayerFish() {
     return playerFish;
   }

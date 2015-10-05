@@ -6,7 +6,8 @@ import java.util.List;
 /**
  * This class contains the logger, which will write specific events to console.
  * 
- * @author Group 6
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public final class Logger {
@@ -15,9 +16,10 @@ public final class Logger {
   private String[] messages;
   List<String> message = new ArrayList<String>();
   private int iterator = 0;
-  
+
   /**
    * This method gets the current message that has been logged.
+   * 
    * @return the current String message that has been logged.
    */
   public String getCurrentLog() {
@@ -28,6 +30,8 @@ public final class Logger {
    * This method will write to console if the player hits the border of the
    * playing field.
    * 
+   * @param player
+   *          the player of the game.
    */
   public void logEdgeBump(PlayerFish player) {
     if (player.intersectsLeftScreenEdge()) {
@@ -43,6 +47,7 @@ public final class Logger {
       System.out.println("Player bumped with the lower border of the screen.");
     }
   }
+
   /**
    * This method logs when the game's icon is being loaded.
    */
@@ -52,7 +57,7 @@ public final class Logger {
     iterator++;
     System.out.println(mes);
   }
-  
+
   /**
    * This method logs when game is being initialized.
    */
@@ -62,7 +67,7 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method logs when game is successfully initialized.
    */
@@ -72,11 +77,12 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method logs the screen which the game is loading.
    * 
-   * @param screen the screen the game is loading
+   * @param screen
+   *          the screen the game is loading
    */
   public void logLoadingScreen(String screen) {
     String mes1 = "Loading " + screen + "..";
@@ -84,7 +90,7 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method shows the message of successfully loaded.
    */
@@ -107,7 +113,7 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method logs the player's score to the console.
    * 
@@ -120,17 +126,17 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
-  
- /**
-  * This method logs the game starting up.
-  */
+
+  /**
+   * This method logs the game starting up.
+   */
   public void logStartGame() {
     String mes1 = "The game has started running.";
     message.add(iterator, mes1);
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method logs the game shutting down.
    */
@@ -140,12 +146,12 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method logs the screen that the game has changed to.
    * 
    * @param screenName
-   *            The name of the screen the game has changed to.
+   *          The name of the screen the game has changed to.
    */
   public void logSwitchScreen(String screenName) {
     String mes1 = "The game has switched to the " + screenName + " screen.";
@@ -153,27 +159,28 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method logs the end result of the game.
    * 
    * @param result
-   *            The result of the game. 
+   *          The result of the game.
    * @param score
-   *            The final score.
+   *          The final score.
    */
   public void logGameResult(String result, int score) {
-    String mes1 = "The player has " + result + " the game, with an end score of: " + score;
+    String mes1 = "The player has " + result
+        + " the game, with an end score of: " + score;
     message.add(iterator, mes1);
     iterator++;
-    System.out.println(mes1); 
+    System.out.println(mes1);
   }
-  
+
   /**
    * This method logs the movement of the player.
    * 
    * @param direction
-   *            The direction in which the player is moving.
+   *          The direction in which the player is moving.
    */
   public void logDirectionChange(String direction) {
     String mes1 = "The player has started moving " + direction + ".";
@@ -181,7 +188,7 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method informs the player that the player fish has been eaten.
    * 
@@ -192,23 +199,26 @@ public final class Logger {
     iterator++;
     System.out.println(mes);
   }
-  
+
   /**
    * This method informs the player when the player fish ate a smaller fish.
    * 
-   * @param score indicates the score the player fish gained. 
+   * @param score
+   *          indicates the score the player fish gained.
    */
   public void logPlayerFishGrows(int score) {
-    String mes1 = "You just ate a smaller fish. \r\n And you have just gained " + score + " points";
+    String mes1 = "You just ate a smaller fish. \r\n And you have just gained "
+        + score + " points";
     message.add(iterator, mes1);
     iterator++;
     System.out.println(mes1);
   }
-  
+
   /**
    * This method indicates whether the music is on or off.
    * 
-   * @param on boolean, if music is on, it will be true, vice versa.
+   * @param on
+   *          boolean, if music is on, it will be true, vice versa.
    */
   public void logMusicOnOff(boolean on) {
     String text = "off";

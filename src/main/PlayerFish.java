@@ -42,10 +42,10 @@ public class PlayerFish extends Entity {
     super(movespeed, sprite);
     setAlive(isAlive);
     if (sprite.getImg() != null) {
-      setPlayerFishLeftImage(new Image(leftImageName, sprite.getImg().getWidth(),
-          sprite.getImg().getHeight(), true, true));
-      setPlayerFishRightImage(new Image(rightImageName, sprite.getImg().getWidth(), 
-          sprite.getImg().getHeight(), true, true));
+      setPlayerFishLeftImage(new Image(leftImageName, sprite.getImg()
+          .getWidth(), sprite.getImg().getHeight(), true, true));
+      setPlayerFishRightImage(new Image(rightImageName, sprite.getImg()
+          .getWidth(), sprite.getImg().getHeight(), true, true));
     } else {
       setPlayerFishLeftImage(new Image(leftImageName, 128, 128, true, true));
       setPlayerFishRightImage(new Image(rightImageName, 128, 128, true, true));
@@ -62,8 +62,8 @@ public class PlayerFish extends Entity {
     Image temp = new Image(leftImageName);
     Image playerFishImage = new Image(leftImageName, temp.getWidth() * 0.30,
         temp.getHeight() * 0.30, true, true);
-    //Image playerFishImageRight = new Image(rightImageName, 
-    //temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
+    // Image playerFishImageRight = new Image(rightImageName,
+    // temp.getWidth() * 0.30, temp.getHeight() * 0.30, true, true);
 
     // Create a hitbox for the playerfish. The playerfish will start at the
     // middle of the screen.
@@ -92,18 +92,24 @@ public class PlayerFish extends Entity {
     double newHeight = multiplier * this.getSprite().getImg().getHeight();
 
     if (this.getSprite().getImg().equals(this.leftImage)) {
-      this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight, true, true));
-      this.setPlayerFishRightImage(new Image(rightImageName, newWidth, newHeight, true, true));
+      this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight,
+          true, true));
+      this.setPlayerFishRightImage(new Image(rightImageName, newWidth,
+          newHeight, true, true));
       this.getSprite().setImg(leftImage);
-    } else {  
-      this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight, true, true));
-      this.setPlayerFishRightImage(new Image(rightImageName, newWidth, newHeight, true, true));
+    } else {
+      this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight,
+          true, true));
+      this.setPlayerFishRightImage(new Image(rightImageName, newWidth,
+          newHeight, true, true));
       this.getSprite().setImg(rightImage);
     }
     BoundingBox playerFishBoundingBox = this.getSprite().getBoundingBox();
 
-    playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage().getWidth());
-    playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage().getHeight());
+    playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage()
+        .getWidth());
+    playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage()
+        .getHeight());
   }
 
   /**
@@ -114,7 +120,8 @@ public class PlayerFish extends Entity {
    * @return Boolean that determines whether the player fish dies.
    */
   public boolean playerDies(EnemyFish enemyfish) {
-    return this.getSprite().getImg().getWidth() <= enemyfish.getSprite().getImg().getWidth();
+    return this.getSprite().getImg().getWidth() <= enemyfish.getSprite()
+        .getImg().getWidth();
   }
 
   /**
@@ -214,8 +221,8 @@ public class PlayerFish extends Entity {
   }
 
   /**
-   * This method replaces the PlayerFish's score.
-   * It will also give a FishBomb to the player for each 100 points scored.
+   * This method replaces the PlayerFish's score. It will also give a FishBomb
+   * to the player for each 100 points scored.
    * 
    * @param number
    *          The score that will replace the old value
@@ -225,8 +232,8 @@ public class PlayerFish extends Entity {
     if (counter >= 100) {
       counter = 0;
       FishBomb bomb = FishBomb.createFishBomb(this);
-      if (bombs.size() == 0 ) {
-        bombs.add(bomb); 
+      if (bombs.size() == 0) {
+        bombs.add(bomb);
       }
     }
     score = number;
@@ -241,10 +248,21 @@ public class PlayerFish extends Entity {
     return score;
   }
 
+  /**
+   * Ge the items of the player.
+   * 
+   * @return the lsit of FishBombs of the player.
+   */
   public ArrayList<FishBomb> getItems() {
     return bombs;
   }
 
+  /**
+   * Set the items of the player.
+   * 
+   * @param items
+   *          the list of FishBombs for the player.
+   */
   public void setItems(ArrayList<FishBomb> items) {
     this.bombs = items;
   }

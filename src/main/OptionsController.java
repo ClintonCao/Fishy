@@ -12,7 +12,8 @@ import javafx.scene.input.MouseEvent;
  * This class contains all the event handlers of the buttons on the options
  * screen.
  * 
- * @author Group 6
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public class OptionsController {

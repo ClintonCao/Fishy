@@ -4,8 +4,8 @@ package main;
  * An entity represents an entity in the game world. It has a movement speed, an
  * alive state, and a sprite as a model.
  * 
- * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel
- *         Doesburg.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public abstract class Entity {

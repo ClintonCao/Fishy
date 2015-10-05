@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 /**
  * This Class represents the game itself.
  * 
- * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel
- *         Doesburg.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public class Game extends Application {
@@ -47,8 +47,9 @@ public class Game extends Application {
   /**
    * The stage where the game starts from.
    * 
-   * @param firstStage the stage for the start of the application.
-   *          
+   * @param firstStage
+   *          the stage for the start of the application.
+   * 
    */
   @Override
   public void start(Stage firstStage) {
@@ -56,7 +57,7 @@ public class Game extends Application {
 
       stage = firstStage;
       logger = new Logger();
-      
+
       firstStage.setTitle("Fishy");
       logger.logStartGame();
       logger.logIcon();
@@ -69,7 +70,7 @@ public class Game extends Application {
 
       pane = (Pane) loader.load();
       logger.logLoadSucceeded();
-      
+
       mediaPlayer = new MediaPlayer(media);
       if (musicOn) {
         mediaPlayer.play();
@@ -145,31 +146,69 @@ public class Game extends Application {
     Game.resX = resX;
   }
 
+  /**
+   * Get the boolean to check if the music is on.
+   * 
+   * @return true if the music is on.
+   */
   public static boolean getMusicOn() {
     return musicOn;
   }
 
+  /**
+   * Set the value of music on.
+   * 
+   * @param bool
+   *          desired boolean for the music.
+   */
   public static void setMusicOn(boolean bool) {
     musicOn = bool;
 
   }
-  
+
+  /**
+   * Set the boolean for New Game Plus mode.
+   * 
+   * @param bool
+   *          the desired boolean for the mode.
+   */
   public static void setNewGamePlusMode(boolean bool) {
     newgameplus = bool;
   }
-  
+
+  /**
+   * Check if the player is in New Game Plus mode.
+   * 
+   * @return true if player is in New Game Plus Mode.
+   */
   public static boolean isPlayingNewGamePlus() {
     return newgameplus;
   }
-  
+
+  /**
+   * Get the logger of the game.
+   * 
+   * @return the logger of the game.
+   */
   public static Logger getLogger() {
     return logger;
   }
-  
+
+  /**
+   * Set the highest score that has been achieved per session.
+   * 
+   * @param score
+   *          is the highest score that has been achieved.
+   */
   public static void setHighScore(int score) {
-    highscore = score; 
+    highscore = score;
   }
-  
+
+  /**
+   * Get the highest score that has been achieved for this session.
+   * 
+   * @return the highest score that has been achieved.
+   */
   public static int getHighScore() {
     return highscore;
   }

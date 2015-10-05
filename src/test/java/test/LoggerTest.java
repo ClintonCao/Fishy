@@ -4,21 +4,26 @@ import static org.junit.Assert.assertEquals;
 
 import main.Logger;
 
-
-
 import org.junit.Test;
 
-public class LoggerTest {
-  Logger logger = new Logger();
-
 /**
+ * This class test the logger of the game.
+ * 
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
+ *
+ */
+public class LoggerTest {
+  private Logger logger = new Logger();
+
+  /**
    * This method is for testing logEdgeBump method.
    */
   @Test
   public void testlogEdgeBump() {
 
   }
-  
+
   /**
    * This method is for testing logIcon method.
    */
@@ -29,7 +34,7 @@ public class LoggerTest {
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   }
-  
+
   /**
    * This method is for testing logInit method.
    */
@@ -39,8 +44,8 @@ public class LoggerTest {
     logger.logInit();
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
-  }  
-  
+  }
+
   /**
    * This method is for testing logInitSucceeded method.
    */
@@ -50,8 +55,8 @@ public class LoggerTest {
     logger.logInitSucceeded();
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   /**
    * This method is for testing logLoadingScreen method.
    */
@@ -63,7 +68,7 @@ public class LoggerTest {
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   }
-  
+
   /**
    * This method is for testing logLoadSucceeded method.
    */
@@ -73,8 +78,8 @@ public class LoggerTest {
     logger.logLoadSucceeded();
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   /**
    * This method is for testing logKeyPress method.
    */
@@ -86,7 +91,7 @@ public class LoggerTest {
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   }
-  
+
   /**
    * This method is for testing logNewScore method.
    */
@@ -98,7 +103,7 @@ public class LoggerTest {
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   }
-  
+
   /**
    * This method is for testing logStartGame method.
    */
@@ -108,8 +113,8 @@ public class LoggerTest {
     logger.logStartGame();
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   /**
    * This method is for testing logEndGame() method.
    */
@@ -119,8 +124,8 @@ public class LoggerTest {
     logger.logEndGame();
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   /**
    * This method is for testing logSwitchScreen() method.
    */
@@ -132,7 +137,7 @@ public class LoggerTest {
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   }
-  
+
   /**
    * This method is for testing logGameResult method.
    */
@@ -140,12 +145,13 @@ public class LoggerTest {
   public void testlogGameResult() {
     int score = 1;
     String result = "lost";
-    String expected = "The player has " + result + " the game, with an end score of: " + score;
+    String expected = "The player has " + result
+        + " the game, with an end score of: " + score;
     logger.logGameResult(result, score);
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   }
-  
+
   /**
    * This method is for testing logDirectionChange() method.
    */
@@ -157,7 +163,7 @@ public class LoggerTest {
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   }
-  
+
   /**
    * This method is for testing logPlayerFishDies method.
    */
@@ -168,20 +174,20 @@ public class LoggerTest {
     String actual = logger.getCurrentLog();
     assertEquals(expected, actual);
   }
-    
+
   /**
    * This method is for testing logPlayerFishGrows method.
    */
   @Test
   public void testlogPlayerFishGrows() {
     int score = 1;
-    String expected1 = "You just ate a smaller fish. \r\n And you have just gained " 
-         + score + " points";
+    String expected1 = "You just ate a smaller fish. \r\n And you have just gained "
+        + score + " points";
     logger.logPlayerFishGrows(score);
     String actual1 = logger.getCurrentLog();
     assertEquals(expected1, actual1);
   }
-  
+
   /**
    * This method is for testing music is on.
    */
@@ -191,7 +197,7 @@ public class LoggerTest {
     String expected = "The music is on";
     logger.logMusicOnOff(music);
     String actual = logger.getCurrentLog();
-    assertEquals(expected, actual);    
+    assertEquals(expected, actual);
   }
 
   /**
@@ -203,7 +209,7 @@ public class LoggerTest {
     String expected = "The music is off";
     logger.logMusicOnOff(music);
     String actual = logger.getCurrentLog();
-    assertEquals(expected, actual);    
-  }    
-  
+    assertEquals(expected, actual);
+  }
+
 }
