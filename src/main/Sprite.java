@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
  * in X and Y coordinates, a certain velocity in a direction expressed by X and
  * Y coordinates, A width and a height, and an image to draw on the screen.
  * 
- * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel
- *         Doesburg.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  */
 public class Sprite {
   private Image img;

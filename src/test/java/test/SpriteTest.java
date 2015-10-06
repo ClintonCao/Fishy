@@ -17,7 +17,8 @@ import javafx.scene.image.Image;
  * are tested except render method, because render method require an image, and
  * even it was mocked, it still cannot be tested.
  * 
- * @author Sunwei
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public class SpriteTest {

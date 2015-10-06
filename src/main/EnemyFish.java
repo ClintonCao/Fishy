@@ -11,8 +11,8 @@ import javafx.scene.image.Image;
  * screen. If 'isLefty' is false, the fish spawns at the right side of the
  * screen.
  * 
- * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel
- *         Doesburg.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  */
 public class EnemyFish extends Entity {
   private static String leftImageFileName = "EnemyFish_Left.png";
@@ -50,7 +50,7 @@ public class EnemyFish extends Entity {
     int randomHeight = rng.nextInt(600);
     int randomSpeed = rng.nextInt(9) + 1;
     boolean isLefty = rng.nextBoolean();
-    
+
     double imgSizeMultiplier = rng.nextInt(150) + 5;
     imgSizeMultiplier /= 100;
 
@@ -58,9 +58,10 @@ public class EnemyFish extends Entity {
     if (isLefty) {
       // Get the image for the fish and its respective height and width.
       Image fishImage = new Image(leftImageFileName);
-      fishImage = new Image(rightImageFileName, fishImage.getWidth() * imgSizeMultiplier,
-    fishImage.getHeight() * imgSizeMultiplier, true, true);
-      
+      fishImage = new Image(rightImageFileName, fishImage.getWidth()
+          * imgSizeMultiplier, fishImage.getHeight() * imgSizeMultiplier, true,
+          true);
+
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
 
@@ -69,8 +70,9 @@ public class EnemyFish extends Entity {
               fishImageHeight)));
     } else {
       Image fishImage = new Image(leftImageFileName);
-      fishImage = new Image(leftImageFileName, fishImage.getWidth() * imgSizeMultiplier,
-    fishImage.getHeight() * imgSizeMultiplier, true, true);
+      fishImage = new Image(leftImageFileName, fishImage.getWidth()
+          * imgSizeMultiplier, fishImage.getHeight() * imgSizeMultiplier, true,
+          true);
 
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();

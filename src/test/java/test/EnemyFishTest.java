@@ -11,7 +11,8 @@ import org.junit.Test;
 /**
  * Test for the Entity class.
  * 
- * @author Group #6
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public class EnemyFishTest {

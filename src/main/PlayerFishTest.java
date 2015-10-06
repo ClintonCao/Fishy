@@ -14,7 +14,8 @@ import javafx.scene.image.Image;
 /**
  * This Test case will test the functionalities of the PlayerFish class.
  * 
- * @author Dmitry
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public class PlayerFishTest {

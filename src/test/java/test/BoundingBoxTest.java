@@ -12,7 +12,8 @@ import org.junit.Test;
  * This Test Case is used to check the functionalities of the Axis-Aligned
  * Bounding Box.
  * 
- * @author Dmitry
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public class BoundingBoxTest {

@@ -5,7 +5,8 @@ package main;
  * i.e. no rotation. The BoundingBox is used as a hitbox for collision detection
  * between fish.
  * 
- * @author Michiel
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public class BoundingBox {
