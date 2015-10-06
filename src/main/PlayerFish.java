@@ -1,17 +1,12 @@
 package main;
 
+import interfaces.PlayerFishInterface;
+
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 
-/**
- * A PlayerFish represents the Entity controlled by the player.
- * 
- * @author Clinton Cao, Dmity Malarev, Matthijs Halvemaan, Sunwei Wang, Michiel
- *         Doesburg.
- *
- */
-public class PlayerFish extends Entity {
+public class PlayerFish extends Entity implements PlayerFishInterface {
   private static String leftImageName = "FishOriginal_transparent.png";
   private static String rightImageName = "Fish_Right_Transparent.png";
   private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
@@ -153,7 +148,7 @@ public class PlayerFish extends Entity {
   }
 
   /**
-   * This method replaces the Left-side Image of the PlayerFish.
+   * {@inheritDoc}
    * 
    * @param playerFishLeftImage
    *          The image that replaces the old one
@@ -164,7 +159,7 @@ public class PlayerFish extends Entity {
   }
 
   /**
-   * This method retrieves the Right-side Image of the PlayerFish.
+   * {@inheritDoc}
    * 
    * @return The image of player fish right image
    */
@@ -248,10 +243,7 @@ public class PlayerFish extends Entity {
     return score;
   }
 
-  /**
-   * Ge the items of the player.
-   * 
-   * @return the lsit of FishBombs of the player.
+  /**{@inheritDoc}
    */
   public ArrayList<FishBomb> getItems() {
     return bombs;
