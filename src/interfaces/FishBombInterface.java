@@ -8,8 +8,8 @@ import main.Sprite;
 /**
  * A FishBomb can be made to explode. EnemyFish within the explosion radius
  * will die.
+ * 
  * @author Michiel
- *
  */
 public interface FishBombInterface {
 	

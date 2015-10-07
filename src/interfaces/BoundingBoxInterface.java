@@ -43,7 +43,7 @@ public interface BoundingBoxInterface {
    */
   boolean equals(Object other);
 
-  // --- Getters and setters ---
+// --- Getters and setters ---
 
   /**
    * @return the x-coordinate of the bounding box.
