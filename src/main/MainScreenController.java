@@ -106,7 +106,7 @@ public class MainScreenController {
     entities = new ArrayList<EnemyFish>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = PlayerFish.createPlayerFish();
-    playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+    playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
     scoreText.setText("Score");
     input = new ArrayList<String>();
     frames = 0;
@@ -186,15 +186,15 @@ public class MainScreenController {
             }
 
             if (currScore > 500 && !bomb1) {
-              playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+              playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
               bomb1 = true;
             }
             if (currScore > 2000 && !bomb2) {
-              playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+              playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
               bomb2 = true;
             }
             if (currScore > 5000 && !bomb3) {
-              playerFish.getItems().add(FishBomb.createFishBomb(playerFish));
+              playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
               bomb3 = true;
             }
 
@@ -297,8 +297,8 @@ public class MainScreenController {
     gc.setTextBaseline(VPos.CENTER);
     gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
 
-    for (int i = 0; i < playerFish.getItems().size(); i++) {
-      playerFish.getItems().get(i).getSprite().render(gc);
+    for (int i = 0; i < playerFish.getBombs().size(); i++) {
+      playerFish.getBombs().get(i).getSprite().render(gc);
     }
   }
 
@@ -328,7 +328,7 @@ public class MainScreenController {
    * X for using item.
    */
   private static void handlePlayerInput(GraphicsContext gc) {
-    ArrayList<FishBomb> playerBombs = playerFish.getItems();
+    ArrayList<FishBomb> playerBombs = playerFish.getBombs();
     if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
       playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
       playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
@@ -365,10 +365,10 @@ public class MainScreenController {
       Game.getLogger().logDirectionChange("downwards");
     }
 
-    if (input.contains("X") && playerFish.getItems().size() > 0) {
-      int index = playerFish.getItems().size() - 1;
-      FishBomb fishBomb = (FishBomb) playerFish.getItems().get(index);
-      Image explosionImg = playerFish.getItems().get(index).getExplosionImg();
+    if (input.contains("X") && playerFish.getBombs().size() > 0) {
+      int index = playerFish.getBombs().size() - 1;
+      FishBomb fishBomb = (FishBomb) playerFish.getBombs().get(index);
+      Image explosionImg = playerFish.getBombs().get(index).getExplosionImg();
       int imgPosX = (int) (fishBomb.getPosX() - 0.25 * explosionImg.getWidth());
       int imgPosY = (int) (fishBomb.getPosY() - 0.25 * explosionImg.getHeight());
       gc.drawImage(explosionImg, imgPosX, imgPosY);
@@ -378,7 +378,7 @@ public class MainScreenController {
           handleCollision(i);
         }
       }
-      playerFish.getItems().remove(index);
+      playerFish.getBombs().remove(index);
     }
 
   }

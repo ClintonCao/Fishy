@@ -27,6 +27,34 @@ public interface PlayerFishInterface {
 	   */
 	  public boolean playerDies(EnemyFish enemyfish);
 	  
+	  /**
+	   * Tests intersection with the left screen edge.
+	   * 
+	   * @return true if intersect.
+	   */
+	  public boolean intersectsLeftScreenEdge();
+
+	  /**
+	   * Tests intersection with the right screen edge.
+	   * 
+	   * @return true if intersect.
+	   */
+	  public boolean intersectsRightScreenEdge();
+
+	  /**
+	   * Tests intersection with the upper screen edge.
+	   * 
+	   * @return true if intersect.
+	   */
+	  public boolean intersectsUpperScreenEdge();
+
+	  /**
+	   * Tests intersection with the under screen edge.
+	   * 
+	   * @return true if intersect.
+	   */
+	  public boolean intersectsUnderScreenEdge();
+	  
 // --- Getters and Setters --- 
 
 	  /**
@@ -72,10 +100,10 @@ public interface PlayerFishInterface {
 	  /**
 	   * @return the ArrayList of items of the player.
 	   */
-	  public ArrayList<FishBomb> getItems();
+	  public ArrayList<FishBomb> getBombs();
 	  
 	  /**
 	   * @param items - the new ArrayList of FishBombs.
 	   */
-	  public void setItems(ArrayList<FishBomb> items);
+	  public void setBombs(ArrayList<FishBomb> items);
 }

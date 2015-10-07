@@ -14,9 +14,7 @@ import javafx.scene.image.Image;
 /**
  * This Test case will test the functionalities of the PlayerFish class.
  * 
- * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
- *         Sunwei Wang.
- *
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  */
 public class PlayerFishTest {
 
@@ -48,13 +46,11 @@ public class PlayerFishTest {
   /**
    * This Test checks the capability of changing whether the PlayerFish is alive
    * or not.
-   * 
    */
   @Test
   public void testAlive() {
 
-    PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-        0);
+    PlayerFish player = new PlayerFish(50, true, sprite, 0);
     assertTrue(player.isAlive());
     player.setAlive(false);
     assertFalse(player.isAlive());
@@ -62,13 +58,11 @@ public class PlayerFishTest {
 
   /**
    * This Test checks the capability of changing the PlayerFish's score.
-   * 
    */
   @Test
   public void testScore() {
 
-    PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-        0);
+    PlayerFish player = new PlayerFish(50, true, sprite, 0);
     assertEquals(0, player.getScore());
     player.setScore(60);
     assertEquals(60, player.getScore());
@@ -76,38 +70,21 @@ public class PlayerFishTest {
 
   /**
    * This Test checks the class's constructor.
-   * 
    */
   @Test
   public void testConstructor() {
 
-    PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-        0);
+    PlayerFish player = new PlayerFish(50, true, sprite, 0);
     assertEquals(50, player.getMoveSpeed());
-  }
-
-  /**
-   * This Test checks the ability to retrieve the PlayerFish's Image-string.
-   * 
-   */
-  @Test
-  public void testImageString() {
-
-    PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-        0);
-    assertEquals(leftimage, player.getPlayerFishLeftImageName());
-    assertEquals(rightimage, player.getPlayerFishRightImageName());
   }
 
   /**
    * This Test checks the ability to set and retrieve the images of a
    * PlayerFish.
-   * 
    */
   @Test
   public void testImage() {
-    PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-        0);
+    PlayerFish player = new PlayerFish(50, true, sprite, 0);
     Image img = mock(Image.class);
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);
@@ -118,21 +95,19 @@ public class PlayerFishTest {
 
   /**
    * This Test checks the ability to set an image via a string.
-   * 
    */
   @Test
   public void testImageStringSet() {
     Game.main(null);
-    PlayerFish player = new PlayerFish(50, true, leftimage, rightimage, sprite,
-        0);
+    PlayerFish player = new PlayerFish(50, true, sprite, 0);
     Image img = mock(Image.class);
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);
     player.setPlayerFishRightImage(img2);
-    player.setPlayerFishLeftImageName("FishOriginal_transparent.png");
-    player.setPlayerFishRightImageName("Fish_Right_Transparent.png");
-    assertEquals(leftimage, player.getPlayerFishLeftImageName());
-    assertEquals(rightimage, player.getPlayerFishRightImageName());
+    PlayerFish.setPlayerFishLeftImageName("FishOriginal_transparent.png");
+    PlayerFish.setPlayerFishRightImageName("Fish_Right_Transparent.png");
+    assertEquals(leftimage, PlayerFish.getPlayerFishLeftImageName());
+    assertEquals(rightimage, PlayerFish.getPlayerFishRightImageName());
   }
 
 }

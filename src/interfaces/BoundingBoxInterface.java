@@ -7,7 +7,6 @@ import main.BoundingBox;
  * Each fish is represented in the 2-D plane of the screen with a BoundingBox.
  * 
  * @author Michiel
- *
  */
 public interface BoundingBoxInterface {
 
@@ -51,7 +50,7 @@ public interface BoundingBoxInterface {
 	  public int getX();
 
 	  /**
-	   * @param x - the new x-coordinate on the screen.
+	   * @param x - the new x-coordinate of the bounding box.
 	   */
 	  public void setX(int x);
 
@@ -61,7 +60,7 @@ public interface BoundingBoxInterface {
 	  public int getY();
 
 	  /**
-	   * @param y - the new y-coordinate.
+	   * @param y - the new y-coordinate of the bounding box.
 	   */
 	  public void setY(int y);
 
