@@ -85,8 +85,7 @@ public interface PlayerFishInterface {
   Image getPlayerFishLeftImage();
 
   /**
-   * @param playerFishLeftImage
-   *          - the new Image.
+   * @param playerFishLeftImage - the new Image.
    */
   void setPlayerFishLeftImage(Image playerFishLeftImage);
 
