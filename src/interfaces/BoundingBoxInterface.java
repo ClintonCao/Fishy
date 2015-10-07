@@ -11,77 +11,85 @@ import main.BoundingBox;
  */
 public interface BoundingBoxInterface {
 
-	/**
-	 * Checks if two bounding boxed intersects with each other.
-	 * 
-	 * @param other.
-	 * @return true if the boxes collide.
-	 */
-	boolean intersects(BoundingBox other);
+  /**
+   * Checks if two bounding boxed intersects with each other.
+   * 
+   * @param other
+   *          .
+   * @return true if the boxes collide.
+   */
+  boolean intersects(BoundingBox other);
 
-	/**
-	 * Update the x-coordinate of the bounding box. Used for moving bounding boxes
-	 * representing the fishes over the screen.
-	 *
-	 * @param x - the new x-coordinate.
-	 */
-	void updateX(int x);
+  /**
+   * Update the x-coordinate of the bounding box. Used for moving bounding boxes
+   * representing the fishes over the screen.
+   *
+   * @param x - the new x-coordinate.
+   */
+  void updateX(int x);
 
-	/**
-	 * Update the y-coordinate of the bounding box. Used for moving bounding
-	 * boxes(Fish).
-	 * 
-	 * @param y  - the new y-coordinate.
-	 */
-	void updateY(int y);
+  /**
+   * Update the y-coordinate of the bounding box. Used for moving bounding
+   * boxes(Fish).
+   * 
+   * @param y - the new y-coordinate.
+   */
+  void updateY(int y);
 
-	/**
-	 * Used for testing.
-	 * 
-	 * @param other.
-	 * @return true if equal.
-	 */
-	boolean equals(Object other);
+  /**
+   * Used for testing.
+   * 
+   * @param other
+   *          .
+   * @return true if equal.
+   */
+  boolean equals(Object other);
 
-	// --- Getters and setters ---
+  // --- Getters and setters ---
 
-	/**
-	 * @return the x-coordinate of the bounding box.
-	 */
-	int getX();
+  /**
+   * Get the x-coordinate of the bounding box.
+   * 
+   * @return the x-coordinate of the bounding box.
+   */
+  int getX();
 
-	/**
-	 * @param x - the new x-coordinate of the bounding box.
-	 */
-	void setX(int x);
+  /**
+   * Set the x-coordinate.
+   * @param x - the new x-coordinate of the bounding box.
+   */
+  void setX(int x);
 
-	/**
-	 * @return the y-coordinate of the bounding box.
-	 */
-	int getY();
+  /**
+   * Get the x-coordinate of the bounding box.
+   * 
+   * @return the y-coordinate of the bounding box.
+   */
+  int getY();
 
-	/**
-	 * @param y - the new y-coordinate of the bounding box.
-	 */
-	void setY(int y);
+  /**
+   * Set the y-coordinate.
+   * @param y - the new y-coordinate of the bounding box.
+   */
+  void setY(int y);
 
-	/**
-	 * @return width of the bounding box.
-	 */
-	int getWidth();
+  /**
+   * @return width of the bounding box.
+   */
+  int getWidth();
 
-	/**
-	 * @param width - the new width.
-	 */
-	void setWidth(int width);
+  /**
+   * @param width - the new width.
+   */
+  void setWidth(int width);
 
-	/**
-	 * @return height of the bounding box.
-	 */
-	int getHeight();
+  /**
+   * @return height of the bounding box.
+   */
+  int getHeight();
 
-	/**
-	 * @param height - the new height.
-	 */
-	void setHeight(int height);
+  /**
+   * @param height - the new height.
+   */
+  void setHeight(int height);
 }

@@ -7,52 +7,56 @@ import main.Sprite;
 
 public interface SpriteInterface {
 
-	/**
-	 * @param x - updates existing x-coordinate.
-	 */
-	void updateX(int x);
+  /**
+   * @param x - updates existing x-coordinate.
+   */
+  void updateX(int x);
 
-	/**
-	 * @param y - updates existing y-coordinate.
-	 */
-	void updateY(int y);
+  /**
+   * @param y - updates existing y-coordinate.
+   */
+  void updateY(int y);
 
-	/**
-	 * @param gc - GraphicsContext which will perform the rendering.
-	 */
-	void render(GraphicsContext gc);
+  /**
+   * @param gc - GraphicsContext which will perform the rendering.
+   */
+  void render(GraphicsContext gc);
 
-	/**
-	 * @param otherSprite.
-	 * @return true if intersecting.
-	 */
-	boolean intersects(Sprite otherSprite);
+  /**
+   * @param otherSprite.
+   * @return true if intersecting.
+   */
+  boolean intersects(Sprite otherSprite);
 
-	// --- Getters and Setters ---
+  // --- Getters and Setters ---
 
-	/**
-	 * @return the Image of the sprite.
-	 */
-	Image getImg();
+  /**
+   * Get the image of the sprite.
+   * 
+   * @return the Image of the sprite.
+   */
+  Image getImg();
 
-	/**
-	 * @param img - the new Image.
-	 */
-	void setImg(Image img);
+  /**
+   * @param img - the new Image.
+   */
+  void setImg(Image img);
 
-	/**
-	 * @return the BoundingBox of the sprite.
-	 */
-	BoundingBox getBoundingBox();
+  /**
+   * Get the boundingbox of the sprite.
+   * 
+   * @return the BoundingBox of the sprite.
+   */
+  BoundingBox getBoundingBox();
 
-	/**
-	 * @param boundingBox - the new BoundingBox.
-	 */
-	void setBoundingBox(BoundingBox boundingBox);
+  /**
+   * @param boundingBox - the new BoundingBox.
+   */
+  void setBoundingBox(BoundingBox boundingBox);
 
-	/**
-	 * @param other.
-	 * @return true if equal.
-	 */
-	boolean equals(Object other);
+  /**
+   * @param other.
+   * @return true if equal.
+   */
+  boolean equals(Object other);
 }

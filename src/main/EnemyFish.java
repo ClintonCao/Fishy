@@ -21,6 +21,9 @@ public class EnemyFish extends Entity implements EnemyFishInterface {
 
   /**
    * Constructor. 
+   * @param movespeed.
+   * @param isLefty.
+   * @param sprite.
    * @see Entity#Entity(int, Sprite)
    */
   public EnemyFish(int movespeed, boolean isLefty, Sprite sprite) {
