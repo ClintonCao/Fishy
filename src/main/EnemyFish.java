@@ -1,33 +1,27 @@
 package main;
 
+import interfaces.EnemyFishInterface;
+
 import java.util.Random;
 
 import javafx.scene.image.Image;
 
 /**
- * An enemy fish is any fish other than the player fish. It inherits the
- * movement speed and sprite attributes from the general entity class. The added
- * boolean 'isLefty' simply indicates if the fish spawns on the left side of the
- * screen. If 'isLefty' is false, the fish spawns at the right side of the
- * screen.
+ * An EnemyFish is a fish which automatically moves over the screen,
+ * from left to right or right to left, field isLefty determines this. 
+ * If the PlayerFish collides with a smaller EnemyFish, the EnemyFish dies. 
+ * If the EnemyFish is larger, the Player dies.
  * 
- * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
- *         Sunwei Wang.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  */
-public class EnemyFish extends Entity {
+public class EnemyFish extends Entity implements EnemyFishInterface {
   private static String leftImageFileName = "EnemyFish_Left.png";
   private static String rightImageFileName = "EnemyFish_Right.png";
   private boolean isLefty;
 
   /**
-   * Constructor which creates an enemy fish.
-   * 
-   * @param movespeed
-   *          integer that determines the movement speed
-   * @param isLefty
-   *          boolean that whether fish comes from the left side of the screen
-   * @param sprite
-   *          A sprite represents the model of an entity on the screen
+   * Constructor. 
+   * @see Entity#Entity(int, Sprite)
    */
   public EnemyFish(int movespeed, boolean isLefty, Sprite sprite) {
     super(movespeed, sprite);
@@ -39,7 +33,7 @@ public class EnemyFish extends Entity {
    * random movement speed, random height at which it spawns, and random side of
    * the screen at which it spawns.
    * 
-   * @return an enemy fish.
+   * @return a new enemy fish.
    */
   public static EnemyFish generateFish() {
 
@@ -86,21 +80,12 @@ public class EnemyFish extends Entity {
     }
   }
 
-  /**
-   * The method isLefty determine which side does the fish comes from.
-   * 
-   * @return an boolean whether the fish comes from left
-   */
+  // --- Getters and Setters ---  
+  
   public boolean isLefty() {
     return isLefty;
   }
 
-  /**
-   * The method setLefty can decide which side does the fish comes from.
-   * 
-   * @param isLefty
-   *          boolean that whether fish comes from the left side of the screen
-   */
   public void setLefty(boolean isLefty) {
     this.isLefty = isLefty;
   }
