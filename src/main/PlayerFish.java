@@ -24,6 +24,10 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
 
   /**
    * Constructor.
+   * @param movespeed.
+   * @param isAlive.
+   * @param sprite.
+   * @param score.
    * @see Entity#Entity(int, Sprite)
    */
   public PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score) {

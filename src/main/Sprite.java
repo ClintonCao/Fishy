@@ -16,6 +16,8 @@ public class Sprite implements SpriteInterface {
 
   /**
    * Constructor.
+   * @param img.
+   * @param boundingBox.
    */
   public Sprite(Image img, BoundingBox boundingBox) {
     this.img = img;

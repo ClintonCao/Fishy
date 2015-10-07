@@ -21,6 +21,11 @@ public class FishBomb implements FishBombInterface {
 
   /**
    * Constructor.
+   * @param sprite.
+   * @param radius.
+   * @param explosionImg.
+   * @param posX.
+   * @param posY.
    */
   public FishBomb(Sprite sprite, int radius, Image explosionImg, int posX, int posY) {
     this.setSprite(sprite);

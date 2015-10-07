@@ -16,6 +16,11 @@ public class BoundingBox implements BoundingBoxInterface {
 
   /**
    * Contructor.
+   * 
+   * @param x coordinate.
+   * @param y coordinate.
+   * @param width of bounding box.
+   * @param height of bounding box.
    */
   public BoundingBox(int x, int y, int width, int height) {
     this.setX(x);
