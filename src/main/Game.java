@@ -56,7 +56,7 @@ public class Game extends Application {
     try {
 
       stage = firstStage;
-      logger = new Logger();
+      logger = Logger.getSingletonLogger();
 
       firstStage.setTitle("Fishy");
       logger.logStartGame();
@@ -190,9 +190,9 @@ public class Game extends Application {
    * 
    * @return the logger of the game.
    */
-  public static Logger getLogger() {
-    return logger;
-  }
+    public static Logger getLogger() {
+      return logger;
+    }
 
   /**
    * Set the highest score that has been achieved per session.

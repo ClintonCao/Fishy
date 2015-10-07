@@ -16,7 +16,6 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
 
   private static PlayerFish singletonFish;
   
-
   private static String leftImageName = "FishOriginal_transparent.png";
   private static String rightImageName = "Fish_Right_Transparent.png";
   private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
@@ -27,7 +26,8 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
   private int counter;
 
   /**
-   * Constructor.
+   * This is a private constructor now, so this ensures that 
+   * PlayerFish class has only one instance.
    * 
    * @param movespeed
    *          .
@@ -64,8 +64,10 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * This method creates the fish the player controls. The image is scaled to
    * its starting size. A BoundingBox with the same dimensions is created and
    * placed at the middle of the screen.
+   * This method is now private, so PlayerFish cannot be instantiate without 
+   * getSingleton method.
    * 
-   * @return new PlayerFish.
+   * @return a new PlayerFish object.
    */
   private static PlayerFish createPlayerFish() {
 
@@ -89,7 +91,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
   }
 
   /**
-   * {@inheritDoc} A new scaled image is created, and the PlayerFish'
+   * {@inheritDoc} A new scaled image is created, and the PlayerFish's
    * BoundingBox is scaled accordingly.
    */
   public void grow(double multiplier) {
@@ -229,12 +231,16 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
     this.bombs = items;
   }
 
-
+  /**
+   * The getSingletonFish() method gives us a way to instantiate the PlayerFish
+   * class and also to return an instance of it.
+   * @return an instance of PlayerFish
+   */
   public static PlayerFish getSingletonFish() {
     if (singletonFish == null) {
-    	singletonFish = createPlayerFish();
+      singletonFish = createPlayerFish();
     }
-	return singletonFish;	  
+    return singletonFish; 
   }
   
   
