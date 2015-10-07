@@ -236,7 +236,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * class and also to return an instance of it.
    * @return an instance of PlayerFish
    */
-  public static PlayerFish getSingletonFish() {
+  public static synchronized PlayerFish getSingletonFish() {
     if (singletonFish == null) {
       singletonFish = createPlayerFish();
     }
