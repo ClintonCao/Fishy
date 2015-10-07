@@ -7,103 +7,131 @@ import main.EnemyFish;
 import main.FishBomb;
 
 /**
- * PlayerFish represents the fish controlled by the player in game. Both conceptually and 'physically'.
- * @author Michiel
+ * PlayerFish represents the fish controlled by the player in game. Both
+ * conceptually and 'physically'.
+ * 
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  */
 public interface PlayerFishInterface {
-	  
-	  /**
-	   * Grow the fish when it 'eats' another fish.
-	   * 
-	   * @param multiplier - the multiplier for the X and Y values.
-	   */
-	  public void grow(double multiplier);
 
-	  /**
-	   * Check if the PlayerFish is smaller than the EnemyFish it's colliding with.
-	   * 
-	   * @param enemyfish.
-	   * @return true if the player is smaller.
-	   */
-	  public boolean playerDies(EnemyFish enemyfish);
-	  
-	  /**
-	   * Tests intersection with the left screen edge.
-	   * 
-	   * @return true if intersect.
-	   */
-	  public boolean intersectsLeftScreenEdge();
+  /**
+   * Grow the fish when it 'eats' another fish.
+   * 
+   * @param multiplier
+   *          - the multiplier for the X and Y values.
+   */
+  void grow(double multiplier);
 
-	  /**
-	   * Tests intersection with the right screen edge.
-	   * 
-	   * @return true if intersect.
-	   */
-	  public boolean intersectsRightScreenEdge();
+  /**
+   * Check if the PlayerFish is smaller than the EnemyFish it's colliding with.
+   * 
+   * @param enemyfish
+   *          .
+   * @return true if the player is smaller.
+   */
+  boolean playerDies(EnemyFish enemyfish);
 
-	  /**
-	   * Tests intersection with the upper screen edge.
-	   * 
-	   * @return true if intersect.
-	   */
-	  public boolean intersectsUpperScreenEdge();
+  /**
+   * Tests intersection with the left screen edge.
+   * 
+   * @return true if intersect.
+   */
+  boolean intersectsLeftScreenEdge();
 
-	  /**
-	   * Tests intersection with the under screen edge.
-	   * 
-	   * @return true if intersect.
-	   */
-	  public boolean intersectsUnderScreenEdge();
-	  
-// --- Getters and Setters --- 
+  /**
+   * Tests intersection with the right screen edge.
+   * 
+   * @return true if intersect.
+   */
+  boolean intersectsRightScreenEdge();
 
-	  /**
-	   * @return true if the player is alive.
-	   */
-	  public boolean isAlive();
+  /**
+   * Tests intersection with the upper screen edge.
+   * 
+   * @return true if intersect.
+   */
+  boolean intersectsUpperScreenEdge();
 
-	  /**
-	   * @param isAlive - the new alive state. 
-	   */
-	  public void setAlive(boolean isAlive);
-	  
-	  /**
-	   * @return the PlayerFish' left Image.
-	   */
-	  public Image getPlayerFishLeftImage();
+  /**
+   * Tests intersection with the under screen edge.
+   * 
+   * @return true if intersect.
+   */
+  boolean intersectsUnderScreenEdge();
 
-	  /**
-	   * @param playerFishLeftImage - the new Image.
-	   */
-	  public void setPlayerFishLeftImage(Image playerFishLeftImage);
+  // --- Getters and Setters ---
 
-	  /**
-	   * @return the PlayerFish' right Image.
-	   */
-	  public Image getPlayerFishRightImage();
-	  
-	  /**
-	   * @param playerFishRightImage - the new Image.
-	   */
-	  public void setPlayerFishRightImage(Image playerFishRightImage);
+  /**
+   * Check if the player is alive.
+   * 
+   * @return true if the player is alive.
+   */
+  boolean isAlive();
 
-	  /**
-	   * @param number - the new Score.
-	   */
-	  public void setScore(int number);
-	  
-	  /**
-	   * @return the score.
-	   */
-	  public int getScore();
-	  
-	  /**
-	   * @return the ArrayList of items of the player.
-	   */
-	  public ArrayList<FishBomb> getBombs();
-	  
-	  /**
-	   * @param items - the new ArrayList of FishBombs.
-	   */
-	  public void setBombs(ArrayList<FishBomb> items);
+  /**
+   * Set the status of the player.
+   * 
+   * @param isAlive
+   *          - the new alive state.
+   */
+  void setAlive(boolean isAlive);
+
+  /**
+   * Get the left image of the player.
+   * 
+   * @return the PlayerFish' left Image.
+   */
+  Image getPlayerFishLeftImage();
+
+  /**
+   * @param playerFishLeftImage
+   *          - the new Image.
+   */
+  void setPlayerFishLeftImage(Image playerFishLeftImage);
+
+  /**
+   * Get the right image of the player.
+   * 
+   * @return the PlayerFish' right Image.
+   */
+  Image getPlayerFishRightImage();
+
+  /**
+   * Set the right image of the PlayerFish.
+   * 
+   * @param playerFishRightImage
+   *          - the new Image.
+   */
+  void setPlayerFishRightImage(Image playerFishRightImage);
+
+  /**
+   * Set the score of the player.
+   * 
+   * @param number
+   *          - the new Score.
+   */
+  void setScore(int number);
+
+  /**
+   * Get the score of the player.
+   * 
+   * @return the score.
+   */
+  int getScore();
+
+  /**
+   * Get the list of bombs of the player.
+   * 
+   * @return the ArrayList of items of the player.
+   */
+  ArrayList<FishBomb> getBombs();
+
+  /**
+   * Set the list of items for the player.
+   * 
+   * @param items
+   *          - the new ArrayList of FishBombs.
+   */
+  void setBombs(ArrayList<FishBomb> items);
 }

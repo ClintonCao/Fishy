@@ -2,13 +2,29 @@ package main;
 
 import interfaces.BoundingBoxInterface;
 
-public class BoundingBox implements BoundingBoxInterface{
+/**
+ * This class represents the bounding box of the sprites.
+ * 
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
+ */
+public class BoundingBox implements BoundingBoxInterface {
   private int x;
   private int y;
   private int width;
   private int height;
 
-  /** Constructor.
+  /**
+   * Contructor of BoundinBox.
+   * 
+   * @param x
+   *          the x-coordinate.
+   * @param y
+   *          the y-coordinate.
+   * @param width
+   *          the width of the box.
+   * @param height
+   *          the width of the box.
    */
   public BoundingBox(int x, int y, int width, int height) {
     this.setX(x);
@@ -18,7 +34,11 @@ public class BoundingBox implements BoundingBoxInterface{
   }
 
   /**
-   * Needs explanation.				// STILL NEEDS EXPLANATION.
+   * Needs explanation. // STILL NEEDS EXPLANATION.
+   * 
+   * @param other
+   *          the bounding box that this bounding box will collide with
+   * @return true if they collide with each other.
    */
   public boolean intersects(BoundingBox other) {
     return !((this.getX() + this.getWidth()) < other.getX()
@@ -26,27 +46,27 @@ public class BoundingBox implements BoundingBoxInterface{
         || (this.getY() + this.getHeight()) < other.getY() || this.getY() > (other
         .getY() + other.getHeight()));
   }
-  
+
   /**
-   * {@inheritDoc} Add the modifying value to the current value of x.
+   * {@inheritDoc}.
    */
   public void updateX(int x) {
-	  this.x += x;
-  }
-  
-  /**
-   * {@inheritDoc} Add the modifying value to the current value of y.
-   */
-  public void updateY(int y) {
-	  this.y += y;
+    this.x += x;
   }
 
   /**
-   * @{inheritDoc} 
-   * If two BoundingBoxes have the same x and y position,
-   * have the same width and the same height, they are equal.
+   * {@inheritDoc}.
+   */
+  public void updateY(int y) {
+    this.y += y;
+  }
+
+  /**
+   * {@inheritDoc} If two BoundingBoxes have the same x and y position, have the
+   * same width and the same height, they are equal.
    * 
-   * @param other.
+   * @param other
+   *          the object that will be compared to. .
    * @return true if equal.
    */
   public boolean equals(Object other) {
@@ -73,14 +93,13 @@ public class BoundingBox implements BoundingBoxInterface{
     return true;
   }
 
-// -----------Getters and setters-------------------
-
-  public int getX() { 
-	  return x; 
+  // -----------Getters and setters-------------------
+  public int getX() {
+    return x;
   }
 
-  public void setX(int x) { 
-	  this.x = x; 
+  public void setX(int x) {
+    this.x = x;
   }
 
   public int getY() {

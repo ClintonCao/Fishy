@@ -5,35 +5,49 @@ import main.Sprite;
 
 /**
  * An Entity represents an ingame creature (like a fish).
- * @author Michiel
+ * 
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
  *
  */
 public interface EntityInterface {
 
-	  /**
-	   * Check if two entities intersect.
-	   * @param other.
-	   * @return true if they intersect.
-	   */
-	  public boolean intersects(Entity other);
+  /**
+   * Check if two entities intersect.
+   * 
+   * @param other
+   *          .
+   * @return true if they intersect.
+   */
+  boolean intersects(Entity other);
 
-	  /**
-	   * @return Sprite.
-	   */
-	  public Sprite getSprite();
-	  
-	  /**
-	   * @param sprite - the new Sprite.
-	   */
-	  public void setSprite(Sprite sprite);
-	  
-	  /**
-	   * @return movement speed.
-	   */
-	  public int getMoveSpeed();
+  /**
+   * Get the sprite.
+   * 
+   * @return Sprite.
+   */
+  Sprite getSprite();
 
-	  /**
-	   * @param moveSpeed - the new movement speed.
-	   */
-	  public void setMoveSpeed(int moveSpeed);
+  /**
+   * Set the sprite.
+   * 
+   * @param sprite
+   *          - the new Sprite.
+   */
+  void setSprite(Sprite sprite);
+
+  /**
+   * Get the move speed.
+   * 
+   * @return movement speed.
+   */
+  int getMoveSpeed();
+
+  /**
+   * Set the move speed.
+   * 
+   * @param moveSpeed
+   *          - the new movement speed.
+   */
+  void setMoveSpeed(int moveSpeed);
 }
