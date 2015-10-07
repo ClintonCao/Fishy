@@ -18,76 +18,76 @@ public interface FishBombInterface {
 	 *
 	 * @param x - the new x-coordinate.
 	 */
-	public void updateX(int mod);
+	void updateX(int mod);
 
 	/**
 	 * Update the y-coordinate of the FishBomb. Used for moving FishBombs over the screen.
 	 *
 	 * @param y - the new y-coordinate.
 	 */
-	public void updateY(int mod);
+	void updateY(int mod);
 
 	/**
 	 * @param gc - GraphicsContext which will perform the rendering.
 	 */
-	public void render(GraphicsContext gc);
+	void render(GraphicsContext gc);
 
 	/**
 	 * Check if the explosion radius of the FishBomb intersects a BoundingBox.
 	 * @param bb.
 	 * @return true if intersecting.
 	 */
-	public boolean intersectsRectangle(BoundingBox bb);
+	boolean intersectsRectangle(BoundingBox bb);
 
 	// --- Getters and Setters ---	
 
 	/**
 	 * @return the x-coordinate of the bomb.
 	 */
-	public int getPosX();
+	int getPosX();
 
 	/**
 	 * @param posX - the new x-coordinate.
 	 */
-	public void setPosX(int posX);
+	void setPosX(int posX);
 
 	/**
 	 * @return the y-coordinate of the bomb.
 	 */
-	public int getPosY();
+	int getPosY();
 
 	/**
 	 * @param posY - the new y-coordinate.
 	 */
-	public void setPosY(int posY);
+	void setPosY(int posY);
 
 	/**
 	 * @return the Image for the explosion.
 	 */
-	public Image getExplosionImg();
+	Image getExplosionImg();
 
 	/**
 	 * @param explosionImg - the new Image for the explosion.
 	 */
-	public void setExplosionImg(Image explosionImg);
+	void setExplosionImg(Image explosionImg);
 
 	/**
 	 * @param sprite - the new Sprite.
 	 */
-	public void setSprite(Sprite sprite);
+	void setSprite(Sprite sprite);
 
 	/**
 	 * @return the Sprite.
 	 */
-	public Sprite getSprite();
+	Sprite getSprite();
 
 	/**
 	 * @return the radius.
 	 */
-	public int getRadius();
+	int getRadius();
 
 	/**
 	 * @param radius - the new radius.
 	 */
-	public void setRadius(int radius);
+	void setRadius(int radius);
 }

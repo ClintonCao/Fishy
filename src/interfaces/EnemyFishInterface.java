@@ -11,10 +11,10 @@ public interface EnemyFishInterface {
 	 * @return true - if the fish spawns at the left side of the screen,
 	 * and moves to the right.
 	 */
-	public boolean isLefty();
+	boolean isLefty();
 
 	/**
 	 * @param isLefty.
 	 */
-	public void setLefty(boolean isLefty);
+	void setLefty(boolean isLefty);
 }

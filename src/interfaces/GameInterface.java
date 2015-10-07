@@ -9,5 +9,5 @@ public interface GameInterface {
 	 * 
 	 * @param firstStage -  the Stage for the start of the application.
 	 */
-	public void start(Stage firstStage);
+	void start(Stage firstStage);
 }
