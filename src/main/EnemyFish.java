@@ -80,7 +80,7 @@ public class EnemyFish extends Entity implements EnemyFishInterface {
     }
   }
 
-// --- Getters and Setters ---  
+  // --- Getters and Setters ---  
   
   public boolean isLefty() {
     return isLefty;

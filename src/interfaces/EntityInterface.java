@@ -10,33 +10,33 @@ import main.Sprite;
  */
 public interface EntityInterface {
 
-	/**
-	 * Check if two entities intersect.
-	 * 
-	 * @param other.
-	 * @return true if they intersect.
-	 */
-	boolean intersects(Entity other);
+  /**
+   * Check if two entities intersect.
+   * 
+   * @param other.
+   * @return true if they intersect.
+   */
+  boolean intersects(Entity other);
 
-	// --- Getters and Setters ---  
+  // --- Getters and Setters ---  
 
-	/**
-	 * @return Sprite.
-	 */
-	Sprite getSprite();
+  /**
+   * @return Sprite.
+   */
+  Sprite getSprite();
 
-	/**
-	 * @param sprite - the new Sprite.
-	 */
-	void setSprite(Sprite sprite);
+  /**
+   * @param sprite - the new Sprite.
+   */
+  void setSprite(Sprite sprite);
 
-	/**
-	 * @return movement speed.
-	 */
-	int getMoveSpeed();
+  /**
+   * @return movement speed.
+   */
+  int getMoveSpeed();
 
-	/**
-	 * @param moveSpeed - the new movement speed.
-	 */
-	void setMoveSpeed(int moveSpeed);
+  /**
+   * @param moveSpeed - the new movement speed.
+   */
+  void setMoveSpeed(int moveSpeed);
 }
