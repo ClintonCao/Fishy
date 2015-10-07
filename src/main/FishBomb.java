@@ -31,14 +31,14 @@ public class FishBomb implements FishBombInterface {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   public void updateX(int mod) {
     posX += mod;
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   public void updateY(int mod) {
     posY += mod;
@@ -55,13 +55,13 @@ public class FishBomb implements FishBombInterface {
     int explImgDim = pfbb.getHeight() * 4;
     return new FishBomb(new Sprite(new Image("fishbombbig.png"),
         new BoundingBox(10, 10, 0, 0)), explImgDim / 2, new Image(
-        "redcircle.png", explImgDim, explImgDim, true, true),
-        (int) (pfbb.getX() - 0.5 * pf.getSprite().getImg().getWidth()),
-        (int) (pfbb.getY() - 0.5 * pf.getSprite().getImg().getHeight()));
+            "redcircle.png", explImgDim, explImgDim, true, true),
+            (int) (pfbb.getX() - 0.5 * pf.getSprite().getImg().getWidth()),
+            (int) (pfbb.getY() - 0.5 * pf.getSprite().getImg().getHeight()));
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   public void render(GraphicsContext gc) {
     gc.drawImage(this.getSprite().getImg(), posX, posY);
@@ -97,31 +97,31 @@ public class FishBomb implements FishBombInterface {
 
     return (cornerDistance <= (radius ^ 2));
   }
-  
-// --- Getters and Setters ---
-  
+
+  // --- Getters and Setters ---
+
   public void setSprite(Sprite sprite) {
-	  this.sprite = sprite;
+    this.sprite = sprite;
   }
 
   public Sprite getSprite() {
-	  return this.sprite;
+    return this.sprite;
   }
 
   public int getRadius() {
-	  return radius;
+    return radius;
   }
 
   public void setRadius(int radius) {
-	  this.radius = radius;
+    this.radius = radius;
   }
 
   public int getPosX() {
-	  return posX;
+    return posX;
   }
 
   public void setPosX(int posX) {
-	  this.posX = posX;
+    this.posX = posX;
   }
 
   public int getPosY() {

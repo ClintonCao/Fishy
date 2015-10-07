@@ -136,7 +136,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
     return (this.getSprite().getBoundingBox().getY() + this.getSprite().getBoundingBox().getHeight()) >= Game.getResY();
   }
 
-// --- Getters and Setters ---
+  // --- Getters and Setters ---
 
   public boolean isAlive() {
     return isAlive;

@@ -7,14 +7,13 @@ package interfaces;
  */
 public interface EnemyFishInterface {
 
-	/**
-	 * @return true - if the fish spawns at the left side of the screen,
-	 * and moves to the right.
-	 */
-	boolean isLefty();
+  /**
+   * @return true - if the fish spawns at the left side of the screen, and moves to the right.
+   */
+  boolean isLefty();
 
-	/**
-	 * @param isLefty.
-	 */
-	void setLefty(boolean isLefty);
+  /**
+   * @param isLefty.
+   */
+  void setLefty(boolean isLefty);
 }

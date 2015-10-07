@@ -76,7 +76,7 @@ public class Sprite implements SpriteInterface {
     return true;
   }
 
-// --- Getters and Setters ---
+  // --- Getters and Setters ---
 
   public Image getImg() {
     return this.img;

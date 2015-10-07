@@ -44,7 +44,7 @@ public final class Game extends Application implements GameInterface {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   @Override
   public void start(Stage firstStage) {
