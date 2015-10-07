@@ -6,7 +6,7 @@ package interfaces;
  * @author Michiel
  */
 public interface EnemyFishInterface {
-	
+
 	/**
 	 * @return true - if the fish spawns at the left side of the screen,
 	 * and moves to the right.

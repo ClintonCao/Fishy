@@ -28,7 +28,7 @@ public interface SpriteInterface {
 	 */
 	public boolean intersects(Sprite otherSprite);
 
-// --- Getters and Setters ---
+	// --- Getters and Setters ---
 
 	/**
 	 * @return the Image of the sprite.

@@ -12,14 +12,14 @@ import main.Sprite;
  * @author Michiel
  */
 public interface FishBombInterface {
-	
+
 	/**
 	 * Update the x-coordinate of the FishBomb. Used for moving FishBombs over the screen.
 	 *
 	 * @param x - the new x-coordinate.
 	 */
 	public void updateX(int mod);
-	
+
 	/**
 	 * Update the y-coordinate of the FishBomb. Used for moving FishBombs over the screen.
 	 *
@@ -38,8 +38,8 @@ public interface FishBombInterface {
 	 * @return true if intersecting.
 	 */
 	public boolean intersectsRectangle(BoundingBox bb);
-	
-// --- Getters and Setters ---	
+
+	// --- Getters and Setters ---	
 
 	/**
 	 * @return the x-coordinate of the bomb.
@@ -70,7 +70,7 @@ public interface FishBombInterface {
 	 * @param explosionImg - the new Image for the explosion.
 	 */
 	public void setExplosionImg(Image explosionImg);
-	
+
 	/**
 	 * @param sprite - the new Sprite.
 	 */
