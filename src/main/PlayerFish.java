@@ -13,6 +13,10 @@ import javafx.scene.image.Image;
  *         Sunwei Wang.
  */
 public class PlayerFish extends Entity implements PlayerFishInterface {
+
+  private static PlayerFish singletonFish;
+  
+
   private static String leftImageName = "FishOriginal_transparent.png";
   private static String rightImageName = "Fish_Right_Transparent.png";
   private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
@@ -34,7 +38,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * @param score
    *          .
    */
-  public PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score) {
+  private PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score) {
 
     super(movespeed, sprite);
     setAlive(isAlive);
@@ -63,7 +67,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * 
    * @return new PlayerFish.
    */
-  public static PlayerFish createPlayerFish() {
+  private static PlayerFish createPlayerFish() {
 
     Image temp = new Image(leftImageName);
 
@@ -224,4 +228,14 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
   public void setBombs(ArrayList<FishBomb> items) {
     this.bombs = items;
   }
+
+
+  public static PlayerFish getSingletonFish() {
+    if (singletonFish == null) {
+    	singletonFish = createPlayerFish();
+    }
+	return singletonFish;	  
+  }
+  
+  
 }

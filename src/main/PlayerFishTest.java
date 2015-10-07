@@ -22,6 +22,7 @@ public class PlayerFishTest {
   String leftimage;
   String rightimage;
   BoundingBox box;
+  PlayerFish playerFish;
 
   /**
    * Set up a the bounding box and the sprite for the player fish.
@@ -50,7 +51,7 @@ public class PlayerFishTest {
   @Test
   public void testAlive() {
 
-    PlayerFish player = new PlayerFish(50, true, sprite, 0);
+    PlayerFish player = playerFish.getSingletonFish();
     assertTrue(player.isAlive());
     player.setAlive(false);
     assertFalse(player.isAlive());
@@ -62,7 +63,7 @@ public class PlayerFishTest {
   @Test
   public void testScore() {
 
-    PlayerFish player = new PlayerFish(50, true, sprite, 0);
+    PlayerFish player = playerFish.getSingletonFish();
     assertEquals(0, player.getScore());
     player.setScore(60);
     assertEquals(60, player.getScore());
@@ -74,8 +75,8 @@ public class PlayerFishTest {
   @Test
   public void testConstructor() {
 
-    PlayerFish player = new PlayerFish(50, true, sprite, 0);
-    assertEquals(50, player.getMoveSpeed());
+	PlayerFish player = playerFish.getSingletonFish();
+    assertEquals(10, player.getMoveSpeed());
   }
 
   /**
@@ -84,7 +85,7 @@ public class PlayerFishTest {
    */
   @Test
   public void testImage() {
-    PlayerFish player = new PlayerFish(50, true, sprite, 0);
+    PlayerFish player = playerFish.getSingletonFish();
     Image img = mock(Image.class);
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);
@@ -99,7 +100,7 @@ public class PlayerFishTest {
   @Test
   public void testImageStringSet() {
     Game.main(null);
-    PlayerFish player = new PlayerFish(50, true, sprite, 0);
+    PlayerFish player = playerFish.getSingletonFish();
     Image img = mock(Image.class);
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);

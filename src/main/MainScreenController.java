@@ -105,7 +105,7 @@ public class MainScreenController {
   public static void init() {
     entities = new ArrayList<EnemyFish>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
-    playerFish = PlayerFish.createPlayerFish();
+    playerFish = PlayerFish.getSingletonFish();
     playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
     scoreText.setText("Score");
     input = new ArrayList<String>();
