@@ -1,27 +1,21 @@
 package main;
 
+import interfaces.SpriteInterface;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
- * A sprite represents the model of an entity on the screen. It has a position
- * in X and Y coordinates, a certain velocity in a direction expressed by X and
- * Y coordinates, A width and a height, and an image to draw on the screen.
+ * A sprite represents the model of an entity on the screen. It consists of an Image
+ * which will be rendered the screen, and a BoundingBox to represent it in a 2-D plane.
  * 
- * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
- *         Sunwei Wang.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  */
-public class Sprite {
+public class Sprite implements SpriteInterface {
   private Image img;
   private BoundingBox boundingBox;
 
   /**
-   * Constructor of the class.
-   * 
-   * @param img
-   *          image for the sprite.
-   * @param boundingBox
-   *          boundingbox of the sprite.
+   * Constructor.
    */
   public Sprite(Image img, BoundingBox boundingBox) {
     this.img = img;
@@ -29,93 +23,42 @@ public class Sprite {
   }
 
   /**
-   * Update the x coordinate of the sprite.
-   * 
-   * @param x
-   *          integer, x coordinate
+   * {@inheritDoc} Uses update method in BoundingBox.
+   * @see BoundingBox#updateX(int)
    */
   public void updateX(int x) {
     boundingBox.updateX(x);
   }
 
   /**
-   * Update the y coordinate of the sprite.
-   * 
-   * @param y
-   *          integer, y coordinate
+   * {@inheritDoc} Uses update method in BoundingBox.
+   * @see BoundingBox#updateY(int)
    */
   public void updateY(int y) {
     boundingBox.updateY(y);
   }
 
   /**
-   * Renders the image.
-   * 
-   * @param gc
-   *          GraphicsContext
+   * {@inheritDoc} Draws the Sprite's Image on the screen,
+   * at the position of the Sprite's BoundingBox's x and y-coordinates.
    */
   public void render(GraphicsContext gc) {
     gc.drawImage(img, boundingBox.getX(), boundingBox.getY());
   }
 
   /**
-   * Test whether this sprite intersects with the other sprite.
-   * 
-   * @param s
-   *          the other Sprite
-   * @return a boolean whether this sprite intersects with other sprite
+   * {@inheritDoc} Two Sprites intersect if the BoundingBoxes intersect.
+   * @see BoundingBox#intersects(BoundingBox)
    */
   public boolean intersects(Sprite s) {
     return s.getBoundingBox().intersects(this.getBoundingBox());
   }
-
-  // ------------Getters and
-  // setters-------------------------------------------
-
+  
   /**
-   * Get the image of the sprite.
-   * 
-   * @return the image of the sprite.
-   */
-  public Image getImg() {
-    return this.img;
-  }
-
-  /**
-   * Set the image of the sprite.
-   * 
-   * @param img
-   *          the desired image for the sprite.
-   */
-  public void setImg(Image img) {
-    this.img = img;
-  }
-
-  /**
-   * Get the bounding box of the sprite.
-   * 
-   * @return the bounding box of the sprite.
-   */
-  public BoundingBox getBoundingBox() {
-    return boundingBox;
-  }
-
-  /**
-   * Set the bounding box of the sprite.
-   * 
-   * @param boundingBox
-   *          the desired bounding box for the sprite.
-   */
-  public void setBoundingBox(BoundingBox boundingBox) {
-    this.boundingBox = boundingBox;
-  }
-
-  /**
-   * Equals method of this class.
-   * 
-   * @param other
-   *          the other object to check whether the equal.
-   * @return boolean whether the two objects are equal or not.
+   * {@inheritDoc} Two Sprites are equal if the Images and
+   * BoundingBoxes are equal.
+   * @see BoundingBox#equals(Object)
+   * @see Image#equals(Object)
    */
   public boolean equals(Object other) {
     if (!(other instanceof Sprite)) {
@@ -133,4 +76,21 @@ public class Sprite {
     return true;
   }
 
+  // --- Getters and Setters ---
+
+  public Image getImg() {
+    return this.img;
+  }
+
+  public void setImg(Image img) {
+    this.img = img;
+  }
+
+  public BoundingBox getBoundingBox() {
+    return boundingBox;
+  }
+  
+  public void setBoundingBox(BoundingBox boundingBox) {
+    this.boundingBox = boundingBox;
+  }
 }

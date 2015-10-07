@@ -2,6 +2,7 @@ package main;
 
 import java.net.URL;
 
+import interfaces.GameInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,11 +16,10 @@ import javafx.stage.Stage;
 /**
  * This Class represents the game itself.
  * 
- * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
- *         Sunwei Wang.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  *
  */
-public class Game extends Application {
+public final class Game extends Application implements GameInterface {
 
   static Stage stage;
   static Pane pane;
@@ -36,8 +36,7 @@ public class Game extends Application {
   /**
    * Main method that launches the application.
    * 
-   * @param args
-   *          arguments for the main method (nothing is used).
+   * @param args - not used.
    */
   public static void main(String[] args) {
     musicOn = true;
@@ -45,11 +44,7 @@ public class Game extends Application {
   }
 
   /**
-   * The stage where the game starts from.
-   * 
-   * @param firstStage
-   *          the stage for the start of the application.
-   * 
+   * {@inheritDoc}.
    */
   @Override
   public void start(Stage firstStage) {
@@ -61,12 +56,10 @@ public class Game extends Application {
       firstStage.setTitle("Fishy");
       logger.logStartGame();
       logger.logIcon();
-      stage.getIcons().add(
-          new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
+      stage.getIcons().add(new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
       logger.logLoadSucceeded();
       logger.logSwitchScreen("MainScreen");
-      FXMLLoader loader = new FXMLLoader(getClass().getResource(
-          "FXML/MainScreen.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/MainScreen.fxml"));
 
       pane = (Pane) loader.load();
       logger.logLoadSucceeded();
@@ -75,6 +68,7 @@ public class Game extends Application {
       if (musicOn) {
         mediaPlayer.play();
       }
+      
       mediaPlayer.setCycleCount(100);
 
       Scene scene = new Scene(pane);
@@ -93,14 +87,13 @@ public class Game extends Application {
   /**
    * This method is used to switch the screens of the game.
    * 
-   * @param bestand
-   *          The name of the "destination" FXML file
+   * @param fileName - name of 'Destination' FXML file.
    */
-  public static void switchScreen(String bestand) {
+  public static void switchScreen(String fileName) {
     try {
-      logger.logLoadingScreen(bestand);
+      logger.logLoadingScreen(fileName);
       FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(Game.class.getResource(bestand));
+      loader.setLocation(Game.class.getResource(fileName));
       stage.getScene().setRoot((Parent) loader.load());
       logger.logLoadSucceeded();
     } catch (Exception e) {
@@ -108,107 +101,48 @@ public class Game extends Application {
     }
   }
 
-  /**
-   * This method retrieve the Y value of the game's resolution.
-   * 
-   * @return The Y of the Resolution
-   */
+// --- Getters and Setters ---
+  
   public static int getResY() {
     return resY;
   }
 
-  /**
-   * This method sets a new Y value for the resolution.
-   * 
-   * @param resY
-   *          The new Y value
-   */
   public static void setResY(int resY) {
     Game.resY = resY;
   }
 
-  /**
-   * This method retrieve the X value of the game's resolution.
-   * 
-   * @return The X of the Resolution
-   */
   public static int getResX() {
     return resX;
   }
 
-  /**
-   * This method sets a new Y value for the resolution.
-   * 
-   * @param resX
-   *          The new X value
-   */
   public static void setResX(int resX) {
     Game.resX = resX;
   }
 
-  /**
-   * Get the boolean to check if the music is on.
-   * 
-   * @return true if the music is on.
-   */
   public static boolean getMusicOn() {
     return musicOn;
   }
 
-  /**
-   * Set the value of music on.
-   * 
-   * @param bool
-   *          desired boolean for the music.
-   */
   public static void setMusicOn(boolean bool) {
     musicOn = bool;
-
   }
 
-  /**
-   * Set the boolean for New Game Plus mode.
-   * 
-   * @param bool
-   *          the desired boolean for the mode.
-   */
   public static void setNewGamePlusMode(boolean bool) {
     newgameplus = bool;
   }
 
-  /**
-   * Check if the player is in New Game Plus mode.
-   * 
-   * @return true if player is in New Game Plus Mode.
-   */
   public static boolean isPlayingNewGamePlus() {
     return newgameplus;
   }
 
-  /**
-   * Get the logger of the game.
-   * 
-   * @return the logger of the game.
-   */
   public static Logger getLogger() {
     return logger;
   }
 
-  /**
-   * Set the highest score that has been achieved per session.
-   * 
-   * @param score
-   *          is the highest score that has been achieved.
-   */
   public static void setHighScore(int score) {
     highscore = score;
   }
 
-  /**
-   * Get the highest score that has been achieved for this session.
-   * 
-   * @return the highest score that has been achieved.
-   */
   public static int getHighScore() {
     return highscore;
   }

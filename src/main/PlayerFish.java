@@ -24,15 +24,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
 
   /**
    * Constructor.
-   * 
-   * @param movespeed
-   *          .
-   * @param isAlive
-   *          .
-   * @param sprite
-   *          .
-   * @param score
-   *          .
+   * @see Entity#Entity(int, Sprite)
    */
   public PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score) {
 
@@ -93,32 +85,25 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
     double newHeight = multiplier * this.getSprite().getImg().getHeight();
 
     if (this.getSprite().getImg().equals(this.leftImage)) {
-      this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight,
-          true, true));
-      this.setPlayerFishRightImage(new Image(rightImageName, newWidth,
-          newHeight, true, true));
+      this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight, true, true));
+      this.setPlayerFishRightImage(new Image(rightImageName, newWidth, newHeight, true, true));
       this.getSprite().setImg(leftImage);
     } else {
-      this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight,
-          true, true));
-      this.setPlayerFishRightImage(new Image(rightImageName, newWidth,
-          newHeight, true, true));
+      this.setPlayerFishLeftImage(new Image(leftImageName, newWidth, newHeight, true, true));
+      this.setPlayerFishRightImage(new Image(rightImageName, newWidth, newHeight, true, true));
       this.getSprite().setImg(rightImage);
     }
     BoundingBox playerFishBoundingBox = this.getSprite().getBoundingBox();
 
-    playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage()
-        .getWidth());
-    playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage()
-        .getHeight());
+    playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage().getWidth());
+    playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage().getHeight());
   }
 
   /**
    * {@inheritDoc} Width of the images is used for comparison.
    */
   public boolean playerDies(EnemyFish enemyfish) {
-    return this.getSprite().getImg().getWidth() <= enemyfish.getSprite()
-        .getImg().getWidth();
+    return this.getSprite().getImg().getWidth() <= enemyfish.getSprite().getImg().getWidth();
   }
 
   /**
@@ -133,8 +118,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * x-resolution.
    */
   public boolean intersectsRightScreenEdge() {
-    return (this.getSprite().getBoundingBox().getX() + this.getSprite()
-        .getBoundingBox().getWidth()) >= Game.getResX();
+    return (this.getSprite().getBoundingBox().getX() + this.getSprite().getBoundingBox().getWidth()) >= Game.getResX();
   }
 
   /**
@@ -149,8 +133,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * the y-resolution.
    */
   public boolean intersectsUnderScreenEdge() {
-    return (this.getSprite().getBoundingBox().getY() + this.getSprite()
-        .getBoundingBox().getHeight()) >= Game.getResY();
+    return (this.getSprite().getBoundingBox().getY() + this.getSprite().getBoundingBox().getHeight()) >= Game.getResY();
   }
 
   // --- Getters and Setters ---
