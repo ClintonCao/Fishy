@@ -1,27 +1,54 @@
-package main;
+package factories;
 
+import interfaces.AnimationTimerFactoryInterface;
+import main.FishBomb;
+import main.Game;
+import main.MainScreenController;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 
-public class AnimationTimerFactory {
-	private static final AnimationTimerFactory animationTimerFactory = new AnimationTimerFactory();
+/**
+ * Makes Animation Timers.
+ * Singleton class.
+ * 
+ * @author Michiel
+ */
+public class AnimationTimerFactory implements AnimationTimerFactoryInterface {
+	
+	private static AnimationTimerFactory animationTimerFactory = null;
 
+	/**
+	 * Constructor.
+	 */
 	private AnimationTimerFactory() {
 
 	}
 
+	/**
+	 * Synchronized getters.
+	 * @return the Singleton AnimationTimerFactory.
+	 */
 	public static AnimationTimerFactory getAnimationTimerFactory() {
+		
+		if(animationTimerFactory == null) {
+			animationTimerFactory = new AnimationTimerFactory();
+		}
 		return animationTimerFactory;
 	}
 	
+	/**
+	 * {@inheritDoc} Overrides the Handle method in AnimationTimer to contain the game loop.
+	 * @return the new AnimationTimer.
+	 */
 	public AnimationTimer makeAnimationTimer(GraphicsContext gc) {
+
 		return new AnimationTimer() {
 			public void handle(long currentNTime) {
 
 				if (MainScreenController.playerHasWon()) {
 					this.stop();
 					Game.switchScreen("FXML/WinningScreen.fxml");
-					Game.mediaPlayer.stop();
+					Game.getMediaPlayer().stop();
 					Game.getLogger().logSwitchScreen("WinningScreen");
 				}
 

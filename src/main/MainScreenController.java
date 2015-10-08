@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import factories.MainScreenEHFactory;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -67,36 +68,21 @@ public class MainScreenController {
 
   /**
    * Automatically generated via Scenebuilder.
-   * 
-   * @param event
-   *          kind of event.
    */
   @FXML
-  void PlayEvent(MouseEvent event) {
-
-  }
+  void PlayEvent(MouseEvent event) {}
 
   /**
    * Automatically generated via Scenebuilder.
-   * 
-   * @param event
-   *          kind of event.
    */
   @FXML
-  void MenuEvent(MouseEvent event) {
-
-  }
+  void MenuEvent(MouseEvent event) {}
 
   /**
    * Automatically generated via Scenebuilder.
-   * 
-   * @param event
-   *          kind of event.
    */
   @FXML
-  void QuitEvent(MouseEvent event) {
-
-  }
+  void QuitEvent(MouseEvent event) {}
 
   /**
    * Set up things we need. Initialize the sprite list, and create the player
@@ -121,16 +107,11 @@ public class MainScreenController {
   @FXML
   void initialize() {
 
-    assert PlayButton != null : "fx:id=\"PlayButton\" was not injected:"
-        + " check your FXML file 'Main Screen.fxml'.";
-    assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: "
-        + "check your FXML file 'Main Screen.fxml'.";
-    assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: "
-        + "check your FXML file 'Main Screen.fxml'.";
-    assert NGPText != null : "fx:id=\"NGPText\" was not injected: "
-        + "check your FXML file 'MainScreen.fxml'.";
-    assert HighScoreText != null : "fx:id=\"HighScoreText\" was not injected:"
-        + " check your FXML file 'MainScreen.fxml'.";
+    assert PlayButton != null : "fx:id=\"PlayButton\" was not injected:" + " check your FXML file 'Main Screen.fxml'.";
+    assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: " + "check your FXML file 'Main Screen.fxml'.";
+    assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: " + "check your FXML file 'Main Screen.fxml'.";
+    assert NGPText != null : "fx:id=\"NGPText\" was not injected: " + "check your FXML file 'MainScreen.fxml'.";
+    assert HighScoreText != null : "fx:id=\"HighScoreText\" was not injected:" + " check your FXML file 'MainScreen.fxml'.";
 
     Game.getLogger().logInit();
     init();
@@ -335,7 +316,7 @@ public class MainScreenController {
     setCurrScore(0);
     playerFish.setScore(currScore);
     Game.setNewGamePlusMode(false);
-    Game.mediaPlayer.stop();
+    Game.getMediaPlayer().stop();
     // switch to losing screen.
     Game.switchScreen("FXML/LosingScreen.fxml");
     // log the process of switching to losing screen.
