@@ -22,14 +22,14 @@ import javafx.stage.Stage;
  */
 public final class Game extends Application implements GameInterface {
 
-  static Stage stage;
+  private static Stage stage;
   static Pane pane;
   private static int resX = 1280;
   private static int resY = 720;
   private static Logger logger;
   final URL resource = getClass().getResource("FXML/theme.mp3");
   final Media media = new Media(resource.toString());
-  static MediaPlayer mediaPlayer;
+  private static MediaPlayer mediaPlayer;
   private static boolean musicOn;
   private static boolean newgameplus = false;
   private static int highscore = 0;
@@ -51,13 +51,13 @@ public final class Game extends Application implements GameInterface {
   public void start(Stage firstStage) {
     try {
 
-      stage = firstStage;
+      setStage(firstStage);
       logger = Logger.getSingletonLogger();
 
       firstStage.setTitle("Fishy");
       logger.logStartGame();
       logger.logIcon();
-      stage.getIcons().add(new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
+      getStage().getIcons().add(new Image(Game.class.getResourceAsStream("FXML/Fish.png")));
       logger.logLoadSucceeded();
       logger.logSwitchScreen("MainScreen");
       FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/MainScreen.fxml"));
@@ -65,12 +65,12 @@ public final class Game extends Application implements GameInterface {
       pane = (Pane) loader.load();
       logger.logLoadSucceeded();
 
-      mediaPlayer = new MediaPlayer(media);
+      setMediaPlayer(new MediaPlayer(media));
       if (musicOn) {
-        mediaPlayer.play();
+        getMediaPlayer().play();
       }
       
-      mediaPlayer.setCycleCount(100);
+      getMediaPlayer().setCycleCount(100);
 
       Scene scene = new Scene(pane);
       firstStage.setHeight(getResY());
@@ -95,7 +95,7 @@ public final class Game extends Application implements GameInterface {
       logger.logLoadingScreen(fileName);
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(Game.class.getResource(fileName));
-      stage.getScene().setRoot((Parent) loader.load());
+      getStage().getScene().setRoot((Parent) loader.load());
       logger.logLoadSucceeded();
     } catch (Exception e) {
       e.printStackTrace();
@@ -147,4 +147,20 @@ public final class Game extends Application implements GameInterface {
   public static int getHighScore() {
     return highscore;
   }
+
+public static MediaPlayer getMediaPlayer() {
+	return mediaPlayer;
+}
+
+public static void setMediaPlayer(MediaPlayer mediaPlayer) {
+	Game.mediaPlayer = mediaPlayer;
+}
+
+public static Stage getStage() {
+	return stage;
+}
+
+public static void setStage(Stage stage) {
+	Game.stage = stage;
+}
 }

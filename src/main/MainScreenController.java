@@ -4,18 +4,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
+import factories.MainScreenEventHandlerFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -31,18 +26,18 @@ import javafx.scene.text.TextAlignment;
  */
 public class MainScreenController {
 
-  private static PlayerFish playerFish;
-  private static ArrayList<EnemyFish> entities;
-  private static BoundingBox screenbox;
-  private static int frames;
+  public static PlayerFish playerFish;
+  public static ArrayList<EnemyFish> entities;
+  public static BoundingBox screenbox;
+  public static int frames;
   private static final double MULTIPLIER = 1.05;
   private static Text scoreText = new Text();
-  private static int currScore;
-  private static ArrayList<String> input;
+  public static int currScore;
+  public static ArrayList<String> input;
   private static Image background = new Image("Fishy_bg.jpg");
-  private boolean bomb1;
-  private boolean bomb2;
-  private boolean bomb3;
+  public static boolean bomb1;
+  public static boolean bomb2;
+  public static boolean bomb3;
 
   @FXML
   private ResourceBundle resources;
@@ -67,35 +62,26 @@ public class MainScreenController {
 
   /**
    * Automatically generated via Scenebuilder.
-   * 
-   * @param event
-   *          kind of event.
    */
   @FXML
   void PlayEvent(MouseEvent event) {
-
+	  
   }
 
   /**
    * Automatically generated via Scenebuilder.
-   * 
-   * @param event
-   *          kind of event.
    */
   @FXML
   void MenuEvent(MouseEvent event) {
-
+	  
   }
 
   /**
    * Automatically generated via Scenebuilder.
-   * 
-   * @param event
-   *          kind of event.
    */
   @FXML
   void QuitEvent(MouseEvent event) {
-
+	  
   }
 
   /**
@@ -121,16 +107,11 @@ public class MainScreenController {
   @FXML
   void initialize() {
 
-    assert PlayButton != null : "fx:id=\"PlayButton\" was not injected:"
-        + " check your FXML file 'Main Screen.fxml'.";
-    assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: "
-        + "check your FXML file 'Main Screen.fxml'.";
-    assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: "
-        + "check your FXML file 'Main Screen.fxml'.";
-    assert NGPText != null : "fx:id=\"NGPText\" was not injected: "
-        + "check your FXML file 'MainScreen.fxml'.";
-    assert HighScoreText != null : "fx:id=\"HighScoreText\" was not injected:"
-        + " check your FXML file 'MainScreen.fxml'.";
+    assert PlayButton != null : "fx:id=\"PlayButton\" was not injected:" + " check your FXML file 'Main Screen.fxml'.";
+    assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: " + "check your FXML file 'Main Screen.fxml'.";
+    assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: " + "check your FXML file 'Main Screen.fxml'.";
+    assert NGPText != null : "fx:id=\"NGPText\" was not injected: " + "check your FXML file 'MainScreen.fxml'.";
+    assert HighScoreText != null : "fx:id=\"HighScoreText\" was not injected:" + " check your FXML file 'MainScreen.fxml'.";
 
     Game.getLogger().logInit();
     init();
@@ -143,112 +124,18 @@ public class MainScreenController {
       NGPText.setVisible(true);
       playerFish.setScore(getCurrScore());
     }
+    
+    MainScreenEventHandlerFactory mainScreenEHFactory = MainScreenEventHandlerFactory.getMainScreenEHFactory();
 
-    PlayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-      @Override
-      public void handle(MouseEvent event) {
-
-        Group root = new Group();
-        Scene scene = new Scene(root);
-        Game.stage.setScene(scene);
-
-        Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
-
-        root.getChildren().add(canvas);
-
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-          public void handle(KeyEvent e) {
-            String code = e.getCode().toString();
-            if (!input.contains(code)) {
-              input.add(code);
-            }
-          }
-        });
-
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-          public void handle(KeyEvent e) {
-            String code = e.getCode().toString();
-            input.remove(code);
-          }
-        });
-
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        new AnimationTimer() {
-          public void handle(long currentNTime) {
-
-            if (playerHasWon()) {
-              this.stop();
-              Game.switchScreen("FXML/WinningScreen.fxml");
-              Game.mediaPlayer.stop();
-              Game.getLogger().logSwitchScreen("WinningScreen");
-            }
-
-            if (currScore > 500 && !bomb1) {
-              playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
-              bomb1 = true;
-            }
-            if (currScore > 2000 && !bomb2) {
-              playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
-              bomb2 = true;
-            }
-            if (currScore > 5000 && !bomb3) {
-              playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
-              bomb3 = true;
-            }
-
-            renderStatics(gc);
-
-            handlePlayerInput(gc);
-
-            generateEnemyFish();
-
-            for (int i = 0; i < entities.size(); i++) {
-
-              if (!entities.get(i).getSprite().getBoundingBox()
-                  .intersects(screenbox)) {
-                entities.remove(i);
-              } else if (playerFish.intersects(entities.get(i))
-                  && playerFish.isAlive()) {
-                // if the player fish is bigger than the enemy fish,
-                // then the player fish grows.
-                if (!playerFish.playerDies(entities.get(i))) {
-                  handleCollision(i);
-                } else {
-                  // else the game stops.
-                  this.stop();
-                  playerLost();
-                }
-              }
-            }
-            renderNonStatics(gc);
-            frames++;
-          }
-        }.start();
-      }
-    });
-
-    MenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-      @Override
-      public void handle(MouseEvent event) {
-        Game.switchScreen("FXML/MenuScreen.fxml");
-        Game.getLogger().logSwitchScreen("MenuScreen");
-
-      }
-    });
-
-    QuitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-      @Override
-      public void handle(MouseEvent event) {
-
-        Platform.exit();
-        Game.getLogger().logEndGame();
-
-      }
-    });
+    EventHandler<MouseEvent> playbuttonEH = mainScreenEHFactory.makeEventHandler("playbutton");
+    PlayButton.setOnMouseClicked(playbuttonEH);
+    
+    EventHandler<MouseEvent> menubuttonEH = mainScreenEHFactory.makeEventHandler("menubutton");
+    MenuButton.setOnMouseClicked(menubuttonEH);
+    
+    EventHandler<MouseEvent> quitbuttonEH = mainScreenEHFactory.makeEventHandler("quitbutton");
+    QuitButton.setOnMouseClicked(quitbuttonEH);
+    
   }
 
   /**
@@ -276,7 +163,7 @@ public class MainScreenController {
    * 
    * @return true if the player is bigger than a certain size.
    */
-  private static boolean playerHasWon() {
+  public static boolean playerHasWon() {
     return (playerFish.getSprite().getBoundingBox().getHeight() > 400);
   }
 
@@ -286,7 +173,7 @@ public class MainScreenController {
    * @param gc
    *          - the graphicsContext which needs to do the rendering.
    */
-  private static void renderStatics(GraphicsContext gc) {
+  public static void renderStatics(GraphicsContext gc) {
     gc.drawImage(background, 0, 0);
     gc.setFill(Color.AQUA);
     gc.fillOval(525, 1, 200, 75);
@@ -309,7 +196,7 @@ public class MainScreenController {
    * @param gc
    *          - the graphicsContext which needs to do the rendering.
    */
-  private static void renderNonStatics(GraphicsContext gc) {
+  public static void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
 
     for (int i = 0; i < entities.size(); i++) {
@@ -327,7 +214,7 @@ public class MainScreenController {
    * This method handles the WASD input of the player. And any other input, like
    * X for using item.
    */
-  private static void handlePlayerInput(GraphicsContext gc) {
+  public static void handlePlayerInput(GraphicsContext gc) {
     ArrayList<FishBomb> playerBombs = playerFish.getBombs();
     if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
       playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
@@ -389,7 +276,7 @@ public class MainScreenController {
    * @param i
    *          - the i'th enemy fish in the entities arrayList.
    */
-  private static void handleCollision(int i) {
+  public static void handleCollision(int i) {
     // first get the height of enemy fish.
     int height = entities.get(i).getSprite().getBoundingBox().getHeight();
     // second get the width of enemy fish.
@@ -420,7 +307,7 @@ public class MainScreenController {
    * fish, and then the game is proceed to losing screen.
    *
    */
-  private static void playerLost() {
+  public static void playerLost() {
     // the logger prints the fact that player fish dies.
     Game.getLogger().logPlayerFishDies();
     // the logger also prints the status of the game.
@@ -429,7 +316,7 @@ public class MainScreenController {
     setCurrScore(0);
     playerFish.setScore(currScore);
     Game.setNewGamePlusMode(false);
-    Game.mediaPlayer.stop();
+    Game.getMediaPlayer().stop();
     // switch to losing screen.
     Game.switchScreen("FXML/LosingScreen.fxml");
     // log the process of switching to losing screen.
@@ -439,7 +326,7 @@ public class MainScreenController {
   /**
    * Generates a new enemy fish every 90 frames.
    */
-  private static void generateEnemyFish() {
+  public static void generateEnemyFish() {
     if (frames % 90 == 0) {
       entities.add(EnemyFish.generateFish());
       Game.getLogger().logEdgeBump(playerFish);

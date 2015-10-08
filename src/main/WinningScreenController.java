@@ -69,7 +69,7 @@ public class WinningScreenController {
         Game.setNewGamePlusMode(false);
         Game.switchScreen("FXML/MainScreen.fxml");
         if (Game.getMusicOn()) {
-          Game.mediaPlayer.play();
+          Game.getMediaPlayer().play();
         }
         Game.getLogger().logSwitchScreen("MainScreen");
 
@@ -84,7 +84,7 @@ public class WinningScreenController {
         int score = MainScreenController.getPlayerFish().getScore();
         MainScreenController.setCurrScore(score);
         if (Game.getMusicOn()) {
-          Game.mediaPlayer.play();
+          Game.getMediaPlayer().play();
         }
         Game.switchScreen("FXML/MainScreen.fxml");
 
