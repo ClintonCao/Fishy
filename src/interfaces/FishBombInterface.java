@@ -1,9 +1,11 @@
 package interfaces;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import main.BoundingBox;
 import main.Sprite;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
 
 /**
  * A FishBomb can be made to explode. EnemyFish within the explosion radius

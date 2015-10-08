@@ -1,8 +1,9 @@
 package main;
 
+import interfaces.GameInterface;
+
 import java.net.URL;
 
-import interfaces.GameInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -51,7 +52,7 @@ public final class Game extends Application implements GameInterface {
     try {
 
       setStage(firstStage);
-      logger = new Logger();
+      logger = Logger.getSingletonLogger();
 
       firstStage.setTitle("Fishy");
       logger.logStartGame();

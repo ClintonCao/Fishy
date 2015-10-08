@@ -3,7 +3,6 @@ package test.java.test;
 import static org.junit.Assert.assertEquals;
 
 import main.Logger;
-
 import org.junit.Test;
 
 /**
@@ -14,7 +13,11 @@ import org.junit.Test;
  *
  */
 public class LoggerTest {
-  private Logger logger = new Logger();
+  /**
+   * static access of the class Logger, 
+   * Logger can only be instantiate once.
+   */
+  private Logger logger = Logger.getSingletonLogger();
 
   /**
    * This method is for testing logEdgeBump method.

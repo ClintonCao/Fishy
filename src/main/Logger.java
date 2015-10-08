@@ -12,11 +12,31 @@ import java.util.List;
  */
 public final class Logger {
 
-  @SuppressWarnings("unused")
-  private String[] messages;
-  List<String> message = new ArrayList<String>();
+  private List<String> message = new ArrayList<String>();
   private int iterator = 0;
+  
+  private static Logger singletonLogger;
 
+  /**
+   * private constructor: 
+   * only Singleton can instantiate Logger class.
+   */
+  protected Logger() { }
+  
+  /**
+   * The getSingletonLogger() method gives us a way to instantiate the Logger
+   * class and also to return an instance of it.
+   * @return an instance of Logger
+   */
+  public static Logger getSingletonLogger() {
+    if (singletonLogger == null) {
+      singletonLogger = new Logger();
+    }
+    return singletonLogger;
+  }
+  
+  
+  
   /**
    * This method gets the current message that has been logged.
    * 
@@ -230,4 +250,6 @@ public final class Logger {
     iterator++;
     System.out.println(mes1);
   }
+  
+  
 }
