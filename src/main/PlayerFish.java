@@ -12,7 +12,10 @@ import javafx.scene.image.Image;
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
  *         Sunwei Wang.
  */
-public class PlayerFish extends Entity implements PlayerFishInterface {
+public final class PlayerFish extends Entity implements PlayerFishInterface {
+
+  private static PlayerFish singletonFish;
+  
   private static String leftImageName = "FishOriginal_transparent.png";
   private static String rightImageName = "Fish_Right_Transparent.png";
   private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
@@ -23,10 +26,20 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
   private int counter;
 
   /**
-   * Constructor.
+   * This is a private constructor now, so this ensures that 
+   * PlayerFish class has only one instance.
+   * 
+   * @param movespeed
+   *          .
+   * @param isAlive
+   *          .
+   * @param sprite
+   *          .
+   * @param score
+   * 
    * @see Entity#Entity(int, Sprite)
    */
-  public PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score) {
+  private PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score) {
 
     super(movespeed, sprite);
     setAlive(isAlive);
@@ -52,10 +65,12 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * This method creates the fish the player controls. The image is scaled to
    * its starting size. A BoundingBox with the same dimensions is created and
    * placed at the middle of the screen.
+   * This method is now private, so PlayerFish cannot be instantiate without 
+   * getSingleton method.
    * 
-   * @return new PlayerFish.
+   * @return a new PlayerFish object.
    */
-  public static PlayerFish createPlayerFish() {
+  private static PlayerFish createPlayerFish() {
 
     Image temp = new Image(leftImageName);
 
@@ -77,7 +92,7 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
   }
 
   /**
-   * {@inheritDoc} A new scaled image is created, and the PlayerFish'
+   * {@inheritDoc} A new scaled image is created, and the PlayerFish's
    * BoundingBox is scaled accordingly.
    */
   public void grow(double multiplier) {
@@ -118,7 +133,8 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * x-resolution.
    */
   public boolean intersectsRightScreenEdge() {
-    return (this.getSprite().getBoundingBox().getX() + this.getSprite().getBoundingBox().getWidth()) >= Game.getResX();
+    return (this.getSprite().getBoundingBox().getX() 
+             + this.getSprite().getBoundingBox().getWidth()) >= Game.getResX();
   }
 
   /**
@@ -133,7 +149,8 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * the y-resolution.
    */
   public boolean intersectsUnderScreenEdge() {
-    return (this.getSprite().getBoundingBox().getY() + this.getSprite().getBoundingBox().getHeight()) >= Game.getResY();
+    return (this.getSprite().getBoundingBox().getY() 
+            + this.getSprite().getBoundingBox().getHeight()) >= Game.getResY();
   }
 
   // --- Getters and Setters ---
@@ -207,4 +224,18 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
   public void setBombs(ArrayList<FishBomb> items) {
     this.bombs = items;
   }
+
+  /**
+   * The getSingletonFish() method gives us a way to instantiate the PlayerFish
+   * class and also to return an instance of it.
+   * @return an instance of PlayerFish
+   */
+  public static synchronized PlayerFish getSingletonFish() {
+    if (singletonFish == null) {
+      singletonFish = createPlayerFish();
+    }
+    return singletonFish; 
+  }
+  
+  
 }

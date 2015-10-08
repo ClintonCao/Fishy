@@ -23,17 +23,17 @@ public interface BoundingBoxInterface {
    * Update the x-coordinate of the bounding box. Used for moving bounding boxes
    * representing the fishes over the screen.
    *
-   * @param x - the new x-coordinate.
+   * @param xcoordinate - the new x-coordinate.
    */
-  void updateX(int x);
+  void updateX(int xcoordinate);
 
   /**
    * Update the y-coordinate of the bounding box. Used for moving bounding
    * boxes(Fish).
    * 
-   * @param y  - the new y-coordinate.
+   * @param ycoordinate  - the new y-coordinate.
    */
-  void updateY(int y);
+  void updateY(int ycoordinate);
 
   /**
    * Used for testing.
@@ -52,9 +52,9 @@ public interface BoundingBoxInterface {
   int getX();
 
   /**
-   * @param x - the new x-coordinate of the bounding box.
+   * @param xcoordinate - the new x-coordinate of the bounding box.
    */
-  void setX(int x);
+  void setX(int xcoordinate);
 
   /**
    * Get the y-coordinate of the box.
@@ -63,9 +63,9 @@ public interface BoundingBoxInterface {
   int getY();
 
   /**
-   * @param y - the new y-coordinate of the bounding box.
+   * @param ycoordinate - the new y-coordinate of the bounding box.
    */
-  void setY(int y);
+  void setY(int ycoordinate);
 
   /**
    * @return width of the bounding box.
