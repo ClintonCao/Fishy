@@ -19,11 +19,11 @@ import javafx.scene.image.Image;
  */
 public class PlayerFishTest {
 
-  Sprite sprite;
-  String leftimage;
-  String rightimage;
-  BoundingBox box;
-  PlayerFish playerFish;
+  private Sprite sprite;
+  private String leftimage;
+  private String rightimage;
+  private BoundingBox box;
+  private PlayerFish playerFish;
 
   /**
    * Set up a the bounding box and the sprite for the player fish.

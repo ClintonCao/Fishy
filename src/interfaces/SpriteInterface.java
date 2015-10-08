@@ -16,12 +16,12 @@ import javafx.scene.image.Image;
 public interface SpriteInterface {
 
   /**
-   * @param x - updates existing x-coordinate.
+   * @param xcoordinate - updates existing x-coordinate.
    */
   void updateX(int xcoordinate);
 
   /**
-   * @param y - updates existing y-coordinate.
+   * @param ycoordinate - updates existing y-coordinate.
    */
   void updateY(int ycoordinate);
 

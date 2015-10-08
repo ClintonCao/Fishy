@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
  *         Sunwei Wang.
  */
-public class PlayerFish extends Entity implements PlayerFishInterface {
+public final class PlayerFish extends Entity implements PlayerFishInterface {
 
   private static PlayerFish singletonFish;
   

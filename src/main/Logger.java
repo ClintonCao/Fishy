@@ -12,9 +12,7 @@ import java.util.List;
  */
 public final class Logger {
 
-  @SuppressWarnings("unused")
-  private String[] messages;
-  List<String> message = new ArrayList<String>();
+  private List<String> message = new ArrayList<String>();
   private int iterator = 0;
   
   private static Logger singletonLogger;
@@ -23,7 +21,7 @@ public final class Logger {
    * private constructor: 
    * only Singleton can instantiate Logger class.
    */
-  protected Logger() {}
+  protected Logger() { }
   
   /**
    * The getSingletonLogger() method gives us a way to instantiate the Logger

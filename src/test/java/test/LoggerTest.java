@@ -1,7 +1,6 @@
 package test.java.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 
 import main.Logger;
 import org.junit.Test;
