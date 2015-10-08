@@ -82,7 +82,7 @@ public class OptionsController {
 
       @Override
       public void handle(MouseEvent event) {
-        Game.mediaPlayer.play();
+        Game.getMediaPlayer().play();
         Game.setMusicOn(true);
         Game.getLogger().logMusicOnOff(true);
       }
@@ -92,7 +92,7 @@ public class OptionsController {
 
       @Override
       public void handle(MouseEvent event) {
-        Game.mediaPlayer.stop();
+        Game.getMediaPlayer().stop();
         Game.setMusicOn(false);
         Game.getLogger().logMusicOnOff(false);
       }

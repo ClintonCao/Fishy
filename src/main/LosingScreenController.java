@@ -3,6 +3,7 @@ package main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import factories.LosingScreenEHFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,9 +30,6 @@ public class LosingScreenController {
 
   /**
    * Automatically generated via Scenebuilder.
-   * 
-   * @param event
-   *          kind of event.
    */
   @FXML
   void MainScreenEvent(MouseEvent event) {
@@ -44,19 +42,11 @@ public class LosingScreenController {
    */
   @FXML
   void initialize() {
-    assert MainScreenButton != null : "fx:id=\"MainScreenButton\" "
-        + "was not injected: check your FXML file 'LosingScreen.fxml'.";
+    assert MainScreenButton != null : "fx:id=\"MainScreenButton\" " + "was not injected: check your FXML file 'LosingScreen.fxml'.";
 
-    MainScreenButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-      @Override
-      public void handle(MouseEvent event) {
-        Game.switchScreen("FXML/MainScreen.fxml");
-        if (Game.getMusicOn()) {
-          Game.mediaPlayer.play();
-        }
-        Game.getLogger().logSwitchScreen("MainScreen");
-      }
-    });
+    LosingScreenEHFactory losingScreenEHFactory = LosingScreenEHFactory.getLosingScreenEHFactory();
+    EventHandler<MouseEvent> mainScreenButtonEH = losingScreenEHFactory.makeEventHandler("mainscreenbutton");
+    
+    MainScreenButton.setOnMouseClicked(mainScreenButtonEH);
   }
 }
