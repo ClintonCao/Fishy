@@ -2,7 +2,7 @@ package factories;
 
 import main.Game;
 import main.MainScreenController;
-import interfaces.MainScreenEHFactoryInterface;
+import interfaces.MainScreenEventHandlerFactoryInterface;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -20,14 +20,14 @@ import javafx.scene.input.MouseEvent;
  * @author Michiel
  *
  */
-public final class MainScreenEHFactory implements MainScreenEHFactoryInterface {
+public final class MainScreenEventHandlerFactory implements MainScreenEventHandlerFactoryInterface {
 	
-	private static MainScreenEHFactory mainScreenEHFactory = null;
+	private static MainScreenEventHandlerFactory mainScreenEHFactory = null;
 	
 	/**
 	 * Constructor.
 	 */
-	private MainScreenEHFactory() {
+	private MainScreenEventHandlerFactory() {
 
 	}
 	
@@ -35,9 +35,9 @@ public final class MainScreenEHFactory implements MainScreenEHFactoryInterface {
 	 * Synchronized getter.
 	 * @return the singleton MainScreenEHFactory
 	 */
-	public static synchronized MainScreenEHFactory getMainScreenEHFactory() {
+	public static synchronized MainScreenEventHandlerFactory getMainScreenEHFactory() {
 		if (mainScreenEHFactory == null) {
-			mainScreenEHFactory = new MainScreenEHFactory();
+			mainScreenEHFactory = new MainScreenEventHandlerFactory();
 		}
 		return mainScreenEHFactory;
 	}

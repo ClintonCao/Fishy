@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
  * 
  * @author Michiel
  */
-public interface MainScreenEHFactoryInterface {
+public interface MainScreenEventHandlerFactoryInterface {
 	
 	/**
 	 * Wrapper method for the kinds of EventHandler to produce.

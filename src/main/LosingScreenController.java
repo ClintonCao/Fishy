@@ -3,7 +3,7 @@ package main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import factories.LosingScreenEHFactory;
+import factories.LosingScreenEventHandlerFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,7 +44,7 @@ public class LosingScreenController {
   void initialize() {
     assert MainScreenButton != null : "fx:id=\"MainScreenButton\" " + "was not injected: check your FXML file 'LosingScreen.fxml'.";
 
-    LosingScreenEHFactory losingScreenEHFactory = LosingScreenEHFactory.getLosingScreenEHFactory();
+    LosingScreenEventHandlerFactory losingScreenEHFactory = LosingScreenEventHandlerFactory.getLosingScreenEHFactory();
     EventHandler<MouseEvent> mainScreenButtonEH = losingScreenEHFactory.makeEventHandler("mainscreenbutton");
     
     MainScreenButton.setOnMouseClicked(mainScreenButtonEH);

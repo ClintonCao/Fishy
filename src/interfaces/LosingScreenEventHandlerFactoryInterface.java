@@ -7,11 +7,11 @@ import javafx.scene.input.MouseEvent;
  * 
  * @author Michiel
  */
-public interface LosingScreenEHFactoryInterface {
+public interface LosingScreenEventHandlerFactoryInterface {
 	
 		/**
 		 * Wrapper method for the different kinds of EventHandlers.
-		 * @param - the kind of EventHandler you need.
+		 * @param string - the kind of EventHandler you need.
 		 */
 		EventHandler<MouseEvent> makeEventHandler(String string);
 }

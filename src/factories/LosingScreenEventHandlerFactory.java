@@ -1,6 +1,6 @@
 package factories;
 
-import interfaces.LosingScreenEHFactoryInterface;
+import interfaces.LosingScreenEventHandlerFactoryInterface;
 import main.Game;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -10,14 +10,14 @@ import javafx.scene.input.MouseEvent;
  * Singleton class.
  * @author Michiel
  */
-public final class LosingScreenEHFactory implements LosingScreenEHFactoryInterface {
+public final class LosingScreenEventHandlerFactory implements LosingScreenEventHandlerFactoryInterface {
 	
-	private static LosingScreenEHFactory losingScreenEHFactory = null;
+	private static LosingScreenEventHandlerFactory losingScreenEHFactory = null;
 	
 	/**
 	 * Constructor.
 	 */
-	private LosingScreenEHFactory() {
+	private LosingScreenEventHandlerFactory() {
 		
 	}
 	
@@ -40,9 +40,9 @@ public final class LosingScreenEHFactory implements LosingScreenEHFactoryInterfa
 	 * Synchronized getter.
 	 * @return the Singleton LosingScreenEHFactory.
 	 */
-	public static synchronized LosingScreenEHFactory getLosingScreenEHFactory() {
+	public static synchronized LosingScreenEventHandlerFactory getLosingScreenEHFactory() {
 		if (losingScreenEHFactory == null) {
-			losingScreenEHFactory = new LosingScreenEHFactory();
+			losingScreenEHFactory = new LosingScreenEventHandlerFactory();
 		}
 		return losingScreenEHFactory;
 	}

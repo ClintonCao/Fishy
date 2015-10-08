@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import factories.MainScreenEHFactory;
+import factories.MainScreenEventHandlerFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
@@ -125,7 +125,7 @@ public class MainScreenController {
       playerFish.setScore(getCurrScore());
     }
     
-    MainScreenEHFactory mainScreenEHFactory = MainScreenEHFactory.getMainScreenEHFactory();
+    MainScreenEventHandlerFactory mainScreenEHFactory = MainScreenEventHandlerFactory.getMainScreenEHFactory();
 
     EventHandler<MouseEvent> playbuttonEH = mainScreenEHFactory.makeEventHandler("playbutton");
     PlayButton.setOnMouseClicked(playbuttonEH);
