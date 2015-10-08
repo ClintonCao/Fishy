@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
  * Singleton class.
  * @author Michiel
  */
-public class LosingScreenEHFactory implements LosingScreenEHFactoryInterface{
+public final class LosingScreenEHFactory implements LosingScreenEHFactoryInterface {
 	
 	private static LosingScreenEHFactory losingScreenEHFactory = null;
 	
@@ -25,7 +25,7 @@ public class LosingScreenEHFactory implements LosingScreenEHFactoryInterface{
 	 * {@inheritDoc}
 	 * @return the new EventHandler.
 	 */
-	public EventHandler<MouseEvent> makeEventHandler(String buttonString){
+	public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
 
 		switch (buttonString) {
 
@@ -41,7 +41,7 @@ public class LosingScreenEHFactory implements LosingScreenEHFactoryInterface{
 	 * @return the Singleton LosingScreenEHFactory.
 	 */
 	public static synchronized LosingScreenEHFactory getLosingScreenEHFactory() {
-		if(losingScreenEHFactory == null) {
+		if (losingScreenEHFactory == null) {
 			losingScreenEHFactory = new LosingScreenEHFactory();
 		}
 		return losingScreenEHFactory;

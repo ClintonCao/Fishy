@@ -20,7 +20,7 @@ import javafx.scene.input.MouseEvent;
  * @author Michiel
  *
  */
-public class MainScreenEHFactory implements MainScreenEHFactoryInterface {
+public final class MainScreenEHFactory implements MainScreenEHFactoryInterface {
 	
 	private static MainScreenEHFactory mainScreenEHFactory = null;
 	
@@ -36,7 +36,7 @@ public class MainScreenEHFactory implements MainScreenEHFactoryInterface {
 	 * @return the singleton MainScreenEHFactory
 	 */
 	public static synchronized MainScreenEHFactory getMainScreenEHFactory() {
-		if(mainScreenEHFactory == null) {
+		if (mainScreenEHFactory == null) {
 			mainScreenEHFactory = new MainScreenEHFactory();
 		}
 		return mainScreenEHFactory;
@@ -46,7 +46,7 @@ public class MainScreenEHFactory implements MainScreenEHFactoryInterface {
 	 * {@inheritDoc} Switch case.
 	 * @return the new EventHandler.
 	 */
-	public EventHandler<MouseEvent> makeEventHandler(String buttonString){
+	public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
 
 		switch (buttonString) {
 		case "playbutton" : return makePlayButtonEventHandler();
@@ -64,7 +64,7 @@ public class MainScreenEHFactory implements MainScreenEHFactoryInterface {
 	 * This EventHandler contains the game loop.
 	 * @return new play button Event Handler.
 	 */
-	private EventHandler<MouseEvent> makePlayButtonEventHandler(){
+	private EventHandler<MouseEvent> makePlayButtonEventHandler() {
 		
 		return new EventHandler<MouseEvent>() {
 

@@ -5,18 +5,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import factories.MainScreenEHFactory;
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -70,19 +64,25 @@ public class MainScreenController {
    * Automatically generated via Scenebuilder.
    */
   @FXML
-  void PlayEvent(MouseEvent event) {}
+  void PlayEvent(MouseEvent event) {
+	  
+  }
 
   /**
    * Automatically generated via Scenebuilder.
    */
   @FXML
-  void MenuEvent(MouseEvent event) {}
+  void MenuEvent(MouseEvent event) {
+	  
+  }
 
   /**
    * Automatically generated via Scenebuilder.
    */
   @FXML
-  void QuitEvent(MouseEvent event) {}
+  void QuitEvent(MouseEvent event) {
+	  
+  }
 
   /**
    * Set up things we need. Initialize the sprite list, and create the player

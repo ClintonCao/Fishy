@@ -13,7 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
  * 
  * @author Michiel
  */
-public class AnimationTimerFactory implements AnimationTimerFactoryInterface {
+public final class AnimationTimerFactory implements AnimationTimerFactoryInterface {
 	
 	private static AnimationTimerFactory animationTimerFactory = null;
 
@@ -28,9 +28,9 @@ public class AnimationTimerFactory implements AnimationTimerFactoryInterface {
 	 * Synchronized getters.
 	 * @return the Singleton AnimationTimerFactory.
 	 */
-	public static AnimationTimerFactory getAnimationTimerFactory() {
+	public static synchronized AnimationTimerFactory getAnimationTimerFactory() {
 		
-		if(animationTimerFactory == null) {
+		if (animationTimerFactory == null) {
 			animationTimerFactory = new AnimationTimerFactory();
 		}
 		return animationTimerFactory;
