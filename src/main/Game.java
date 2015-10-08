@@ -1,8 +1,9 @@
 package main;
 
+import interfaces.GameInterface;
+
 import java.net.URL;
 
-import interfaces.GameInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

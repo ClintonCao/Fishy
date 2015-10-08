@@ -26,7 +26,6 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
   private int counter;
 
   /**
-<<<<<<< HEAD
    * This is a private constructor now, so this ensures that 
    * PlayerFish class has only one instance.
    * 
@@ -37,11 +36,8 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * @param sprite
    *          .
    * @param score
-   *          .
-=======
-   * Constructor.
+   * 
    * @see Entity#Entity(int, Sprite)
->>>>>>> master
    */
   private PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score) {
 
@@ -137,7 +133,8 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * x-resolution.
    */
   public boolean intersectsRightScreenEdge() {
-    return (this.getSprite().getBoundingBox().getX() + this.getSprite().getBoundingBox().getWidth()) >= Game.getResX();
+    return (this.getSprite().getBoundingBox().getX() 
+             + this.getSprite().getBoundingBox().getWidth()) >= Game.getResX();
   }
 
   /**
@@ -152,7 +149,8 @@ public class PlayerFish extends Entity implements PlayerFishInterface {
    * the y-resolution.
    */
   public boolean intersectsUnderScreenEdge() {
-    return (this.getSprite().getBoundingBox().getY() + this.getSprite().getBoundingBox().getHeight()) >= Game.getResY();
+    return (this.getSprite().getBoundingBox().getY() 
+            + this.getSprite().getBoundingBox().getHeight()) >= Game.getResY();
   }
 
   // --- Getters and Setters ---

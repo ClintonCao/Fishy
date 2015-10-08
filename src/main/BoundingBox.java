@@ -9,17 +9,17 @@ import interfaces.BoundingBoxInterface;
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  */
 public class BoundingBox implements BoundingBoxInterface {
-  private int x;
-  private int y;
+  private int xcoordinate;
+  private int ycoordinate;
   private int width;
   private int height;
 
   /**
    * Contructor.
    */
-  public BoundingBox(int x, int y, int width, int height) {
-    this.setX(x);
-    this.setY(y);
+  public BoundingBox(int xcoordinate, int ycoordinate, int width, int height) {
+    this.setX(xcoordinate);
+    this.setY(ycoordinate);
     this.setWidth(width);
     this.setHeight(height);
   }
@@ -40,15 +40,15 @@ public class BoundingBox implements BoundingBoxInterface {
   /**
    * {@inheritDoc}.
    */
-  public void updateX(int x) {
-    this.x += x;
+  public void updateX(int xcoordinate) {
+    this.xcoordinate += xcoordinate;
   }
 
   /**
    * {@inheritDoc}.
    */
-  public void updateY(int y) {
-    this.y += y;
+  public void updateY(int ycoordinate) {
+    this.ycoordinate += ycoordinate;
   }
 
   /**
@@ -63,11 +63,11 @@ public class BoundingBox implements BoundingBoxInterface {
       return false;
     }
 
-    if (this.x != ((BoundingBox) other).getX()) {
+    if (this.xcoordinate != ((BoundingBox) other).getX()) {
       return false;
     }
 
-    if (this.y != ((BoundingBox) other).getY()) {
+    if (this.ycoordinate != ((BoundingBox) other).getY()) {
       return false;
     }
 
@@ -84,19 +84,19 @@ public class BoundingBox implements BoundingBoxInterface {
 
   // -----------Getters and setters-------------------
   public int getX() {
-    return x;
+    return xcoordinate;
   }
 
-  public void setX(int x) {
-    this.x = x;
+  public void setX(int xcoordinate) {
+    this.xcoordinate = xcoordinate;
   }
 
   public int getY() {
-    return y;
+    return ycoordinate;
   }
 
-  public void setY(int y) {
-    this.y = y;
+  public void setY(int ycoordinate) {
+    this.ycoordinate = ycoordinate;
   }
 
   public int getWidth() {

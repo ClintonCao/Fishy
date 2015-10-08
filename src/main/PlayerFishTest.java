@@ -8,6 +8,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 
@@ -29,7 +30,7 @@ public class PlayerFishTest {
    */
   @Before
   public void setUp() {
-	box = new BoundingBox(100, 100, 50, 50);
+    box = new BoundingBox(100, 100, 50, 50);
     sprite = mock(Sprite.class);
     //new Sprite(null, box);
     leftimage = "FishOriginal_transparent.png";
@@ -51,7 +52,7 @@ public class PlayerFishTest {
   @Test
   public void testAlive() {
 
-    PlayerFish player = playerFish.getSingletonFish();
+    PlayerFish player = PlayerFish.getSingletonFish();
     assertTrue(player.isAlive());
     player.setAlive(false);
     assertFalse(player.isAlive());
@@ -63,7 +64,7 @@ public class PlayerFishTest {
   @Test
   public void testScore() {
 
-    PlayerFish player = playerFish.getSingletonFish();
+    PlayerFish player = PlayerFish.getSingletonFish();
     assertEquals(0, player.getScore());
     player.setScore(60);
     assertEquals(60, player.getScore());
@@ -75,7 +76,7 @@ public class PlayerFishTest {
   @Test
   public void testConstructor() {
 
-	PlayerFish player = playerFish.getSingletonFish();
+    PlayerFish player = PlayerFish.getSingletonFish();
     assertEquals(10, player.getMoveSpeed());
   }
 
@@ -85,7 +86,7 @@ public class PlayerFishTest {
    */
   @Test
   public void testImage() {
-    PlayerFish player = playerFish.getSingletonFish();
+    PlayerFish player = PlayerFish.getSingletonFish();
     Image img = mock(Image.class);
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);
@@ -100,7 +101,7 @@ public class PlayerFishTest {
   @Test
   public void testImageStringSet() {
     Game.main(null);
-    PlayerFish player = playerFish.getSingletonFish();
+    PlayerFish player = PlayerFish.getSingletonFish();
     Image img = mock(Image.class);
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);

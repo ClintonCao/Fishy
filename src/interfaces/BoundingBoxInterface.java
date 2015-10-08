@@ -25,7 +25,7 @@ public interface BoundingBoxInterface {
    *
    * @param x - the new x-coordinate.
    */
-  void updateX(int x);
+  void updateX(int xcoordinate);
 
   /**
    * Update the y-coordinate of the bounding box. Used for moving bounding
@@ -33,7 +33,7 @@ public interface BoundingBoxInterface {
    * 
    * @param y  - the new y-coordinate.
    */
-  void updateY(int y);
+  void updateY(int ycoordinate);
 
   /**
    * Used for testing.
@@ -54,7 +54,7 @@ public interface BoundingBoxInterface {
   /**
    * @param x - the new x-coordinate of the bounding box.
    */
-  void setX(int x);
+  void setX(int xcoordinate);
 
   /**
    * Get the y-coordinate of the box.
@@ -65,7 +65,7 @@ public interface BoundingBoxInterface {
   /**
    * @param y - the new y-coordinate of the bounding box.
    */
-  void setY(int y);
+  void setY(int ycoordinate);
 
   /**
    * @return width of the bounding box.

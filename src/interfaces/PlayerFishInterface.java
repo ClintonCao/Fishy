@@ -1,10 +1,11 @@
 package interfaces;
 
+import main.EnemyFish;
+import main.FishBomb;
+
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
-import main.EnemyFish;
-import main.FishBomb;
 
 /**
  * PlayerFish represents the fish controlled by the player in game. Both

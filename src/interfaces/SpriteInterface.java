@@ -1,9 +1,10 @@
 package interfaces;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import main.BoundingBox;
 import main.Sprite;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * The Sprite interface.
@@ -17,12 +18,12 @@ public interface SpriteInterface {
   /**
    * @param x - updates existing x-coordinate.
    */
-  void updateX(int x);
+  void updateX(int xcoordinate);
 
   /**
    * @param y - updates existing y-coordinate.
    */
-  void updateY(int y);
+  void updateY(int ycoordinate);
 
   /**
    * @param gc - GraphicsContext which will perform the rendering.
