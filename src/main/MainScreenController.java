@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import factories.EntityFactory;
+import factories.ItemFactory;
 import factories.MainScreenEventHandlerFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -65,7 +67,7 @@ public class MainScreenController {
    */
   @FXML
   void PlayEvent(MouseEvent event) {
-	  
+
   }
 
   /**
@@ -73,7 +75,7 @@ public class MainScreenController {
    */
   @FXML
   void MenuEvent(MouseEvent event) {
-	  
+
   }
 
   /**
@@ -81,7 +83,7 @@ public class MainScreenController {
    */
   @FXML
   void QuitEvent(MouseEvent event) {
-	  
+
   }
 
   /**
@@ -89,10 +91,12 @@ public class MainScreenController {
    * fish.
    */
   public static void init() {
+    EntityFactory entityFactory = EntityFactory.getEntityFactory();
+    ItemFactory itemFactory = ItemFactory.getItemFactory();
     entities = new ArrayList<EnemyFish>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
-    playerFish = PlayerFish.getSingletonFish();
-    playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
+    playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
+    playerFish.getBombs().add(itemFactory.createItem("FISHBOMB", playerFish));
     scoreText.setText("Score");
     input = new ArrayList<String>();
     frames = 0;
@@ -107,11 +111,16 @@ public class MainScreenController {
   @FXML
   void initialize() {
 
-    assert PlayButton != null : "fx:id=\"PlayButton\" was not injected:" + " check your FXML file 'Main Screen.fxml'.";
-    assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: " + "check your FXML file 'Main Screen.fxml'.";
-    assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: " + "check your FXML file 'Main Screen.fxml'.";
-    assert NGPText != null : "fx:id=\"NGPText\" was not injected: " + "check your FXML file 'MainScreen.fxml'.";
-    assert HighScoreText != null : "fx:id=\"HighScoreText\" was not injected:" + " check your FXML file 'MainScreen.fxml'.";
+    assert PlayButton != null : "fx:id=\"PlayButton\" was not injected:"
+        + " check your FXML file 'Main Screen.fxml'.";
+    assert MenuButton != null : "fx:id=\"OptionsButton\" was not injected: "
+        + "check your FXML file 'Main Screen.fxml'.";
+    assert QuitButton != null : "fx:id=\"QuitButton\" was not injected: "
+        + "check your FXML file 'Main Screen.fxml'.";
+    assert NGPText != null : "fx:id=\"NGPText\" was not injected: "
+        + "check your FXML file 'MainScreen.fxml'.";
+    assert HighScoreText != null : "fx:id=\"HighScoreText\" was not injected:"
+        + " check your FXML file 'MainScreen.fxml'.";
 
     Game.getLogger().logInit();
     init();
@@ -124,18 +133,22 @@ public class MainScreenController {
       NGPText.setVisible(true);
       playerFish.setScore(getCurrScore());
     }
-    
-    MainScreenEventHandlerFactory mainScreenEHFactory = MainScreenEventHandlerFactory.getMainScreenEHFactory();
 
-    EventHandler<MouseEvent> playbuttonEH = mainScreenEHFactory.makeEventHandler("playbutton");
+    MainScreenEventHandlerFactory mainScreenEHFactory = MainScreenEventHandlerFactory
+        .getMainScreenEHFactory();
+
+    EventHandler<MouseEvent> playbuttonEH = mainScreenEHFactory
+        .makeEventHandler("playbutton");
     PlayButton.setOnMouseClicked(playbuttonEH);
-    
-    EventHandler<MouseEvent> menubuttonEH = mainScreenEHFactory.makeEventHandler("menubutton");
+
+    EventHandler<MouseEvent> menubuttonEH = mainScreenEHFactory
+        .makeEventHandler("menubutton");
     MenuButton.setOnMouseClicked(menubuttonEH);
-    
-    EventHandler<MouseEvent> quitbuttonEH = mainScreenEHFactory.makeEventHandler("quitbutton");
+
+    EventHandler<MouseEvent> quitbuttonEH = mainScreenEHFactory
+        .makeEventHandler("quitbutton");
     QuitButton.setOnMouseClicked(quitbuttonEH);
-    
+
   }
 
   /**
@@ -327,8 +340,9 @@ public class MainScreenController {
    * Generates a new enemy fish every 90 frames.
    */
   public static void generateEnemyFish() {
+    EntityFactory entityFactory = EntityFactory.getEntityFactory();
     if (frames % 90 == 0) {
-      entities.add(EnemyFish.generateFish());
+      entities.add((EnemyFish) entityFactory.getEntity("ENEMY"));
       Game.getLogger().logEdgeBump(playerFish);
     }
   }

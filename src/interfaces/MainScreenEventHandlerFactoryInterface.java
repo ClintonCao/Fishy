@@ -9,10 +9,11 @@ import javafx.scene.input.MouseEvent;
  * @author Michiel
  */
 public interface MainScreenEventHandlerFactoryInterface {
-	
-	/**
-	 * Wrapper method for the kinds of EventHandler to produce.
-	 * @return the new EventHandler.
-	 */
-	EventHandler<MouseEvent> makeEventHandler(String string);
+
+  /**
+   * Wrapper method for the kinds of EventHandler to produce.
+   * 
+   * @return the new EventHandler.
+   */
+  EventHandler<MouseEvent> makeEventHandler(String string);
 }
