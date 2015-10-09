@@ -14,7 +14,7 @@ import main.PlayerFish;
 public class EntityFactory {
 
   /**
-   * This method returns an entity that will be requested by the main.
+   * This method creates an entity that will be requested by the main.
    * @param entityType
    *        The entity requested.
    * @return
