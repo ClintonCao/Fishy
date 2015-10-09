@@ -23,6 +23,7 @@ public final class LosingScreenEventHandlerFactory implements LosingScreenEventH
 	
 	/**
 	 * {@inheritDoc}
+	 * @param buttonString - can be "mainscreenbutton".
 	 * @return the new EventHandler.
 	 */
 	public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
