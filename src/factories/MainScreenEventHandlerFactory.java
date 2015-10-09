@@ -48,6 +48,8 @@ public final class MainScreenEventHandlerFactory implements
   /**
    * {@inheritDoc} Switch case.
    * 
+   * @param buttonString
+   *          - can be "playbutton", "menubutton" or "quitbutton".
    * @return the new EventHandler.
    */
   public EventHandler<MouseEvent> makeEventHandler(String buttonString) {

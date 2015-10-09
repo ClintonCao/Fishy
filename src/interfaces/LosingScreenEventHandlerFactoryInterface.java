@@ -13,9 +13,6 @@ public interface LosingScreenEventHandlerFactoryInterface {
 
   /**
    * Wrapper method for the different kinds of EventHandlers.
-   * 
-   * @param string
-   *          - the kind of EventHandler you need.
    */
   EventHandler<MouseEvent> makeEventHandler(String string);
 }
