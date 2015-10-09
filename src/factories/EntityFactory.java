@@ -13,6 +13,15 @@ import main.PlayerFish;
  *
  */
 public class EntityFactory {
+  
+  /**
+   * The constructor.
+   */
+  private EntityFactory() {
+    
+  }
+  
+  private static EntityFactory entityFactory;
 
   /**
    * This method creates an entity that will be requested by the main.
@@ -31,5 +40,18 @@ public class EntityFactory {
       default:
         return null;
     }
+  }
+  
+  /**
+   * Basic getter.
+   * @return The singleton EntityFactory
+   */
+  public static synchronized EntityFactory getEntityFactory() {
+    
+    if (entityFactory == null) {
+      entityFactory = new EntityFactory();
+    }
+    
+    return entityFactory;
   }
 }

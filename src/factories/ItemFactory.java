@@ -3,6 +3,13 @@ package factories;
 import main.FishBomb;
 import main.PlayerFish;
 
+/**
+ * This class creates instances of an Item,
+ * right now only a FishBomb can be created.
+ * 
+ * @author Matthijs
+ *
+ */
 public class ItemFactory {
 
   /**
