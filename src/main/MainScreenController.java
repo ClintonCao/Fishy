@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import factories.EntityFactory;
+import factories.ItemFactory;
 import factories.MainScreenEventHandlerFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -89,10 +91,12 @@ public class MainScreenController {
    * fish.
    */
   public static void init() {
+    EntityFactory entityFactory = EntityFactory.getEntityFactory();
+    ItemFactory itemFactory = ItemFactory.getItemFactory();
     entities = new ArrayList<EnemyFish>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
-    playerFish = PlayerFish.getSingletonFish();
-    playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
+    playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
+    playerFish.getBombs().add(itemFactory.createItem("FISHBOMB", playerFish));
     scoreText.setText("Score");
     input = new ArrayList<String>();
     frames = 0;
@@ -336,8 +340,9 @@ public class MainScreenController {
    * Generates a new enemy fish every 90 frames.
    */
   public static void generateEnemyFish() {
+    EntityFactory entityFactory = EntityFactory.getEntityFactory();
     if (frames % 90 == 0) {
-      entities.add(EnemyFish.generateFish());
+      entities.add((EnemyFish) entityFactory.getEntity("ENEMY"));
       Game.getLogger().logEdgeBump(playerFish);
     }
   }
