@@ -9,12 +9,13 @@ import javafx.scene.canvas.GraphicsContext;
  * @author Michiel
  */
 public interface AnimationTimerFactoryInterface {
-	
-	/**
-	 * For now, just one kind of AnimationTimer is made.
-	 * 
-	 * @param gc - GraphicsContext needed for rendering.
-	 * @return new AnimationTimer.
-	 */
-	AnimationTimer makeAnimationTimer(GraphicsContext gc);
+
+  /**
+   * For now, just one kind of AnimationTimer is made.
+   * 
+   * @param gc
+   *          - GraphicsContext needed for rendering.
+   * @return new AnimationTimer.
+   */
+  AnimationTimer makeAnimationTimer(GraphicsContext gc);
 }
