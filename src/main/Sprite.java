@@ -1,6 +1,7 @@
 package main;
 
 import interfaces.SpriteInterface;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

@@ -148,19 +148,19 @@ public final class Game extends Application implements GameInterface {
     return highscore;
   }
 
-public static MediaPlayer getMediaPlayer() {
-	return mediaPlayer;
-}
+  public static MediaPlayer getMediaPlayer() {
+    return mediaPlayer;
+  }
 
-public static void setMediaPlayer(MediaPlayer mediaPlayer) {
-	Game.mediaPlayer = mediaPlayer;
-}
+  public static void setMediaPlayer(MediaPlayer mediaPlayer) {
+    Game.mediaPlayer = mediaPlayer;
+  }
 
-public static Stage getStage() {
-	return stage;
-}
+  public static Stage getStage() {
+    return stage;
+  }
 
-public static void setStage(Stage stage) {
-	Game.stage = stage;
-}
+  public static void setStage(Stage stage) {
+    Game.stage = stage;
+  }
 }
