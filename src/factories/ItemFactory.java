@@ -11,6 +11,15 @@ import main.PlayerFish;
  *
  */
 public class ItemFactory {
+  
+  private static ItemFactory itemFactory;
+  
+  /**
+   * Basic Constructor.
+   */
+  private ItemFactory() {
+    
+  }
 
   /**
    * This method creates an instance of an item for the player.
@@ -33,6 +42,19 @@ public class ItemFactory {
         return null;
     }
   
+  }
+  
+  /**
+   * Basic getter.
+   * @return The singleton ItemFactory.
+   */
+  public static synchronized ItemFactory getItemFactory() {
+    
+    if (itemFactory == null) {
+      itemFactory = new ItemFactory();
+    }
+    
+    return itemFactory;
   }
   
 }
