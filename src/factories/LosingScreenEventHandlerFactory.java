@@ -2,67 +2,74 @@ package factories;
 
 import interfaces.LosingScreenEventHandlerFactoryInterface;
 import main.Game;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Makes EventHandlers for the buttons of the losing screen.
- * Singleton class.
+ * Makes EventHandlers for the buttons of the losing screen. Singleton class.
+ * 
  * @author Michiel
  */
-public final class LosingScreenEventHandlerFactory implements LosingScreenEventHandlerFactoryInterface {
-	
-	private static LosingScreenEventHandlerFactory losingScreenEHFactory = null;
-	
-	/**
-	 * Constructor.
-	 */
-	private LosingScreenEventHandlerFactory() {
-		
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 * @return the new EventHandler.
-	 */
-	public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
+public final class LosingScreenEventHandlerFactory implements
+    LosingScreenEventHandlerFactoryInterface {
 
-		switch (buttonString) {
+  private static LosingScreenEventHandlerFactory losingScreenEHFactory = null;
 
-		case "mainscreenbutton" : return makeMainScreenButtonEventHandler();
+  /**
+   * Constructor.
+   */
+  private LosingScreenEventHandlerFactory() {
 
-		default: return null;
+  }
 
-		}
-	}
-	
-	/**
-	 * Synchronized getter.
-	 * @return the Singleton LosingScreenEHFactory.
-	 */
-	public static synchronized LosingScreenEventHandlerFactory getLosingScreenEHFactory() {
-		if (losingScreenEHFactory == null) {
-			losingScreenEHFactory = new LosingScreenEventHandlerFactory();
-		}
-		return losingScreenEHFactory;
-	}
-	
-	/**
-	 * Overrides the handle method in EventHandler to make the Game switch screens
-	 * to the main screen, and turn on the music.
-	 * @return the new EventHandler.
-	 */
-	private EventHandler<MouseEvent> makeMainScreenButtonEventHandler() {
-		return new EventHandler<MouseEvent>() {
+  /**
+   * {@inheritDoc}
+   * 
+   * @return the new EventHandler.
+   */
+  public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
 
-			@Override
-			public void handle(MouseEvent event) {
-				Game.switchScreen("FXML/MainScreen.fxml");
-				if (Game.getMusicOn()) {
-					Game.getMediaPlayer().play();
-				}
-				Game.getLogger().logSwitchScreen("MainScreen");
-			}
-		};
-	}
+    switch (buttonString) {
+
+      case "mainscreenbutton":
+        return makeMainScreenButtonEventHandler();
+
+      default:
+        return null;
+
+    }
+  }
+
+  /**
+   * Synchronized getter.
+   * 
+   * @return the Singleton LosingScreenEHFactory.
+   */
+  public static synchronized LosingScreenEventHandlerFactory getLosingScreenEHFactory() {
+    if (losingScreenEHFactory == null) {
+      losingScreenEHFactory = new LosingScreenEventHandlerFactory();
+    }
+    return losingScreenEHFactory;
+  }
+
+  /**
+   * Overrides the handle method in EventHandler to make the Game switch screens
+   * to the main screen, and turn on the music.
+   * 
+   * @return the new EventHandler.
+   */
+  private EventHandler<MouseEvent> makeMainScreenButtonEventHandler() {
+    return new EventHandler<MouseEvent>() {
+
+      @Override
+      public void handle(MouseEvent event) {
+        Game.switchScreen("FXML/MainScreen.fxml");
+        if (Game.getMusicOn()) {
+          Game.getMediaPlayer().play();
+        }
+        Game.getLogger().logSwitchScreen("MainScreen");
+      }
+    };
+  }
 }
