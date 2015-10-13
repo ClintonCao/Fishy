@@ -177,7 +177,12 @@ public class MainScreenController {
    * @return true if the player is bigger than a certain size.
    */
   public static boolean playerHasWon() {
-    return (playerFish.getSprite().getBoundingBox().getHeight() > 400);
+    // get the sprite of the current playerFish.
+    Sprite sprite = playerFish.getSprite();
+    // get the bounding box of the sprite.
+    BoundingBox box = sprite.getBoundingBox();
+    // if the player fish's height is higher than 400, player has won.
+    return box.getHeight() > 400;
   }
 
   /**
