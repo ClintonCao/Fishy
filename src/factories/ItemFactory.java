@@ -1,6 +1,8 @@
 package factories;
 
 import main.FishBomb;
+import main.Item;
+import main.Lance;
 import main.PlayerFish;
 
 /**
@@ -33,11 +35,13 @@ public class ItemFactory {
    * @return
    *      The instance of the item created.
    */
-  public FishBomb createItem(String itemType, PlayerFish player) {
+  public Item createItem(String itemType, PlayerFish player) {
     
     switch (itemType.toUpperCase()) {
       case "FISHBOMB": 
         return FishBomb.createFishBomb(player);
+      case "LANCE":
+        return Lance.getSingletonLance(player);
       default:
         return null;
     }

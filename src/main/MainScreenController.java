@@ -96,7 +96,7 @@ public class MainScreenController {
     entities = new ArrayList<EnemyFish>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
-    playerFish.getBombs().add(itemFactory.createItem("FISHBOMB", playerFish));
+    playerFish.getBombs().add((FishBomb) itemFactory.createItem("FISHBOMB", playerFish));
     scoreText.setText("Score");
     input = new ArrayList<String>();
     frames = 0;
