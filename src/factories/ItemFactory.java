@@ -12,7 +12,7 @@ import main.PlayerFish;
  * @author Matthijs
  *
  */
-public class ItemFactory {
+public final class ItemFactory {
   
   private static ItemFactory itemFactory;
   

@@ -1,11 +1,14 @@
 package interfaces;
 
-import main.BoundingBox;
-import main.Lance;
 import main.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+/**
+ * Interface for the Lance item.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
+ */
 public interface LanceInterface {
 
 

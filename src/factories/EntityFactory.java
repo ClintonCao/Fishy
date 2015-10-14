@@ -12,7 +12,7 @@ import main.PlayerFish;
  * @author Matthijs
  *
  */
-public class EntityFactory {
+public final class EntityFactory {
   
   /**
    * The constructor.

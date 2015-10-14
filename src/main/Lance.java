@@ -3,6 +3,12 @@ package main;
 import interfaces.LanceInterface;
 import javafx.scene.image.Image;
 
+/**
+ * This class represents the Lance item that the player can use to fight
+ * the final boss of the game.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
+ */
 public final class Lance extends Item implements LanceInterface {
 
   private Image image;

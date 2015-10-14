@@ -1,8 +1,12 @@
 package main;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
+/**
+ * Class item represents item in the game that the player can use.
+ * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
+ *         Sunwei Wang.
+ */
 public abstract class Item {
   private Sprite sprite;
   private int posX;

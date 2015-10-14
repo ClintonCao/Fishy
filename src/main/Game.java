@@ -102,7 +102,7 @@ public final class Game extends Application implements GameInterface {
     }
   }
 
-// --- Getters and Setters ---
+  // --- Getters and Setters ---
   
   public static int getResY() {
     return resY;

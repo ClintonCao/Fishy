@@ -10,48 +10,48 @@ import main.Game;
  * 
  * @author Michiel
  */
-public class OptionsScreenEventHandlerFactory implements OptionsScreenEventHandlerFactoryInterface {
-	private static OptionsScreenEventHandlerFactory optionsScreenEventHandlerFactory = null;
+public final class OptionsScreenEventHandlerFactory implements OptionsScreenEventHandlerFactoryInterface {
+  private static OptionsScreenEventHandlerFactory optionsScreenEventHandlerFactory = null;
 
-	/**
-	 * Constructor.
-	 */
-	private OptionsScreenEventHandlerFactory() {
+  /**
+   * Constructor.
+   */
+  private OptionsScreenEventHandlerFactory() {
 
-	}
+  }
 
-	/**
-	 * {@inheritDoc}
-	 * @param buttonString - can be "onbutton", "offbutton" or "backbutton".
-	 * @return the new EventHandler.
-	 */
-	public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
+  /**
+   * {@inheritDoc}
+   * @param buttonString - can be "onbutton", "offbutton" or "backbutton".
+   * @return the new EventHandler.
+   */
+  public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
 
-		switch (buttonString) {
+    switch (buttonString) {
 
-		case "onbutton" : return makeOptionsScreenOnButtonEventHandler();
-		case "offbutton" : return makeOptionsScreenOfButtonEventHandler();
-		case "backbutton" : return makeOptionsScreenBackButtonEventHandler();
+    case "onbutton" : return makeOptionsScreenOnButtonEventHandler();
+    case "offbutton" : return makeOptionsScreenOfButtonEventHandler();
+    case "backbutton" : return makeOptionsScreenBackButtonEventHandler();
 
-		default: return null;
+    default: return null;
 
-		}
-	}
+    }
+  }
 
-	/**
-	 * Synchronized getter.
-	 * @return the Singleton OptionsScreenEventHandlerFactory.
-	 */
-	public static synchronized OptionsScreenEventHandlerFactory getOptionsScreenEventHandlerFactory() {
-		if (optionsScreenEventHandlerFactory == null) {
-			optionsScreenEventHandlerFactory = new OptionsScreenEventHandlerFactory();
-		}
-		return optionsScreenEventHandlerFactory;
-	}
-	
-	private EventHandler<MouseEvent> makeOptionsScreenOnButtonEventHandler() {
-		
-		return new EventHandler<MouseEvent>() {
+  /**
+   * Synchronized getter.
+   * @return the Singleton OptionsScreenEventHandlerFactory.
+   */
+  public static synchronized OptionsScreenEventHandlerFactory getOptionsScreenEventHandlerFactory() {
+    if (optionsScreenEventHandlerFactory == null) {
+      optionsScreenEventHandlerFactory = new OptionsScreenEventHandlerFactory();
+    }
+    return optionsScreenEventHandlerFactory;
+  }
+
+  private EventHandler<MouseEvent> makeOptionsScreenOnButtonEventHandler() {
+
+    return new EventHandler<MouseEvent>() {
 
       @Override
       public void handle(MouseEvent event) {
@@ -60,11 +60,11 @@ public class OptionsScreenEventHandlerFactory implements OptionsScreenEventHandl
         Game.getLogger().logMusicOnOff(true);
       }
     };
-	}
+  }
 
-	private EventHandler<MouseEvent> makeOptionsScreenOfButtonEventHandler() {
+  private EventHandler<MouseEvent> makeOptionsScreenOfButtonEventHandler() {
 
-		return new EventHandler<MouseEvent>() {
+    return new EventHandler<MouseEvent>() {
 
       @Override
       public void handle(MouseEvent event) {
@@ -73,11 +73,11 @@ public class OptionsScreenEventHandlerFactory implements OptionsScreenEventHandl
         Game.getLogger().logMusicOnOff(false);
       }
     };
-	}
+  }
 
-	private EventHandler<MouseEvent> makeOptionsScreenBackButtonEventHandler() {
-		
-		return new EventHandler<MouseEvent>() {
+  private EventHandler<MouseEvent> makeOptionsScreenBackButtonEventHandler() {
+
+    return new EventHandler<MouseEvent>() {
 
       @Override
       public void handle(MouseEvent event) {
@@ -85,5 +85,5 @@ public class OptionsScreenEventHandlerFactory implements OptionsScreenEventHandl
         Game.getLogger().logSwitchScreen("MainScreen");
       }
     };
-	}
+  }
 }
