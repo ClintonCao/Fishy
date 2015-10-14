@@ -27,7 +27,8 @@ public class EndBoss extends Entity implements EnemyFishInterface {
   private static EndBoss singletonEndBoss;
 
   /**
-   * Constructor. 
+   * End boss Constructor, this is private,
+   * so this ensures that EndBoss class only has once instance.
    * @see Entity#Entity(int, Sprite)
    */
   @SuppressWarnings("static-access")
@@ -62,10 +63,10 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
     // Generate the height at which the end boss spawns, its movement speed, and
     // at which side of the screen it spawns.
     int randomHeight = rng.nextInt(600);
-    int randomSpeed = rng.nextInt(3) + 2;
+    int speed = 6;
     boolean isLefty = rng.nextBoolean();
 
-    double imgSizeMultiplier = rng.nextInt(50) + 100;
+    double imgSizeMultiplier = 100;
     imgSizeMultiplier /= 100;
     
     boundingBox.setY(randomHeight);
@@ -74,9 +75,8 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
     if (isLefty) {
       // Get the image for the end boss and its respective height and width.
       Image fishImage = new Image(leftImageFileName);
-      fishImage = new Image(rightImageFileName, fishImage.getWidth()
-          * imgSizeMultiplier, fishImage.getHeight() * imgSizeMultiplier, true,
-          true);
+      fishImage = new Image(rightImageFileName, fishImage.getWidth() * imgSizeMultiplier,
+          fishImage.getHeight() * imgSizeMultiplier, true, true);
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
       sprite.setImg(fishImage);
@@ -84,12 +84,11 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
       boundingBox.setHeight(fishImageHeight);
       boundingBox.setWidth(fishImageWidth);
       sprite.setBoundingBox(boundingBox);
-      return new EndBoss(randomSpeed, isLefty, sprite);
+      return new EndBoss(speed, isLefty, sprite);
     } else {
       Image fishImage = new Image(leftImageFileName);
-      fishImage = new Image(leftImageFileName, fishImage.getWidth()
-          * imgSizeMultiplier, fishImage.getHeight() * imgSizeMultiplier, true,
-          true);
+      fishImage = new Image(leftImageFileName, fishImage.getWidth() * imgSizeMultiplier, 
+          fishImage.getHeight() * imgSizeMultiplier, true, true);
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
       sprite.setImg(fishImage);
@@ -101,7 +100,7 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
        // If the end boss spawns at the right side of the screen, it needs to
        // be placed at the X coordinate equal to the width of the AABB
        // screenbox;
-      return new EndBoss(randomSpeed, isLefty, sprite);
+      return new EndBoss(speed, isLefty, sprite);
     }
   }
   
