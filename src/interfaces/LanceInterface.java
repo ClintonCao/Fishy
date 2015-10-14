@@ -77,12 +77,6 @@ public interface LanceInterface {
    */
   Image getImage();
   
-  /**
-   * Check if two lance are the same.
-   * @param other the other objec that will be compared with this one.
-   * @return true if both are equal.
-   */
-  boolean equals(Lance other);
   
   /**
    * Check if it intersects with another sprite.

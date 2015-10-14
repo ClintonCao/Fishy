@@ -3,7 +3,7 @@ package main;
 import interfaces.LanceInterface;
 import javafx.scene.image.Image;
 
-public class Lance extends Item implements LanceInterface {
+public final class Lance extends Item implements LanceInterface {
 
   private Image image;
   private static Lance singletonLance;
@@ -40,23 +40,7 @@ public class Lance extends Item implements LanceInterface {
     int posY = 3 * pfbb.getHeight() / 4;
     return new Lance(new Sprite(new Image("Lance.png"), new BoundingBox(posX,
         posY, (int) 1.5 * pfbb.getWidth(), (int) 0.25 * pfbb.getHeight())),
-        posX, posY, new Image("Lance.jpg"));
-  }
-
-  /**
-   * {@inheritDoc}.
-   */
-  public boolean equals(Lance other) {
-    if (!(other instanceof Lance)) {
-      return false;
-    }
-    if (this.getImage().equals(other.getImage())) {
-      return false;
-    }
-    if (this.getPosX() != other.getPosX() || this.getPosY() != other.getPosY()) {
-      return false;
-    }
-    return true;
+        posX, posY, new Image("Lance.png"));
   }
 
   /**
