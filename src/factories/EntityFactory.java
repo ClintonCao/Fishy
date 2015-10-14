@@ -1,5 +1,6 @@
 package factories;
 
+import main.EndBoss;
 import main.EnemyFish;
 import main.Entity;
 import main.PlayerFish;
@@ -37,6 +38,8 @@ public class EntityFactory {
         return PlayerFish.getSingletonFish();
       case "ENEMY":
         return EnemyFish.generateFish();
+      case "BOSS":
+        return EndBoss.generateBoss();
       default:
         return null;
     }
