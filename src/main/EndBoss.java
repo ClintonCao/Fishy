@@ -23,18 +23,32 @@ public class EndBoss extends Entity implements EnemyFishInterface {
   private boolean isLefty;
   private static Sprite sprite;
   private static BoundingBox boundingBox;
+  private static int health;
+  private static EndBoss singletonEndBoss;
 
   /**
    * Constructor. 
    * @see Entity#Entity(int, Sprite)
    */
   @SuppressWarnings("static-access")
-public EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
+private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
     super(movespeed, sprite);
     this.isLefty = isLefty;
     this.sprite = sprite;
   }
   
+  /**
+   * Get the an instance of EndBoss, 
+   * there should maximum one instance on the stage.
+   * @return the end boss.
+   */
+  public static synchronized EndBoss getSingletonEndBoss() {
+    if (singletonEndBoss == null) {
+      singletonEndBoss = generateBoss();
+    }
+    return singletonEndBoss; 
+  }
+
   /**
    * Generate end boss to be placed on the screen. Make a end boss with a
    * random movement speed, relatively random height at which it spawns, 
@@ -42,7 +56,7 @@ public EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
    * 
    * @return a new end boss
    */
-  public static EndBoss generateBoss() {
+  private static EndBoss generateBoss() {
     Random rng = new Random();
 
     // Generate the height at which the end boss spawns, its movement speed, and
@@ -99,6 +113,14 @@ public EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
 
   public void setLefty(boolean isLefty) {
     this.isLefty = isLefty;
+  }
+  
+  public int getHealth() {
+    return health;  
+  }
+  
+  public void setHealth(int currentHealth) {
+    health = currentHealth;
   }
 
 }

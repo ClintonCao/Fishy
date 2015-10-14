@@ -39,7 +39,7 @@ public class EntityFactory {
       case "ENEMY":
         return EnemyFish.generateFish();
       case "BOSS":
-        return EndBoss.generateBoss();
+        return EndBoss.getSingletonEndBoss();
       default:
         return null;
     }
