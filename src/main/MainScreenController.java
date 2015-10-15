@@ -40,7 +40,7 @@ public class MainScreenController {
   public static boolean bomb1;
   public static boolean bomb2;
   public static boolean bomb3;
-
+  public static EndBoss endBoss;
   @FXML
   private ResourceBundle resources;
 
@@ -97,6 +97,7 @@ public class MainScreenController {
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
     playerFish.getBombs().add(itemFactory.createItem("FISHBOMB", playerFish));
+    endBoss = (EndBoss) entityFactory.getEntity("BOSS");
     scoreText.setText("Score");
     input = new ArrayList<String>();
     frames = 0;
@@ -216,6 +217,7 @@ public class MainScreenController {
    */
   public static void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
+    endBoss.getSprite().render(gc);
 
     for (int i = 0; i < entities.size(); i++) {
       EnemyFish curr = entities.get(i);

@@ -21,8 +21,8 @@ public class EndBoss extends Entity implements EnemyFishInterface {
   private static String leftImageFileName = "SharkelliLeft.png";
   private static String rightImageFileName = "SharkelliRight.png";
   private boolean isLefty;
+  private static BoundingBox boundingBox = new BoundingBox(1,1,1,1);
   private static Sprite sprite;
-  private static BoundingBox boundingBox;
   private static int health;
   private static EndBoss singletonEndBoss;
 
@@ -79,7 +79,7 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
           fishImage.getHeight() * imgSizeMultiplier, true, true);
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
-      sprite.setImg(fishImage);
+      sprite = new Sprite(fishImage, boundingBox);
       boundingBox.setX(fishImageWidth);
       boundingBox.setHeight(fishImageHeight);
       boundingBox.setWidth(fishImageWidth);
@@ -91,7 +91,7 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
           fishImage.getHeight() * imgSizeMultiplier, true, true);
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
-      sprite.setImg(fishImage);
+      sprite = new Sprite(fishImage, boundingBox);
       boundingBox.setX(fishImageWidth);
       boundingBox.setHeight(fishImageHeight);
       boundingBox.setWidth(fishImageWidth);
