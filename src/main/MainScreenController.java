@@ -217,8 +217,14 @@ public class MainScreenController {
    */
   public static void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
+    
+    if (endBoss.isLefty()) {
+      endBoss.getSprite().updateX(endBoss.getMoveSpeed());
+    } else {
+      endBoss.getSprite().updateX(-endBoss.getMoveSpeed());   
+    }
     endBoss.getSprite().render(gc);
-
+    
     for (int i = 0; i < entities.size(); i++) {
       EnemyFish curr = entities.get(i);
       if (curr.isLefty()) {
