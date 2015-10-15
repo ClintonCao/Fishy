@@ -2,7 +2,11 @@ package main;
 
 import interfaces.GameInterface;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URL;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +45,7 @@ public final class Game extends Application implements GameInterface {
    */
   public static void main(String[] args) {
     musicOn = true;
+    loadHighScore("highscore.txt");
     Application.launch(Game.class, (java.lang.String[]) null);
   }
 
@@ -64,7 +69,6 @@ public final class Game extends Application implements GameInterface {
 
       pane = (Pane) loader.load();
       logger.logLoadSucceeded();
-
       setMediaPlayer(new MediaPlayer(media));
       if (musicOn) {
         getMediaPlayer().play();
@@ -97,6 +101,39 @@ public final class Game extends Application implements GameInterface {
       loader.setLocation(Game.class.getResource(fileName));
       getStage().getScene().setRoot((Parent) loader.load());
       logger.logLoadSucceeded();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  /**
+   * This method saves the highscore onto a text file.
+   * 
+   * @param infile - The name of the file
+   */
+  public static void saveHighScore(String infile) {
+    try {
+      File file = new File(infile);
+      BufferedWriter output = new BufferedWriter(new FileWriter(file,false));
+      output.write("" + getHighScore());
+      output.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+  /**
+   * This method loads the highscore from the tetx file.
+   * 
+   * @param infile - The name of the file
+   */
+  public static void loadHighScore(String infile) {
+    try {
+      File file = new File(infile);
+      Scanner sc = new Scanner(file);
+      int read = sc.nextInt();
+      setHighScore(read);
+      sc.close();
     } catch (Exception e) {
       e.printStackTrace();
     }

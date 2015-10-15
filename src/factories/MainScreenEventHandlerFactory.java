@@ -117,7 +117,7 @@ public final class MainScreenEventHandlerFactory implements
 
       @Override
       public void handle(MouseEvent event) {
-
+        Game.saveHighScore("highscore.txt");
         Platform.exit();
         Game.getLogger().logEndGame();
       }
