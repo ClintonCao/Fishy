@@ -40,7 +40,7 @@ public class MainScreenController {
   public static boolean bomb1;
   public static boolean bomb2;
   public static boolean bomb3;
-
+  
   @FXML
   private ResourceBundle resources;
 
@@ -216,7 +216,7 @@ public class MainScreenController {
    */
   public static void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
-
+    
     for (int i = 0; i < entities.size(); i++) {
       EnemyFish curr = entities.get(i);
       if (curr.isLefty()) {
