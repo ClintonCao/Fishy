@@ -19,7 +19,7 @@ import javafx.scene.image.Image;
  */
 public class EndBoss extends Entity implements EnemyFishInterface {
   private static String leftImageFileName = "SharkelliLeft.png";
-  private static String rightImageFileName = "SharekelliRight.png";
+  private static String rightImageFileName = "SharkelliRight.png";
   private boolean isLefty;
   private static Sprite sprite;
   private static BoundingBox boundingBox;
