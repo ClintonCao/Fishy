@@ -81,6 +81,7 @@ public final class Game extends Application implements GameInterface {
       firstStage.show();
 
     } catch (Exception e) {
+        e.printStackTrace();
       System.out.println("File is not found " + e);
     }
   }
