@@ -17,11 +17,11 @@ import javafx.scene.image.Image;
  * 
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  */
-public class EndBoss extends Entity implements EnemyFishInterface {
+public final class EndBoss extends Entity implements EnemyFishInterface {
   private static String leftImageFileName = "SharkelliLeft.png";
   private static String rightImageFileName = "SharkelliRight.png";
   private boolean isLefty;
-  private static BoundingBox boundingBox = new BoundingBox(1,1,1,1);
+  private static BoundingBox boundingBox = new BoundingBox(1, 1, 1, 1);
   private static Sprite sprite;
   private static int health;
   private static EndBoss singletonEndBoss;
@@ -97,9 +97,9 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
       boundingBox.setWidth(fishImageWidth);
       
       sprite.setBoundingBox(boundingBox);
-       // If the end boss spawns at the right side of the screen, it needs to
-       // be placed at the X coordinate equal to the width of the AABB
-       // screenbox;
+      // If the end boss spawns at the right side of the screen, it needs to
+      // be placed at the X coordinate equal to the width of the AABB
+      // screenbox;
       return new EndBoss(speed, isLefty, sprite);
     }
   }

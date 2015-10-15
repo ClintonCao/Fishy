@@ -81,8 +81,7 @@ public final class Game extends Application implements GameInterface {
       firstStage.show();
 
     } catch (Exception e) {
-        e.printStackTrace();
-      System.out.println("File is not found " + e);
+      e.printStackTrace();
     }
   }
 
@@ -103,7 +102,7 @@ public final class Game extends Application implements GameInterface {
     }
   }
 
-// --- Getters and Setters ---
+  // --- Getters and Setters ---
   
   public static int getResY() {
     return resY;
