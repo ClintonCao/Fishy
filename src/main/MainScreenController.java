@@ -237,6 +237,9 @@ public class MainScreenController {
    * @param gc - the GraphicsContext.
    */
   public static void handleBoss(GraphicsContext gc) {
+  	BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
+  	BoundingBox playerFishbb = playerFish.getSprite().getBoundingBox();
+  	
   	if (bossMode) {
   		endBoss.getSprite().render(gc);
   		if (endBoss.isLefty()) {
@@ -244,10 +247,10 @@ public class MainScreenController {
   		} else {
   			endBoss.getSprite().updateX(-getEndBoss().getMoveSpeed());
   		}
-
-  		int playerX = playerFish.getSprite().getBoundingBox().getX();
-  		int endBossX = endBoss.getSprite().getBoundingBox().getX();
-  		boolean endBossOutsideScreenBox = !endBoss.getSprite().getBoundingBox().intersects(screenbox);
+  		
+  		int playerX = playerFishbb.getX();
+  		int endBossX = endBossbb.getX();
+  		boolean endBossOutsideScreenBox = !endBossbb.intersects(screenbox);
   		boolean playerLeftOfEndBoss = playerX < endBossX;
   		boolean playerRightOfEndBoss = endBossX < playerX;
 
@@ -255,8 +258,8 @@ public class MainScreenController {
   			endBoss.switchDirection();
   		}
   	} else {
-  		endBoss.getSprite().getBoundingBox().setX(-2000);
-  		endBoss.getSprite().getBoundingBox().setY(-2000);
+  		endBossbb.setX(-2000);
+  		endBossbb.setY(-2000);
   	}
   }
   
@@ -273,10 +276,13 @@ public class MainScreenController {
   		} else {
   			lance.getSprite().updateX(-5);
   		}
-
-  		int playerX = playerFish.getSprite().getBoundingBox().getX();
-  		int lanceX = lance.getSprite().getBoundingBox().getX();
-  		boolean lanceOutsideScreenBox = !lance.getSprite().getBoundingBox().intersects(screenbox);
+  		
+  		BoundingBox playerFishbb = playerFish.getSprite().getBoundingBox();
+  		BoundingBox lancebb = lance.getSprite().getBoundingBox();
+  		
+  		int playerX = playerFishbb.getX();
+  		int lanceX = lancebb.getX();
+  		boolean lanceOutsideScreenBox = !lancebb.intersects(screenbox);
   		boolean playerLeftOfLance = playerX < lanceX;
   		boolean playerRightOfLance = lanceX < playerX;
 
