@@ -2,9 +2,12 @@ package factories;
 
 import interfaces.WinningScreenEventHandlerFactoryInterface;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import main.BoundingBox;
 import main.Game;
 import main.MainScreenController;
+import main.Sprite;
 
 /**
  * Makes EventHandlers for the buttons of the winning screen.
@@ -63,6 +66,11 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
       @Override
       public void handle(MouseEvent event) {
         Game.setNewGamePlusMode(true);
+
+        MainScreenController.resetPlayerFishSize();     
+        MainScreenController.playerFish.setHasLance(false);
+        MainScreenController.setBossMode(false);  
+        
         int score = MainScreenController.getPlayerFish().getScore();
         MainScreenController.setCurrScore(score);
         if (Game.getMusicOn()) {
@@ -85,6 +93,11 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
 
       @Override
       public void handle(MouseEvent event) {
+      	
+      	MainScreenController.resetPlayerFishSize();    
+        MainScreenController.playerFish.setHasLance(false);
+        MainScreenController.setBossMode(false);
+        
         Game.setNewGamePlusMode(false);
         Game.switchScreen("FXML/MainScreen.fxml");
         if (Game.getMusicOn()) {
