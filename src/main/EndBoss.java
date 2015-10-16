@@ -110,12 +110,12 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
    * Switches the direction the EndBoss is facing.
    */
   public void switchDirection() {
-  	if(isLefty) {
-  		sprite.setImg(new Image("SharkelliLeft.png"));
-  	} else {
-  		sprite.setImg(new Image("SharkelliRight.png"));
-  	}
-  	isLefty = !isLefty;
+    if (isLefty) {
+      sprite.setImg(new Image("SharkelliLeft.png"));
+    } else {
+      sprite.setImg(new Image("SharkelliRight.png"));
+    }
+    isLefty = !isLefty;
   }
   
   // --- Getters and Setters ---  

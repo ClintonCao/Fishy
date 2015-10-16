@@ -1,6 +1,7 @@
 package main;
 
 import interfaces.LanceInterface;
+
 import javafx.scene.image.Image;
 
 /**
@@ -10,7 +11,7 @@ import javafx.scene.image.Image;
  *         Sunwei Wang.
  */
 public final class Lance extends Item implements LanceInterface {
-	private boolean isLefty;
+  private boolean isLefty;
   private Image image;
   private static Lance singletonLance;
 
@@ -65,9 +66,9 @@ public final class Lance extends Item implements LanceInterface {
   /**
    * Switches the direction the lance is facing.
    */
-	public void switchDirection() {
-		isLefty = !isLefty;
-	}
+  public void switchDirection() {
+    isLefty = !isLefty;
+  }
 
   // -----------Getters and setters----------------
 
@@ -80,12 +81,12 @@ public final class Lance extends Item implements LanceInterface {
     return this.image;
   }
 
-	public boolean isLefty() {
-		return isLefty;
-	}
+  public boolean isLefty() {
+    return isLefty;
+  }
 
-	public void setLefty(boolean isLefty) {
-		this.isLefty = isLefty;
-	}
+  public void setLefty(boolean isLefty) {
+    this.isLefty = isLefty;
+  }
 
 }
