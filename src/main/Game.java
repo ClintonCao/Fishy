@@ -2,7 +2,11 @@ package main;
 
 import interfaces.GameInterface;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URL;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +45,7 @@ public final class Game extends Application implements GameInterface {
    */
   public static void main(String[] args) {
     musicOn = true;
+    loadHighScore("highscore.txt");
     Application.launch(Game.class, (java.lang.String[]) null);
   }
 
@@ -64,7 +69,6 @@ public final class Game extends Application implements GameInterface {
 
       pane = (Pane) loader.load();
       logger.logLoadSucceeded();
-
       setMediaPlayer(new MediaPlayer(media));
       if (musicOn) {
         getMediaPlayer().play();
@@ -101,6 +105,39 @@ public final class Game extends Application implements GameInterface {
       e.printStackTrace();
     }
   }
+  
+  /**
+   * This method saves the highscore onto a text file.
+   * 
+   * @param infile - The name of the file
+   */
+  public static void saveHighScore(String infile) {
+    try {
+      File file = new File(infile);
+      BufferedWriter output = new BufferedWriter(new FileWriter(file,false));
+      output.write("" + getHighScore());
+      output.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+  /**
+   * This method loads the highscore from the tetx file.
+   * 
+   * @param infile - The name of the file
+   */
+  public static void loadHighScore(String infile) {
+    try {
+      File file = new File(infile);
+      Scanner sc = new Scanner(file);
+      int read = sc.nextInt();
+      setHighScore(read);
+      sc.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
   // --- Getters and Setters ---
   
@@ -108,17 +145,12 @@ public final class Game extends Application implements GameInterface {
     return resY;
   }
 
-  public static void setResY(int resY) {
-    Game.resY = resY;
-  }
 
   public static int getResX() {
     return resX;
   }
 
-  public static void setResX(int resX) {
-    Game.resX = resX;
-  }
+
 
   public static boolean getMusicOn() {
     return musicOn;
@@ -152,7 +184,7 @@ public final class Game extends Application implements GameInterface {
     return mediaPlayer;
   }
 
-  public static void setMediaPlayer(MediaPlayer mediaPlayer) {
+  private static void setMediaPlayer(MediaPlayer mediaPlayer) {
     Game.mediaPlayer = mediaPlayer;
   }
 
@@ -160,7 +192,7 @@ public final class Game extends Application implements GameInterface {
     return stage;
   }
 
-  public static void setStage(Stage stage) {
+  private static void setStage(Stage stage) {
     Game.stage = stage;
   }
 }

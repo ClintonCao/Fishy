@@ -30,12 +30,12 @@
             <Font name="Consolas" size="33.0" />
          </font>
       </Text>
-      <Text fill="#ff1fc7" layoutX="63.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score achieved this session:" wrappingWidth="399.6708984375">
+      <Text fill="#ff1fc7" layoutX="63.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score:" wrappingWidth="399.6708984375">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text fx:id="HighScoreText" fill="#ee408e" layoutX="462.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" --">
+      <Text fx:id="HighScoreText" fill="#ee408e" layoutX="235.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" --">
          <font>
             <Font size="24.0" />
          </font>
