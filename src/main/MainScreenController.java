@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import factories.EntityFactory;
 import factories.ItemFactory;
 import factories.MainScreenEventHandlerFactory;
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
@@ -378,6 +379,68 @@ public class MainScreenController {
    */
   public static PlayerFish getPlayerFish() {
     return playerFish;
+  }
+  
+   /**
+   * {@inheritDoc} Overrides the Handle method in AnimationTimer to contain the
+   * game loop.
+   * 
+   * @return the new AnimationTimer.
+   */
+  public static AnimationTimer makeAnimationTimer(GraphicsContext gc) {
+    
+    return new AnimationTimer() {
+      public void handle(long currentNTime) {
+
+        if (playerHasWon()) {
+          this.stop();
+          Game.switchScreen("FXML/WinningScreen.fxml");
+          Game.getMediaPlayer().stop();
+          Game.getLogger().logSwitchScreen("WinningScreen");
+        }
+
+        if (currScore > 500 && !bomb1) {
+          playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
+          bomb1 = true;
+        }
+        if (currScore > 2000 && !bomb2) {
+          playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
+          bomb2 = true;
+        }
+        if (currScore > 5000 && !bomb3) {
+          playerFish.getBombs().add(
+              FishBomb.createFishBomb(MainScreenController.playerFish));
+          bomb3 = true;
+        }
+
+        renderStatics(gc);
+
+        handlePlayerInput(gc);
+
+        generateEnemyFish();
+
+        for (int i = 0; i < entities.size(); i++) {
+
+          if (!entities.get(i).getSprite().getBoundingBox()
+              .intersects(screenbox)) {
+            entities.remove(i);
+          } else if (playerFish.intersects(entities.get(i))
+              && playerFish.isAlive()) {
+            // if the player fish is bigger than the enemy fish,
+            // then the player fish grows.
+            if (!playerFish.playerDies(entities.get(i))) {
+              handleCollision(i);
+            } else {
+              // else the game stops.
+              this.stop();
+              playerLost();
+            }
+          }
+        }
+        renderNonStatics(gc);
+        frames++;
+      }
+    };
   }
 
 }
