@@ -107,7 +107,40 @@ public final class Game extends Application implements GameInterface {
   }
   
   /**
-   * This method saves the highscore onto a text file.
+   * Reset the playerFish size and its images.
+   */
+  public static void resetPlayerFishSize() {
+  	Image temp = new Image("FishOriginal_transparent.png");
+
+  	int imgWidth = (int) (temp.getWidth() * 0.30);
+  	int imgHeight = (int) (temp.getHeight() * 0.30);
+
+  	Image playerFishImageLeft = 
+  			new Image("FishOriginal_transparent.png", imgWidth, imgHeight, true, true);
+
+  	Image playerFishImageRight = 
+  			new Image("Fish_Right_Transparent.png", imgWidth, imgHeight, true, true);
+
+  	PlayerFish playerFish = MainScreenController.playerFish;
+  	Sprite pfSprite = playerFish.getSprite();
+  	BoundingBox pfbb = pfSprite.getBoundingBox();
+
+  	pfSprite.setImg(playerFishImageLeft);
+
+  	playerFish.setHasLance(false);
+  	MainScreenController.setBossMode(false);
+
+  	pfbb.setWidth((int) playerFishImageLeft.getWidth());
+  	pfbb.setHeight((int) playerFishImageLeft.getHeight());
+
+  	playerFish.setPlayerFishLeftImageName("FishOriginal_transparent.png");
+  	playerFish.setPlayerFishLeftImage(playerFishImageLeft);
+  	playerFish.setPlayerFishRightImageName("Fish_Right_Transparent.png");
+  	playerFish.setPlayerFishRightImage(playerFishImageRight);
+  }
+
+
+   /** This method saves the highscore onto a text file.
    * 
    * @param infile - The name of the file
    */
@@ -122,6 +155,7 @@ public final class Game extends Application implements GameInterface {
     }
 
   }
+  
   /**
    * This method loads the highscore from the tetx file.
    * 
@@ -145,12 +179,9 @@ public final class Game extends Application implements GameInterface {
     return resY;
   }
 
-
   public static int getResX() {
     return resX;
   }
-
-
 
   public static boolean getMusicOn() {
     return musicOn;
@@ -195,4 +226,5 @@ public final class Game extends Application implements GameInterface {
   private static void setStage(Stage stage) {
     Game.stage = stage;
   }
+ 
 }
