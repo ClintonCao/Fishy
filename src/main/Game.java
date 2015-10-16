@@ -145,17 +145,17 @@ public final class Game extends Application implements GameInterface {
     return resY;
   }
 
-  public static void setResY(int resY) {
-    Game.resY = resY;
-  }
+//  public static void setResY(int resY) {
+//    Game.resY = resY;
+//  }
 
   public static int getResX() {
     return resX;
   }
 
-  public static void setResX(int resX) {
-    Game.resX = resX;
-  }
+//  public static void setResX(int resX) {
+//    Game.resX = resX;
+//  }
 
   public static boolean getMusicOn() {
     return musicOn;
@@ -189,7 +189,7 @@ public final class Game extends Application implements GameInterface {
     return mediaPlayer;
   }
 
-  public static void setMediaPlayer(MediaPlayer mediaPlayer) {
+  private static void setMediaPlayer(MediaPlayer mediaPlayer) {
     Game.mediaPlayer = mediaPlayer;
   }
 
@@ -197,7 +197,7 @@ public final class Game extends Application implements GameInterface {
     return stage;
   }
 
-  public static void setStage(Stage stage) {
+  private static void setStage(Stage stage) {
     Game.stage = stage;
   }
 }
