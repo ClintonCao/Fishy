@@ -391,6 +391,7 @@ public class MainScreenController {
     Game.switchScreen("FXML/LosingScreen.fxml");
     Game.getLogger().logSwitchScreen("LosingScreen");
     setBossMode(false);
+    playerFish.setHasLance(false);
   }
 
 	/**

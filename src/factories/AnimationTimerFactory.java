@@ -57,6 +57,7 @@ public final class AnimationTimerFactory implements
           Game.getLogger().logSwitchScreen("WinningScreen");
           
           MainScreenController.setBossMode(false);
+          MainScreenController.playerFish.setHasLance(false);
           
           MainScreenController.getEndBoss().getSprite().getBoundingBox().setX(-2000);
         	MainScreenController.getEndBoss().getSprite().getBoundingBox().setY(-2000);
@@ -66,6 +67,10 @@ public final class AnimationTimerFactory implements
         	if (MainScreenController.getEndBoss().getSprite().getBoundingBox().getX() == -2000) {
         		MainScreenController.getEndBoss().getSprite().getBoundingBox().setX(0);
           	MainScreenController.getEndBoss().getSprite().getBoundingBox().setY(0);
+        	}
+        	if ((MainScreenController.getLance().getSprite().getBoundingBox().getX() == -2000) && !MainScreenController.getPlayerFish().hasLance()) {
+        		MainScreenController.getLance().getSprite().getBoundingBox().setX(0);
+          	MainScreenController.getLance().getSprite().getBoundingBox().setY(MainScreenController.getScreenbox().getHeight()/4*3);
         	}
         	MainScreenController.setBossMode(true);
         }
