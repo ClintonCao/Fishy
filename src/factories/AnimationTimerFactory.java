@@ -4,7 +4,6 @@ import interfaces.AnimationTimerFactoryInterface;
 import main.FishBomb;
 import main.Game;
 import main.MainScreenController;
-import main.PlayerFish;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -70,7 +69,7 @@ public final class AnimationTimerFactory implements
         	}
         	if ((MainScreenController.getLance().getSprite().getBoundingBox().getX() == -2000) && !MainScreenController.getPlayerFish().hasLance()) {
         		MainScreenController.getLance().getSprite().getBoundingBox().setX(0);
-          	MainScreenController.getLance().getSprite().getBoundingBox().setY(MainScreenController.getScreenbox().getHeight()/4*3);
+          	MainScreenController.getLance().getSprite().getBoundingBox().setY(MainScreenController.getScreenbox().getHeight() / 4 * 3);
         	}
         	MainScreenController.setBossMode(true);
         }

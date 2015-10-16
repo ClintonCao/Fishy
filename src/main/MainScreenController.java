@@ -375,7 +375,7 @@ public class MainScreenController {
   }
   
   /**
-   * Reset the playerFish size and its images.
+   * Reset the playerFish size and its i
    */
   public static void resetPlayerFishSize() {
   	Image temp = new Image("FishOriginal_transparent.png");
