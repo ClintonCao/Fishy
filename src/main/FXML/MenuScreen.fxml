@@ -65,7 +65,7 @@
       </ImageView>
       <ImageView layoutX="990.0" layoutY="489.0">
          <image>
-            <Image url="@../../fishbombbig.png" />
+            <Image url="@fishbombbig.png" />
          </image>
       </ImageView>
       <Text fill="#f6ff00" layoutX="393.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To be able to win the game, you must defeat the final boss, Sharkelli. You will see a lance popping up on the screen. Grab the lance to turn into a knight to fight the Sharkelli and beat the game!" wrappingWidth="676.0478515625">
@@ -75,7 +75,7 @@
       </Text>
       <ImageView fitHeight="61.0" fitWidth="200.0" layoutX="1047.0" layoutY="362.0">
          <image>
-            <Image url="@../../Lance.png" />
+            <Image url="@Lance.png" />
          </image>
       </ImageView>
    </children>
