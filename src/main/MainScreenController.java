@@ -291,7 +291,7 @@ public class MainScreenController {
   /**
    * Handles collisions between player fish and enemy fish.
    * 
-   * @param ith
+   * @param nth
    *          - the nth enemy fish in the entities arrayList.
    */
   public static void handleCollision(int nth) {
