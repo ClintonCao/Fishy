@@ -108,27 +108,31 @@ public final class Game extends Application implements GameInterface {
   public static void resetPlayerFishSize() {
     Image temp = new Image("FishOriginal_transparent.png");
 
-    int startImageWidth = (int) (temp.getWidth() * 0.30);
-    int startImageHeight = (int) (temp.getHeight() * 0.30);
+    int imgWidth = (int) (temp.getWidth() * 0.30);
+    int imgHeight = (int) (temp.getHeight() * 0.30);
 
-    Image playerFishImageLeft = new Image("FishOriginal_transparent.png", startImageWidth,
-        startImageHeight, true, true);
+    Image playerFishImageLeft = 
+    		new Image("FishOriginal_transparent.png", imgWidth, imgHeight, true, true);
     
-    Image playerFishImageRight = new Image("Fish_Right_Transparent.png", startImageWidth,
-        startImageHeight, true, true);
+    Image playerFishImageRight = 
+    		new Image("Fish_Right_Transparent.png", imgWidth, imgHeight, true, true);
+    
+    PlayerFish playerFish = MainScreenController.playerFish;
+    Sprite pfSprite = playerFish.getSprite();
+    BoundingBox pfbb = pfSprite.getBoundingBox();
 
-    MainScreenController.playerFish.getSprite().setImg(playerFishImageLeft);
+    pfSprite.setImg(playerFishImageLeft);
     
-    MainScreenController.playerFish.setHasLance(false);
+    playerFish.setHasLance(false);
     MainScreenController.setBossMode(false);
     
-    MainScreenController.playerFish.getSprite().getBoundingBox().setWidth((int) playerFishImageLeft.getWidth());
-    MainScreenController.playerFish.getSprite().getBoundingBox().setHeight((int) playerFishImageLeft.getHeight());
+    pfbb.setWidth((int) playerFishImageLeft.getWidth());
+    pfbb.setHeight((int) playerFishImageLeft.getHeight());
     
-    MainScreenController.playerFish.setPlayerFishLeftImageName("FishOriginal_transparent.png");
-    MainScreenController.playerFish.setPlayerFishLeftImage(playerFishImageLeft);
-    MainScreenController.playerFish.setPlayerFishRightImageName("Fish_Right_Transparent.png");
-    MainScreenController.playerFish.setPlayerFishRightImage(playerFishImageRight);
+    playerFish.setPlayerFishLeftImageName("FishOriginal_transparent.png");
+    playerFish.setPlayerFishLeftImage(playerFishImageLeft);
+    playerFish.setPlayerFishRightImageName("Fish_Right_Transparent.png");
+    playerFish.setPlayerFishRightImage(playerFishImageRight);
   }
 
   // --- Getters and Setters ---
