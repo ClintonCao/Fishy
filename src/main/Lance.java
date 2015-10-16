@@ -1,6 +1,7 @@
 package main;
 
 import interfaces.LanceInterface;
+
 import javafx.scene.image.Image;
 
 /**
@@ -10,17 +11,17 @@ import javafx.scene.image.Image;
  *         Sunwei Wang.
  */
 public final class Lance extends Item implements LanceInterface {
-
+  private boolean isLefty;
   private Image image;
   private static Lance singletonLance;
 
   /**
    * Contructor.
    */
-  private Lance(Sprite sprite, int posX, int posY, Image image) {
+  private Lance(Sprite sprite, int posX, int posY, Image image, boolean isLefty) {
     super(sprite, posX, posY);
     this.setImage(image);
-
+    this.setLefty(isLefty);
   }
   
   /**
@@ -42,11 +43,17 @@ public final class Lance extends Item implements LanceInterface {
    */
   public static Lance createLance(PlayerFish pf) {
     BoundingBox pfbb = pf.getSprite().getBoundingBox();
-    int posX = pfbb.getWidth() / 2;
-    int posY = 3 * pfbb.getHeight() / 4;
-    return new Lance(new Sprite(new Image("Lance.png"), new BoundingBox(posX,
-        posY, (int) 1.5 * pfbb.getWidth(), (int) 0.25 * pfbb.getHeight())),
-        posX, posY, new Image("Lance.png"));
+    int posX = 0;
+    int posY = MainScreenController.getScreenbox().getHeight() / 4 * 3;
+    
+    Image lanceImg = new Image("Lance.png");
+    int lanceWidth = (int) lanceImg.getWidth();
+    int lanceHeight = (int) lanceImg.getHeight();
+    
+    BoundingBox lancebb = new BoundingBox(posX, posY, lanceWidth, lanceHeight);
+    Sprite lanceSprite = new Sprite(lanceImg, lancebb);
+    
+    return new Lance(lanceSprite, posX, posY, lanceImg, true);
   }
 
   /**
@@ -54,6 +61,13 @@ public final class Lance extends Item implements LanceInterface {
    */
   public boolean intersect(Sprite other) {
     return super.getSprite().intersects(other);
+  }
+  
+  /**
+   * Switches the direction the lance is facing.
+   */
+  public void switchDirection() {
+    isLefty = !isLefty;
   }
 
   // -----------Getters and setters----------------
@@ -65,6 +79,14 @@ public final class Lance extends Item implements LanceInterface {
 
   public Image getImage() {
     return this.image;
+  }
+
+  public boolean isLefty() {
+    return isLefty;
+  }
+
+  public void setLefty(boolean isLefty) {
+    this.isLefty = isLefty;
   }
 
 }

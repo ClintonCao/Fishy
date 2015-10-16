@@ -42,11 +42,14 @@ public class LosingScreenController {
    */
   @FXML
   void initialize() {
-    assert MainScreenButton != null : "fx:id=\"MainScreenButton\" " + "was not injected: check your FXML file 'LosingScreen.fxml'.";
+    assert MainScreenButton != null : "fx:id=\"MainScreenButton\" "
+        + "was not injected: check your FXML file 'LosingScreen.fxml'.";
 
-    LosingScreenEventHandlerFactory losingScreenEHFactory = LosingScreenEventHandlerFactory.getLosingScreenEHFactory();
-    EventHandler<MouseEvent> mainScreenButtonEH = losingScreenEHFactory.makeEventHandler("mainscreenbutton");
-    
+    LosingScreenEventHandlerFactory losingScreenEHFactory = LosingScreenEventHandlerFactory
+        .getLosingScreenEHFactory();
+    EventHandler<MouseEvent> mainScreenButtonEH = losingScreenEHFactory
+        .makeEventHandler("mainscreenbutton");
+
     MainScreenButton.setOnMouseClicked(mainScreenButtonEH);
   }
 }

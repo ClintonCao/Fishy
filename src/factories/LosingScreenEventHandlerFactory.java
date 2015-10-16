@@ -2,7 +2,7 @@ package factories;
 
 import interfaces.LosingScreenEventHandlerFactoryInterface;
 import main.Game;
-
+import main.MainScreenController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -64,14 +64,22 @@ public final class LosingScreenEventHandlerFactory implements
   private EventHandler<MouseEvent> makeMainScreenButtonEventHandler() {
     return new EventHandler<MouseEvent>() {
 
-      @Override
-      public void handle(MouseEvent event) {
-        Game.switchScreen("FXML/MainScreen.fxml");
-        if (Game.getMusicOn()) {
-          Game.getMediaPlayer().play();
-        }
-        Game.getLogger().logSwitchScreen("MainScreen");
-      }
+    	@Override
+    	public void handle(MouseEvent event) {
+
+
+    		Game.resetPlayerFishSize();
+    		MainScreenController.playerFish.setHasLance(false);
+    		MainScreenController.setBossMode(false);
+
+    		MainScreenController.playerFish.setHasLance(false);
+
+    		Game.switchScreen("FXML/MainScreen.fxml");
+    		if (Game.getMusicOn()) {
+    			Game.getMediaPlayer().play();
+    		}
+    		Game.getLogger().logSwitchScreen("MainScreen");
+    	}
     };
   }
 }

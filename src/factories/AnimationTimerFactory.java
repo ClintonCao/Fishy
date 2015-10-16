@@ -1,8 +1,7 @@
 package factories;
 
 import interfaces.AnimationTimerFactoryInterface;
-import main.FishBomb;
-import main.Game;
+
 import main.MainScreenController;
 
 import javafx.animation.AnimationTimer;
@@ -48,4 +47,5 @@ public final class AnimationTimerFactory implements
     AnimationTimer timer = MainScreenController.makeAnimationTimer(gc);
     return timer;
   }
+  
 }
