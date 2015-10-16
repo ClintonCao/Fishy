@@ -145,17 +145,12 @@ public final class Game extends Application implements GameInterface {
     return resY;
   }
 
-//  public static void setResY(int resY) {
-//    Game.resY = resY;
-//  }
 
   public static int getResX() {
     return resX;
   }
 
-//  public static void setResX(int resX) {
-//    Game.resX = resX;
-//  }
+
 
   public static boolean getMusicOn() {
     return musicOn;
