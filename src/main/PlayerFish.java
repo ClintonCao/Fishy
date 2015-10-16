@@ -24,6 +24,7 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
   private boolean isAlive;
   private int score;
   private int counter;
+  private boolean hasLance;
 
   /**
    * This is a private constructor now, so this ensures that 
@@ -39,7 +40,7 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
    * 
    * @see Entity#Entity(int, Sprite)
    */
-  private PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score) {
+  private PlayerFish(int movespeed, boolean isAlive, Sprite sprite, int score, boolean hasLance) {
 
     super(movespeed, sprite);
     setAlive(isAlive);
@@ -59,6 +60,8 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
       setPlayerFishLeftImage(new Image(leftImageName, 128, 128, true, true));
       setPlayerFishRightImage(new Image(rightImageName, 128, 128, true, true));
     }
+    
+    setHasLance(hasLance);
   }
 
   /**
@@ -88,7 +91,7 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
 
     Sprite sprite = new Sprite(playerFishImage, boundingBox);
 
-    return new PlayerFish(10, true, sprite, 0);
+    return new PlayerFish(10, true, sprite, 0, false);
   }
 
   /**
@@ -117,8 +120,8 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
   /**
    * {@inheritDoc} Width of the images is used for comparison.
    */
-  public boolean playerDies(EnemyFish enemyfish) {
-    return this.getSprite().getImg().getWidth() <= enemyfish.getSprite().getImg().getWidth();
+  public boolean playerDies(Entity entity) {
+    return this.getSprite().getImg().getWidth() <= entity.getSprite().getImg().getWidth();
   }
 
   /**
@@ -217,7 +220,15 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     return score;
   }
 
-  public ArrayList<FishBomb> getBombs() {
+  public boolean hasLance() {
+		return hasLance;
+	}
+
+	public void setHasLance(boolean hasLance) {
+		this.hasLance = hasLance;
+	}
+
+	public ArrayList<FishBomb> getBombs() {
     return bombs;
   }
 

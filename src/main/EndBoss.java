@@ -80,10 +80,12 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
       sprite = new Sprite(fishImage, boundingBox);
-      boundingBox.setX(fishImageWidth);
       boundingBox.setHeight(fishImageHeight);
       boundingBox.setWidth(fishImageWidth);
+      boundingBox.setX(-2000);
+      boundingBox.setY(-2000);
       sprite.setBoundingBox(boundingBox);
+     
       return new EndBoss(speed, isLefty, sprite);
     } else {
       Image fishImage = new Image(leftImageFileName);
@@ -92,10 +94,10 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
       int fishImageWidth = (int) fishImage.getWidth();
       int fishImageHeight = (int) fishImage.getHeight();
       sprite = new Sprite(fishImage, boundingBox);
-      boundingBox.setX(fishImageWidth);
       boundingBox.setHeight(fishImageHeight);
       boundingBox.setWidth(fishImageWidth);
-      
+      boundingBox.setX(-2000);
+      boundingBox.setY(-2000);
       sprite.setBoundingBox(boundingBox);
       // If the end boss spawns at the right side of the screen, it needs to
       // be placed at the X coordinate equal to the width of the AABB
@@ -121,5 +123,8 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
   public void setHealth(int currentHealth) {
     health = currentHealth;
   }
-
+  
+  public void switchDirection() {
+  	isLefty = !isLefty;
+  }
 }

@@ -29,7 +29,7 @@ import javafx.scene.text.TextAlignment;
 public class MainScreenController {
 
   public static PlayerFish playerFish;
-  public static ArrayList<EnemyFish> entities;
+  public static ArrayList<Entity> entities;
   public static BoundingBox screenbox;
   public static int frames;
   private static final double MULTIPLIER = 1.05;
@@ -40,6 +40,9 @@ public class MainScreenController {
   public static boolean bomb1;
   public static boolean bomb2;
   public static boolean bomb3;
+	private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory().getEntity("BOSS");
+	private static Lance lance;
+	private static boolean bossMode;
   
   @FXML
   private ResourceBundle resources;
@@ -93,7 +96,7 @@ public class MainScreenController {
   public static void init() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     ItemFactory itemFactory = ItemFactory.getItemFactory();
-    entities = new ArrayList<EnemyFish>();
+    entities = new ArrayList<Entity>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
     playerFish.getBombs().add((FishBomb) itemFactory.createItem("FISHBOMB", playerFish));
@@ -103,6 +106,8 @@ public class MainScreenController {
     if (!Game.isPlayingNewGamePlus()) {
       currScore = 0;
     }
+  	setLance((Lance) itemFactory.createItem("LANCE", playerFish));
+  	setBossMode(false);
   }
 
   /**
@@ -177,12 +182,7 @@ public class MainScreenController {
    * @return true if the player is bigger than a certain size.
    */
   public static boolean playerHasWon() {
-    // get the sprite of the current playerFish.
-    Sprite sprite = playerFish.getSprite();
-    // get the bounding box of the sprite.
-    BoundingBox box = sprite.getBoundingBox();
-    // if the player fish's height is higher than 400, player has won.
-    return box.getHeight() > 400;
+    return playerFish.intersects(endBoss) && playerFish.hasLance();
   }
 
   /**
@@ -218,14 +218,68 @@ public class MainScreenController {
     playerFish.getSprite().render(gc);
     
     for (int i = 0; i < entities.size(); i++) {
-      EnemyFish curr = entities.get(i);
-      if (curr.isLefty()) {
-        curr.getSprite().updateX(curr.getMoveSpeed());
-      } else {
-        curr.getSprite().updateX(-curr.getMoveSpeed());
-      }
-      entities.get(i).getSprite().render(gc);
+    	
+    	Entity curr = entities.get(i);
+    	EnemyFish currEnemyFish = (EnemyFish) curr;
+    	
+    	if (currEnemyFish.isLefty()) {
+    		currEnemyFish.getSprite().updateX(currEnemyFish.getMoveSpeed());
+    	} else {
+    		currEnemyFish.getSprite().updateX(-currEnemyFish.getMoveSpeed());
+    	}
+    	
+    	entities.get(i).getSprite().render(gc);
     }
+  }
+  
+  /**
+   * Handle movement, rendering and collisions of the end boss.
+   * @param gc
+   */
+  public static void handleBoss(GraphicsContext gc) {
+  	if(bossMode){
+  		getEndBoss().getSprite().render(gc);
+  		if (getEndBoss().isLefty()) {
+  			getEndBoss().getSprite().updateX(getEndBoss().getMoveSpeed());
+  		} else {
+  			getEndBoss().getSprite().updateX(-getEndBoss().getMoveSpeed());
+  		}
+
+  		int playerX = playerFish.getSprite().getBoundingBox().getX();
+  		int endBossX = getEndBoss().getSprite().getBoundingBox().getX();
+  		boolean endBossOutsideScreenBox = !getEndBoss().getSprite().getBoundingBox().intersects(screenbox);
+  		boolean playerLeftOfEndBoss = playerX < endBossX;
+  		boolean playerRightOfEndBoss = endBossX < playerX;
+
+  		if (endBossOutsideScreenBox && (playerLeftOfEndBoss || playerRightOfEndBoss) ) {
+  			getEndBoss().switchDirection();
+  		}
+  	} else {
+  		endBoss.getSprite().getBoundingBox().setX(-2000);
+  		endBoss.getSprite().getBoundingBox().setY(-2000);
+  	}
+  }
+  
+  public static void handleWeapon(GraphicsContext gc) {
+  	if (bossMode) {
+  		getLance().getSprite().render(gc);
+
+  		if (getLance().isLefty()) {
+  			getLance().getSprite().updateX(5);
+  		} else {
+  			getLance().getSprite().updateX(-5);
+  		}
+
+  		int playerX = playerFish.getSprite().getBoundingBox().getX();
+  		int lanceX = getLance().getSprite().getBoundingBox().getX();
+  		boolean lanceOutsideScreenBox = !getLance().getSprite().getBoundingBox().intersects(screenbox);
+  		boolean playerLeftOfLance = playerX < lanceX;
+  		boolean playerRightOfLance = lanceX < playerX;
+
+  		if (lanceOutsideScreenBox && (playerLeftOfLance || playerRightOfLance) ) {
+  			getLance().switchDirection();
+  		}
+  	}
   }
 
   /**
@@ -326,27 +380,25 @@ public class MainScreenController {
    *
    */
   public static void playerLost() {
-    // the logger prints the fact that player fish dies.
     Game.getLogger().logPlayerFishDies();
-    // the logger also prints the status of the game.
     Game.getLogger().logGameResult("lost", currScore);
-    // reset the current game score.
     setCurrScore(0);
     playerFish.setScore(currScore);
+    
     Game.setNewGamePlusMode(false);
     Game.getMediaPlayer().stop();
-    // switch to losing screen.
+    
     Game.switchScreen("FXML/LosingScreen.fxml");
-    // log the process of switching to losing screen.
     Game.getLogger().logSwitchScreen("LosingScreen");
+    setBossMode(false);
   }
 
-  /**
+	/**
    * Generates a new enemy fish every 90 frames.
    */
   public static void generateEnemyFish() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
-    if (frames % 90 == 0) {
+    if ((frames % 90 == 0) && !isBossMode()) {
       entities.add((EnemyFish) entityFactory.getEntity("ENEMY"));
       Game.getLogger().logEdgeBump(playerFish);
     }
@@ -379,5 +431,29 @@ public class MainScreenController {
   public static PlayerFish getPlayerFish() {
     return playerFish;
   }
+
+	public static EndBoss getEndBoss() {
+		return endBoss;
+	}
+
+	public static void setEndBoss(EndBoss endBoss) {
+		MainScreenController.endBoss = endBoss;
+	}
+
+	public static Lance getLance() {
+		return lance;
+	}
+
+	public static void setLance(Lance lance) {
+		MainScreenController.lance = lance;
+	}
+
+	public static boolean isBossMode() {
+		return bossMode;
+	}
+
+	public static void setBossMode(boolean bossMode) {
+		MainScreenController.bossMode = bossMode;
+	}
 
 }

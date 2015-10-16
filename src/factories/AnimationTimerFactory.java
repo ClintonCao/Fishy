@@ -4,9 +4,10 @@ import interfaces.AnimationTimerFactoryInterface;
 import main.FishBomb;
 import main.Game;
 import main.MainScreenController;
-
+import main.PlayerFish;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * Makes Animation Timers. Singleton class.
@@ -54,6 +55,19 @@ public final class AnimationTimerFactory implements
           Game.switchScreen("FXML/WinningScreen.fxml");
           Game.getMediaPlayer().stop();
           Game.getLogger().logSwitchScreen("WinningScreen");
+          
+          MainScreenController.setBossMode(false);
+          
+          MainScreenController.getEndBoss().getSprite().getBoundingBox().setX(-2000);
+        	MainScreenController.getEndBoss().getSprite().getBoundingBox().setY(-2000);
+        }
+        
+        if (MainScreenController.playerFish.getSprite().getBoundingBox().getWidth() > 60) {
+        	if (MainScreenController.getEndBoss().getSprite().getBoundingBox().getX() == -2000) {
+        		MainScreenController.getEndBoss().getSprite().getBoundingBox().setX(0);
+          	MainScreenController.getEndBoss().getSprite().getBoundingBox().setY(0);
+        	}
+        	MainScreenController.setBossMode(true);
         }
 
         if (MainScreenController.currScore > 500 && !MainScreenController.bomb1) {
@@ -73,12 +87,44 @@ public final class AnimationTimerFactory implements
               FishBomb.createFishBomb(MainScreenController.playerFish));
           MainScreenController.bomb3 = true;
         }
+        
+        
+        if (MainScreenController.playerFish.intersects(MainScreenController.getEndBoss()) && !MainScreenController.playerFish.hasLance()) {
+        	MainScreenController.getEndBoss().getSprite().getBoundingBox().setX(-2000);
+        	MainScreenController.getEndBoss().getSprite().getBoundingBox().setY(-2000);
+        	
+        	this.stop();
+        	MainScreenController.playerLost();
+        }
 
         MainScreenController.renderStatics(gc);
+        
+        MainScreenController.handleBoss(gc);
+        
+        MainScreenController.handleWeapon(gc);
 
         MainScreenController.handlePlayerInput(gc);
 
         MainScreenController.generateEnemyFish();
+
+        if (MainScreenController.playerFish.getSprite().getBoundingBox().intersects(MainScreenController.getLance().getSprite().getBoundingBox())) {
+        	
+        	MainScreenController.getLance().getSprite().getBoundingBox().setX(-2000);
+        	MainScreenController.getLance().getSprite().getBoundingBox().setY(-2000);
+        	
+        	int playerFishSizeX = (int) MainScreenController.playerFish.getSprite().getImg().getWidth();
+        	int playerFishSizeY = (int) MainScreenController.playerFish.getSprite().getImg().getHeight();
+        	
+        	Image leftImg = new Image("FishKnightLeft.png", playerFishSizeX, playerFishSizeY, true, true);
+        	Image rightImg = new Image("FishKnightRight.png", playerFishSizeX, playerFishSizeY, true, true);
+
+        	MainScreenController.playerFish.setPlayerFishLeftImage(leftImg);
+        	MainScreenController.playerFish.setPlayerFishRightImage(rightImg);
+        	
+        	MainScreenController.playerFish.setHasLance(true);
+
+        	MainScreenController.playerFish.getSprite().setImg(leftImg);
+        }
 
         for (int i = 0; i < MainScreenController.entities.size(); i++) {
 

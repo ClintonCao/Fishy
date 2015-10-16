@@ -45,7 +45,7 @@ public class EnemyFish extends Entity implements EnemyFishInterface {
     int randomSpeed = rng.nextInt(9) + 1;
     boolean isLefty = rng.nextBoolean();
 
-    double imgSizeMultiplier = rng.nextInt(150) + 5;
+    double imgSizeMultiplier = rng.nextInt(50) + 5;
     imgSizeMultiplier /= 100;
 
     // Generate the fish, depending on which side of the screen it spawns.
