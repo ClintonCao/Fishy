@@ -106,6 +106,18 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
     }
   }
   
+  /**
+   * Switches the direction the EndBoss is facing.
+   */
+  public void switchDirection() {
+  	if(isLefty) {
+  		sprite.setImg(new Image("SharkelliLeft.png"));
+  	} else {
+  		sprite.setImg(new Image("SharkelliRight.png"));
+  	}
+  	isLefty = !isLefty;
+  }
+  
   // --- Getters and Setters ---  
   
   public boolean isLefty() {
@@ -122,9 +134,5 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
   
   public void setHealth(int currentHealth) {
     health = currentHealth;
-  }
-  
-  public void switchDirection() {
-  	isLefty = !isLefty;
   }
 }

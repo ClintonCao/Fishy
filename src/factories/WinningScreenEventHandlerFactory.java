@@ -2,12 +2,9 @@ package factories;
 
 import interfaces.WinningScreenEventHandlerFactoryInterface;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import main.BoundingBox;
 import main.Game;
 import main.MainScreenController;
-import main.Sprite;
 
 /**
  * Makes EventHandlers for the buttons of the winning screen.

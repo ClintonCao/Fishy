@@ -1,6 +1,5 @@
 package interfaces;
 
-import main.EnemyFish;
 import main.Entity;
 import main.FishBomb;
 

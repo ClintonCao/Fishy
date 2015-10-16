@@ -43,7 +43,7 @@ public final class Lance extends Item implements LanceInterface {
   public static Lance createLance(PlayerFish pf) {
     BoundingBox pfbb = pf.getSprite().getBoundingBox();
     int posX = 0;
-    int posY = MainScreenController.getScreenbox().getHeight()/4*3;
+    int posY = MainScreenController.getScreenbox().getHeight() / 4 * 3;
     
     Image lanceImg = new Image("Lance.png");
     int lanceWidth = (int) lanceImg.getWidth();
@@ -61,6 +61,13 @@ public final class Lance extends Item implements LanceInterface {
   public boolean intersect(Sprite other) {
     return super.getSprite().intersects(other);
   }
+  
+  /**
+   * Switches the direction the lance is facing.
+   */
+	public void switchDirection() {
+		isLefty = !isLefty;
+	}
 
   // -----------Getters and setters----------------
 
@@ -81,8 +88,4 @@ public final class Lance extends Item implements LanceInterface {
 		this.isLefty = isLefty;
 	}
 
-	public void switchDirection() {
-		isLefty = !isLefty;
-	}
-	
 }

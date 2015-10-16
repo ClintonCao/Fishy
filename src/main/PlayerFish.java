@@ -219,7 +219,10 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
   public int getScore() {
     return score;
   }
-
+  
+  /**
+   * @return true if player has lance.
+   */
   public boolean hasLance() {
 		return hasLance;
 	}

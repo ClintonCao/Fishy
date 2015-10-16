@@ -4,7 +4,6 @@ import interfaces.LosingScreenEventHandlerFactoryInterface;
 import main.Game;
 import main.MainScreenController;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 /**

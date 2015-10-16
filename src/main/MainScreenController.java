@@ -234,25 +234,25 @@ public class MainScreenController {
   
   /**
    * Handle movement, rendering and collisions of the end boss.
-   * @param gc
+   * @param gc - the GraphicsContext.
    */
   public static void handleBoss(GraphicsContext gc) {
-  	if(bossMode){
-  		getEndBoss().getSprite().render(gc);
-  		if (getEndBoss().isLefty()) {
-  			getEndBoss().getSprite().updateX(getEndBoss().getMoveSpeed());
+  	if (bossMode) {
+  		endBoss.getSprite().render(gc);
+  		if (endBoss.isLefty()) {
+  			endBoss.getSprite().updateX(getEndBoss().getMoveSpeed());
   		} else {
-  			getEndBoss().getSprite().updateX(-getEndBoss().getMoveSpeed());
+  			endBoss.getSprite().updateX(-getEndBoss().getMoveSpeed());
   		}
 
   		int playerX = playerFish.getSprite().getBoundingBox().getX();
-  		int endBossX = getEndBoss().getSprite().getBoundingBox().getX();
-  		boolean endBossOutsideScreenBox = !getEndBoss().getSprite().getBoundingBox().intersects(screenbox);
+  		int endBossX = endBoss.getSprite().getBoundingBox().getX();
+  		boolean endBossOutsideScreenBox = !endBoss.getSprite().getBoundingBox().intersects(screenbox);
   		boolean playerLeftOfEndBoss = playerX < endBossX;
   		boolean playerRightOfEndBoss = endBossX < playerX;
 
-  		if (endBossOutsideScreenBox && (playerLeftOfEndBoss || playerRightOfEndBoss) ) {
-  			getEndBoss().switchDirection();
+  		if (endBossOutsideScreenBox && (playerLeftOfEndBoss || playerRightOfEndBoss )) {
+  			endBoss.switchDirection();
   		}
   	} else {
   		endBoss.getSprite().getBoundingBox().setX(-2000);
@@ -260,24 +260,28 @@ public class MainScreenController {
   	}
   }
   
+  /**
+   * Handle movement, rendering and collisions of the weapon.
+   * @param gc - the GraphicsContext.
+   */
   public static void handleWeapon(GraphicsContext gc) {
   	if (bossMode) {
-  		getLance().getSprite().render(gc);
+  		lance.getSprite().render(gc);
 
-  		if (getLance().isLefty()) {
-  			getLance().getSprite().updateX(5);
+  		if (lance.isLefty()) {
+  			lance.getSprite().updateX(5);
   		} else {
-  			getLance().getSprite().updateX(-5);
+  			lance.getSprite().updateX(-5);
   		}
 
   		int playerX = playerFish.getSprite().getBoundingBox().getX();
-  		int lanceX = getLance().getSprite().getBoundingBox().getX();
-  		boolean lanceOutsideScreenBox = !getLance().getSprite().getBoundingBox().intersects(screenbox);
+  		int lanceX = lance.getSprite().getBoundingBox().getX();
+  		boolean lanceOutsideScreenBox = !lance.getSprite().getBoundingBox().intersects(screenbox);
   		boolean playerLeftOfLance = playerX < lanceX;
   		boolean playerRightOfLance = lanceX < playerX;
 
-  		if (lanceOutsideScreenBox && (playerLeftOfLance || playerRightOfLance) ) {
-  			getLance().switchDirection();
+  		if (lanceOutsideScreenBox && (playerLeftOfLance || playerRightOfLance )) {
+  			lance.switchDirection();
   		}
   	}
   }
@@ -373,7 +377,6 @@ public class MainScreenController {
       Game.setHighScore(currScore);
     }
   }
-
 
   /**
    * This method is being called when the player fish collide with a large enemy
