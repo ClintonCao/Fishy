@@ -291,12 +291,12 @@ public class MainScreenController {
   /**
    * Handles collisions between player fish and enemy fish.
    * 
-   * @param i
-   *          - the i'th enemy fish in the entities arrayList.
+   * @param ith
+   *          - the ith enemy fish in the entities arrayList.
    */
-  public static void handleCollision(int i) {
+  public static void handleCollision(int ith) {
     // get the current enemyFish
-    Entity enemyFish = entities.get(i);
+    Entity enemyFish = entities.get(ith);
     // get the sprite of the current playerFish.
     Sprite sprite = enemyFish.getSprite();
     // get the bounding box of the sprite.
@@ -306,7 +306,7 @@ public class MainScreenController {
     // second get the width of enemy fish.
     int width = box.getWidth();
     // remove the fish from the screen.
-    entities.remove(i);
+    entities.remove(ith);
     // let the fish of the player grow.
     playerFish.grow(MULTIPLIER);
     // get the area as the score.
