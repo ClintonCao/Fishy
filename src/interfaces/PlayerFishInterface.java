@@ -1,7 +1,8 @@
 package interfaces;
 
-import main.EnemyFish;
+import main.Entity;
 import main.FishBomb;
+
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
@@ -27,7 +28,7 @@ public interface PlayerFishInterface {
    * @param enemyfish.
    * @return true if the player is smaller.
    */
-  boolean playerDies(EnemyFish enemyfish);
+  boolean playerDies(Entity entity);
 
   /**
    * Tests intersection with the left screen edge.
