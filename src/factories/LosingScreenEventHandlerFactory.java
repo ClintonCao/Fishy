@@ -69,7 +69,7 @@ public final class LosingScreenEventHandlerFactory implements
     	public void handle(MouseEvent event) {
 
 
-    		MainScreenController.resetPlayerFishSize();
+    		Game.resetPlayerFishSize();
     		MainScreenController.playerFish.setHasLance(false);
     		MainScreenController.setBossMode(false);
 

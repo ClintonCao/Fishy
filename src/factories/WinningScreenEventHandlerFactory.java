@@ -67,7 +67,7 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
       public void handle(MouseEvent event) {
         Game.setNewGamePlusMode(true);
 
-        MainScreenController.resetPlayerFishSize();     
+        Game.resetPlayerFishSize();     
         MainScreenController.playerFish.setHasLance(false);
         MainScreenController.setBossMode(false);  
         
@@ -94,7 +94,7 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
       @Override
       public void handle(MouseEvent event) {
       	
-      	MainScreenController.resetPlayerFishSize();    
+      	Game.resetPlayerFishSize();    
         MainScreenController.playerFish.setHasLance(false);
         MainScreenController.setBossMode(false);
         

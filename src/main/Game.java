@@ -163,4 +163,33 @@ public final class Game extends Application implements GameInterface {
   public static void setStage(Stage stage) {
     Game.stage = stage;
   }
+  
+  /**
+   * Reset the playerFish size and its images.
+   */
+  public static void resetPlayerFishSize() {
+    Image temp = new Image("FishOriginal_transparent.png");
+
+    int startImageWidth = (int) (temp.getWidth() * 0.30);
+    int startImageHeight = (int) (temp.getHeight() * 0.30);
+
+    Image playerFishImageLeft = new Image("FishOriginal_transparent.png", startImageWidth,
+        startImageHeight, true, true);
+    
+    Image playerFishImageRight = new Image("Fish_Right_Transparent.png", startImageWidth,
+        startImageHeight, true, true);
+
+    MainScreenController.playerFish.getSprite().setImg(playerFishImageLeft);
+    
+    MainScreenController.playerFish.setHasLance(false);
+    MainScreenController.setBossMode(false);
+    
+    MainScreenController.playerFish.getSprite().getBoundingBox().setWidth((int) playerFishImageLeft.getWidth());
+    MainScreenController.playerFish.getSprite().getBoundingBox().setHeight((int) playerFishImageLeft.getHeight());
+    
+    MainScreenController.playerFish.setPlayerFishLeftImageName("FishOriginal_transparent.png");
+    MainScreenController.playerFish.setPlayerFishLeftImage(playerFishImageLeft);
+    MainScreenController.playerFish.setPlayerFishRightImageName("Fish_Right_Transparent.png");
+    MainScreenController.playerFish.setPlayerFishRightImage(playerFishImageRight);
+  }
 }
