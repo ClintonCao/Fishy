@@ -25,7 +25,7 @@ public interface PlayerFishInterface {
   /**
    * Check if the PlayerFish is smaller than the EnemyFish it's colliding with.
    * 
-   * @param enemyfish.
+   * @param entity.
    * @return true if the player is smaller.
    */
   boolean playerDies(Entity entity);

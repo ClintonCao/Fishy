@@ -73,7 +73,7 @@ public final class Game extends Application implements GameInterface {
       if (musicOn) {
         getMediaPlayer().play();
       }
-      
+
       getMediaPlayer().setCycleCount(100);
 
       Scene scene = new Scene(pane);
@@ -105,7 +105,7 @@ public final class Game extends Application implements GameInterface {
       e.printStackTrace();
     }
   }
-  
+
   /**
    * Reset the playerFish size and its images.
    */
@@ -140,14 +140,14 @@ public final class Game extends Application implements GameInterface {
   }
 
 
-   /** This method saves the highscore onto a text file.
+  /** This method saves the highscore onto a text file.
    * 
    * @param infile - The name of the file
    */
   public static void saveHighScore(String infile) {
     try {
       File file = new File(infile);
-      BufferedWriter output = new BufferedWriter(new FileWriter(file,false));
+      BufferedWriter output = new BufferedWriter(new FileWriter(file, false));
       output.write("" + getHighScore());
       output.close();
     } catch (Exception e) {
@@ -155,7 +155,7 @@ public final class Game extends Application implements GameInterface {
     }
 
   }
-  
+
   /**
    * This method loads the highscore from the tetx file.
    * 
@@ -174,7 +174,7 @@ public final class Game extends Application implements GameInterface {
   }
 
   // --- Getters and Setters ---
-  
+
   public static int getResY() {
     return resY;
   }
@@ -226,5 +226,5 @@ public final class Game extends Application implements GameInterface {
   private static void setStage(Stage stage) {
     Game.stage = stage;
   }
- 
+
 }
