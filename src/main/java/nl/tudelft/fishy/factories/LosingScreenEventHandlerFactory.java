@@ -74,7 +74,7 @@ public final class LosingScreenEventHandlerFactory implements
 
     		MainScreenController.playerFish.setHasLance(false);
 
-    		Game.switchScreen("/resources/MainScreen.fxml");
+    		Game.switchScreen("/MainScreen.fxml");
     		if (Game.getMusicOn()) {
     			Game.getMediaPlayer().play();
     		}

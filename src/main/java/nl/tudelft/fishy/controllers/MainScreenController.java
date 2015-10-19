@@ -47,7 +47,7 @@ public class MainScreenController {
   private static Text scoreText = new Text();
   public static int currScore;
   public static ArrayList<String> input;
-  private static Image background = new Image("/resources/Fishy_bg.jpg");
+  private static Image background = new Image("/Fishy_bg.jpg");
   public static boolean bomb1;
   public static boolean bomb2;
   public static boolean bomb3;
@@ -422,7 +422,7 @@ public class MainScreenController {
     Game.setNewGamePlusMode(false);
     Game.getMediaPlayer().stop();
 
-    Game.switchScreen("/resources/LosingScreen.fxml");
+    Game.switchScreen("/LosingScreen.fxml");
     Game.getLogger().logSwitchScreen("LosingScreen");
     setBossMode(false);
     playerFish.setHasLance(false);
@@ -487,7 +487,7 @@ public class MainScreenController {
 
         if (playerHasWon()) {
           this.stop();
-          Game.switchScreen("/resources/WinningScreen.fxml");
+          Game.switchScreen("/WinningScreen.fxml");
           Game.getMediaPlayer().stop();
           Game.getLogger().logSwitchScreen("WinningScreen");
 
@@ -551,9 +551,9 @@ public class MainScreenController {
           int playerFishSizeX = (int) pfImg.getWidth();
           int playerFishSizeY = (int) pfImg.getHeight();
 
-          Image leftImg = new Image("/resources/FishKnightLeft.png", playerFishSizeX,
+          Image leftImg = new Image("/FishKnightLeft.png", playerFishSizeX,
               playerFishSizeY, true, true);
-          Image rightImg = new Image("/resources/FishKnightRight.png", playerFishSizeX,
+          Image rightImg = new Image("/FishKnightRight.png", playerFishSizeX,
               playerFishSizeY, true, true);
 
           playerFish.setPlayerFishLeftImage(leftImg);

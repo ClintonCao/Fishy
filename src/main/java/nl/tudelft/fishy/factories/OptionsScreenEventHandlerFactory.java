@@ -81,7 +81,7 @@ public final class OptionsScreenEventHandlerFactory implements OptionsScreenEven
 
       @Override
       public void handle(MouseEvent event) {
-        Game.switchScreen("/resources/MainScreen.fxml");
+        Game.switchScreen("/MainScreen.fxml");
         Game.getLogger().logSwitchScreen("MainScreen");
       }
     };

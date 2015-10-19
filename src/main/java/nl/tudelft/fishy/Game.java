@@ -32,7 +32,7 @@ public final class Game extends Application implements GameInterface {
   private static int resX = 1280;
   private static int resY = 720;
   private static Logger logger;
-  final URL resource = getClass().getResource("/resources/theme.mp3");
+  final URL resource = getClass().getResource("/theme.mp3");
   final Media media = new Media(resource.toString());
   private static MediaPlayer mediaPlayer;
   private static boolean musicOn;
@@ -63,10 +63,10 @@ public final class Game extends Application implements GameInterface {
       firstStage.setTitle("Fishy");
       logger.logStartGame();
       logger.logIcon();
-      getStage().getIcons().add(new Image(Game.class.getResourceAsStream("/resources/Fish.png")));
+      getStage().getIcons().add(new Image(Game.class.getResourceAsStream("/Fish.png")));
       logger.logLoadSucceeded();
       logger.logSwitchScreen("MainScreen");
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/MainScreen.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainScreen.fxml"));
 
       pane = (Pane) loader.load();
       logger.logLoadSucceeded();
@@ -111,15 +111,15 @@ public final class Game extends Application implements GameInterface {
    * Reset the playerFish size and its images.
    */
   public static void resetPlayerFishSize() {
-    Image temp = new Image("/resources/FishOriginal_transparent.png");
+    Image temp = new Image("/FishOriginal_transparent.png");
 
     int imgWidth = (int) (temp.getWidth() * 0.30);
     int imgHeight = (int) (temp.getHeight() * 0.30);
 
-    Image playerFishImageLeft = new Image("/resources/FishOriginal_transparent.png",
+    Image playerFishImageLeft = new Image("/FishOriginal_transparent.png",
         imgWidth, imgHeight, true, true);
 
-    Image playerFishImageRight = new Image("/resources/Fish_Right_Transparent.png",
+    Image playerFishImageRight = new Image("/Fish_Right_Transparent.png",
         imgWidth, imgHeight, true, true);
 
     PlayerFish playerFish = MainScreenController.playerFish;
@@ -134,9 +134,9 @@ public final class Game extends Application implements GameInterface {
     pfbb.setWidth((int) playerFishImageLeft.getWidth());
     pfbb.setHeight((int) playerFishImageLeft.getHeight());
 
-    playerFish.setPlayerFishLeftImageName("/resources/FishOriginal_transparent.png");
+    playerFish.setPlayerFishLeftImageName("/FishOriginal_transparent.png");
     playerFish.setPlayerFishLeftImage(playerFishImageLeft);
-    playerFish.setPlayerFishRightImageName("/resources/Fish_Right_Transparent.png");
+    playerFish.setPlayerFishRightImageName("/Fish_Right_Transparent.png");
     playerFish.setPlayerFishRightImage(playerFishImageRight);
   }
 

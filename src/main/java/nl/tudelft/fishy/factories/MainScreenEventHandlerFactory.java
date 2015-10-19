@@ -136,7 +136,7 @@ public final class MainScreenEventHandlerFactory implements
 
       @Override
       public void handle(MouseEvent event) {
-        Game.switchScreen("/resources/MenuScreen.fxml");
+        Game.switchScreen("/MenuScreen.fxml");
         Game.getLogger().logSwitchScreen("MenuScreen");
 
       }

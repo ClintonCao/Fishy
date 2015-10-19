@@ -46,7 +46,7 @@ public final class Lance extends Item implements LanceInterface {
     int posX = 0;
     int posY = MainScreenController.getScreenbox().getHeight() / 4 * 3;
     
-    Image lanceImg = new Image("/resources/Lance.png");
+    Image lanceImg = new Image("/Lance.png");
     int lanceWidth = (int) lanceImg.getWidth();
     int lanceHeight = (int) lanceImg.getHeight();
     

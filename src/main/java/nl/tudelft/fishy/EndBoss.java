@@ -18,8 +18,8 @@ import javafx.scene.image.Image;
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  */
 public final class EndBoss extends Entity implements EnemyFishInterface {
-  private static String leftImageFileName = "/resources/SharkelliLeft.png";
-  private static String rightImageFileName = "/resources/SharkelliRight.png";
+  private static String leftImageFileName = "/SharkelliLeft.png";
+  private static String rightImageFileName = "/SharkelliRight.png";
   private boolean isLefty;
   private static BoundingBox boundingBox = new BoundingBox(1, 1, 1, 1);
   private static Sprite sprite;
@@ -111,9 +111,9 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
    */
   public void switchDirection() {
     if (isLefty) {
-      sprite.setImg(new Image("/resources/SharkelliLeft.png"));
+      sprite.setImg(new Image("/SharkelliLeft.png"));
     } else {
-      sprite.setImg(new Image("/resources/SharkelliRight.png"));
+      sprite.setImg(new Image("/SharkelliRight.png"));
     }
     isLefty = !isLefty;
   }

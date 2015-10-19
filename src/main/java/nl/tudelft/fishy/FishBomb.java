@@ -36,9 +36,9 @@ public class FishBomb extends Item implements FishBombInterface {
   public static FishBomb createFishBomb(PlayerFish pf) {
     BoundingBox pfbb = pf.getSprite().getBoundingBox();
     int explImgDim = pfbb.getHeight() * 4;
-    return new FishBomb(new Sprite(new Image("/resources/fishbombbig.png"),
+    return new FishBomb(new Sprite(new Image("/fishbombbig.png"),
         new BoundingBox(10, 10, 0, 0)), explImgDim / 2, new Image(
-            "/resources/redcircle.png", explImgDim, explImgDim, true, true),
+            "/redcircle.png", explImgDim, explImgDim, true, true),
             (int) (pfbb.getX() - 0.5 * pf.getSprite().getImg().getWidth()),
             (int) (pfbb.getY() - 0.5 * pf.getSprite().getImg().getHeight()));
   }

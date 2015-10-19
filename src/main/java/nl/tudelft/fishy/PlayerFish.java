@@ -17,8 +17,8 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
 
   private static PlayerFish singletonFish;
   
-  private static String leftImageName = "/resources/FishOriginal_transparent.png";
-  private static String rightImageName = "/resources/Fish_Right_Transparent.png";
+  private static String leftImageName = "/FishOriginal_transparent.png";
+  private static String rightImageName = "/Fish_Right_Transparent.png";
   private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
   private Image leftImage;
   private Image rightImage;

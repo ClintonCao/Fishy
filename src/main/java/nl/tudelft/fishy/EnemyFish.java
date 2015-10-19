@@ -16,8 +16,8 @@ import javafx.scene.image.Image;
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  */
 public class EnemyFish extends Entity implements EnemyFishInterface {
-  private static String leftImageFileName = "/resources/EnemyFish_Left.png";
-  private static String rightImageFileName = "/resources/EnemyFish_Right.png";
+  private static String leftImageFileName = "/EnemyFish_Left.png";
+  private static String rightImageFileName = "/EnemyFish_Right.png";
   private boolean isLefty;
 
   /**

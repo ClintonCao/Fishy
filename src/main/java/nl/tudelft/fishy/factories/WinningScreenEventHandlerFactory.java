@@ -73,7 +73,7 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
         if (Game.getMusicOn()) {
           Game.getMediaPlayer().play();
         }
-        Game.switchScreen("/resources/MainScreen.fxml");
+        Game.switchScreen("/MainScreen.fxml");
 
       }
     };
@@ -96,7 +96,7 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
         MainScreenController.setBossMode(false);
         
         Game.setNewGamePlusMode(false);
-        Game.switchScreen("/resources/MainScreen.fxml");
+        Game.switchScreen("/MainScreen.fxml");
         if (Game.getMusicOn()) {
           Game.getMediaPlayer().play();
         }

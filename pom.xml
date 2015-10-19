@@ -4,15 +4,6 @@
   <artifactId>Fishy</artifactId>
   <version>1.3</version>
   <build>
-    <sourceDirectory>src</sourceDirectory>
-    <resources>
-        <resource>
-            <directory>src/resources/</directory>
-            <excludes>
-                <exclude>src/resources/*</exclude>
-            </excludes>
-        </resource>
-    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
