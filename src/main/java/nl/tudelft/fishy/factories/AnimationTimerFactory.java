@@ -57,14 +57,12 @@ public final class AnimationTimerFactory {
         public void handle(long currentNTime) {
 
           BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
-
           BoundingBox lancebb = lance.getSprite().getBoundingBox();
-
           Sprite pfSprite = playerFish.getSprite();
-          BoundingBox pfbb = pfSprite.getBoundingBox();
-          
+          BoundingBox pfbb = pfSprite.getBoundingBox();  
           GameLoop gameLoop = MainScreenController.getGameLoop();
-
+          
+          
           if (GameLoop.playerHasWon()) {
             this.stop();
             Game.switchScreen("/WinningScreen.fxml");
@@ -109,28 +107,8 @@ public final class AnimationTimerFactory {
 
           gameLoop.generateEnemyFish();
 
-          if (pfbb.intersects(lancebb)) {
-
-            lancebb.setX(-2000);
-            lancebb.setY(-2000);
-
-            Image pfImg = pfSprite.getImg();
-            int playerFishSizeX = (int) pfImg.getWidth();
-            int playerFishSizeY = (int) pfImg.getHeight();
-
-            Image leftImg = new Image("/FishKnightLeft.png", playerFishSizeX,
-                playerFishSizeY, true, true);
-            Image rightImg = new Image("/FishKnightRight.png", playerFishSizeX,
-                playerFishSizeY, true, true);
-
-            playerFish.setPlayerFishLeftImage(leftImg);
-            playerFish.setPlayerFishRightImage(rightImg);
-
-            playerFish.setHasLance(true);
-
-            playerFish.getSprite().setImg(leftImg);
-          }
-
+          gameLoop.playerPicksUpLance();
+          
           compositeEnemyFish.removeOffScreenEnemyFish(GameLoop.screenbox);
           
           Pair<Integer, Boolean> res = compositeEnemyFish.intersectsPlayerFish(playerFish);
@@ -145,8 +123,8 @@ public final class AnimationTimerFactory {
           	}
           }
           
-          GameLoop.renderNonStatics(gc);
-          GameLoop.frames++;
+          gameLoop.renderNonStatics(gc);
+          gameLoop.updateFrames();
         }
       };
 

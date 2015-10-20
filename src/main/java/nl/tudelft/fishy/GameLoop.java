@@ -1,6 +1,7 @@
 package nl.tudelft.fishy;
 
 import java.util.ArrayList;
+
 import nl.tudelft.fishy.factories.AnimationTimerFactory;
 import nl.tudelft.fishy.factories.EntityFactory;
 import nl.tudelft.fishy.factories.ItemFactory;
@@ -54,7 +55,7 @@ public class GameLoop {
    * @param gc
    *          - the graphicsContext which needs to do the rendering.
    */
-  public static void renderNonStatics(GraphicsContext gc) {
+  public void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
     
     compositeEnemyFish.render(gc);
@@ -243,6 +244,40 @@ public class GameLoop {
     if ((frames % 90 == 0) && !isBossMode()) {
       compositeEnemyFish.add((EnemyFish) entityFactory.getEntity("ENEMY"));
       Game.getLogger().logEdgeBump(playerFish);
+    }
+  }
+  
+  /**
+   * Increment frames.
+   */
+  public void updateFrames() {
+  	frames++;
+  }
+  
+  public void playerPicksUpLance() {
+  	BoundingBox lancebb = lance.getSprite().getBoundingBox();
+    Sprite pfSprite = playerFish.getSprite();
+    BoundingBox pfbb = pfSprite.getBoundingBox();
+  	if (pfbb.intersects(lancebb)) {
+
+      lancebb.setX(-2000);
+      lancebb.setY(-2000);
+
+      Image pfImg = pfSprite.getImg();
+      int playerFishSizeX = (int) pfImg.getWidth();
+      int playerFishSizeY = (int) pfImg.getHeight();
+
+      Image leftImg = new Image("/FishKnightLeft.png", playerFishSizeX,
+          playerFishSizeY, true, true);
+      Image rightImg = new Image("/FishKnightRight.png", playerFishSizeX,
+          playerFishSizeY, true, true);
+
+      playerFish.setPlayerFishLeftImage(leftImg);
+      playerFish.setPlayerFishRightImage(rightImg);
+
+      playerFish.setHasLance(true);
+
+      playerFish.getSprite().setImg(leftImg);
     }
   }
 
