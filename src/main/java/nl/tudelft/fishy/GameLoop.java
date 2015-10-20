@@ -1,6 +1,8 @@
 package nl.tudelft.fishy;
 
 import java.util.ArrayList;
+
+import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.factories.AnimationTimerFactory;
 import nl.tudelft.fishy.factories.EntityFactory;
 import nl.tudelft.fishy.factories.ItemFactory;
@@ -10,6 +12,11 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
+/**
+ * GameLoop contains all the data and logic pertaining to the gameloop.
+ * @author Michiel
+ *
+ */
 public class GameLoop {
 	
 	private static PlayerFish playerFish;
@@ -22,11 +29,16 @@ public class GameLoop {
   private static boolean bossMode;
   private AnimationTimer fAnimationTimer;
   private static int frames;
+  private GraphicsContext gc;
 
-  
   public static BoundingBox screenbox;
   public static final double MULTIPLIER = 1.05;
 
+  /**
+   * Constructor.
+   * @param gc 
+   * 					- The graphicsContext which needs to do the rendering.
+   */
 	public GameLoop(GraphicsContext gc) {
 		EntityFactory entityFactory = EntityFactory.getEntityFactory();
     ItemFactory itemFactory = ItemFactory.getItemFactory();
@@ -50,7 +62,41 @@ public class GameLoop {
     	playerFish.setScore(currScore);
     }
     
-    fAnimationTimer = AnimationTimerFactory.getAnimationTimerFactory().makeAnimationTimer(gc, compositeEnemyFish);
+    this.gc = gc;
+    
+    fAnimationTimer = AnimationTimerFactory.getAnimationTimerFactory().makeAnimationTimer(compositeEnemyFish);
+	}
+	
+	/**
+	 * 'Wrapper' method called by AnimationTimerFactory.
+	 * Runs all the game logic methods of GameLoop.
+	 */
+	public void runGameLoop() {
+    turnOnBossMode();
+    
+    playerWins();
+    
+    playerDiesToBoss();
+
+    MainScreenController.renderStatics(gc);
+
+    handleBoss(gc);
+
+    handleWeapon(gc);
+
+    handlePlayerInput(gc);
+
+    generateEnemyFish();
+
+    playerPicksUpLance();
+    
+    compositeEnemyFish.removeOffScreenEnemyFish(GameLoop.screenbox);
+    
+    playerIntersectsFish();     
+    
+    renderNonStatics(gc);
+    
+    updateFrames();
 	}
     
   /**

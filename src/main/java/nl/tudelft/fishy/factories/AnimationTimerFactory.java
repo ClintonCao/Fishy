@@ -4,7 +4,6 @@ import nl.tudelft.fishy.CompositeEnemyFish;
 import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
 import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * Makes Animation Timers. Singleton class.
@@ -41,38 +40,15 @@ public final class AnimationTimerFactory {
    * 
    * @return the new AnimationTimer.
    */
-  public AnimationTimer makeAnimationTimer(GraphicsContext gc, CompositeEnemyFish compositeEnemyFish) {
+  public AnimationTimer makeAnimationTimer(CompositeEnemyFish compositeEnemyFish) {
 
       return new AnimationTimer() {
         public void handle(long currentNTime) {
 
           GameLoop gameLoop = MainScreenController.getGameLoop();          
           
-          gameLoop.turnOnBossMode();
-          
-          gameLoop.playerWins();
-          
-          gameLoop.playerDiesToBoss();
-
-          MainScreenController.renderStatics(gc);
-
-          gameLoop.handleBoss(gc);
-
-          gameLoop.handleWeapon(gc);
-
-          gameLoop.handlePlayerInput(gc);
-
-          gameLoop.generateEnemyFish();
-
-          gameLoop.playerPicksUpLance();
-          
-          compositeEnemyFish.removeOffScreenEnemyFish(GameLoop.screenbox);
-          
-          gameLoop.playerIntersectsFish();     
-          
-          gameLoop.renderNonStatics(gc);
-          
-          gameLoop.updateFrames();
+          gameLoop.runGameLoop();
+         
         }
       };
 

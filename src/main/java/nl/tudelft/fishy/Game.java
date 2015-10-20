@@ -28,13 +28,13 @@ import javafx.stage.Stage;
 public final class Game extends Application implements GameInterface {
 
   private static Stage stage;
-  static Pane pane;
+  private static Pane pane;
   private static int resX = 1280;
   private static int resY = 720;
   private static BoundingBox screenBox = new BoundingBox(0, 0, resX, resY);
   private static Logger logger;
-  final URL resource = getClass().getResource("/theme.mp3");
-  final Media media = new Media(resource.toString());
+  private final URL resource = getClass().getResource("/theme.mp3");
+  private final Media media = new Media(resource.toString());
   private static MediaPlayer mediaPlayer;
   private static boolean musicOn;
   private static boolean newgameplus = false;
