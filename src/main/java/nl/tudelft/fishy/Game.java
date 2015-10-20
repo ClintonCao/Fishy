@@ -38,7 +38,7 @@ public final class Game extends Application implements GameInterface {
   private static boolean musicOn;
   private static boolean newgameplus = false;
   private static int highscore = 0;
-
+  
   /**
    * Main method that launches the application.
    * 

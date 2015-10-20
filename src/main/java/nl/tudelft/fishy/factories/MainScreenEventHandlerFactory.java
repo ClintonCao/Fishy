@@ -4,13 +4,11 @@ import nl.tudelft.fishy.interfaces.MainScreenEventHandlerFactoryInterface;
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
-import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -86,17 +84,15 @@ public final class MainScreenEventHandlerFactory implements
         Scene scene = new Scene(root);
         Game.getStage().setScene(scene);
 
-        Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
+        Canvas canvas = MainScreenController.getCanvas();
 
         root.getChildren().add(canvas);
 
         scene.setOnKeyPressed(makeKeyPressedEventHandler());
 
         scene.setOnKeyReleased(makeKeyReleasedEventHandler());
-
-        GraphicsContext gc = canvas.getGraphicsContext2D();
         
-        GameLoop gameLoop = new GameLoop(gc);
+        GameLoop gameLoop = MainScreenController.getGameLoop();
 
         gameLoop.fAnimationTimer.start();
       }

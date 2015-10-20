@@ -22,12 +22,7 @@ public class GameLoop {
   private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory().getEntity("BOSS");
   private static Lance lance;
   private static boolean bossMode;
-  private static GraphicsContext gc;
-	
-	
-	
-	public static AnimationTimer fAnimationTimer;
-	
+  public AnimationTimer fAnimationTimer;
 
 	public GameLoop(GraphicsContext gc) {
 		EntityFactory entityFactory = EntityFactory.getEntityFactory();
@@ -47,8 +42,6 @@ public class GameLoop {
     bossMode = false;
     setLance((Lance) itemFactory.createItem("LANCE", playerFish));
     setBossMode(false);
-    
-    this.gc = gc;
     
     fAnimationTimer = AnimationTimerFactory.getAnimationTimerFactory().makeAnimationTimer(gc, endBoss, playerFish, lance, frames, compositeEnemyFish);
 	}
@@ -252,30 +245,16 @@ public class GameLoop {
     }
   }
 
-  /**
-   * Set the current score of the game.
-   * 
-   * @param score
-   *          the desired score.
-   */
+  // --- Getters and Setters ---
+  
   public static void setCurrScore(int score) {
     currScore = score;
   }
 
-  /**
-   * Get the current score of the game.
-   * 
-   * @return the current score of the game.
-   */
   public static int getCurrScore() {
     return currScore;
   }
 
-  /**
-   * Get the player (playerFish).
-   * 
-   * @return the player (PlayerFish).
-   */
   public static PlayerFish getPlayerFish() {
     return playerFish;
   }
