@@ -8,7 +8,7 @@ notifications:
 before_install:
   - '[ "$BUILD_PR_BRANCH" = "true" ] && { [ "$TRAVIS_PULL_REQUEST" != "false" ] || exit 1; } && git checkout HEAD^2 && echo "OCTOPULL_SHA=$(git rev-parse HEAD)"; true'
   - sh -e /etc/init.d/xvfb start
-  - sudo apt-get install libav-tools
+  - sudo apt-get update
 env:
   - DISPLAY=:99.0
   - BUILD_PR_BRANCH=true
