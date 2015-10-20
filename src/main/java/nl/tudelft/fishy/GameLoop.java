@@ -12,17 +12,17 @@ import javafx.scene.text.Text;
 public class GameLoop {
 	
   public static BoundingBox screenbox;
-	public static PlayerFish playerFish;
+	private static PlayerFish playerFish;
   private static CompositeEnemyFish compositeEnemyFish = new CompositeEnemyFish();
   public static int frames;
   public static final double MULTIPLIER = 1.05;
   private static Text scoreText = new Text();
-  public static int currScore;
-  public static ArrayList<String> input;
+  private static int currScore;
+  private static ArrayList<String> input;
   private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory().getEntity("BOSS");
   private static Lance lance;
   private static boolean bossMode;
-  public AnimationTimer fAnimationTimer;
+  private AnimationTimer fAnimationTimer;
 
 	public GameLoop(GraphicsContext gc) {
 		EntityFactory entityFactory = EntityFactory.getEntityFactory();
@@ -282,4 +282,12 @@ public class GameLoop {
   public static void setBossMode(boolean dbossMode) {
     bossMode = dbossMode;
   }
+
+	public AnimationTimer getAnimationTimer() {
+		return fAnimationTimer;
+	}
+
+	public static ArrayList<String> getInput() {
+		return input;
+	}
 }

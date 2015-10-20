@@ -134,7 +134,7 @@ public class MainScreenController {
       QuitButton.setVisible(false);
       MenuButton.setVisible(false);
       NGPText.setVisible(true);
-      playerFish.setScore(currScore);
+      playerFish.setScore(gameLoop.getCurrScore());
     }
 
     MainScreenEventHandlerFactory mainScreenEHFactory = MainScreenEventHandlerFactory.getMainScreenEHFactory();

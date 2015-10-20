@@ -65,12 +65,15 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
       public void handle(MouseEvent event) {
         Game.setNewGamePlusMode(true);
 
-        Game.resetPlayerFishSize();     
-        GameLoop.playerFish.setHasLance(false);
-        GameLoop.setBossMode(false);  
+        Game.resetPlayerFishSize();   
         
-        int score = GameLoop.getPlayerFish().getScore();
-        GameLoop.setCurrScore(score);
+        GameLoop gameLoop = MainScreenController.getGameLoop();
+        
+        gameLoop.getPlayerFish().setHasLance(false);
+        gameLoop.setBossMode(false);  
+        
+        int score = gameLoop.getPlayerFish().getScore();
+        gameLoop.setCurrScore(score);
         if (Game.getMusicOn()) {
           Game.getMediaPlayer().play();
         }
@@ -93,8 +96,11 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
       public void handle(MouseEvent event) {
       	
       	Game.resetPlayerFishSize();    
-      	GameLoop.playerFish.setHasLance(false);
-        GameLoop.setBossMode(false);
+      	
+        GameLoop gameLoop = MainScreenController.getGameLoop();
+
+        gameLoop.getPlayerFish().setHasLance(false);
+        gameLoop.setBossMode(false);
         
         Game.setNewGamePlusMode(false);
         Game.switchScreen("/MainScreen.fxml");

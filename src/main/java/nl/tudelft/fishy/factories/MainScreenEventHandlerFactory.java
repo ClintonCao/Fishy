@@ -94,7 +94,7 @@ public final class MainScreenEventHandlerFactory implements
         
         GameLoop gameLoop = MainScreenController.getGameLoop();
 
-        gameLoop.fAnimationTimer.start();
+        gameLoop.getAnimationTimer().start();
       }
     };
   }
@@ -149,8 +149,8 @@ public final class MainScreenEventHandlerFactory implements
       @Override
       public void handle(KeyEvent e) {
         String code = e.getCode().toString();
-        if (!GameLoop.input.contains(code)) {
-          GameLoop.input.add(code);
+        if (!GameLoop.getInput().contains(code)) {
+          GameLoop.getInput().add(code);
         }
       }
     };
@@ -169,7 +169,7 @@ public final class MainScreenEventHandlerFactory implements
       @Override
       public void handle(KeyEvent e) {
         String code = e.getCode().toString();
-        GameLoop.input.remove(code);
+        GameLoop.getInput().remove(code);
       }
     };
   }
