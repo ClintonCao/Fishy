@@ -1,6 +1,5 @@
 package nl.tudelft.fishy;
 
-import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.interfaces.LanceInterface;
 import javafx.scene.image.Image;
 
@@ -40,9 +39,8 @@ public final class Lance extends Item implements LanceInterface {
    * @return the lance.
    */
   public static Lance createLance(PlayerFish pf) {
-    BoundingBox pfbb = pf.getSprite().getBoundingBox();
     int posX = 0;
-    int posY = MainScreenController.getScreenbox().getHeight() / 4 * 3;
+    int posY = Game.getScreenbox().getHeight() / 4 * 3;
     
     Image lanceImg = new Image("/Lance.png");
     int lanceWidth = (int) lanceImg.getWidth();

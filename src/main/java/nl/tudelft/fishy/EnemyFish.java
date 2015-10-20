@@ -1,6 +1,5 @@
 package nl.tudelft.fishy;
 
-import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.interfaces.EnemyFishInterface;
 
 import java.util.Random;
@@ -76,7 +75,7 @@ public class EnemyFish extends Entity implements EnemyFishInterface {
       // be placed at the X coordinate equal to the width of the AABB
       // screenbox;
       return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage,
-          new BoundingBox(MainScreenController.getScreenbox().getWidth(),
+          new BoundingBox(Game.getScreenbox().getWidth(),
               randomHeight, fishImageWidth, fishImageHeight)));
     }
   }

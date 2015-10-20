@@ -1,7 +1,6 @@
 package nl.tudelft.fishy;
-import java.util.ArrayList;
 
-import nl.tudelft.fishy.controllers.MainScreenController;
+import java.util.ArrayList;
 import nl.tudelft.fishy.interfaces.Composition;
 import  javafx.util.Pair;
 import javafx.scene.canvas.GraphicsContext;
@@ -39,7 +38,7 @@ public class CompositeEnemyFish implements Composition<EnemyFish> {
 			
 			if (aFishBomb.intersectsRectangle(currEnemyFishBoundingBox)) {	
 				
-				MainScreenController.updateScore(currEnemyFish);
+				GameLoop.updateScore(currEnemyFish);
 				fishToRemove.add(currEnemyFish);
 				
 			}
@@ -63,10 +62,12 @@ public class CompositeEnemyFish implements Composition<EnemyFish> {
 		for (int i = 0; i < fEnemyFishList.size(); i++) {
 			Entity currEnemyFish = fEnemyFishList.get(i);
 			if (aPlayerFish.intersects(currEnemyFish)) {
-				int currEnemyFishSize = currEnemyFish.getSprite().getBoundingBox().getWidth();
-				int aPlayerFishSize = aPlayerFish.getSprite().getBoundingBox().getWidth();
+				BoundingBox currEnemyFishBoundingBox = currEnemyFish.getSprite().getBoundingBox();
+				int currEnemyFishSize = currEnemyFishBoundingBox.getWidth();
+				BoundingBox aPlayerFishBoundingBox = aPlayerFish.getSprite().getBoundingBox();
+				int aPlayerFishSize = aPlayerFishBoundingBox.getWidth();
 				if (currEnemyFishSize < aPlayerFishSize) {
-					MainScreenController.updateScore(currEnemyFish);
+					GameLoop.updateScore(currEnemyFish);
 					return new Pair<Integer, Boolean>(i, false);
 				} else {
 					return new Pair<Integer, Boolean>(i, true);
