@@ -11,9 +11,9 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y libavformat53
 env:
+  global:
   - DISPLAY=:99.0
   - BUILD_PR_BRANCH=true
-  - DISPLAY=:99.0
   - BUILD_PR_BRANCH=false
 matrix:
   allow_failures:
