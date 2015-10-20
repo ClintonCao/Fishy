@@ -13,6 +13,7 @@ before_install:
 env:
   - DISPLAY=:99.0
   - BUILD_PR_BRANCH=true
+  - DISPLAY=:99.0
   - BUILD_PR_BRANCH=false
 matrix:
   allow_failures:
