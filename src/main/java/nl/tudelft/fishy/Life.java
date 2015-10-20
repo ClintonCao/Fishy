@@ -14,7 +14,6 @@ import javafx.scene.image.Image;
 public final class Life extends Item implements LifeInterface {
 
   private static String imageFileName = "/Heart.png";
-  private static Image image = new Image(imageFileName);
   private static Life singletonLife;
 
   /**
@@ -42,7 +41,7 @@ public final class Life extends Item implements LifeInterface {
    */
   private static Life createLifeItem() {
     // render the life image
-    Image lifeImage = image;
+    Image lifeImage = new Image(imageFileName);
     // starting position of the image on the screen
     int posX = 0;
     int posY = MainScreenController.getScreenbox().getHeight() / 4 * 3;
