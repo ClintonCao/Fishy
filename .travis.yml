@@ -7,8 +7,9 @@ notifications:
     - http://octopull.rmhartog.me/api/travis/webhook
 before_install:
   - '[ "$BUILD_PR_BRANCH" = "true" ] && { [ "$TRAVIS_PULL_REQUEST" != "false" ] || exit 1; } && git checkout HEAD^2 && echo "OCTOPULL_SHA=$(git rev-parse HEAD)"; true'
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  - sh -e /etc/init.d/xvfb start
 env:
+  - DISPLAY=:99.0
   - BUILD_PR_BRANCH=true
   - BUILD_PR_BRANCH=false
 matrix:
