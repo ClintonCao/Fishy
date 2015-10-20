@@ -9,6 +9,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 public class GameLoop {
 	
@@ -280,6 +281,32 @@ public class GameLoop {
       playerFish.getSprite().setImg(leftImg);
     }
   }
+  
+  public void playerIntersectsFish() {
+    Pair<Integer, Boolean> res = compositeEnemyFish.intersectsPlayerFish(playerFish);
+    
+    if (res.getKey() != -1) {
+    	if (res.getValue()) {
+    		fAnimationTimer.stop();
+    		GameLoop.playerLost();
+    	} else {
+    		compositeEnemyFish.remove(res.getKey());
+    		playerFish.grow(GameLoop.MULTIPLIER);
+    	}
+    }
+  }
+  
+  public void playerDiesToBoss() {
+    BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
+  	
+    if (playerFish.intersects(endBoss) && !playerFish.hasLance()) {
+      endBossbb.setX(-2000);
+      endBossbb.setY(-2000);
+
+      fAnimationTimer.stop();
+      GameLoop.playerLost();
+    }
+  }
 
   // --- Getters and Setters ---
   
@@ -326,4 +353,5 @@ public class GameLoop {
 	public static ArrayList<String> getInput() {
 		return input;
 	}
+	
 }

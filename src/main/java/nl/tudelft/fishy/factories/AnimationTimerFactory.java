@@ -60,8 +60,7 @@ public final class AnimationTimerFactory {
           BoundingBox lancebb = lance.getSprite().getBoundingBox();
           Sprite pfSprite = playerFish.getSprite();
           BoundingBox pfbb = pfSprite.getBoundingBox();  
-          GameLoop gameLoop = MainScreenController.getGameLoop();
-          
+          GameLoop gameLoop = MainScreenController.getGameLoop();     
           
           if (GameLoop.playerHasWon()) {
             this.stop();
@@ -89,13 +88,8 @@ public final class AnimationTimerFactory {
             GameLoop.setBossMode(true);
           }
 
-          if (playerFish.intersects(endBoss) && !playerFish.hasLance()) {
-            endBossbb.setX(-2000);
-            endBossbb.setY(-2000);
-
-            this.stop();
-            GameLoop.playerLost();
-          }
+          
+          gameLoop.playerDiesToBoss();
 
           MainScreenController.renderStatics(gc);
 
@@ -111,19 +105,10 @@ public final class AnimationTimerFactory {
           
           compositeEnemyFish.removeOffScreenEnemyFish(GameLoop.screenbox);
           
-          Pair<Integer, Boolean> res = compositeEnemyFish.intersectsPlayerFish(playerFish);
-          
-          if (res.getKey() != -1) {
-          	if (res.getValue()) {
-          		this.stop();
-          		GameLoop.playerLost();
-          	} else {
-          		compositeEnemyFish.remove(res.getKey());
-          		playerFish.grow(GameLoop.MULTIPLIER);
-          	}
-          }
+          gameLoop.playerIntersectsFish();     
           
           gameLoop.renderNonStatics(gc);
+          
           gameLoop.updateFrames();
         }
       };
