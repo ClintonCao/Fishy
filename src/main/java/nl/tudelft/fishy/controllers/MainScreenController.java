@@ -30,7 +30,6 @@ import javafx.scene.text.TextAlignment;
 public class MainScreenController {
 
   private static Text scoreText = new Text();
-  public static int currScore;
   private static Image background = new Image("/Fishy_bg.jpg");
   private static GameLoop gameLoop;
   private static Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
@@ -88,10 +87,6 @@ public class MainScreenController {
   public static void init() {
 
     scoreText.setText("Score");
-
-    if (!Game.isPlayingNewGamePlus()) {
-      currScore = 0;
-    }
     
     gameLoop = new GameLoop(gc);
     

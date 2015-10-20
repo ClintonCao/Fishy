@@ -46,7 +46,7 @@ public class GameLoop {
     setLance((Lance) itemFactory.createItem("LANCE", playerFish));
     setBossMode(false);
     
-    if(Game.isPlayingNewGamePlus()) {
+    if (Game.isPlayingNewGamePlus()) {
     	playerFish.setScore(currScore);
     }
     
@@ -259,6 +259,10 @@ public class GameLoop {
   	frames++;
   }
   
+  /**
+   * Checks if the player has picked up the lance.
+   * If it has, it handles the necessary steps.
+   */
   public void playerPicksUpLance() {
   	BoundingBox lancebb = lance.getSprite().getBoundingBox();
     Sprite pfSprite = playerFish.getSprite();
@@ -286,6 +290,9 @@ public class GameLoop {
     }
   }
   
+  /**
+   * Checks for intersections between playerfish and enemyfish.
+   */
   public void playerIntersectsFish() {
     Pair<Integer, Boolean> res = compositeEnemyFish.intersectsPlayerFish(playerFish);
     
@@ -300,6 +307,9 @@ public class GameLoop {
     }
   }
   
+  /**
+   * Checks if the player dies to the boss.
+   */
   public void playerDiesToBoss() {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
   	
@@ -312,6 +322,9 @@ public class GameLoop {
     }
   }
   
+  /**
+   * Checks if the player wins.
+   */
   public void playerWins() {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
   	
@@ -329,6 +342,10 @@ public class GameLoop {
     }
   }
   
+  /**
+   * Checks if the game should enter boss mode. 
+   * If it does, it handles it.
+   */
   public void turnOnBossMode() {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
     BoundingBox lancebb = lance.getSprite().getBoundingBox();
