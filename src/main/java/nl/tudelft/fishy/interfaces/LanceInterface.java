@@ -1,6 +1,7 @@
 package nl.tudelft.fishy.interfaces;
 
 import nl.tudelft.fishy.Sprite;
+
 import javafx.scene.canvas.GraphicsContext;
 
 /**

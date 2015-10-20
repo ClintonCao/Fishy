@@ -5,7 +5,7 @@ import nl.tudelft.fishy.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * Interface for the Lance item.
+ * Interface for the Life item.
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
  *         Sunwei Wang.
  */
