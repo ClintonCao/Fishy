@@ -29,7 +29,6 @@ public class GameLoop {
   private static int frames;
   private GraphicsContext gc;
 
-  public static BoundingBox screenbox;
   public static final double MULTIPLIER = 1.05;
 
   /**
@@ -40,7 +39,6 @@ public class GameLoop {
 	public GameLoop(GraphicsContext gc) {
 		EntityFactory entityFactory = EntityFactory.getEntityFactory();
     ItemFactory itemFactory = ItemFactory.getItemFactory();
-    screenbox = new BoundingBox(0, 0, Game.getResX(), Game.getResY());
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
     frames = 0;
     lance = (Lance) ItemFactory.getItemFactory().createItem("LANCE", playerFish);
@@ -87,7 +85,7 @@ public class GameLoop {
 
     playerPicksUpLance();
     
-    compositeEnemyFish.removeOffScreenEnemyFish(screenbox);
+    compositeEnemyFish.removeOffScreenEnemyFish(Game.getScreenbox());
     
     playerIntersectsFish();     
     
@@ -130,7 +128,7 @@ public class GameLoop {
 
       int playerX = playerFishbb.getX();
       int endBossX = endBossbb.getX();
-      boolean endBossOutsideScreenBox = !endBossbb.intersects(screenbox);
+      boolean endBossOutsideScreenBox = !endBossbb.intersects(Game.getScreenbox());
       boolean playerLeftOfEndBoss = playerX < endBossX;
       boolean playerRightOfEndBoss = endBossX < playerX;
 
@@ -174,7 +172,7 @@ public class GameLoop {
 
       int playerX = playerFishbb.getX();
       int lanceX = lancebb.getX();
-      boolean lanceOutsideScreenBox = !lancebb.intersects(screenbox);
+      boolean lanceOutsideScreenBox = !lancebb.intersects(Game.getScreenbox());
       boolean playerLeftOfLance = playerX < lanceX;
       boolean playerRightOfLance = lanceX < playerX;
 
@@ -402,7 +400,7 @@ public class GameLoop {
       }
       if ((lancebb.getX() == -2000) && !playerFish.hasLance()) {
         lancebb.setX(0);
-        BoundingBox screenBox = screenbox;
+        BoundingBox screenBox = Game.getScreenbox();
         lancebb.setY(screenBox.getHeight() / 4 * 3);
       }
       bossMode = true;
