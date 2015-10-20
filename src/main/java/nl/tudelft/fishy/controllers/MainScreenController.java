@@ -351,12 +351,9 @@ public class MainScreenController {
       int imgPosX = (int) (fishBomb.getPosX() - 0.25 * explosionImg.getWidth());
       int imgPosY = (int) (fishBomb.getPosY() - 0.25 * explosionImg.getHeight());
       gc.drawImage(explosionImg, imgPosX, imgPosY);
-      for (int i = 0; i < entities.size(); i++) {
-        if (fishBomb.intersectsRectangle(entities.get(i).getSprite()
-            .getBoundingBox())) {
-          handleCollision((EnemyFish)entities.get(i));
-        }
-      }
+      
+      compositeEnemyFish.handleFishBomb(fishBomb);
+      
       playerFish.getBombs().remove(index);
     }
 

@@ -22,6 +22,23 @@ public class CompositeEnemyFish {
 		return -1;
 	}
 	
+	public void handleFishBomb(FishBomb aFishBomb) {
+		
+		ArrayList<EnemyFish> fishToRemove = new ArrayList<EnemyFish>();
+		
+		for (EnemyFish currEnemyFish : fEnemyFishList) {
+			BoundingBox currEnemyFishBoundingBox = currEnemyFish.getSprite().getBoundingBox();
+			if (aFishBomb.intersectsRectangle(currEnemyFishBoundingBox)) {
+				MainScreenController.updateScore(currEnemyFish);
+				fishToRemove.add(currEnemyFish);
+			}
+		}
+		
+		for (EnemyFish currEnemyFish : fishToRemove) {
+			fEnemyFishList.remove(currEnemyFish);
+		}
+	}
+	
 	public Pair<Integer, Boolean> intersectsPlayerFish(PlayerFish aPlayerFish) {
 		for (int i = 0; i < fEnemyFishList.size(); i++) {
 			EnemyFish currEnemyFish = fEnemyFishList.get(i);
