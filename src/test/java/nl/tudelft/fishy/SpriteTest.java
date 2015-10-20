@@ -1,6 +1,7 @@
 package nl.tudelft.fishy;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -109,6 +110,32 @@ public class SpriteTest {
 
     assertEquals(sprite1, sprite2);
   }
+  
+  /**
+   * Test that two different objects are not equal to each other.
+   */
+  @Test 
+  public void testEqualsFalseWithWrongInstance() {
+    BoundingBox boundingBox = new BoundingBox(53, 129, 67, 2);
+    Image image1 = mock(Image.class);
+    Sprite sprite = new Sprite(image1, boundingBox);
+    
+    assertNotEquals(sprite,boundingBox);
+  }
+  
+  /**
+   * Test that two different objects are not equal to each other.
+   */
+  @Test 
+  public void testEqualsFalseWithWrongImage() {
+    BoundingBox boundingBox = new BoundingBox(53, 129, 67, 2);
+    Image image1 = mock(Image.class);
+    Image image = mock(Image.class);
+    Sprite sprite = new Sprite(image1, boundingBox);
+    Sprite sprite2 = new Sprite(image, boundingBox);
+    
+    assertNotEquals(sprite,sprite2);
+  }
 
   /**
    * Tests if two different sprites are not considered equal.
@@ -124,23 +151,4 @@ public class SpriteTest {
     assertFalse(sprite1.equals(sprite2));
   }
 
-  /**
-   * The method was originaly in the sprite, but it is now moved, so the test
-   * method is gone.
-   */
-  /*
-   * @Test public void grow() { AABB aabb = new AABB(10, 10,10,10); Image image1
-   * = mock(Image.class); Sprite sprite1 = new Sprite(image1, aabb); double
-   * multi = 10; assertEquals(10, aabb.getHeight()); assertEquals(10,
-   * aabb.getWidth());
-   * 
-   * sprite1.grow(multi); assertEquals(100, aabb.getHeight()); assertEquals(100,
-   * aabb.getWidth()); }
-   */
-
-  /*
-   * @Test public void render() { AABB aabb = new AABB(10, 10,10,10); Image
-   * image1 = mock(Image.class); Sprite sprite1 = new Sprite(image1, aabb);
-   * GraphicsContext gc = mock(GraphicsContext.class); sprite1.render(gc); }
-   */
 }
