@@ -62,8 +62,10 @@ public class CompositeEnemyFish implements Composition<EnemyFish> {
 		for (int i = 0; i < fEnemyFishList.size(); i++) {
 			Entity currEnemyFish = fEnemyFishList.get(i);
 			if (aPlayerFish.intersects(currEnemyFish)) {
-				int currEnemyFishSize = currEnemyFish.getSprite().getBoundingBox().getWidth();
-				int aPlayerFishSize = aPlayerFish.getSprite().getBoundingBox().getWidth();
+				BoundingBox currEnemyFishBoundingBox = currEnemyFish.getSprite().getBoundingBox();
+				int currEnemyFishSize = currEnemyFishBoundingBox.getWidth();
+				BoundingBox aPlayerFishBoundingBox = aPlayerFish.getSprite().getBoundingBox();
+				int aPlayerFishSize = aPlayerFishBoundingBox.getWidth();
 				if (currEnemyFishSize < aPlayerFishSize) {
 					GameLoop.updateScore(currEnemyFish);
 					return new Pair<Integer, Boolean>(i, false);
