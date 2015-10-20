@@ -52,7 +52,7 @@ public class CompositeEnemyFish implements Composition<EnemyFish> {
 	
 	/**
 	 * Searches for an intersection between the EnemyFish and the parameter PlayerFish.
-	 * If an intersection is found, a comparison is made ( Enemy Fish < PlayerFish ? ).
+	 * If an intersection is found, a comparison is made ( Enemy Fish small than PlayerFish ? ).
 	 * If it is, the player's score is updated.
 	 * @param aPlayerFish 
 	 * @return
