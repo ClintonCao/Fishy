@@ -12,15 +12,13 @@ import javafx.scene.image.Image;
  */
 public final class Lance extends Item implements LanceInterface {
   private boolean isLefty;
-  private Image image;
   private static Lance singletonLance;
 
   /**
    * Contructor.
    */
-  private Lance(Sprite sprite, int posX, int posY, Image image, boolean isLefty) {
+  private Lance(Sprite sprite, int posX, int posY, boolean isLefty) {
     super(sprite, posX, posY);
-    this.setImage(image);
     this.setLefty(isLefty);
   }
   
@@ -53,7 +51,7 @@ public final class Lance extends Item implements LanceInterface {
     BoundingBox lancebb = new BoundingBox(posX, posY, lanceWidth, lanceHeight);
     Sprite lanceSprite = new Sprite(lanceImg, lancebb);
     
-    return new Lance(lanceSprite, posX, posY, lanceImg, true);
+    return new Lance(lanceSprite, posX, posY, true);
   }
 
   /**
@@ -71,15 +69,6 @@ public final class Lance extends Item implements LanceInterface {
   }
 
   // -----------Getters and setters----------------
-
-  public void setImage(Image img) {
-    this.image = img;
-
-  }
-
-  public Image getImage() {
-    return this.image;
-  }
 
   public boolean isLefty() {
     return isLefty;

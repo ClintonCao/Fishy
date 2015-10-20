@@ -68,18 +68,6 @@ public interface LanceInterface {
    */
   Sprite getSprite();
   
-  /**
-   * Set the image of the lance.
-   * @param img the image of the lance.
-   */
-  void setImage(Image img);
-  
-  /**
-   * Get the image of the lance.
-   * @return the image of the lance.
-   */
-  Image getImage();
-  
   
   /**
    * Check if it intersects with another sprite.
