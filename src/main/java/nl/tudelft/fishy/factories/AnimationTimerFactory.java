@@ -56,38 +56,11 @@ public final class AnimationTimerFactory {
       return new AnimationTimer() {
         public void handle(long currentNTime) {
 
-          BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
-          BoundingBox lancebb = lance.getSprite().getBoundingBox();
-          Sprite pfSprite = playerFish.getSprite();
-          BoundingBox pfbb = pfSprite.getBoundingBox();  
-          GameLoop gameLoop = MainScreenController.getGameLoop();     
+          GameLoop gameLoop = MainScreenController.getGameLoop();          
           
-          if (GameLoop.playerHasWon()) {
-            this.stop();
-            Game.switchScreen("/WinningScreen.fxml");
-            Game.getMediaPlayer().stop();
-            Game.getLogger().logSwitchScreen("WinningScreen");
-
-            GameLoop.setBossMode(false);
-            playerFish.setHasLance(false);
-
-            endBossbb.setX(-2000);
-            endBossbb.setY(-2000);
-          }
-
-          if (pfbb.getWidth() > 60) {
-            if (endBossbb.getX() == -2000) {
-              endBossbb.setX(0);
-              endBossbb.setY(0);
-            }
-            if ((lancebb.getX() == -2000) && !playerFish.hasLance()) {
-              lancebb.setX(0);
-              BoundingBox screenBox = GameLoop.screenbox;
-              lancebb.setY(screenBox.getHeight() / 4 * 3);
-            }
-            GameLoop.setBossMode(true);
-          }
-
+          gameLoop.turnOnBossMode();
+          
+          gameLoop.playerWins();
           
           gameLoop.playerDiesToBoss();
 
