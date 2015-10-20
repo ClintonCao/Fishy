@@ -9,7 +9,6 @@ import nl.tudelft.fishy.factories.ItemFactory;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.text.Text;
 import javafx.util.Pair;
 
 /**
@@ -21,7 +20,6 @@ public class GameLoop {
 	
 	private static PlayerFish playerFish;
   private static CompositeEnemyFish compositeEnemyFish = new CompositeEnemyFish();
-  private static Text scoreText = new Text();
   private static int currScore;
   private static ArrayList<String> input;
   private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory().getEntity("BOSS");
@@ -48,7 +46,6 @@ public class GameLoop {
     lance = (Lance) ItemFactory.getItemFactory().createItem("LANCE", playerFish);
     playerFish.getBombs().add(
         (FishBomb) itemFactory.createItem("FISHBOMB", playerFish));
-    scoreText.setText("Score");
     input = new ArrayList<String>();
     frames = 0;
     if (!Game.isPlayingNewGamePlus()) {
@@ -90,7 +87,7 @@ public class GameLoop {
 
     playerPicksUpLance();
     
-    compositeEnemyFish.removeOffScreenEnemyFish(GameLoop.screenbox);
+    compositeEnemyFish.removeOffScreenEnemyFish(screenbox);
     
     playerIntersectsFish();     
     
@@ -106,7 +103,7 @@ public class GameLoop {
    * @param gc
    *          - the graphicsContext which needs to do the rendering.
    */
-  public void renderNonStatics(GraphicsContext gc) {
+	private void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
     
     compositeEnemyFish.render(gc);
@@ -119,7 +116,7 @@ public class GameLoop {
    * @param gc
    *          - the GraphicsContext.
    */
-  public void handleBoss(GraphicsContext gc) {
+  private void handleBoss(GraphicsContext gc) {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
     BoundingBox playerFishbb = playerFish.getSprite().getBoundingBox();
 
@@ -152,7 +149,7 @@ public class GameLoop {
    * 
    * @return true if the player is bigger than a certain size.
    */
-  public static boolean playerHasWon() {
+  private static boolean playerHasWon() {
     return playerFish.intersects(endBoss) && playerFish.hasLance();
   }
 
@@ -162,7 +159,7 @@ public class GameLoop {
    * @param gc
    *          - the GraphicsContext.
    */
-  public void handleWeapon(GraphicsContext gc) {
+  private void handleWeapon(GraphicsContext gc) {
     if (bossMode) {
       lance.getSprite().render(gc);
 
@@ -191,7 +188,7 @@ public class GameLoop {
    * This method handles the WASD input of the player. And any other input, like
    * X for using item.
    */
-  public void handlePlayerInput(GraphicsContext gc) {
+  private void handlePlayerInput(GraphicsContext gc) {
     ArrayList<FishBomb> playerBombs = playerFish.getBombs();
     if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
       playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
@@ -270,7 +267,7 @@ public class GameLoop {
    * This method is being called when the player fish collide with a large enemy
    * fish, and then the game is proceed to losing screen.
    */
-  public static void playerLost() {
+  private static void playerLost() {
     Game.getLogger().logPlayerFishDies();
     Game.getLogger().logGameResult("lost", currScore);
     currScore = 0;
@@ -290,7 +287,7 @@ public class GameLoop {
   /**
    * Generates a new enemy fish every 90 frames.
    */
-  public void generateEnemyFish() {
+  private void generateEnemyFish() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     if ((frames % 90 == 0) && !isBossMode()) {
       compositeEnemyFish.add((EnemyFish) entityFactory.getEntity("ENEMY"));
@@ -301,7 +298,7 @@ public class GameLoop {
   /**
    * Increment frames.
    */
-  public void updateFrames() {
+  private void updateFrames() {
   	frames++;
   }
   
@@ -309,7 +306,7 @@ public class GameLoop {
    * Checks if the player has picked up the lance.
    * If it has, it handles the necessary steps.
    */
-  public void playerPicksUpLance() {
+  private void playerPicksUpLance() {
   	BoundingBox lancebb = lance.getSprite().getBoundingBox();
     Sprite pfSprite = playerFish.getSprite();
     BoundingBox pfbb = pfSprite.getBoundingBox();
@@ -339,16 +336,16 @@ public class GameLoop {
   /**
    * Checks for intersections between playerfish and enemyfish.
    */
-  public void playerIntersectsFish() {
+  private void playerIntersectsFish() {
     Pair<Integer, Boolean> res = compositeEnemyFish.intersectsPlayerFish(playerFish);
     
     if (res.getKey() != -1) {
     	if (res.getValue()) {
     		fAnimationTimer.stop();
-    		GameLoop.playerLost();
+    		playerLost();
     	} else {
     		compositeEnemyFish.remove(res.getKey());
-    		playerFish.grow(GameLoop.MULTIPLIER);
+    		playerFish.grow(MULTIPLIER);
     	}
     }
   }
@@ -356,7 +353,7 @@ public class GameLoop {
   /**
    * Checks if the player dies to the boss.
    */
-  public void playerDiesToBoss() {
+  private void playerDiesToBoss() {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
   	
     if (playerFish.intersects(endBoss) && !playerFish.hasLance()) {
@@ -364,17 +361,17 @@ public class GameLoop {
       endBossbb.setY(-2000);
 
       fAnimationTimer.stop();
-      GameLoop.playerLost();
+      playerLost();
     }
   }
   
   /**
    * Checks if the player wins.
    */
-  public void playerWins() {
+  private void playerWins() {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
   	
-    if (GameLoop.playerHasWon()) {
+    if (playerHasWon()) {
       fAnimationTimer.stop();
       Game.switchScreen("/WinningScreen.fxml");
       Game.getMediaPlayer().stop();
@@ -392,7 +389,7 @@ public class GameLoop {
    * Checks if the game should enter boss mode. 
    * If it does, it handles it.
    */
-  public void turnOnBossMode() {
+  private void turnOnBossMode() {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
     BoundingBox lancebb = lance.getSprite().getBoundingBox();
     Sprite pfSprite = playerFish.getSprite();
@@ -405,7 +402,7 @@ public class GameLoop {
       }
       if ((lancebb.getX() == -2000) && !playerFish.hasLance()) {
         lancebb.setX(0);
-        BoundingBox screenBox = GameLoop.screenbox;
+        BoundingBox screenBox = screenbox;
         lancebb.setY(screenBox.getHeight() / 4 * 3);
       }
       bossMode = true;
@@ -428,14 +425,6 @@ public class GameLoop {
 
   public EndBoss getEndBoss() {
     return endBoss;
-  }
-
-  public void setEndBoss(EndBoss dendBoss) {
-  	endBoss = dendBoss;
-  }
-
-  public Lance getLance() {
-    return lance;
   }
 
   public void setLance(Lance dlance) {
