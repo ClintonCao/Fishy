@@ -16,7 +16,6 @@ import javafx.scene.image.Image;
 public final class PlayerFish extends Entity implements PlayerFishInterface {
 
   private static PlayerFish singletonFish;
-  
   private static String leftImageName = "/FishOriginal_transparent.png";
   private static String rightImageName = "/Fish_Right_Transparent.png";
   private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
@@ -84,8 +83,8 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     Image playerFishImage = new Image(leftImageName, startImageWidth,
         startImageHeight, true, true);
 
-    int startPosX = MainScreenController.screenbox.getWidth() / 2;
-    int startPosY = MainScreenController.screenbox.getHeight() / 2;
+    int startPosX = Game.getScreenbox().getWidth() / 2;
+    int startPosY = Game.getScreenbox().getHeight() / 2;
 
     BoundingBox boundingBox = new BoundingBox(startPosX, startPosY,
         startImageWidth, startImageHeight);

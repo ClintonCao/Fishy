@@ -46,6 +46,10 @@ public class GameLoop {
     setLance((Lance) itemFactory.createItem("LANCE", playerFish));
     setBossMode(false);
     
+    if(Game.isPlayingNewGamePlus()) {
+    	playerFish.setScore(currScore);
+    }
+    
     fAnimationTimer = AnimationTimerFactory.getAnimationTimerFactory().makeAnimationTimer(gc, compositeEnemyFish);
 	}
     

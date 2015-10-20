@@ -34,8 +34,6 @@ import javafx.scene.text.TextAlignment;
  */
 public class MainScreenController {
 
-  public static PlayerFish playerFish;
-  public static BoundingBox screenbox;
   private static Text scoreText = new Text();
   public static int currScore;
   private static Image background = new Image("/Fishy_bg.jpg");
@@ -93,17 +91,13 @@ public class MainScreenController {
    * fish.
    */
   public static void init() {
-    screenbox = new BoundingBox(0, 0, Game.getResX(), Game.getResY());
 
-    EntityFactory entityFactory = EntityFactory.getEntityFactory();
-    ItemFactory itemFactory = ItemFactory.getItemFactory();
-    playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
-    playerFish.getBombs().add((FishBomb) itemFactory.createItem("FISHBOMB", playerFish));
     scoreText.setText("Score");
 
     if (!Game.isPlayingNewGamePlus()) {
       currScore = 0;
     }
+    
     gameLoop = new GameLoop(gc);
     
   }
@@ -134,7 +128,6 @@ public class MainScreenController {
       QuitButton.setVisible(false);
       MenuButton.setVisible(false);
       NGPText.setVisible(true);
-      playerFish.setScore(gameLoop.getCurrScore());
     }
 
     MainScreenEventHandlerFactory mainScreenEHFactory = MainScreenEventHandlerFactory.getMainScreenEHFactory();
@@ -165,10 +158,10 @@ public class MainScreenController {
     gc.fillText(scoreText.getText().toString(), 625, 20);
     gc.setTextAlign(TextAlignment.CENTER);
     gc.setTextBaseline(VPos.CENTER);
-    gc.fillText(Integer.toString(playerFish.getScore()), 625, 55);
+    gc.fillText(Integer.toString(gameLoop.getCurrScore()), 625, 55);
     
-    if (playerFish.getBombs().size() > 0) {
-    	playerFish.getBombs().get(0).getSprite().render(gc);
+    if (gameLoop.getPlayerFish().getBombs().size() > 0) {
+    	gameLoop.getPlayerFish().getBombs().get(0).getSprite().render(gc);
     }
   }
 

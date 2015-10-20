@@ -67,13 +67,11 @@ public final class LosingScreenEventHandlerFactory implements
 
     	@Override
     	public void handle(MouseEvent event) {
-
+    		GameLoop gameLoop = MainScreenController.getGameLoop();
 
     		Game.resetPlayerFishSize();
-    		MainScreenController.playerFish.setHasLance(false);
-    		GameLoop.setBossMode(false);
-
-    		MainScreenController.playerFish.setHasLance(false);
+    		gameLoop.getPlayerFish().setHasLance(false);
+    		gameLoop.setBossMode(false);
 
     		Game.switchScreen("/MainScreen.fxml");
     		if (Game.getMusicOn()) {
