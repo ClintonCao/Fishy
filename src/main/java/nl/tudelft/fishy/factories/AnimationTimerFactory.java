@@ -51,7 +51,7 @@ public final class AnimationTimerFactory {
    * 
    * @return the new AnimationTimer.
    */
-  public AnimationTimer makeAnimationTimer(GraphicsContext gc, EndBoss endBoss, PlayerFish playerFish, Lance lance, int frames, CompositeEnemyFish compositeEnemyFish) {
+  public AnimationTimer makeAnimationTimer(GraphicsContext gc, CompositeEnemyFish compositeEnemyFish) {
 
       return new AnimationTimer() {
         public void handle(long currentNTime) {

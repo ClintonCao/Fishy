@@ -1,8 +1,6 @@
 package nl.tudelft.fishy;
 
 import java.util.ArrayList;
-
-import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.factories.AnimationTimerFactory;
 import nl.tudelft.fishy.factories.EntityFactory;
 import nl.tudelft.fishy.factories.ItemFactory;
@@ -23,9 +21,10 @@ public class GameLoop {
   private static Lance lance;
   private static boolean bossMode;
   private AnimationTimer fAnimationTimer;
+  private static int frames;
+
   
   public static BoundingBox screenbox;
-  public static int frames;
   public static final double MULTIPLIER = 1.05;
 
 	public GameLoop(GraphicsContext gc) {
@@ -47,7 +46,7 @@ public class GameLoop {
     setLance((Lance) itemFactory.createItem("LANCE", playerFish));
     setBossMode(false);
     
-    fAnimationTimer = AnimationTimerFactory.getAnimationTimerFactory().makeAnimationTimer(gc, endBoss, playerFish, lance, frames, compositeEnemyFish);
+    fAnimationTimer = AnimationTimerFactory.getAnimationTimerFactory().makeAnimationTimer(gc, compositeEnemyFish);
 	}
     
   /**
