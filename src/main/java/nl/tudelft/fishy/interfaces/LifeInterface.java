@@ -5,22 +5,22 @@ import nl.tudelft.fishy.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * Interface for the Lance item.
+ * Interface for the Life item.
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
  *         Sunwei Wang.
  */
-public interface LanceInterface {
+public interface LifeInterface {
 
 
   /**
-   * Update the x-coordinate of the FishBomb. Used for moving FishBombs over the screen.
+   * Update the x-coordinate of the Life Item. Used for moving Life Item over the screen.
    *
    * @param mod - the new x-coordinate.
    */
   void updateX(int mod);
 
   /**
-   * Update the y-coordinate of the FishBomb. Used for moving FishBombs over the screen.
+   * Update the y-coordinate of the Life Item. Used for moving Life Item over the screen.
    *
    * @param mod - the new y-coordinate.
    */
@@ -36,7 +36,7 @@ public interface LanceInterface {
 
   /**
    * Get the x-coordinate.
-   * @return the x-coordinate of the bomb.
+   * @return the x-coordinate of the Life Item.
    */
   int getPosX();
 
@@ -47,7 +47,7 @@ public interface LanceInterface {
 
   /**
    * Get the y-coordinate.
-   * @return the y-coordinate of the bomb.
+   * @return the y-coordinate of the Life Item.
    */
   int getPosY();
 
