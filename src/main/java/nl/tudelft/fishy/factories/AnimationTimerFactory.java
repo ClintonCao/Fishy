@@ -62,6 +62,8 @@ public final class AnimationTimerFactory {
 
           Sprite pfSprite = playerFish.getSprite();
           BoundingBox pfbb = pfSprite.getBoundingBox();
+          
+          GameLoop gameLoop = MainScreenController.getGameLoop();
 
           if (GameLoop.playerHasWon()) {
             this.stop();
@@ -99,13 +101,13 @@ public final class AnimationTimerFactory {
 
           MainScreenController.renderStatics(gc);
 
-          GameLoop.handleBoss(gc);
+          gameLoop.handleBoss(gc);
 
-          GameLoop.handleWeapon(gc);
+          gameLoop.handleWeapon(gc);
 
-          GameLoop.handlePlayerInput(gc);
+          gameLoop.handlePlayerInput(gc);
 
-          GameLoop.generateEnemyFish();
+          gameLoop.generateEnemyFish();
 
           if (pfbb.intersects(lancebb)) {
 

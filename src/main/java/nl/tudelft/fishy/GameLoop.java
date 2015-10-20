@@ -11,11 +11,8 @@ import javafx.scene.text.Text;
 
 public class GameLoop {
 	
-  public static BoundingBox screenbox;
 	private static PlayerFish playerFish;
   private static CompositeEnemyFish compositeEnemyFish = new CompositeEnemyFish();
-  public static int frames;
-  public static final double MULTIPLIER = 1.05;
   private static Text scoreText = new Text();
   private static int currScore;
   private static ArrayList<String> input;
@@ -23,6 +20,10 @@ public class GameLoop {
   private static Lance lance;
   private static boolean bossMode;
   private AnimationTimer fAnimationTimer;
+  
+  public static BoundingBox screenbox;
+  public static int frames;
+  public static final double MULTIPLIER = 1.05;
 
 	public GameLoop(GraphicsContext gc) {
 		EntityFactory entityFactory = EntityFactory.getEntityFactory();
@@ -66,7 +67,7 @@ public class GameLoop {
    * @param gc
    *          - the GraphicsContext.
    */
-  public static void handleBoss(GraphicsContext gc) {
+  public void handleBoss(GraphicsContext gc) {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
     BoundingBox playerFishbb = playerFish.getSprite().getBoundingBox();
 
@@ -109,7 +110,7 @@ public class GameLoop {
    * @param gc
    *          - the GraphicsContext.
    */
-  public static void handleWeapon(GraphicsContext gc) {
+  public void handleWeapon(GraphicsContext gc) {
     if (bossMode) {
       lance.getSprite().render(gc);
 
@@ -138,7 +139,7 @@ public class GameLoop {
    * This method handles the WASD input of the player. And any other input, like
    * X for using item.
    */
-  public static void handlePlayerInput(GraphicsContext gc) {
+  public void handlePlayerInput(GraphicsContext gc) {
     ArrayList<FishBomb> playerBombs = playerFish.getBombs();
     if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
       playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
@@ -237,7 +238,7 @@ public class GameLoop {
   /**
    * Generates a new enemy fish every 90 frames.
    */
-  public static void generateEnemyFish() {
+  public void generateEnemyFish() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     if ((frames % 90 == 0) && !isBossMode()) {
       compositeEnemyFish.add((EnemyFish) entityFactory.getEntity("ENEMY"));
