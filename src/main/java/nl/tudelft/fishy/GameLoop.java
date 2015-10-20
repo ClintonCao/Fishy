@@ -211,7 +211,7 @@ public class GameLoop {
     playerFish.grow(MULTIPLIER);
     int score = (height * width) / 100;
     Game.getLogger().logPlayerFishGrows(score);
-    setCurrScore(currScore + score);
+    currScore = currScore + score;
     Game.getLogger().logNewScore(currScore);
     playerFish.setScore(currScore);
 
@@ -227,7 +227,7 @@ public class GameLoop {
   public static void playerLost() {
     Game.getLogger().logPlayerFishDies();
     Game.getLogger().logGameResult("lost", currScore);
-    setCurrScore(0);
+    currScore = 0;
     playerFish.setScore(currScore);
 
     Game.setNewGamePlusMode(false);
@@ -235,7 +235,7 @@ public class GameLoop {
 
     Game.switchScreen("/LosingScreen.fxml");
     Game.getLogger().logSwitchScreen("LosingScreen");
-    setBossMode(false);
+    bossMode = false;
     playerFish.setHasLance(false);
     
     compositeEnemyFish.clear();
@@ -321,7 +321,7 @@ public class GameLoop {
       Game.getMediaPlayer().stop();
       Game.getLogger().logSwitchScreen("WinningScreen");
 
-      GameLoop.setBossMode(false);
+      bossMode = false;
       playerFish.setHasLance(false);
 
       endBossbb.setX(-2000);
@@ -345,45 +345,45 @@ public class GameLoop {
         BoundingBox screenBox = GameLoop.screenbox;
         lancebb.setY(screenBox.getHeight() / 4 * 3);
       }
-      GameLoop.setBossMode(true);
+      bossMode = true;
     }
   }
 
   // --- Getters and Setters ---
   
-  public static void setCurrScore(int score) {
+  public void setCurrScore(int score) {
     currScore = score;
   }
 
-  public static int getCurrScore() {
+  public int getCurrScore() {
     return currScore;
   }
 
-  public static PlayerFish getPlayerFish() {
+  public PlayerFish getPlayerFish() {
     return playerFish;
   }
 
-  public static EndBoss getEndBoss() {
+  public EndBoss getEndBoss() {
     return endBoss;
   }
 
-  public static void setEndBoss(EndBoss dendBoss) {
+  public void setEndBoss(EndBoss dendBoss) {
   	endBoss = dendBoss;
   }
 
-  public static Lance getLance() {
+  public Lance getLance() {
     return lance;
   }
 
-  public static void setLance(Lance dlance) {
+  public void setLance(Lance dlance) {
     lance = dlance;
   }
 
-  public static boolean isBossMode() {
+  public boolean isBossMode() {
     return bossMode;
   }
 
-  public static void setBossMode(boolean dbossMode) {
+  public void setBossMode(boolean dbossMode) {
     bossMode = dbossMode;
   }
 

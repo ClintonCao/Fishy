@@ -1,7 +1,6 @@
 package nl.tudelft.fishy;
-import java.util.ArrayList;
 
-import nl.tudelft.fishy.controllers.MainScreenController;
+import java.util.ArrayList;
 import nl.tudelft.fishy.interfaces.Composition;
 import  javafx.util.Pair;
 import javafx.scene.canvas.GraphicsContext;

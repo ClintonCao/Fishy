@@ -1,20 +1,10 @@
 package nl.tudelft.fishy.factories;
 
-import nl.tudelft.fishy.BoundingBox;
 import nl.tudelft.fishy.CompositeEnemyFish;
-import nl.tudelft.fishy.EndBoss;
-import nl.tudelft.fishy.FishBomb;
-import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
-import nl.tudelft.fishy.Lance;
-import nl.tudelft.fishy.PlayerFish;
-import nl.tudelft.fishy.Sprite;
-import nl.tudelft.fishy.interfaces.AnimationTimerFactoryInterface;
 import nl.tudelft.fishy.controllers.MainScreenController;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.util.Pair;
 
 /**
  * Makes Animation Timers. Singleton class.

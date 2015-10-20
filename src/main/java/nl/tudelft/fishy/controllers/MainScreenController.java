@@ -1,12 +1,7 @@
 package nl.tudelft.fishy.controllers;
 
-import nl.tudelft.fishy.BoundingBox;
-import nl.tudelft.fishy.FishBomb;
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
-import nl.tudelft.fishy.PlayerFish;
-import nl.tudelft.fishy.factories.EntityFactory;
-import nl.tudelft.fishy.factories.ItemFactory;
 import nl.tudelft.fishy.factories.MainScreenEventHandlerFactory;
 
 import java.net.URL;

@@ -1,10 +1,7 @@
 package nl.tudelft.fishy;
 
-import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.interfaces.EnemyFishInterface;
-
 import java.util.Random;
-
 import javafx.scene.image.Image;
 
 /**

@@ -1,6 +1,5 @@
 package nl.tudelft.fishy;
 
-import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.interfaces.PlayerFishInterface;
 
 import java.util.ArrayList;
@@ -186,7 +185,7 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     return leftImageName;
   }
 
-  public static void setPlayerFishLeftImageName(String playerFishLeftImageName) {
+  public void setPlayerFishLeftImageName(String playerFishLeftImageName) {
     PlayerFish.leftImageName = playerFishLeftImageName;
   }
 
@@ -194,7 +193,7 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     return rightImageName;
   }
 
-  public static void setPlayerFishRightImageName(String playerFishRightImageName) {
+  public void setPlayerFishRightImageName(String playerFishRightImageName) {
     PlayerFish.rightImageName = playerFishRightImageName;
   }
 
