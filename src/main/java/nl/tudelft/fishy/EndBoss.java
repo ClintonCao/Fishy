@@ -77,13 +77,14 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
 
     // Generate the end boss, depending on which side of the screen it spawns.
     if (isLefty) {
-      // Get the image for the end boss and its respective height and width.
-      fishImage = new Image(rightImageFileName, fishImage.getWidth() * imgSizeMultiplier,
-          fishImage.getHeight() * imgSizeMultiplier, true, true);
+      imageFileName = rightImageFileName;
     } else {
-      fishImage = new Image(leftImageFileName, fishImage.getWidth() * imgSizeMultiplier, 
-          fishImage.getHeight() * imgSizeMultiplier, true, true);
+      imageFileName = leftImageFileName;
     }
+    // Get the image for the end boss and its respective height and width.
+    fishImage = new Image(imageFileName, fishImage.getWidth() * imgSizeMultiplier, 
+            fishImage.getHeight() * imgSizeMultiplier, true, true);   
+    
     int fishImageWidth = (int) fishImage.getWidth();
     int fishImageHeight = (int) fishImage.getHeight();
     sprite = new Sprite(fishImage, boundingBox);
