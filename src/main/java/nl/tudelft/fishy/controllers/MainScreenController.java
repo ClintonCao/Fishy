@@ -405,7 +405,7 @@ public class MainScreenController {
   public static void generateEnemyFish() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     if ((frames % 90 == 0) && !isBossMode()) {
-      compositeEnemyFish.add((EnemyFish)entityFactory.getEntity("ENEMY"));
+      compositeEnemyFish.add((EnemyFish) entityFactory.getEntity("ENEMY"));
       Game.getLogger().logEdgeBump(playerFish);
     }
   }

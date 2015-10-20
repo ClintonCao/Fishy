@@ -120,7 +120,7 @@ public class SpriteTest {
     Image image1 = mock(Image.class);
     Sprite sprite = new Sprite(image1, boundingBox);
     
-    assertNotEquals(sprite,boundingBox);
+    assertNotEquals(sprite, boundingBox);
   }
   
   /**
@@ -134,7 +134,7 @@ public class SpriteTest {
     Sprite sprite = new Sprite(image1, boundingBox);
     Sprite sprite2 = new Sprite(image, boundingBox);
     
-    assertNotEquals(sprite,sprite2);
+    assertNotEquals(sprite, sprite2);
   }
 
   /**

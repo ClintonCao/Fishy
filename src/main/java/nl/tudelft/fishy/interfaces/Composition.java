@@ -15,22 +15,22 @@ public interface Composition<K> {
 	 * @param k 
 	 * 					- to be added.
 	 */
-	public void add(K k);
+	void add(K k);
 	
 	/**
 	 * Remove specific element K.
 	 * @param k
 	 * 					- to be removed.
 	 */
-	public void remove(K k);
+	void remove(K k);
 	
 	/**
 	 * Remove the i'th element.
 	 */
-	public void remove(int i);
+	void remove(int i);
 	/**
 	 * Clear all the elements from the list.
 	 */
-	public void clear();
+	void clear();
 	
 }
