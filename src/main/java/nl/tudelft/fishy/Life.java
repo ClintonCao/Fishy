@@ -1,6 +1,5 @@
 package nl.tudelft.fishy;
 
-import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.interfaces.LifeInterface;
 
 import javafx.scene.image.Image;
@@ -14,7 +13,6 @@ import javafx.scene.image.Image;
 public final class Life extends Item implements LifeInterface {
 
   private static String imageFileName = "/Heart.png";
-  private static Image image = new Image(imageFileName);
   private static Life singletonLife;
 
   /**
@@ -42,10 +40,10 @@ public final class Life extends Item implements LifeInterface {
    */
   private static Life createLifeItem() {
     // render the life image
-    Image lifeImage = image;
+    Image lifeImage = new Image(imageFileName);
     // starting position of the image on the screen
     int posX = 0;
-    int posY = MainScreenController.getScreenbox().getHeight() / 4 * 3;
+    int posY = Game.getScreenbox().getHeight() / 4 * 3;
     // gets the image's height and width
     int lifeWidth = (int) lifeImage.getWidth();
     int lifeHeight = (int) lifeImage.getHeight();
