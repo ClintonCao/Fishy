@@ -24,3 +24,6 @@ hs_err_pid*
 
 # Configuration
 .checkstyle
+
+# Game related files
+.txt
