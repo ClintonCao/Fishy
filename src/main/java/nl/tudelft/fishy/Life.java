@@ -11,24 +11,36 @@ import javafx.scene.image.Image;
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev,
  *         Sunwei Wang.
  */
-public class Life extends Item implements LifeInterface {
+public final class Life extends Item implements LifeInterface {
 
   private static String imageFileName = "/Heart.png";
   private static Image image = new Image(imageFileName);
+  private static Life singletonLife;
 
   /**
    * Life constructor.
    */
-  public Life(Sprite sprite, int posX, int posY, Image imgae) {
+  private Life(Sprite sprite, int posX, int posY) {
     super(sprite, posX, posY);
-    this.setImage(image);
   }
 
+  
+  /**
+   * Get the an instance of Life Item, there's maximum of one instance.
+   * @return the Life item.
+   */
+  public static synchronized Life getSingletonLife() {
+    if (singletonLife == null) {
+      singletonLife = createLifeItem();
+    }
+    return singletonLife; 
+  }
+  
   /**
    * Create the life item in the game
    * @return the life item.
    */
-  public static Life createLifeItem() {
+  private static Life createLifeItem() {
     // render the life image
     Image lifeImage = image;
     // starting position of the image on the screen
@@ -41,7 +53,7 @@ public class Life extends Item implements LifeInterface {
     BoundingBox lifebb = new BoundingBox(posX, posY, lifeWidth, lifeHeight);
     Sprite lifeSprite = new Sprite(lifeImage, lifebb);
     
-    return new Life(lifeSprite, posX, posY, lifeImage);
+    return new Life(lifeSprite, posX, posY);
   }
 
   /**
@@ -51,15 +63,5 @@ public class Life extends Item implements LifeInterface {
     return super.getSprite().intersects(other);
   }
 
-  // -----------Getters and setters----------------
-
-  public void setImage(Image img) {
-    Life.image = img;
-
-  }
-
-  public Image getImage() {
-    return Life.image;
-  }
 
 }
