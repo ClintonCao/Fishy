@@ -2,15 +2,13 @@ package nl.tudelft.fishy.factories;
 
 import nl.tudelft.fishy.interfaces.MainScreenEventHandlerFactoryInterface;
 import nl.tudelft.fishy.Game;
+import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
-
-import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -86,22 +84,17 @@ public final class MainScreenEventHandlerFactory implements
         Scene scene = new Scene(root);
         Game.getStage().setScene(scene);
 
-        Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
+        Canvas canvas = MainScreenController.getCanvas();
 
         root.getChildren().add(canvas);
 
         scene.setOnKeyPressed(makeKeyPressedEventHandler());
 
         scene.setOnKeyReleased(makeKeyReleasedEventHandler());
+        
+        GameLoop gameLoop = MainScreenController.getGameLoop();
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        AnimationTimerFactory animationTimerFactory = AnimationTimerFactory
-            .getAnimationTimerFactory();
-        AnimationTimer animationTimer = animationTimerFactory
-            .makeAnimationTimer(gc);
-
-        animationTimer.start();
+        gameLoop.getAnimationTimer().start();
       }
     };
   }
@@ -156,8 +149,8 @@ public final class MainScreenEventHandlerFactory implements
       @Override
       public void handle(KeyEvent e) {
         String code = e.getCode().toString();
-        if (!MainScreenController.input.contains(code)) {
-          MainScreenController.input.add(code);
+        if (!GameLoop.getInput().contains(code)) {
+          GameLoop.getInput().add(code);
         }
       }
     };
@@ -176,7 +169,7 @@ public final class MainScreenEventHandlerFactory implements
       @Override
       public void handle(KeyEvent e) {
         String code = e.getCode().toString();
-        MainScreenController.input.remove(code);
+        GameLoop.getInput().remove(code);
       }
     };
   }

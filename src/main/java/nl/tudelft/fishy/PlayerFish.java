@@ -1,6 +1,5 @@
 package nl.tudelft.fishy;
 
-import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.interfaces.PlayerFishInterface;
 
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import javafx.scene.image.Image;
 public final class PlayerFish extends Entity implements PlayerFishInterface {
 
   private static PlayerFish singletonFish;
-  
   private static String leftImageName = "/FishOriginal_transparent.png";
   private static String rightImageName = "/Fish_Right_Transparent.png";
   private ArrayList<FishBomb> bombs = new ArrayList<FishBomb>();
@@ -84,8 +82,8 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     Image playerFishImage = new Image(leftImageName, startImageWidth,
         startImageHeight, true, true);
 
-    int startPosX = MainScreenController.getScreenbox().getWidth() / 2;
-    int startPosY = MainScreenController.getScreenbox().getHeight() / 2;
+    int startPosX = Game.getScreenbox().getWidth() / 2;
+    int startPosY = Game.getScreenbox().getHeight() / 2;
 
     BoundingBox boundingBox = new BoundingBox(startPosX, startPosY,
         startImageWidth, startImageHeight);
@@ -187,7 +185,7 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     return leftImageName;
   }
 
-  public static void setPlayerFishLeftImageName(String playerFishLeftImageName) {
+  public void setPlayerFishLeftImageName(String playerFishLeftImageName) {
     PlayerFish.leftImageName = playerFishLeftImageName;
   }
 
@@ -195,7 +193,7 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     return rightImageName;
   }
 
-  public static void setPlayerFishRightImageName(String playerFishRightImageName) {
+  public void setPlayerFishRightImageName(String playerFishRightImageName) {
     PlayerFish.rightImageName = playerFishRightImageName;
   }
 

@@ -2,6 +2,7 @@ package nl.tudelft.fishy.factories;
 
 import nl.tudelft.fishy.interfaces.LosingScreenEventHandlerFactoryInterface;
 import nl.tudelft.fishy.Game;
+import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -66,13 +67,11 @@ public final class LosingScreenEventHandlerFactory implements
 
     	@Override
     	public void handle(MouseEvent event) {
-
+    		GameLoop gameLoop = MainScreenController.getGameLoop();
 
     		Game.resetPlayerFishSize();
-    		MainScreenController.playerFish.setHasLance(false);
-    		MainScreenController.setBossMode(false);
-
-    		MainScreenController.playerFish.setHasLance(false);
+    		gameLoop.getPlayerFish().setHasLance(false);
+    		gameLoop.setBossMode(false);
 
     		Game.switchScreen("/MainScreen.fxml");
     		if (Game.getMusicOn()) {

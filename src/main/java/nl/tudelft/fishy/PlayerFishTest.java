@@ -106,8 +106,8 @@ public class PlayerFishTest {
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);
     player.setPlayerFishRightImage(img2);
-    PlayerFish.setPlayerFishLeftImageName("/resources/FishOriginal_transparent.png");
-    PlayerFish.setPlayerFishRightImageName("/resources/Fish_Right_Transparent.png");
+    player.setPlayerFishLeftImageName("/resources/FishOriginal_transparent.png");
+    player.setPlayerFishRightImageName("/resources/Fish_Right_Transparent.png");
     assertEquals(leftimage, PlayerFish.getPlayerFishLeftImageName());
     assertEquals(rightimage, PlayerFish.getPlayerFishRightImageName());
   }
