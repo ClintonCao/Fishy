@@ -4,6 +4,7 @@ import nl.tudelft.fishy.interfaces.WinningScreenEventHandlerFactoryInterface;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import nl.tudelft.fishy.Game;
+import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
 
 /**
@@ -65,11 +66,11 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
         Game.setNewGamePlusMode(true);
 
         Game.resetPlayerFishSize();     
-        MainScreenController.playerFish.setHasLance(false);
-        MainScreenController.setBossMode(false);  
+        GameLoop.playerFish.setHasLance(false);
+        GameLoop.setBossMode(false);  
         
-        int score = MainScreenController.getPlayerFish().getScore();
-        MainScreenController.setCurrScore(score);
+        int score = GameLoop.getPlayerFish().getScore();
+        GameLoop.setCurrScore(score);
         if (Game.getMusicOn()) {
           Game.getMediaPlayer().play();
         }
@@ -92,8 +93,8 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
       public void handle(MouseEvent event) {
       	
       	Game.resetPlayerFishSize();    
-        MainScreenController.playerFish.setHasLance(false);
-        MainScreenController.setBossMode(false);
+      	GameLoop.playerFish.setHasLance(false);
+        GameLoop.setBossMode(false);
         
         Game.setNewGamePlusMode(false);
         Game.switchScreen("/MainScreen.fxml");

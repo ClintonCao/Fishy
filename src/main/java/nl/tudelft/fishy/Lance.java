@@ -42,7 +42,7 @@ public final class Lance extends Item implements LanceInterface {
   public static Lance createLance(PlayerFish pf) {
     BoundingBox pfbb = pf.getSprite().getBoundingBox();
     int posX = 0;
-    int posY = MainScreenController.getScreenbox().getHeight() / 4 * 3;
+    int posY = GameLoop.screenbox.getHeight() / 4 * 3;
     
     Image lanceImg = new Image("/Lance.png");
     int lanceWidth = (int) lanceImg.getWidth();

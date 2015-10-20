@@ -76,7 +76,7 @@ public class EnemyFish extends Entity implements EnemyFishInterface {
       // be placed at the X coordinate equal to the width of the AABB
       // screenbox;
       return new EnemyFish(randomSpeed, isLefty, new Sprite(fishImage,
-          new BoundingBox(MainScreenController.getScreenbox().getWidth(),
+          new BoundingBox(GameLoop.screenbox.getWidth(),
               randomHeight, fishImageWidth, fishImageHeight)));
     }
   }

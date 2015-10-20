@@ -43,19 +43,11 @@ public class MainScreenController {
 
   public static PlayerFish playerFish;
   public static BoundingBox screenbox;
-  private static CompositeEnemyFish compositeEnemyFish = new CompositeEnemyFish();
-  public static int frames;
-  private static final double MULTIPLIER = 1.05;
   private static Text scoreText = new Text();
   public static int currScore;
-  public static ArrayList<String> input;
   private static Image background = new Image("/Fishy_bg.jpg");
-  public static boolean bomb1;
-  public static boolean bomb2;
-  public static boolean bomb3;
-  private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory().getEntity("BOSS");
-  private static Lance lance;
-  private static boolean bossMode;
+
+
 
   @FXML
   private ResourceBundle resources;
@@ -107,20 +99,18 @@ public class MainScreenController {
    * fish.
    */
   public static void init() {
+    screenbox = new BoundingBox(0, 0, Game.getResX(), Game.getResY());
+
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     ItemFactory itemFactory = ItemFactory.getItemFactory();
-    setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
     playerFish.getBombs().add(
         (FishBomb) itemFactory.createItem("FISHBOMB", playerFish));
     scoreText.setText("Score");
-    input = new ArrayList<String>();
-    frames = 0;
+
     if (!Game.isPlayingNewGamePlus()) {
       currScore = 0;
     }
-    setLance((Lance) itemFactory.createItem("LANCE", playerFish));
-    setBossMode(false);
   }
 
   /**
@@ -149,7 +139,7 @@ public class MainScreenController {
       QuitButton.setVisible(false);
       MenuButton.setVisible(false);
       NGPText.setVisible(true);
-      playerFish.setScore(getCurrScore());
+      playerFish.setScore(currScore);
     }
 
     MainScreenEventHandlerFactory mainScreenEHFactory = MainScreenEventHandlerFactory
@@ -169,34 +159,27 @@ public class MainScreenController {
 
   }
 
-  /**
-   * Set the bounding box of the screen.
-   * 
-   * @param boundingBox
-   *          is an object of BoundingBox. This is the bounding box that you
-   *          want to set to the screen.
-   */
-  private static void setScreenbox(BoundingBox boundingBox) {
-    screenbox = boundingBox;
-  }
+//  /**
+//   * Set the bounding box of the screen.
+//   * 
+//   * @param boundingBox
+//   *          is an object of BoundingBox. This is the bounding box that you
+//   *          want to set to the screen.
+//   */
+//  private static void setScreenbox(BoundingBox boundingBox) {
+//    screenbox = boundingBox;
+//  }
+//
+//  /**
+//   * Get the bounding box of the screen.
+//   * 
+//   * @return the bounding box of the screen.
+//   */
+//  public static BoundingBox getScreenbox() {
+//    return screenbox;
+//  }
 
-  /**
-   * Get the bounding box of the screen.
-   * 
-   * @return the bounding box of the screen.
-   */
-  public static BoundingBox getScreenbox() {
-    return screenbox;
-  }
 
-  /**
-   * Check if the player has won the game.
-   * 
-   * @return true if the player is bigger than a certain size.
-   */
-  public static boolean playerHasWon() {
-    return playerFish.intersects(endBoss) && playerFish.hasLance();
-  }
 
   /**
    * Renders all the static elements like background and score.
@@ -219,365 +202,4 @@ public class MainScreenController {
       playerFish.getBombs().get(i).getSprite().render(gc);
     }
   }
-
-  /**
-   * Render all the non static elements, i.e. the enemy fish and the player
-   * fish.
-   * 
-   * @param gc
-   *          - the graphicsContext which needs to do the rendering.
-   */
-  public static void renderNonStatics(GraphicsContext gc) {
-    playerFish.getSprite().render(gc);
-    
-    compositeEnemyFish.render(gc);
-    compositeEnemyFish.move();
-  }
-
-  /**
-   * Handle movement, rendering and collisions of the end boss.
-   * 
-   * @param gc
-   *          - the GraphicsContext.
-   */
-  public static void handleBoss(GraphicsContext gc) {
-    BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
-    BoundingBox playerFishbb = playerFish.getSprite().getBoundingBox();
-
-    if (bossMode) {
-      endBoss.getSprite().render(gc);
-      if (endBoss.isLefty()) {
-        endBoss.getSprite().updateX(getEndBoss().getMoveSpeed());
-      } else {
-        endBoss.getSprite().updateX(-getEndBoss().getMoveSpeed());
-      }
-
-      int playerX = playerFishbb.getX();
-      int endBossX = endBossbb.getX();
-      boolean endBossOutsideScreenBox = !endBossbb.intersects(screenbox);
-      boolean playerLeftOfEndBoss = playerX < endBossX;
-      boolean playerRightOfEndBoss = endBossX < playerX;
-
-      if (endBossOutsideScreenBox
-          && (playerLeftOfEndBoss || playerRightOfEndBoss)) {
-        endBoss.switchDirection();
-      }
-    } else {
-      endBossbb.setX(-2000);
-      endBossbb.setY(-2000);
-    }
-  }
-
-  /**
-   * Handle movement, rendering and collisions of the weapon.
-   * 
-   * @param gc
-   *          - the GraphicsContext.
-   */
-  public static void handleWeapon(GraphicsContext gc) {
-    if (bossMode) {
-      lance.getSprite().render(gc);
-
-      if (lance.isLefty()) {
-        lance.getSprite().updateX(5);
-      } else {
-        lance.getSprite().updateX(-5);
-      }
-
-      BoundingBox playerFishbb = playerFish.getSprite().getBoundingBox();
-      BoundingBox lancebb = lance.getSprite().getBoundingBox();
-
-      int playerX = playerFishbb.getX();
-      int lanceX = lancebb.getX();
-      boolean lanceOutsideScreenBox = !lancebb.intersects(screenbox);
-      boolean playerLeftOfLance = playerX < lanceX;
-      boolean playerRightOfLance = lanceX < playerX;
-
-      if (lanceOutsideScreenBox && (playerLeftOfLance || playerRightOfLance)) {
-        lance.switchDirection();
-      }
-    }
-  }
-
-  /**
-   * This method handles the WASD input of the player. And any other input, like
-   * X for using item.
-   */
-  public static void handlePlayerInput(GraphicsContext gc) {
-    ArrayList<FishBomb> playerBombs = playerFish.getBombs();
-    if (input.contains("A") && !playerFish.intersectsLeftScreenEdge()) {
-      playerFish.getSprite().setImg(playerFish.getPlayerFishLeftImage());
-      playerFish.getSprite().updateX(-playerFish.getMoveSpeed());
-      for (int i = 0; i < playerBombs.size(); i++) {
-        playerBombs.get(i).updateX(-playerFish.getMoveSpeed());
-      }
-      Game.getLogger().logKeyPress("A");
-      Game.getLogger().logDirectionChange("left");
-
-    } else if (input.contains("D") && !playerFish.intersectsRightScreenEdge()) {
-      playerFish.getSprite().setImg(playerFish.getPlayerFishRightImage());
-      playerFish.getSprite().updateX(playerFish.getMoveSpeed());
-      for (int i = 0; i < playerBombs.size(); i++) {
-        playerBombs.get(i).updateX(playerFish.getMoveSpeed());
-      }
-      Game.getLogger().logKeyPress("D");
-      Game.getLogger().logDirectionChange("right");
-    }
-
-    if (input.contains("W") && !playerFish.intersectsUpperScreenEdge()) {
-      playerFish.getSprite().updateY(-playerFish.getMoveSpeed());
-      for (int i = 0; i < playerBombs.size(); i++) {
-        playerBombs.get(i).updateY(-playerFish.getMoveSpeed());
-      }
-      Game.getLogger().logKeyPress("W");
-      Game.getLogger().logDirectionChange("upwards");
-
-    } else if (input.contains("S") && !playerFish.intersectsUnderScreenEdge()) {
-      playerFish.getSprite().updateY(playerFish.getMoveSpeed());
-      for (int i = 0; i < playerBombs.size(); i++) {
-        playerBombs.get(i).updateY(playerFish.getMoveSpeed());
-      }
-      Game.getLogger().logKeyPress("S");
-      Game.getLogger().logDirectionChange("downwards");
-    }
-
-    if (input.contains("X") && playerFish.getBombs().size() > 0) {
-      int index = playerFish.getBombs().size() - 1;
-      FishBomb fishBomb = (FishBomb) playerFish.getBombs().get(index);
-      Image explosionImg = playerFish.getBombs().get(index).getExplosionImg();
-      int imgPosX = (int) (fishBomb.getPosX() - 0.25 * explosionImg.getWidth());
-      int imgPosY = (int) (fishBomb.getPosY() - 0.25 * explosionImg.getHeight());
-      gc.drawImage(explosionImg, imgPosX, imgPosY);
-      
-      compositeEnemyFish.handleFishBomb(fishBomb);
-      
-      playerFish.getBombs().remove(index);
-    }
-
-  }
-  
-  /** 
-   * Update the player's score according to the size of the Enemy Fish.
-   * @param enemyFish
-   */
-  public static void updateScore(Entity enemyFish) {
-  	Sprite sprite = enemyFish.getSprite();
-    BoundingBox box = sprite.getBoundingBox();
-    int height = box.getHeight();
-    int width = box.getWidth();
-
-    playerFish.grow(MULTIPLIER);
-    int score = (height * width) / 100;
-    Game.getLogger().logPlayerFishGrows(score);
-    setCurrScore(currScore + score);
-    Game.getLogger().logNewScore(currScore);
-    playerFish.setScore(currScore);
-
-    if (currScore > Game.getHighScore()) {
-      Game.setHighScore(currScore);
-    }
-  }
-
-  /**
-   * This method is being called when the player fish collide with a large enemy
-   * fish, and then the game is proceed to losing screen.
-   */
-  public static void playerLost() {
-    Game.getLogger().logPlayerFishDies();
-    Game.getLogger().logGameResult("lost", currScore);
-    setCurrScore(0);
-    playerFish.setScore(currScore);
-
-    Game.setNewGamePlusMode(false);
-    Game.getMediaPlayer().stop();
-
-    Game.switchScreen("/LosingScreen.fxml");
-    Game.getLogger().logSwitchScreen("LosingScreen");
-    setBossMode(false);
-    playerFish.setHasLance(false);
-    
-    compositeEnemyFish.clear();
-  }
-
-  /**
-   * Generates a new enemy fish every 90 frames.
-   */
-  public static void generateEnemyFish() {
-    EntityFactory entityFactory = EntityFactory.getEntityFactory();
-    if ((frames % 90 == 0) && !isBossMode()) {
-      compositeEnemyFish.add((EnemyFish) entityFactory.getEntity("ENEMY"));
-      Game.getLogger().logEdgeBump(playerFish);
-    }
-  }
-
-  /**
-   * Set the current score of the game.
-   * 
-   * @param score
-   *          the desired score.
-   */
-  public static void setCurrScore(int score) {
-    currScore = score;
-  }
-
-  /**
-   * Get the current score of the game.
-   * 
-   * @return the current score of the game.
-   */
-  public static int getCurrScore() {
-    return currScore;
-  }
-
-  /**
-   * Get the player (playerFish).
-   * 
-   * @return the player (PlayerFish).
-   */
-  public static PlayerFish getPlayerFish() {
-    return playerFish;
-  }
-
-  /**
-   * {@inheritDoc} Overrides the Handle method in AnimationTimer to contain the
-   * game loop.
-   * 
-   * @return the new AnimationTimer.
-   */
-  public static AnimationTimer makeAnimationTimer(GraphicsContext gc) {
-
-    return new AnimationTimer() {
-      public void handle(long currentNTime) {
-
-        BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
-
-        BoundingBox lancebb = lance.getSprite().getBoundingBox();
-
-        Sprite pfSprite = playerFish.getSprite();
-        BoundingBox pfbb = pfSprite.getBoundingBox();
-
-        if (playerHasWon()) {
-          this.stop();
-          Game.switchScreen("/WinningScreen.fxml");
-          Game.getMediaPlayer().stop();
-          Game.getLogger().logSwitchScreen("WinningScreen");
-
-          setBossMode(false);
-          playerFish.setHasLance(false);
-
-          endBossbb.setX(-2000);
-          endBossbb.setY(-2000);
-        }
-
-        if (pfbb.getWidth() > 60) {
-          if (endBossbb.getX() == -2000) {
-            endBossbb.setX(0);
-            endBossbb.setY(0);
-          }
-          if ((lancebb.getX() == -2000) && !playerFish.hasLance()) {
-            lancebb.setX(0);
-            BoundingBox screenBox = getScreenbox();
-            lancebb.setY(screenBox.getHeight() / 4 * 3);
-          }
-          setBossMode(true);
-        }
-
-        if (currScore > 500 && !bomb1) {
-          playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
-          bomb1 = true;
-        }
-        if (currScore > 2000 && !bomb2) {
-          playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
-          bomb2 = true;
-        }
-        if (currScore > 5000 && !bomb3) {
-          playerFish.getBombs().add(FishBomb.createFishBomb(playerFish));
-          bomb3 = true;
-        }
-
-        if (playerFish.intersects(endBoss) && !playerFish.hasLance()) {
-          endBossbb.setX(-2000);
-          endBossbb.setY(-2000);
-
-          this.stop();
-          playerLost();
-        }
-
-        renderStatics(gc);
-
-        handleBoss(gc);
-
-        handleWeapon(gc);
-
-        handlePlayerInput(gc);
-
-        generateEnemyFish();
-
-        if (pfbb.intersects(lancebb)) {
-
-          lancebb.setX(-2000);
-          lancebb.setY(-2000);
-
-          Image pfImg = pfSprite.getImg();
-          int playerFishSizeX = (int) pfImg.getWidth();
-          int playerFishSizeY = (int) pfImg.getHeight();
-
-          Image leftImg = new Image("/FishKnightLeft.png", playerFishSizeX,
-              playerFishSizeY, true, true);
-          Image rightImg = new Image("/FishKnightRight.png", playerFishSizeX,
-              playerFishSizeY, true, true);
-
-          playerFish.setPlayerFishLeftImage(leftImg);
-          playerFish.setPlayerFishRightImage(rightImg);
-
-          playerFish.setHasLance(true);
-
-          playerFish.getSprite().setImg(leftImg);
-        }
-
-        compositeEnemyFish.removeOffScreenEnemyFish(screenbox);
-        
-        Pair<Integer, Boolean> res = compositeEnemyFish.intersectsPlayerFish(playerFish);
-        
-        if (res.getKey() != -1) {
-        	if (res.getValue()) {
-        		this.stop();
-        		playerLost();
-        	} else {
-        		compositeEnemyFish.remove(res.getKey());
-        		playerFish.grow(MULTIPLIER);
-        	}
-        }
-        
-        renderNonStatics(gc);
-        frames++;
-      }
-    };
-
-  }
-
-  public static EndBoss getEndBoss() {
-    return endBoss;
-  }
-
-  public static void setEndBoss(EndBoss endBoss) {
-    MainScreenController.endBoss = endBoss;
-  }
-
-  public static Lance getLance() {
-    return lance;
-  }
-
-  public static void setLance(Lance lance) {
-    MainScreenController.lance = lance;
-  }
-
-  public static boolean isBossMode() {
-    return bossMode;
-  }
-
-  public static void setBossMode(boolean bossMode) {
-    MainScreenController.bossMode = bossMode;
-  }
-
 }

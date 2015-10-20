@@ -84,8 +84,8 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     Image playerFishImage = new Image(leftImageName, startImageWidth,
         startImageHeight, true, true);
 
-    int startPosX = MainScreenController.getScreenbox().getWidth() / 2;
-    int startPosY = MainScreenController.getScreenbox().getHeight() / 2;
+    int startPosX = MainScreenController.screenbox.getWidth() / 2;
+    int startPosY = MainScreenController.screenbox.getHeight() / 2;
 
     BoundingBox boundingBox = new BoundingBox(startPosX, startPosY,
         startImageWidth, startImageHeight);

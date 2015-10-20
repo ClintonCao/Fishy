@@ -2,8 +2,8 @@ package nl.tudelft.fishy.factories;
 
 import nl.tudelft.fishy.interfaces.MainScreenEventHandlerFactoryInterface;
 import nl.tudelft.fishy.Game;
+import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -95,13 +95,10 @@ public final class MainScreenEventHandlerFactory implements
         scene.setOnKeyReleased(makeKeyReleasedEventHandler());
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        
+        GameLoop gameLoop = new GameLoop(gc);
 
-        AnimationTimerFactory animationTimerFactory = AnimationTimerFactory
-            .getAnimationTimerFactory();
-        AnimationTimer animationTimer = animationTimerFactory
-            .makeAnimationTimer(gc);
-
-        animationTimer.start();
+        gameLoop.fAnimationTimer.start();
       }
     };
   }
@@ -156,8 +153,8 @@ public final class MainScreenEventHandlerFactory implements
       @Override
       public void handle(KeyEvent e) {
         String code = e.getCode().toString();
-        if (!MainScreenController.input.contains(code)) {
-          MainScreenController.input.add(code);
+        if (!GameLoop.input.contains(code)) {
+          GameLoop.input.add(code);
         }
       }
     };
@@ -176,7 +173,7 @@ public final class MainScreenEventHandlerFactory implements
       @Override
       public void handle(KeyEvent e) {
         String code = e.getCode().toString();
-        MainScreenController.input.remove(code);
+        GameLoop.input.remove(code);
       }
     };
   }

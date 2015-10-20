@@ -39,7 +39,7 @@ public class CompositeEnemyFish implements Composition<EnemyFish> {
 			
 			if (aFishBomb.intersectsRectangle(currEnemyFishBoundingBox)) {	
 				
-				MainScreenController.updateScore(currEnemyFish);
+				GameLoop.updateScore(currEnemyFish);
 				fishToRemove.add(currEnemyFish);
 				
 			}
@@ -66,7 +66,7 @@ public class CompositeEnemyFish implements Composition<EnemyFish> {
 				int currEnemyFishSize = currEnemyFish.getSprite().getBoundingBox().getWidth();
 				int aPlayerFishSize = aPlayerFish.getSprite().getBoundingBox().getWidth();
 				if (currEnemyFishSize < aPlayerFishSize) {
-					MainScreenController.updateScore(currEnemyFish);
+					GameLoop.updateScore(currEnemyFish);
 					return new Pair<Integer, Boolean>(i, false);
 				} else {
 					return new Pair<Integer, Boolean>(i, true);

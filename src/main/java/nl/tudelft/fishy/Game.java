@@ -129,7 +129,7 @@ public final class Game extends Application implements GameInterface {
     pfSprite.setImg(playerFishImageLeft);
 
     playerFish.setHasLance(false);
-    MainScreenController.setBossMode(false);
+    GameLoop.setBossMode(false);
 
     pfbb.setWidth((int) playerFishImageLeft.getWidth());
     pfbb.setHeight((int) playerFishImageLeft.getHeight());
