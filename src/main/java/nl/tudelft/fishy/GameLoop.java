@@ -1,11 +1,12 @@
 package nl.tudelft.fishy;
 
-import java.util.ArrayList;
-
 import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.factories.AnimationTimerFactory;
 import nl.tudelft.fishy.factories.EntityFactory;
 import nl.tudelft.fishy.factories.ItemFactory;
+
+import java.util.ArrayList;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -17,8 +18,8 @@ import javafx.util.Pair;
  *
  */
 public class GameLoop {
-	
-	private static PlayerFish playerFish;
+
+  private static PlayerFish playerFish;
   private static CompositeEnemyFish compositeEnemyFish = new CompositeEnemyFish();
   private static int currScore;
   private static ArrayList<String> input;
@@ -34,10 +35,10 @@ public class GameLoop {
   /**
    * Constructor.
    * @param gc 
-   * 					- The graphicsContext which needs to do the rendering.
+   * - The graphicsContext which needs to do the rendering.
    */
-	public GameLoop(GraphicsContext gc) {
-		EntityFactory entityFactory = EntityFactory.getEntityFactory();
+  public GameLoop(GraphicsContext gc) {
+    EntityFactory entityFactory = EntityFactory.getEntityFactory();
     ItemFactory itemFactory = ItemFactory.getItemFactory();
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
     frames = 0;
@@ -54,19 +55,20 @@ public class GameLoop {
     setBossMode(false);
     
     if (Game.isPlayingNewGamePlus()) {
-    	playerFish.setScore(currScore);
+      playerFish.setScore(currScore);
     }
     
     this.gc = gc;
     
-    fAnimationTimer = AnimationTimerFactory.getAnimationTimerFactory().makeAnimationTimer(compositeEnemyFish);
-	}
-	
-	/**
-	 * 'Wrapper' method called by AnimationTimerFactory.
-	 * Runs all the game logic methods of GameLoop.
-	 */
-	public void runGameLoop() {
+    fAnimationTimer = AnimationTimerFactory.getAnimationTimerFactory()
+                          .makeAnimationTimer(compositeEnemyFish);
+  }
+
+  /**
+  * 'Wrapper' method called by AnimationTimerFactory.
+  * Runs all the game logic methods of GameLoop.
+  */
+  public void runGameLoop() {
     turnOnBossMode();
     
     playerWins();
@@ -92,7 +94,7 @@ public class GameLoop {
     renderNonStatics(gc);
     
     updateFrames();
-	}
+  }
     
   /**
    * Render all the non static elements, i.e. the enemy fish and the player
@@ -101,7 +103,7 @@ public class GameLoop {
    * @param gc
    *          - the graphicsContext which needs to do the rendering.
    */
-	private void renderNonStatics(GraphicsContext gc) {
+  private void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
     
     compositeEnemyFish.render(gc);
@@ -241,10 +243,10 @@ public class GameLoop {
   
   /** 
    * Update the player's score according to the size of the Enemy Fish.
-   * @param enemyFish
+   * @param enemyFish is the enemy fish
    */
   public static void updateScore(Entity enemyFish) {
-  	Sprite sprite = enemyFish.getSprite();
+    Sprite sprite = enemyFish.getSprite();
     BoundingBox box = sprite.getBoundingBox();
     int height = box.getHeight();
     int width = box.getWidth();
@@ -297,7 +299,7 @@ public class GameLoop {
    * Increment frames.
    */
   private void updateFrames() {
-  	frames++;
+    frames++;
   }
   
   /**
@@ -305,10 +307,10 @@ public class GameLoop {
    * If it has, it handles the necessary steps.
    */
   private void playerPicksUpLance() {
-  	BoundingBox lancebb = lance.getSprite().getBoundingBox();
+    BoundingBox lancebb = lance.getSprite().getBoundingBox();
     Sprite pfSprite = playerFish.getSprite();
     BoundingBox pfbb = pfSprite.getBoundingBox();
-  	if (pfbb.intersects(lancebb)) {
+    if (pfbb.intersects(lancebb)) {
 
       lancebb.setX(-2000);
       lancebb.setY(-2000);
@@ -338,13 +340,13 @@ public class GameLoop {
     Pair<Integer, Boolean> res = compositeEnemyFish.intersectsPlayerFish(playerFish);
     
     if (res.getKey() != -1) {
-    	if (res.getValue()) {
-    		fAnimationTimer.stop();
-    		playerLost();
-    	} else {
-    		compositeEnemyFish.remove(res.getKey());
-    		playerFish.grow(MULTIPLIER);
-    	}
+      if (res.getValue()) {
+        fAnimationTimer.stop();
+        playerLost();
+      } else {
+        compositeEnemyFish.remove(res.getKey());
+        playerFish.grow(MULTIPLIER);
+      }
     }
   }
   
@@ -353,7 +355,7 @@ public class GameLoop {
    */
   private void playerDiesToBoss() {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
-  	
+  
     if (playerFish.intersects(endBoss) && !playerFish.hasLance()) {
       endBossbb.setX(-2000);
       endBossbb.setY(-2000);
@@ -368,7 +370,7 @@ public class GameLoop {
    */
   private void playerWins() {
     BoundingBox endBossbb = endBoss.getSprite().getBoundingBox();
-  	
+  
     if (playerHasWon()) {
       fAnimationTimer.stop();
       Game.switchScreen("/WinningScreen.fxml");
@@ -392,7 +394,7 @@ public class GameLoop {
     BoundingBox lancebb = lance.getSprite().getBoundingBox();
     Sprite pfSprite = playerFish.getSprite();
     BoundingBox pfbb = pfSprite.getBoundingBox();     
-  	
+  
     if (pfbb.getWidth() > 60) {
       if (endBossbb.getX() == -2000) {
         endBossbb.setX(0);
@@ -437,12 +439,12 @@ public class GameLoop {
     bossMode = dbossMode;
   }
 
-	public AnimationTimer getAnimationTimer() {
-		return fAnimationTimer;
-	}
+  public AnimationTimer getAnimationTimer() {
+    return fAnimationTimer;
+  }
 
-	public static ArrayList<String> getInput() {
-		return input;
-	}
-	
+  public static ArrayList<String> getInput() {
+    return input;
+  }
+
 }
