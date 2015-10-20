@@ -48,7 +48,7 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <Text fill="#ecff52" layoutX="363.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The goal of the game is very simple, eat as many fish as possible. The more fish you eat, the higher your score. But be aware, you can only eat fish that are smaller than you are! If you try to eat a bigger fish, you will lose a life. When all your lifes are gone, the game is over :( . You can get more lifes by collecting hearts that appears on the screen." wrappingWidth="685.6708984375">
+      <Text fill="#ecff52" layoutX="363.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The goal of the game is very simple, eat as many fish as possible. The more fish you eat, the higher your score. But be aware, you can only eat fish that are smaller than you are! If you try to eat a bigger fish, you will lose a life. When all your lifes are gone, the game is over :( . You can get more lifes by collecting hearts that appear on the screen." wrappingWidth="685.6708984375">
          <font>
             <Font size="26.0" />
          </font>
