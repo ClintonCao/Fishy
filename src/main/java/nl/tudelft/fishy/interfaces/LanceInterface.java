@@ -2,7 +2,6 @@ package nl.tudelft.fishy.interfaces;
 
 import nl.tudelft.fishy.Sprite;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 /**
  * Interface for the Lance item.
@@ -67,18 +66,6 @@ public interface LanceInterface {
    * @return the Sprite.
    */
   Sprite getSprite();
-  
-  /**
-   * Set the image of the lance.
-   * @param img the image of the lance.
-   */
-  void setImage(Image img);
-  
-  /**
-   * Get the image of the lance.
-   * @return the image of the lance.
-   */
-  Image getImage();
   
   
   /**

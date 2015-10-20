@@ -5,6 +5,7 @@ import nl.tudelft.fishy.EndBoss;
 import nl.tudelft.fishy.EnemyFish;
 import nl.tudelft.fishy.Entity;
 import nl.tudelft.fishy.FishBomb;
+import nl.tudelft.fishy.CompositeEnemyFish;
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.Lance;
 import nl.tudelft.fishy.PlayerFish;
@@ -29,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Pair;
 
 /**
  * This class contains all the event handlers of the buttons on the main screen.
@@ -40,8 +42,8 @@ import javafx.scene.text.TextAlignment;
 public class MainScreenController {
 
   public static PlayerFish playerFish;
-  public static ArrayList<Entity> entities;
   public static BoundingBox screenbox;
+  private static CompositeEnemyFish compositeEnemyFish = new CompositeEnemyFish();
   public static int frames;
   private static final double MULTIPLIER = 1.05;
   private static Text scoreText = new Text();
@@ -51,8 +53,7 @@ public class MainScreenController {
   public static boolean bomb1;
   public static boolean bomb2;
   public static boolean bomb3;
-  private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory()
-      .getEntity("BOSS");
+  private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory().getEntity("BOSS");
   private static Lance lance;
   private static boolean bossMode;
 
@@ -108,7 +109,6 @@ public class MainScreenController {
   public static void init() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     ItemFactory itemFactory = ItemFactory.getItemFactory();
-    entities = new ArrayList<Entity>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
     playerFish.getBombs().add(
@@ -229,20 +229,9 @@ public class MainScreenController {
    */
   public static void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
-
-    for (int i = 0; i < entities.size(); i++) {
-
-      Entity curr = entities.get(i);
-      EnemyFish currEnemyFish = (EnemyFish) curr;
-
-      if (currEnemyFish.isLefty()) {
-        currEnemyFish.getSprite().updateX(currEnemyFish.getMoveSpeed());
-      } else {
-        currEnemyFish.getSprite().updateX(-currEnemyFish.getMoveSpeed());
-      }
-
-      entities.get(i).getSprite().render(gc);
-    }
+    
+    compositeEnemyFish.render(gc);
+    compositeEnemyFish.move();
   }
 
   /**
@@ -359,48 +348,29 @@ public class MainScreenController {
       int imgPosX = (int) (fishBomb.getPosX() - 0.25 * explosionImg.getWidth());
       int imgPosY = (int) (fishBomb.getPosY() - 0.25 * explosionImg.getHeight());
       gc.drawImage(explosionImg, imgPosX, imgPosY);
-      for (int i = 0; i < entities.size(); i++) {
-        if (fishBomb.intersectsRectangle(entities.get(i).getSprite()
-            .getBoundingBox())) {
-          handleCollision(i);
-        }
-      }
+      
+      compositeEnemyFish.handleFishBomb(fishBomb);
+      
       playerFish.getBombs().remove(index);
     }
 
   }
-
-  /**
-   * Handles collisions between player fish and enemy fish.
-   * 
-   * @param nth
-   *          - the nth enemy fish in the entities arrayList.
+  
+  /** 
+   * Update the player's score according to the size of the Enemy Fish.
+   * @param enemyFish
    */
-  public static void handleCollision(int nth) {
-    // get the current enemyFish
-    Entity enemyFish = entities.get(nth);
-    // get the sprite of the current playerFish.
-    Sprite sprite = enemyFish.getSprite();
-    // get the bounding box of the sprite.
+  public static void updateScore(Entity enemyFish) {
+  	Sprite sprite = enemyFish.getSprite();
     BoundingBox box = sprite.getBoundingBox();
-    // first get the height of enemy fish.
     int height = box.getHeight();
-    // second get the width of enemy fish.
     int width = box.getWidth();
-    // remove the fish from the screen.
-    entities.remove(nth);
-    // let the fish of the player grow.
+
     playerFish.grow(MULTIPLIER);
-    // get the area as the score.
     int score = (height * width) / 100;
-    // print in the console that player fish has eaten a smaller fish.
     Game.getLogger().logPlayerFishGrows(score);
-    // then adds the score to the current score.
     setCurrScore(currScore + score);
-    // print in the console of the current score of the player.
     Game.getLogger().logNewScore(currScore);
-    // finally sets the total score to the player
-    // fish.
     playerFish.setScore(currScore);
 
     if (currScore > Game.getHighScore()) {
@@ -411,7 +381,6 @@ public class MainScreenController {
   /**
    * This method is being called when the player fish collide with a large enemy
    * fish, and then the game is proceed to losing screen.
-   *
    */
   public static void playerLost() {
     Game.getLogger().logPlayerFishDies();
@@ -426,6 +395,8 @@ public class MainScreenController {
     Game.getLogger().logSwitchScreen("LosingScreen");
     setBossMode(false);
     playerFish.setHasLance(false);
+    
+    compositeEnemyFish.clear();
   }
 
   /**
@@ -434,7 +405,7 @@ public class MainScreenController {
   public static void generateEnemyFish() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     if ((frames % 90 == 0) && !isBossMode()) {
-      entities.add((EnemyFish) entityFactory.getEntity("ENEMY"));
+      compositeEnemyFish.add((EnemyFish) entityFactory.getEntity("ENEMY"));
       Game.getLogger().logEdgeBump(playerFish);
     }
   }
@@ -564,28 +535,20 @@ public class MainScreenController {
           playerFish.getSprite().setImg(leftImg);
         }
 
-        for (int i = 0; i < entities.size(); i++) {
-
-          Sprite currSprite = entities.get(i).getSprite();
-          BoundingBox currbb = currSprite.getBoundingBox();
-
-          if (!currbb.intersects(screenbox)) {
-
-            entities.remove(i);
-
-          } else if (playerFish.intersects(entities.get(i))
-              && playerFish.isAlive()) {
-
-            if (!playerFish.playerDies(entities.get(i))) {
-
-              handleCollision(i);
-            } else {
-
-              this.stop();
-              playerLost();
-            }
-          }
+        compositeEnemyFish.removeOffScreenEnemyFish(screenbox);
+        
+        Pair<Integer, Boolean> res = compositeEnemyFish.intersectsPlayerFish(playerFish);
+        
+        if (res.getKey() != -1) {
+        	if (res.getValue()) {
+        		this.stop();
+        		playerLost();
+        	} else {
+        		compositeEnemyFish.remove(res.getKey());
+        		playerFish.grow(MULTIPLIER);
+        	}
         }
+        
         renderNonStatics(gc);
         frames++;
       }
