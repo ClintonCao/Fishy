@@ -42,7 +42,6 @@ import javafx.util.Pair;
 public class MainScreenController {
 
   public static PlayerFish playerFish;
-  public static ArrayList<Entity> entities;
   public static BoundingBox screenbox;
   private static CompositeEnemyFish compositeEnemyFish = new CompositeEnemyFish();
   public static int frames;
@@ -54,8 +53,7 @@ public class MainScreenController {
   public static boolean bomb1;
   public static boolean bomb2;
   public static boolean bomb3;
-  private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory()
-      .getEntity("BOSS");
+  private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory().getEntity("BOSS");
   private static Lance lance;
   private static boolean bossMode;
 
@@ -111,7 +109,6 @@ public class MainScreenController {
   public static void init() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     ItemFactory itemFactory = ItemFactory.getItemFactory();
-    entities = new ArrayList<Entity>();
     setScreenbox(new BoundingBox(0, 0, Game.getResX(), Game.getResY()));
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
     playerFish.getBombs().add(
@@ -358,43 +355,12 @@ public class MainScreenController {
     }
 
   }
-
-  /**
-   * Handles collisions between player fish and enemy fish.
-   * 
-   * @param nth
-   *          - the nth enemy fish in the entities arrayList.
-   */
-  public static void handleCollision(EnemyFish enemyFish) {
-    // get the sprite of the current playerFish.
-    Sprite sprite = enemyFish.getSprite();
-    // get the bounding box of the sprite.
-    BoundingBox box = sprite.getBoundingBox();
-    // first get the height of enemy fish.
-    int height = box.getHeight();
-    // second get the width of enemy fish.
-    int width = box.getWidth();
-
-    // let the fish of the player grow.
-    playerFish.grow(MULTIPLIER);
-    // get the area as the score.
-    int score = (height * width) / 100;
-    // print in the console that player fish has eaten a smaller fish.
-    Game.getLogger().logPlayerFishGrows(score);
-    // then adds the score to the current score.
-    setCurrScore(currScore + score);
-    // print in the console of the current score of the player.
-    Game.getLogger().logNewScore(currScore);
-    // finally sets the total score to the player
-    // fish.
-    playerFish.setScore(currScore);
-
-    if (currScore > Game.getHighScore()) {
-      Game.setHighScore(currScore);
-    }
-  }
   
-  public static void updateScore(EnemyFish enemyFish) {
+  /** 
+   * Update the player's score according to the size of the Enemy Fish.
+   * @param enemyFish
+   */
+  public static void updateScore(Entity enemyFish) {
   	Sprite sprite = enemyFish.getSprite();
     BoundingBox box = sprite.getBoundingBox();
     int height = box.getHeight();
@@ -415,7 +381,6 @@ public class MainScreenController {
   /**
    * This method is being called when the player fish collide with a large enemy
    * fish, and then the game is proceed to losing screen.
-   *
    */
   public static void playerLost() {
     Game.getLogger().logPlayerFishDies();
@@ -440,7 +405,6 @@ public class MainScreenController {
   public static void generateEnemyFish() {
     EntityFactory entityFactory = EntityFactory.getEntityFactory();
     if ((frames % 90 == 0) && !isBossMode()) {
-      entities.add((EnemyFish) entityFactory.getEntity("ENEMY"));
       compositeEnemyFish.add((EnemyFish)entityFactory.getEntity("ENEMY"));
       Game.getLogger().logEdgeBump(playerFish);
     }
