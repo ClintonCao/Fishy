@@ -13,6 +13,7 @@ before_install:
 env:
   global:
   - DISPLAY=:99.0
+  matrix:
   - BUILD_PR_BRANCH=true
   - BUILD_PR_BRANCH=false
 matrix:
