@@ -3,6 +3,7 @@ package nl.tudelft.fishy.factories;
 import nl.tudelft.fishy.FishBomb;
 import nl.tudelft.fishy.Item;
 import nl.tudelft.fishy.Lance;
+import nl.tudelft.fishy.Life;
 import nl.tudelft.fishy.PlayerFish;
 
 /**
@@ -42,6 +43,8 @@ public final class ItemFactory {
         return FishBomb.createFishBomb(player);
       case "LANCE":
         return Lance.getSingletonLance();
+      case "LIFE":
+        return Life.getSingletonLife();  
       default:
         return null;
     }
