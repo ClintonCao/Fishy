@@ -23,22 +23,20 @@ public final class Lance extends Item implements LanceInterface {
   
   /**
    * Get the an instance of Lance, but there's maximum of once instance.
-   * @param playerFish the player.
    * @return the Lance.
    */
-  public static synchronized Lance getSingletonLance(PlayerFish playerFish) {
+  public static synchronized Lance getSingletonLance() {
     if (singletonLance == null) {
-      singletonLance = createLance(playerFish);
+      singletonLance = createLance();
     }
     return singletonLance; 
   }
 
   /**
    * Create the lance for the player.
-   * @param pf the player.
    * @return the lance.
    */
-  public static Lance createLance(PlayerFish pf) {
+  public static Lance createLance() {
     int posX = 0;
     int posY = Game.getScreenbox().getHeight() / 4 * 3;
     
