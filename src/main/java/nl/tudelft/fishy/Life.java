@@ -35,7 +35,7 @@ public final class Life extends Item implements LifeInterface {
   }
   
   /**
-   * Create the life item in the game
+   * Create the life item in the game.
    * @return the life item.
    */
   private static Life createLifeItem() {
