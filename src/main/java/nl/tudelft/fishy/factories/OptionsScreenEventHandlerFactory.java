@@ -1,9 +1,10 @@
 package nl.tudelft.fishy.factories;
 
+import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.interfaces.OptionsScreenEventHandlerFactoryInterface;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import nl.tudelft.fishy.Game;
 
 /**
  * A OptionsScreenEventHandlerFactory is a factory to create EventHandlers for the options screen.
@@ -29,11 +30,15 @@ public final class OptionsScreenEventHandlerFactory implements OptionsScreenEven
 
     switch (buttonString) {
 
-    case "onbutton" : return makeOptionsScreenOnButtonEventHandler();
-    case "offbutton" : return makeOptionsScreenOfButtonEventHandler();
-    case "backbutton" : return makeOptionsScreenBackButtonEventHandler();
+      case "onbutton":
+        return makeOptionsScreenOnButtonEventHandler();
+      case "offbutton":
+        return makeOptionsScreenOfButtonEventHandler();
+      case "backbutton":
+        return makeOptionsScreenBackButtonEventHandler();
 
-    default: return null;
+      default:
+        return null;
 
     }
   }

@@ -1,9 +1,10 @@
 package nl.tudelft.fishy.factories;
 
-import nl.tudelft.fishy.interfaces.LosingScreenEventHandlerFactoryInterface;
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
+import nl.tudelft.fishy.interfaces.LosingScreenEventHandlerFactoryInterface;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -65,20 +66,20 @@ public final class LosingScreenEventHandlerFactory implements
   private EventHandler<MouseEvent> makeMainScreenButtonEventHandler() {
     return new EventHandler<MouseEvent>() {
 
-    	@Override
-    	public void handle(MouseEvent event) {
-    		GameLoop gameLoop = MainScreenController.getGameLoop();
+      @Override
+      public void handle(MouseEvent event) {
+        GameLoop gameLoop = MainScreenController.getGameLoop();
 
-    		Game.resetPlayerFishSize();
-    		gameLoop.getPlayerFish().setHasLance(false);
-    		gameLoop.setBossMode(false);
+        Game.resetPlayerFishSize();
+        gameLoop.getPlayerFish().setHasLance(false);
+        gameLoop.setBossMode(false);
 
-    		Game.switchScreen("/MainScreen.fxml");
-    		if (Game.getMusicOn()) {
-    			Game.getMediaPlayer().play();
-    		}
-    		Game.getLogger().logSwitchScreen("MainScreen");
-    	}
+        Game.switchScreen("/MainScreen.fxml");
+        if (Game.getMusicOn()) {
+          Game.getMediaPlayer().play();
+        }
+        Game.getLogger().logSwitchScreen("MainScreen");
+      }
     };
   }
 }

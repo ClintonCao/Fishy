@@ -1,11 +1,12 @@
 package nl.tudelft.fishy.factories;
 
-import nl.tudelft.fishy.interfaces.WinningScreenEventHandlerFactoryInterface;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
+import nl.tudelft.fishy.interfaces.WinningScreenEventHandlerFactoryInterface;
+
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Makes EventHandlers for the buttons of the winning screen.
@@ -94,9 +95,9 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
 
       @Override
       public void handle(MouseEvent event) {
-      	
-      	Game.resetPlayerFishSize();    
-      	
+
+        Game.resetPlayerFishSize();
+
         GameLoop gameLoop = MainScreenController.getGameLoop();
 
         gameLoop.getPlayerFish().setHasLance(false);

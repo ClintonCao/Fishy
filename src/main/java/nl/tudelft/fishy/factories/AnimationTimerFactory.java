@@ -3,6 +3,7 @@ package nl.tudelft.fishy.factories;
 import nl.tudelft.fishy.CompositeEnemyFish;
 import nl.tudelft.fishy.GameLoop;
 import nl.tudelft.fishy.controllers.MainScreenController;
+
 import javafx.animation.AnimationTimer;
 
 /**
@@ -42,15 +43,15 @@ public final class AnimationTimerFactory {
    */
   public AnimationTimer makeAnimationTimer(CompositeEnemyFish compositeEnemyFish) {
 
-      return new AnimationTimer() {
-        public void handle(long currentNTime) {
+    return new AnimationTimer() {
+      public void handle(long currentNTime) {
 
-          GameLoop gameLoop = MainScreenController.getGameLoop();          
-          
-          gameLoop.runGameLoop();
-         
-        }
-      };
+        GameLoop gameLoop = MainScreenController.getGameLoop();
 
-    }
+        gameLoop.runGameLoop();
+
+      }
+    };
+
+  }
 }
