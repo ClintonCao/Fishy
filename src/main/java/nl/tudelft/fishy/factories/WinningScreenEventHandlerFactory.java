@@ -1,11 +1,17 @@
 package nl.tudelft.fishy.factories;
 
-import nl.tudelft.fishy.interfaces.WinningScreenEventHandlerFactoryInterface;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
+import nl.tudelft.fishy.CompositeEnemyFish;
+import nl.tudelft.fishy.Entity;
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
+import nl.tudelft.fishy.Item;
+import nl.tudelft.fishy.PlayerFish;
 import nl.tudelft.fishy.controllers.MainScreenController;
+import nl.tudelft.fishy.interfaces.WinningScreenEventHandlerFactoryInterface;
+
+import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Makes EventHandlers for the buttons of the winning screen.
@@ -13,7 +19,8 @@ import nl.tudelft.fishy.controllers.MainScreenController;
  * 
  * @author Michiel
  */
-public final class WinningScreenEventHandlerFactory implements WinningScreenEventHandlerFactoryInterface {
+public final class WinningScreenEventHandlerFactory extends AbstractFactory
+    implements WinningScreenEventHandlerFactoryInterface {
 
   private static WinningScreenEventHandlerFactory winningScreenEventHandlerFactory = null;
 
@@ -94,9 +101,9 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
 
       @Override
       public void handle(MouseEvent event) {
-      	
-      	Game.resetPlayerFishSize();    
-      	
+
+        Game.resetPlayerFishSize();
+
         GameLoop gameLoop = MainScreenController.getGameLoop();
 
         gameLoop.getPlayerFish().setHasLance(false);
@@ -111,5 +118,20 @@ public final class WinningScreenEventHandlerFactory implements WinningScreenEven
 
       }
     };
+  }
+
+  @Override
+  public AnimationTimer makeAnimationTimer(CompositeEnemyFish compositeEnemyFish) {
+    return null;
+  }
+
+  @Override
+  public Entity getEntity(String entityType) {
+    return null;
+  }
+
+  @Override
+  public Item createItem(String itemType, PlayerFish player) {
+    return null;
   }
 }

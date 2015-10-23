@@ -1,16 +1,22 @@
 package nl.tudelft.fishy.factories;
 
 import nl.tudelft.fishy.CompositeEnemyFish;
+import nl.tudelft.fishy.Entity;
 import nl.tudelft.fishy.GameLoop;
+import nl.tudelft.fishy.Item;
+import nl.tudelft.fishy.PlayerFish;
 import nl.tudelft.fishy.controllers.MainScreenController;
+
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Makes Animation Timers. Singleton class.
  * 
  * @author Michiel
  */
-public final class AnimationTimerFactory {
+public final class AnimationTimerFactory extends AbstractFactory {
 
   private static AnimationTimerFactory animationTimerFactory = null;
 
@@ -42,15 +48,30 @@ public final class AnimationTimerFactory {
    */
   public AnimationTimer makeAnimationTimer(CompositeEnemyFish compositeEnemyFish) {
 
-      return new AnimationTimer() {
-        public void handle(long currentNTime) {
+    return new AnimationTimer() {
+      public void handle(long currentNTime) {
 
-          GameLoop gameLoop = MainScreenController.getGameLoop();          
-          
-          gameLoop.runGameLoop();
-         
-        }
-      };
+        GameLoop gameLoop = MainScreenController.getGameLoop();
 
-    }
+        gameLoop.runGameLoop();
+
+      }
+    };
+
+  }
+
+  @Override
+  public Entity getEntity(String entityType) {
+    return null;
+  }
+
+  @Override
+  public Item createItem(String itemType, PlayerFish player) {
+    return null;
+  }
+
+  @Override
+  public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
+    return null;
+  }
 }

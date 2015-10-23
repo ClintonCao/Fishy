@@ -1,9 +1,15 @@
 package nl.tudelft.fishy.factories;
 
-import nl.tudelft.fishy.interfaces.LosingScreenEventHandlerFactoryInterface;
+import nl.tudelft.fishy.CompositeEnemyFish;
+import nl.tudelft.fishy.Entity;
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
+import nl.tudelft.fishy.Item;
+import nl.tudelft.fishy.PlayerFish;
 import nl.tudelft.fishy.controllers.MainScreenController;
+import nl.tudelft.fishy.interfaces.LosingScreenEventHandlerFactoryInterface;
+
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -12,8 +18,8 @@ import javafx.scene.input.MouseEvent;
  * 
  * @author Michiel
  */
-public final class LosingScreenEventHandlerFactory implements
-    LosingScreenEventHandlerFactoryInterface {
+public final class LosingScreenEventHandlerFactory extends AbstractFactory implements
+    LosingScreenEventHandlerFactoryInterface  {
 
   private static LosingScreenEventHandlerFactory losingScreenEHFactory = null;
 
@@ -65,20 +71,35 @@ public final class LosingScreenEventHandlerFactory implements
   private EventHandler<MouseEvent> makeMainScreenButtonEventHandler() {
     return new EventHandler<MouseEvent>() {
 
-    	@Override
-    	public void handle(MouseEvent event) {
-    		GameLoop gameLoop = MainScreenController.getGameLoop();
+      @Override
+      public void handle(MouseEvent event) {
+        GameLoop gameLoop = MainScreenController.getGameLoop();
 
-    		Game.resetPlayerFishSize();
-    		gameLoop.getPlayerFish().setHasLance(false);
-    		gameLoop.setBossMode(false);
+        Game.resetPlayerFishSize();
+        gameLoop.getPlayerFish().setHasLance(false);
+        gameLoop.setBossMode(false);
 
-    		Game.switchScreen("/MainScreen.fxml");
-    		if (Game.getMusicOn()) {
-    			Game.getMediaPlayer().play();
-    		}
-    		Game.getLogger().logSwitchScreen("MainScreen");
-    	}
+        Game.switchScreen("/MainScreen.fxml");
+        if (Game.getMusicOn()) {
+          Game.getMediaPlayer().play();
+        }
+        Game.getLogger().logSwitchScreen("MainScreen");
+      }
     };
+  }
+
+  @Override
+  public AnimationTimer makeAnimationTimer(CompositeEnemyFish compositeEnemyFish) {
+    return null;
+  }
+
+  @Override
+  public Entity getEntity(String entityType) {
+    return null;
+  }
+
+  @Override
+  public Item createItem(String itemType, PlayerFish player) {
+    return null;
   }
 }
