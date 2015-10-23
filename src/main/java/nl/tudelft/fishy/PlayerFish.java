@@ -24,6 +24,7 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
   private int score;
   private int counter;
   private boolean hasLance;
+  private int lives;
 
   /**
    * This is a private constructor now, so this ensures that 
@@ -59,6 +60,8 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
       setPlayerFishLeftImage(new Image(leftImageName, 128, 128, true, true));
       setPlayerFishRightImage(new Image(rightImageName, 128, 128, true, true));
     }
+    
+    lives = 1;
     
     setHasLance(hasLance);
   }
@@ -114,6 +117,20 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
 
     playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage().getWidth());
     playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage().getHeight());
+  }
+  
+  /**
+   * Decrement life Counter.
+   */
+  public void decrementLives() {
+	  lives--;
+  }
+  
+  /**
+   * Increment life counter.
+   */
+  public void incrementLives() {
+	  lives++;
   }
 
   /**
@@ -215,23 +232,39 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     score = number;
   }
 
-  public int getScore() {
-    return score;
+  public int getCounter() {
+	  return counter;
   }
-  
+
+  public int getLives() {
+	  return lives;
+  }
+
+  public void setLives(int lives) {
+	  this.lives = lives;
+  }
+
+  public void setCounter(int counter) {
+	  this.counter = counter;
+  }
+
+  public int getScore() {
+	  return score;
+  }
+
   /**
    * @return true if player has lance.
    */
   public boolean hasLance() {
-		return hasLance;
-	}
+	  return hasLance;
+  }
 
-	public void setHasLance(boolean hasLance) {
-		this.hasLance = hasLance;
-	}
+  public void setHasLance(boolean hasLance) {
+	  this.hasLance = hasLance;
+  }
 
-	public ArrayList<FishBomb> getBombs() {
-    return bombs;
+  public ArrayList<FishBomb> getBombs() {
+	  return bombs;
   }
 
   public void setBombs(ArrayList<FishBomb> items) {

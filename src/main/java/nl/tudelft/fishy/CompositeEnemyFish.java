@@ -71,6 +71,9 @@ public class CompositeEnemyFish implements Composition<EnemyFish> {
         if (currEnemyFishSize < aPlayerFishSize) {
           GameLoop.updateScore(currEnemyFish);
           return new Pair<Integer, Boolean>(i, false);
+        } else if (aPlayerFish.getLives() > 1) {
+          aPlayerFish.decrementLives();	
+          return new Pair<Integer, Boolean>(i, false);
         } else {
           return new Pair<Integer, Boolean>(i, true);
         }
