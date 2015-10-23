@@ -5,11 +5,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
+import java.util.concurrent.TimeoutException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.testfx.api.FxRobot;
+import org.testfx.api.FxToolkit;
 
 import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import javafx.scene.image.Image;
 
 /**
@@ -24,6 +29,7 @@ public class PlayerFishTest {
   private String rightimage;
   private BoundingBox box;
   private PlayerFish playerFish;
+  private FxRobot robot;
 
   /**
    * Set up a the bounding box and the sprite for the player fish.
@@ -33,8 +39,9 @@ public class PlayerFishTest {
     box = new BoundingBox(100, 100, 50, 50);
     sprite = mock(Sprite.class);
     //new Sprite(null, box);
-    leftimage = "/resources/FishOriginal_transparent.png";
-    rightimage = "/resources/Fish_Right_Transparent.png";
+    leftimage = "/FishOriginal_transparent.png";
+    rightimage = "/Fish_Right_Transparent.png";
+    robot  = new FxRobot();
   }
 
   /**
@@ -97,17 +104,21 @@ public class PlayerFishTest {
 
   /**
    * This Test checks the ability to set an image via a string.
+   * @throws TimeoutException throws an exception when the it has timed out.
    */
   @Test
-  public void testImageStringSet() {
-    Game.main(null);
+  public void testImageStringSet() throws TimeoutException {
+    new JFXPanel();
+    FxToolkit.registerPrimaryStage();
+    FxToolkit.setupApplication(Game.class, (java.lang.String[]) null);
+    robot.closeCurrentWindow();
     PlayerFish player = PlayerFish.getSingletonFish();
     Image img = mock(Image.class);
     Image img2 = mock(Image.class);
     player.setPlayerFishLeftImage(img);
     player.setPlayerFishRightImage(img2);
-    player.setPlayerFishLeftImageName("/resources/FishOriginal_transparent.png");
-    player.setPlayerFishRightImageName("/resources/Fish_Right_Transparent.png");
+    player.setPlayerFishLeftImageName("/FishOriginal_transparent.png");
+    player.setPlayerFishRightImageName("/Fish_Right_Transparent.png");
     assertEquals(leftimage, PlayerFish.getPlayerFishLeftImageName());
     assertEquals(rightimage, PlayerFish.getPlayerFishRightImageName());
   }

@@ -2,12 +2,18 @@ language: java
 jdk:
   - oraclejdk8
 
+sudo: false
+
 notifications:
   webhooks:
     - http://octopull.rmhartog.me/api/travis/webhook
 before_install:
   - '[ "$BUILD_PR_BRANCH" = "true" ] && { [ "$TRAVIS_PULL_REQUEST" != "false" ] || exit 1; } && git checkout HEAD^2 && echo "OCTOPULL_SHA=$(git rev-parse HEAD)"; true'
+  - sh -e /etc/init.d/xvfb start
 env:
+  global:
+  - DISPLAY=:99.0
+  matrix:
   - BUILD_PR_BRANCH=true
   - BUILD_PR_BRANCH=false
 matrix:
