@@ -13,7 +13,7 @@ import nl.tudelft.fishy.PlayerFish;
  * @author Matthijs
  *
  */
-public final class ItemFactory {
+public final class ItemFactory extends AbstractFactory {
   
   private static ItemFactory itemFactory;
   

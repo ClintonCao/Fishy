@@ -11,7 +11,7 @@ import javafx.animation.AnimationTimer;
  * 
  * @author Michiel
  */
-public final class AnimationTimerFactory {
+public final class AnimationTimerFactory extends AbstractFactory {
 
   private static AnimationTimerFactory animationTimerFactory = null;
 

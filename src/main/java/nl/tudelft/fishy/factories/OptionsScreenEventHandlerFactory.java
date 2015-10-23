@@ -11,7 +11,9 @@ import javafx.scene.input.MouseEvent;
  * 
  * @author Michiel
  */
-public final class OptionsScreenEventHandlerFactory implements OptionsScreenEventHandlerFactoryInterface {
+public final class OptionsScreenEventHandlerFactory extends AbstractFactory 
+    implements OptionsScreenEventHandlerFactoryInterface {
+  
   private static OptionsScreenEventHandlerFactory optionsScreenEventHandlerFactory = null;
 
   /**

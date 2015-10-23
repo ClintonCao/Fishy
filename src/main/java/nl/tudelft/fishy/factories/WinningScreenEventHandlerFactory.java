@@ -14,7 +14,8 @@ import javafx.scene.input.MouseEvent;
  * 
  * @author Michiel
  */
-public final class WinningScreenEventHandlerFactory implements WinningScreenEventHandlerFactoryInterface {
+public final class WinningScreenEventHandlerFactory extends AbstractFactory
+    implements WinningScreenEventHandlerFactoryInterface {
 
   private static WinningScreenEventHandlerFactory winningScreenEventHandlerFactory = null;
 

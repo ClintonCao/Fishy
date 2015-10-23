@@ -20,7 +20,7 @@ import javafx.scene.input.MouseEvent;
  * @author Michiel
  *
  */
-public final class MainScreenEventHandlerFactory implements
+public final class MainScreenEventHandlerFactory extends AbstractFactory implements
     MainScreenEventHandlerFactoryInterface {
 
   private static MainScreenEventHandlerFactory mainScreenEHFactory = null;

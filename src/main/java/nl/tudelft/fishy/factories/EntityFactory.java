@@ -13,7 +13,7 @@ import nl.tudelft.fishy.PlayerFish;
  * @author Matthijs
  *
  */
-public final class EntityFactory {
+public final class EntityFactory extends AbstractFactory {
   
   /**
    * The constructor.

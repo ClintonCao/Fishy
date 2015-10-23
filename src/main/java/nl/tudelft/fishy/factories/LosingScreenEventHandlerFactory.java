@@ -13,8 +13,8 @@ import javafx.scene.input.MouseEvent;
  * 
  * @author Michiel
  */
-public final class LosingScreenEventHandlerFactory implements
-    LosingScreenEventHandlerFactoryInterface {
+public final class LosingScreenEventHandlerFactory extends AbstractFactory implements
+    LosingScreenEventHandlerFactoryInterface  {
 
   private static LosingScreenEventHandlerFactory losingScreenEHFactory = null;
 
