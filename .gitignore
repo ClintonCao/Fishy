@@ -26,4 +26,4 @@ hs_err_pid*
 .checkstyle
 
 # Game related files
-.txt
+*.txt
