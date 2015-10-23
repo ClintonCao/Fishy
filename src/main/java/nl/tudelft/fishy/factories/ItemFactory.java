@@ -33,9 +33,6 @@ public final class ItemFactory extends AbstractFactory {
 
   /**
    * This method creates an instance of an item for the player.
-   * As of this moment the only item in the game is a FishBomb,
-   * and their is no item superclass.
-   * This is why the method gives back a FishBomb instead of a generic item class.
    * @param itemType
    *      The item created.
    * @param player
