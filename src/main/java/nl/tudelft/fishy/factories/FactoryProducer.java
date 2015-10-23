@@ -45,7 +45,7 @@ public final class FactoryProducer {
    * Basic getter.
    * @return The singleton EntityFactory
    */
-  public static synchronized FactoryProducer getEntityFactory() {
+  public static synchronized FactoryProducer getFactoryProducer() {
     
     if (factoryProducer == null) {
       factoryProducer = new FactoryProducer();
