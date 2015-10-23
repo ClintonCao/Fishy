@@ -49,7 +49,7 @@ public final class ItemFactory extends AbstractFactory {
       case "FISHBOMB": 
         return FishBomb.createFishBomb(player);
       case "LANCE":
-        return Lance.getSingletonLance(player);
+        return Lance.getSingletonLance();
       case "LIFE":
         return Life.getSingletonLife();  
       default:
