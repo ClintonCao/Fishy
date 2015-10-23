@@ -1,16 +1,24 @@
 package nl.tudelft.fishy.factories;
 
+import nl.tudelft.fishy.CompositeEnemyFish;
+import nl.tudelft.fishy.Entity;
+import nl.tudelft.fishy.Game;
+import nl.tudelft.fishy.Item;
+import nl.tudelft.fishy.PlayerFish;
 import nl.tudelft.fishy.interfaces.OptionsScreenEventHandlerFactoryInterface;
+
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import nl.tudelft.fishy.Game;
 
 /**
  * A OptionsScreenEventHandlerFactory is a factory to create EventHandlers for the options screen.
  * 
  * @author Michiel
  */
-public final class OptionsScreenEventHandlerFactory implements OptionsScreenEventHandlerFactoryInterface {
+public final class OptionsScreenEventHandlerFactory extends AbstractFactory 
+    implements OptionsScreenEventHandlerFactoryInterface {
+  
   private static OptionsScreenEventHandlerFactory optionsScreenEventHandlerFactory = null;
 
   /**
@@ -29,11 +37,15 @@ public final class OptionsScreenEventHandlerFactory implements OptionsScreenEven
 
     switch (buttonString) {
 
-    case "onbutton" : return makeOptionsScreenOnButtonEventHandler();
-    case "offbutton" : return makeOptionsScreenOfButtonEventHandler();
-    case "backbutton" : return makeOptionsScreenBackButtonEventHandler();
+      case "onbutton":
+        return makeOptionsScreenOnButtonEventHandler();
+      case "offbutton":
+        return makeOptionsScreenOfButtonEventHandler();
+      case "backbutton":
+        return makeOptionsScreenBackButtonEventHandler();
 
-    default: return null;
+      default:
+        return null;
 
     }
   }
@@ -85,5 +97,20 @@ public final class OptionsScreenEventHandlerFactory implements OptionsScreenEven
         Game.getLogger().logSwitchScreen("MainScreen");
       }
     };
+  }
+
+  @Override
+  public AnimationTimer makeAnimationTimer(CompositeEnemyFish compositeEnemyFish) {
+    return null;
+  }
+
+  @Override
+  public Entity getEntity(String entityType) {
+    return null;
+  }
+
+  @Override
+  public Item createItem(String itemType, PlayerFish player) {
+    return null;
   }
 }

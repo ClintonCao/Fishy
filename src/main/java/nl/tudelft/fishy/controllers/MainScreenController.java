@@ -2,6 +2,7 @@ package nl.tudelft.fishy.controllers;
 
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
+import nl.tudelft.fishy.factories.FactoryProducer;
 import nl.tudelft.fishy.factories.MainScreenEventHandlerFactory;
 
 import java.net.URL;
@@ -35,6 +36,7 @@ public class MainScreenController {
   private static Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
   private static GraphicsContext gc = canvas.getGraphicsContext2D();
   private static Text lifeText = new Text();
+  private static FactoryProducer factoryProducer = FactoryProducer.getFactoryProducer();
 
   @FXML
   private ResourceBundle resources;
@@ -122,7 +124,7 @@ public class MainScreenController {
       NGPText.setVisible(true);
     }
 
-    MainScreenEventHandlerFactory mainScreenEHFactory = MainScreenEventHandlerFactory.getMainScreenEHFactory();
+    MainScreenEventHandlerFactory mainScreenEHFactory = (MainScreenEventHandlerFactory) factoryProducer.getFactory("MAINSCREEN");
 
     EventHandler<MouseEvent> playbuttonEH = mainScreenEHFactory.makeEventHandler("playbutton");
     PlayButton.setOnMouseClicked(playbuttonEH);
