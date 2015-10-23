@@ -1,5 +1,11 @@
 package nl.tudelft.fishy.factories;
 
+/**
+ * This class is a factory that that creates the different factories.
+ * It can also be seen as a so called "super-factory".
+ * @author Matthijs
+ *
+ */
 public final class FactoryProducer {
   
   /**
