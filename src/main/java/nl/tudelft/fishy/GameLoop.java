@@ -159,7 +159,7 @@ public class GameLoop {
 
     BoundingBox bb = life.getSprite().getBoundingBox();
 
-    if (frames % 600 == 0) {
+    if (frames % 600 == 0 && playerFish.getLives() < 4) {
       bb.setX(1);
       bb.setY(Game.getScreenbox().getHeight() * 3 / 4);
     }
@@ -428,7 +428,7 @@ public class GameLoop {
     Sprite pfSprite = playerFish.getSprite();
     BoundingBox pfbb = pfSprite.getBoundingBox();     
 
-    if (pfbb.getWidth() > 60) {
+    if (pfbb.getWidth() > 90) {
       if (endBossbb.getX() == -2000) {
         endBossbb.setX(0);
         endBossbb.setY(0);
