@@ -60,6 +60,8 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
       setPlayerFishRightImage(new Image(rightImageName, 128, 128, true, true));
     }
     
+    counter = 0;
+    
     setHasLance(hasLance);
   }
 
@@ -114,6 +116,13 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
 
     playerFishBoundingBox.setWidth((int) this.getPlayerFishLeftImage().getWidth());
     playerFishBoundingBox.setHeight((int) this.getPlayerFishLeftImage().getHeight());
+  }
+  
+  /**
+   * Decrement life Counter.
+   */
+  public void decrementCounter() {
+	  counter--;
   }
 
   /**
@@ -215,7 +224,15 @@ public final class PlayerFish extends Entity implements PlayerFishInterface {
     score = number;
   }
 
-  public int getScore() {
+  public int getCounter() {
+	  return counter;
+  }
+
+  public void setCounter(int counter) {
+	  this.counter = counter;
+  }
+
+public int getScore() {
     return score;
   }
   

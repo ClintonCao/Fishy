@@ -35,6 +35,15 @@ public final class Life extends Item implements LifeInterface {
   }
   
   /**
+   * Move the life item.
+   */
+  public void move(int x) {
+	  BoundingBox bb = this.getSprite().getBoundingBox();
+	  int oldX = bb.getX();
+	  bb.setX(oldX + x);
+  }
+  
+  /**
    * Create the life item in the game.
    * @return the life item.
    */
@@ -42,7 +51,7 @@ public final class Life extends Item implements LifeInterface {
     // render the life image
     Image lifeImage = new Image(imageFileName);
     // starting position of the image on the screen
-    int posX = 0;
+    int posX = 1;
     int posY = Game.getScreenbox().getHeight() / 4 * 3;
     // gets the image's height and width
     int lifeWidth = (int) lifeImage.getWidth();
@@ -51,15 +60,6 @@ public final class Life extends Item implements LifeInterface {
     BoundingBox lifebb = new BoundingBox(posX, posY, lifeWidth, lifeHeight);
     Sprite lifeSprite = new Sprite(lifeImage, lifebb);
     
-    return new Life(lifeSprite, posX, posY);
+    return new Life(lifeSprite, 0, 0);
   }
-
-  /**
-   * {@inheritDoc}.
-   */
-  public boolean intersect(Sprite other) {
-    return super.getSprite().intersects(other);
-  }
-
-
 }

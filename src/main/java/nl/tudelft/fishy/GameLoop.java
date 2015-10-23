@@ -24,6 +24,7 @@ public class GameLoop {
   private static int currScore;
   private static ArrayList<String> input;
   private static EndBoss endBoss = (EndBoss) EntityFactory.getEntityFactory().getEntity("BOSS");
+  private Life life;
   private static Lance lance;
   private static boolean bossMode;
   private AnimationTimer fAnimationTimer;
@@ -51,6 +52,7 @@ public class GameLoop {
       currScore = 0;
     }
     bossMode = false;
+    life = (Life) itemFactory.createItem("LIFE", playerFish);
     setLance((Lance) itemFactory.createItem("LANCE", playerFish));
     setBossMode(false);
     
@@ -73,6 +75,8 @@ public class GameLoop {
     
     playerWins();
     
+    spawnLifeItem();
+    
     playerDiesToBoss();
 
     MainScreenController.renderStatics(gc);
@@ -94,6 +98,7 @@ public class GameLoop {
     renderNonStatics(gc);
     
     updateFrames();
+
   }
     
   /**
@@ -105,6 +110,8 @@ public class GameLoop {
    */
   private void renderNonStatics(GraphicsContext gc) {
     playerFish.getSprite().render(gc);
+    life.getSprite().render(gc);
+    life.move(5);
     
     compositeEnemyFish.render(gc);
     compositeEnemyFish.move();
@@ -142,6 +149,33 @@ public class GameLoop {
       endBossbb.setX(-2000);
       endBossbb.setY(-2000);
     }
+  }
+
+  /**
+   * Generate Life Item and spawn it on screen.
+   * Handle collisions with player and removal when going off screen.
+   */
+  private void spawnLifeItem() {
+	 
+	  BoundingBox bb = life.getSprite().getBoundingBox();
+
+	  if (frames % 600 == 0) {
+		  bb.setX(1);
+		  bb.setY(Game.getScreenbox().getHeight() * 3 / 4);
+	  }
+
+	  if (!bb.intersects(Game.getScreenbox())) {
+		  bb.setX(-2000);
+		  bb.setY(-2000);
+	  }
+
+	  if (playerFish.getSprite().getBoundingBox().intersects(bb)) {
+		  playerFish.setScore(1000);
+		  bb.setX(-2000);
+		  bb.setY(-2000);
+		  int c = playerFish.getCounter();
+		  playerFish.setCounter(c+1);
+	  }
   }
   
   /**

@@ -67,13 +67,5 @@ public interface LifeInterface {
    * @return the Sprite.
    */
   Sprite getSprite();
-  
-  
-  /**
-   * Check if it intersects with another sprite.
-   * @param other the other sprite.
-   * @return true if both sprite intersects with each other.
-   */
-  boolean intersect(Sprite other);
 
 }
