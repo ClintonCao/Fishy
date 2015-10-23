@@ -173,8 +173,7 @@ public class GameLoop {
       playerFish.setScore(1000);
       bb.setX(-2000);
       bb.setY(-2000);
-      int c = playerFish.getCounter();
-      playerFish.setCounter(c + 1);
+      playerFish.incrementLives();
     }
   }
 
@@ -482,7 +481,7 @@ public class GameLoop {
   }
 
   public int getPlayerFishLives() {
-    return playerFish.getCounter();
+    return playerFish.getLives();
   }
 
 }
