@@ -34,6 +34,7 @@ public class MainScreenController {
   private static GameLoop gameLoop;
   private static Canvas canvas = new Canvas(Game.getResX(), Game.getResY());
   private static GraphicsContext gc = canvas.getGraphicsContext2D();
+  private static Text lifeText = new Text();
 
   @FXML
   private ResourceBundle resources;
@@ -87,9 +88,10 @@ public class MainScreenController {
   public static void init() {
 
     scoreText.setText("Score");
-    
+
     gameLoop = new GameLoop(gc);
-    
+    lifeText.setText("Lives: " + gameLoop.getPlayerFishLives());
+
   }
 
   /**
@@ -146,20 +148,22 @@ public class MainScreenController {
     gc.setFill(Color.BLACK);
     gc.setFont(Font.font("Comic Sans", 30));
     gc.fillText(scoreText.getText().toString(), 625, 20);
+    lifeText.setText("Lives: " + gameLoop.getPlayerFishLives());
+    gc.fillText(lifeText.getText().toString(), 400, 35);
     gc.setTextAlign(TextAlignment.CENTER);
     gc.setTextBaseline(VPos.CENTER);
     gc.fillText(Integer.toString(gameLoop.getCurrScore()), 625, 55);
-    
+
     if (gameLoop.getPlayerFish().getBombs().size() > 0) {
-    	gameLoop.getPlayerFish().getBombs().get(0).getSprite().render(gc);
+      gameLoop.getPlayerFish().getBombs().get(0).getSprite().render(gc);
     }
   }
 
-	public static GameLoop getGameLoop() {
-		return gameLoop;
-	}
+  public static GameLoop getGameLoop() {
+    return gameLoop;
+  }
 
-	public static Canvas getCanvas() {
-		return canvas;
-	}
+  public static Canvas getCanvas() {
+    return canvas;
+  }
 }
