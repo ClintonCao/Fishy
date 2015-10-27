@@ -68,7 +68,7 @@ public class EnemyFishTest {
     EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
     Sprite sprite1 = mock(Sprite.class);
     enemyFish.setSprite(sprite1);
-    assertEquals(sprite1,enemyFish.getSprite());
+    assertEquals(sprite1, enemyFish.getSprite());
   }
   
   /**
