@@ -160,14 +160,58 @@ public class BoundingBoxTest {
   }
 
   /**
-   * Checks if two different Bounding Boxes are considered different.
+   * Checks if two Bounding Boxes with different X coordinates are considered different.
    */
   @Test
-  public void testEqualsFalse() {
+  public void testEqualsFalseXCoordinate() {
     BoundingBox boundingBox1 = new BoundingBox(67, 129, 1, 2);
-    BoundingBox boundingBox2 = new BoundingBox(10, 10, 10, 10);
+    BoundingBox boundingBox2 = new BoundingBox(10, 129, 1, 2);
+    assertFalse(boundingBox1.equals(boundingBox2));    
 
-    assertFalse(boundingBox1.equals(boundingBox2));
+  }
+ 
+  
+  /**
+   * Checks if two Bounding Boxes with different Y coordinates are considered different.
+   */
+  @Test
+  public void testEqualsFalseYCoordinate() {
+    BoundingBox boundingBox1 = new BoundingBox(67, 129, 1, 2);
+    BoundingBox boundingBox2 = new BoundingBox(67, 100, 1, 2);
+    assertFalse(boundingBox1.equals(boundingBox2));    
+
+  }
+
+  /**
+   * Checks if two Bounding Boxes with different widths are considered different.
+   */
+  @Test
+  public void testEqualsFalseWidth() {
+    BoundingBox boundingBox1 = new BoundingBox(67, 129, 1, 2);
+    BoundingBox boundingBox2 = new BoundingBox(67, 129, 2, 2);
+    assertFalse(boundingBox1.equals(boundingBox2));    
+
+  }  
+
+  /**
+   * Checks if two Bounding Boxes with different heights are considered different.
+   */
+  @Test
+  public void testEqualsFalseHeight() {
+    BoundingBox boundingBox1 = new BoundingBox(67, 129, 1, 2);
+    BoundingBox boundingBox2 = new BoundingBox(67, 129, 1, 1);
+    assertFalse(boundingBox1.equals(boundingBox2));    
+
+  }    
+  /**
+   * Checks if estEquals method can differ a instance that is not boundingbox.
+   */
+  @Test
+  public void testEqualsFalseInstace() {
+    BoundingBox boundingBox1 = new BoundingBox(67, 129, 1, 2);
+    Logger logger = Logger.getSingletonLogger();
+
+    assertFalse(boundingBox1.equals(logger));
 
   }
 }
