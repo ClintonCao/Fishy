@@ -4,6 +4,8 @@ jdk:
 
 sudo: false
 
+script:
+  - mvn test -DskipTests=true -B 
 notifications:
   webhooks:
     - http://octopull.rmhartog.me/api/travis/webhook
