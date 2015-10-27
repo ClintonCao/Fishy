@@ -1,7 +1,10 @@
 package nl.tudelft.fishy;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import javafx.scene.image.Image;
 
 import org.junit.Test;
 
@@ -37,9 +40,9 @@ public class EnemyFishTest {
     Sprite sprite = mock(Sprite.class);
 
     EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
-    assertEquals(true, enemyFish.isLefty());
+    assertTrue(enemyFish.isLefty());
     enemyFish.setLefty(false);
-    assertEquals(false, enemyFish.isLefty());
+    assertFalse(enemyFish.isLefty());
   }
 
   /**
@@ -51,7 +54,39 @@ public class EnemyFishTest {
     boolean isLefty = true;
     Sprite sprite = mock(Sprite.class);
     EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
-    assertEquals(true, enemyFish.isLefty());
+    assertTrue(enemyFish.isLefty());
   }
 
+  /**
+   * Test the method of setSprite.
+   */
+  @Test
+  public void testSetSprite() { 
+    Sprite sprite = mock(Sprite.class);
+    int movespeed = 2;
+    boolean isLefty = true;
+    EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
+    Sprite sprite1 = mock(Sprite.class);
+    enemyFish.setSprite(sprite1);
+    assertEquals(sprite1, enemyFish.getSprite());
+  }
+  
+  /**
+   * Test whether two entities can intersect with each other.
+   */
+  @Test
+  public void testIntersect() {
+    BoundingBox boundingBox = new BoundingBox(53, 129, 67, 2);
+    BoundingBox aabb = boundingBox;
+    Image image = mock(Image.class);
+    Sprite sprite = new Sprite(image, boundingBox);
+    Sprite sprite1 = new Sprite(image, aabb);
+    int movespeed = 2;
+    boolean isLefty = true;
+    EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite); 
+    int movespeed1 = 3;
+    boolean isLefty1 = false;
+    EnemyFish enemyFish1 =  new EnemyFish(movespeed1, isLefty1, sprite1);
+    assertTrue(enemyFish.intersects(enemyFish1));
+  }
 }
