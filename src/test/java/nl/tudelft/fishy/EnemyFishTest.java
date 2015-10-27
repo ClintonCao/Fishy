@@ -1,6 +1,8 @@
 package nl.tudelft.fishy;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Test;
@@ -37,9 +39,9 @@ public class EnemyFishTest {
     Sprite sprite = mock(Sprite.class);
 
     EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
-    assertEquals(true, enemyFish.isLefty());
+    assertTrue(enemyFish.isLefty());
     enemyFish.setLefty(false);
-    assertEquals(false, enemyFish.isLefty());
+    assertFalse(enemyFish.isLefty());
   }
 
   /**
@@ -51,7 +53,7 @@ public class EnemyFishTest {
     boolean isLefty = true;
     Sprite sprite = mock(Sprite.class);
     EnemyFish enemyFish = new EnemyFish(movespeed, isLefty, sprite);
-    assertEquals(true, enemyFish.isLefty());
+    assertTrue(enemyFish.isLefty());
   }
 
 }
