@@ -18,6 +18,7 @@ import javafx.util.Pair;
  * @author Michiel
  *
  */
+@SuppressWarnings("PMD")
 public class GameLoop {
 
   private static PlayerFish playerFish;

@@ -22,9 +22,9 @@ public class OptionsController {
   private static FactoryProducer factoryProducer = FactoryProducer.getFactoryProducer();
 
   @FXML
-  private ResourceBundle resources;
+  private ResourceBundle resources; // NOPMD - Needed for JavaFX.
   @FXML
-  private URL location;
+  private URL location; // NOPMD - Needed for JavaFX.
   @FXML
   private Button OnButton;
   @FXML

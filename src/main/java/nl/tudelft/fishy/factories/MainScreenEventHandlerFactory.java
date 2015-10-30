@@ -25,6 +25,7 @@ import javafx.scene.input.MouseEvent;
  * @author Michiel
  *
  */
+@SuppressWarnings("PMD")
 public final class MainScreenEventHandlerFactory extends AbstractFactory implements
     MainScreenEventHandlerFactoryInterface {
 

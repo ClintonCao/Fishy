@@ -121,6 +121,11 @@ public class CompositeEnemyFish implements Composition<EnemyFish> {
       }
     }
   }
+  
+  
+  public ArrayList<EnemyFish> getList() {
+    return fEnemyFishList;
+  }
 
   /**
    * {@inheritDoc}
