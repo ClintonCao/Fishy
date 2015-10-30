@@ -16,6 +16,7 @@ import org.junit.Test;
  *         Sunwei Wang.
  *
  */
+@SuppressWarnings("PMD")
 public class BoundingBoxTest {
   /**
    * This test controls the ability to set a X value to the AABB.

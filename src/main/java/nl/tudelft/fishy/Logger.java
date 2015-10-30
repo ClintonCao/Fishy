@@ -10,6 +10,7 @@ import java.util.List;
  *         Sunwei Wang.
  *
  */
+@SuppressWarnings("PMD")
 public final class Logger {
 
   private List<String> message = new ArrayList<String>();

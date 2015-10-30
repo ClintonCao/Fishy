@@ -24,6 +24,7 @@ import javafx.scene.input.KeyCode;
  * 
  * @author Clinton Cao, Michiel Doesburg, Matthijs Halvemaan, Dmitry Malarev, Sunwei Wang.
  */
+@SuppressWarnings("PMD")
 public class FishySmokeTest {
 
   private FxRobot robot;
@@ -80,12 +81,30 @@ public class FishySmokeTest {
     assertTrue(PlayerFish.getSingletonFish().isAlive());
     assertEquals(0, PlayerFish.getSingletonFish().getScore());
     assertEquals(1, PlayerFish.getSingletonFish().getLives());
-
+    assertFalse(PlayerFish.getSingletonFish().hasLance());
+    String leftImageName = "/FishOriginal_transparent.png";
+    String rightImageName = "/Fish_Right_Transparent.png";
+    assertEquals(leftImageName, PlayerFish.getPlayerFishLeftImageName());
+    assertEquals(rightImageName, PlayerFish.getPlayerFishRightImageName());
+    
+    // increment lives and check that it works.
+    PlayerFish.getSingletonFish().incrementLives();
+    assertEquals(2, PlayerFish.getSingletonFish().getLives());
+    
+    // decrement lives and check that it works.
+    PlayerFish.getSingletonFish().decrementLives();
+    assertEquals(1, PlayerFish.getSingletonFish().getLives());
+    
+    // Use bomb and check that the player does not have any bombs left.
+    robot.press(KeyCode.X);
+    robot.release(KeyCode.X);
+    assertEquals(0, PlayerFish.getSingletonFish().getBombs().size());
+    
     // Move the player up and check that the player did actually move.
     Sprite playerSprite = PlayerFish.getSingletonFish().getSprite();
     BoundingBox box = playerSprite.getBoundingBox();
     int oldYposition = box.getY();
-
+    
     robot.press(KeyCode.W);
     robot.release(KeyCode.W);
 

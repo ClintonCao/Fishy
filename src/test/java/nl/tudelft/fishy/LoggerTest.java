@@ -10,6 +10,7 @@ import org.junit.Test;
  *         Sunwei Wang.
  *
  */
+@SuppressWarnings("PMD")
 public class LoggerTest {
   /**
    * static access of the class Logger, 
@@ -17,13 +18,6 @@ public class LoggerTest {
    */
   private Logger logger = Logger.getSingletonLogger();
 
-  /**
-   * This method is for testing logEdgeBump method.
-   */
-  @Test
-  public void testlogEdgeBump() {
-
-  }
 
   /**
    * This method is for testing logIcon method.

@@ -23,7 +23,6 @@ public final class EndBoss extends Entity implements EnemyFishInterface {
   private boolean isLefty;
   private static BoundingBox boundingBox = new BoundingBox(1, 1, 1, 1);
   private static Sprite sprite;
-  private static int health;
   private static EndBoss singletonEndBoss;
 
   /**
@@ -121,11 +120,4 @@ private EndBoss(int movespeed, boolean isLefty, Sprite sprite) {
     this.isLefty = isLefty;
   }
   
-  public int getHealth() {
-    return health;  
-  }
-  
-  public void setHealth(int currentHealth) {
-    health = currentHealth;
-  }
 }
