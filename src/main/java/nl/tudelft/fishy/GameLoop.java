@@ -3,7 +3,6 @@ package nl.tudelft.fishy;
 import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.factories.AnimationTimerFactory;
 import nl.tudelft.fishy.factories.EntityFactory;
-import nl.tudelft.fishy.factories.FactoryProducer;
 import nl.tudelft.fishy.factories.ItemFactory;
 
 import java.util.ArrayList;
@@ -32,7 +31,6 @@ public class GameLoop {
   private AnimationTimer fAnimationTimer;
   private static int frames;
   private GraphicsContext gc;
-  private static FactoryProducer factoryProducer = FactoryProducer.getFactoryProducer();
 
   public static final double MULTIPLIER = 1.05;
 
@@ -42,8 +40,8 @@ public class GameLoop {
    * - The graphicsContext which needs to do the rendering.
    */
   public GameLoop(GraphicsContext gc) {
-    EntityFactory entityFactory = (EntityFactory) factoryProducer.getFactory("ENTITY");
-    ItemFactory itemFactory = (ItemFactory) factoryProducer.getFactory("ITEM");
+    EntityFactory entityFactory = EntityFactory.getEntityFactory();
+    ItemFactory itemFactory = ItemFactory.getItemFactory();
     playerFish = (PlayerFish) entityFactory.getEntity("PLAYER");
     frames = 0;
     lance = (Lance) itemFactory.createItem("LANCE", playerFish);
@@ -65,7 +63,7 @@ public class GameLoop {
 
     this.gc = gc;
     
-    AnimationTimerFactory animationTimerFactory = (AnimationTimerFactory) factoryProducer.getFactory("ANIMATIONTIMER");
+    AnimationTimerFactory animationTimerFactory = AnimationTimerFactory.getAnimationTimerFactory();
     fAnimationTimer = animationTimerFactory.makeAnimationTimer(compositeEnemyFish);
   }
 
@@ -324,7 +322,7 @@ public class GameLoop {
    * Generates a new enemy fish every 90 frames.
    */
   private void generateEnemyFish() {
-    EntityFactory entityFactory = (EntityFactory) factoryProducer.getFactory("ENTITY");
+    EntityFactory entityFactory = EntityFactory.getEntityFactory();
     if ((frames % 90 == 0) && !isBossMode()) {
       compositeEnemyFish.add((EnemyFish) entityFactory.getEntity("ENEMY"));
       Game.getLogger().logEdgeBump(playerFish);

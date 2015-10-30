@@ -3,7 +3,6 @@ package nl.tudelft.fishy.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import nl.tudelft.fishy.factories.FactoryProducer;
 import nl.tudelft.fishy.factories.WinningScreenEventHandlerFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,8 +17,6 @@ import javafx.scene.input.MouseEvent;
  *
  */
 public class WinningScreenController {
-  
-  private static FactoryProducer factoryProducer = FactoryProducer.getFactoryProducer();
 
   @FXML
   private ResourceBundle resources; // NOPMD - Needed for JavaFX.
@@ -55,7 +52,7 @@ public class WinningScreenController {
     assert MainScreenButton != null : "fx:id=\"MainScreenButton\" was not injected: " + "check your FXML file 'Untitled'.";
     assert NGPButton != null : "fx:id=\"MainScreenButton\" was not injected: " + "check your FXML file 'Untitled'.";
 
-    WinningScreenEventHandlerFactory winningScreenEventHandlerFactory = (WinningScreenEventHandlerFactory) factoryProducer.getFactory("WINNINGSCREEN");
+    WinningScreenEventHandlerFactory winningScreenEventHandlerFactory = WinningScreenEventHandlerFactory.getWinningScreenEventHandlerFactory();
     
     EventHandler<MouseEvent> mainScreenButtonEventHandler = winningScreenEventHandlerFactory.makeEventHandler("mainscreenbutton");
     MainScreenButton.setOnMouseClicked(mainScreenButtonEventHandler);

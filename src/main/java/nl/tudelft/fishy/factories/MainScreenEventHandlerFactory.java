@@ -1,15 +1,10 @@
 package nl.tudelft.fishy.factories;
 
-import nl.tudelft.fishy.CompositeEnemyFish;
-import nl.tudelft.fishy.Entity;
 import nl.tudelft.fishy.Game;
 import nl.tudelft.fishy.GameLoop;
-import nl.tudelft.fishy.Item;
-import nl.tudelft.fishy.PlayerFish;
 import nl.tudelft.fishy.controllers.MainScreenController;
 import nl.tudelft.fishy.interfaces.MainScreenEventHandlerFactoryInterface;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -26,7 +21,7 @@ import javafx.scene.input.MouseEvent;
  *
  */
 @SuppressWarnings("PMD")
-public final class MainScreenEventHandlerFactory extends AbstractFactory implements
+public final class MainScreenEventHandlerFactory implements
     MainScreenEventHandlerFactoryInterface {
 
   private static MainScreenEventHandlerFactory mainScreenEHFactory = null;
@@ -181,18 +176,4 @@ public final class MainScreenEventHandlerFactory extends AbstractFactory impleme
     };
   }
 
-  @Override
-  public AnimationTimer makeAnimationTimer(CompositeEnemyFish compositeEnemyFish) {
-    return null;
-  }
-
-  @Override
-  public Entity getEntity(String entityType) {
-    return null;
-  }
-
-  @Override
-  public Item createItem(String itemType, PlayerFish player) {
-    return null;
-  }
 }
