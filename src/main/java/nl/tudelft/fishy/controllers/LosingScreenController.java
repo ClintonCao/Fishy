@@ -3,7 +3,6 @@ package nl.tudelft.fishy.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import nl.tudelft.fishy.factories.FactoryProducer;
 import nl.tudelft.fishy.factories.LosingScreenEventHandlerFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,7 +18,6 @@ import javafx.scene.input.MouseEvent;
  *
  */
 public class LosingScreenController {
-  private static FactoryProducer factoryProducer = FactoryProducer.getFactoryProducer();
 
   @FXML
   private ResourceBundle resources; // NOPMD - Needed for JavaFX.
@@ -47,7 +45,7 @@ public class LosingScreenController {
     assert MainScreenButton != null : "fx:id=\"MainScreenButton\" "
         + "was not injected: check your FXML file 'LosingScreen.fxml'.";
 
-    LosingScreenEventHandlerFactory losingScreenEHFactory = (LosingScreenEventHandlerFactory) factoryProducer.getFactory("LOSINGSCREEN");
+    LosingScreenEventHandlerFactory losingScreenEHFactory = LosingScreenEventHandlerFactory.getLosingScreenEHFactory();
     
     EventHandler<MouseEvent> mainScreenButtonEH = losingScreenEHFactory
         .makeEventHandler("mainscreenbutton");

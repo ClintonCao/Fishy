@@ -3,7 +3,6 @@ package nl.tudelft.fishy.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import nl.tudelft.fishy.factories.FactoryProducer;
 import nl.tudelft.fishy.factories.OptionsScreenEventHandlerFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,8 +18,6 @@ import javafx.scene.input.MouseEvent;
  */
 public class OptionsController {
   
-  private static FactoryProducer factoryProducer = FactoryProducer.getFactoryProducer();
-
   @FXML
   private ResourceBundle resources; // NOPMD - Needed for JavaFX.
   @FXML
@@ -75,7 +72,7 @@ public class OptionsController {
     assert OffButton != null : "fx:id=\"OffButton\" was not injected: " + "check your FXML file 'OptionsScreen.fxml'.";
     assert BackButton != null : "fx:id=\"BackButton\" was not injected: " + "check your FXML file 'OptionsScreen.fxml'.";
 
-    OptionsScreenEventHandlerFactory optionsScreenEventHandlerFactory = (OptionsScreenEventHandlerFactory) factoryProducer.getFactory("OPTIONSSCREEN");
+    OptionsScreenEventHandlerFactory optionsScreenEventHandlerFactory = OptionsScreenEventHandlerFactory.getOptionsScreenEventHandlerFactory();
     
     EventHandler<MouseEvent> onButtonEventHandler = optionsScreenEventHandlerFactory.makeEventHandler("onbutton");
     OnButton.setOnMouseClicked(onButtonEventHandler);

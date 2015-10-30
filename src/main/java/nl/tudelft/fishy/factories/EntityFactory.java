@@ -1,15 +1,9 @@
 package nl.tudelft.fishy.factories;
 
-import nl.tudelft.fishy.CompositeEnemyFish;
 import nl.tudelft.fishy.EndBoss;
 import nl.tudelft.fishy.EnemyFish;
 import nl.tudelft.fishy.Entity;
-import nl.tudelft.fishy.Item;
 import nl.tudelft.fishy.PlayerFish;
-
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 
 
 /**
@@ -20,7 +14,7 @@ import javafx.scene.input.MouseEvent;
  * @author Matthijs
  *
  */
-public final class EntityFactory extends AbstractFactory {
+public final class EntityFactory {
   
   /**
    * The constructor.
@@ -65,18 +59,4 @@ public final class EntityFactory extends AbstractFactory {
     return entityFactory;
   }
 
-  @Override
-  public AnimationTimer makeAnimationTimer(CompositeEnemyFish compositeEnemyFish) {
-    return null;
-  }
-
-  @Override
-  public Item createItem(String itemType, PlayerFish player) {
-    return null;
-  }
-
-  @Override
-  public EventHandler<MouseEvent> makeEventHandler(String buttonString) {
-    return null;
-  }
 }

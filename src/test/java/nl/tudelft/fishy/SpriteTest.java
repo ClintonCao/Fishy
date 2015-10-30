@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
  *         Sunwei Wang.
  *
  */
+@SuppressWarnings("PMD")
 public class SpriteTest {
 
   /**
